@@ -36,13 +36,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-text {
             font-size: 28px;
             font-weight: bold;
             color: #0066cc;
+        }
+
+        /* Placeholder for logo */
+        .logo-placeholder {
+            width: 180px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 15px;
         }
 
         .nav ul {
@@ -63,7 +88,6 @@
             color: #0066cc;
         }
 
-        /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -73,60 +97,89 @@
             color: #0066cc;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+        /* Main Slider */
+        .main-slider {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0,102,204,0.9) 0%, rgba(0,73,153,0.9) 100%),
+                        url('images/main-bg.jpg') center/cover;
             color: white;
-            padding: 120px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 48px;
+        .slider-content h1 {
+            font-size: 52px;
             margin-bottom: 20px;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero p {
-            font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 40px;
+        .slider-content h1 .highlight {
+            color: #ffeb3b;
+        }
+
+        .slider-content p {
+            font-size: 28px;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        /* Quick Links */
+        .quick-section {
+            background: #f8f9fa;
+            padding: 60px 0;
         }
 
         .quick-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
-            margin-top: 60px;
         }
 
         .quick-link {
-            background: rgba(255,255,255,0.1);
-            padding: 30px;
+            background: white;
+            padding: 40px 30px;
             border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: all 0.3s;
             cursor: pointer;
         }
 
         .quick-link:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .quick-link-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
         }
 
         .quick-link h3 {
             font-size: 20px;
             margin-bottom: 10px;
+            color: #0066cc;
         }
 
         .quick-link p {
             font-size: 14px;
-            opacity: 0.9;
+            color: #666;
         }
 
         /* Products Section */
         .products {
             padding: 80px 0;
-            background: #f8f9fa;
         }
 
         .section-title {
@@ -134,11 +187,24 @@
             font-size: 36px;
             margin-bottom: 60px;
             color: #333;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #0066cc;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
         }
 
@@ -157,12 +223,33 @@
 
         .product-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 64px;
+            font-size: 48px;
+            color: #0066cc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0066cc;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .product-content {
@@ -181,21 +268,41 @@
             font-size: 15px;
         }
 
+        .product-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0066cc;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .product-more:hover {
+            color: #004999;
+        }
+
         /* Company Info Section */
         .company-info {
             padding: 80px 0;
+            background: #f8f9fa;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
         }
 
         .info-card {
-            padding: 30px;
-            background: #f8f9fa;
+            padding: 40px 30px;
+            background: white;
             border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
         }
 
         .info-card h3 {
@@ -207,43 +314,171 @@
         .info-card p {
             color: #666;
             line-height: 1.8;
-            font-size: 15px;
         }
 
         /* Footer */
         .footer {
-            background: #333;
+            background: #2c3e50;
             color: white;
-            padding: 40px 0;
-            margin-top: 80px;
+            padding: 50px 0 20px;
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr;
             gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo-placeholder {
+            width: 200px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
 
         .footer h4 {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 15px;
+            color: #fff;
         }
 
         .footer p {
             line-height: 1.8;
             opacity: 0.8;
+            font-size: 14px;
         }
 
         .footer-bottom {
-            margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid rgba(255,255,255,0.1);
             text-align: center;
             opacity: 0.7;
-            font-size: 14px;
+            font-size: 13px;
+        }
+
+        /* Kakao Floating Button */
+        .kakao-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .kakao-button {
+            width: 70px;
+            height: 70px;
+            background: #FEE500;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .kakao-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .kakao-button img {
+            width: 45px;
+            height: 45px;
+        }
+
+        /* Kakao QR Modal */
+        .kakao-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kakao-modal.active {
+            display: flex;
+        }
+
+        .kakao-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .kakao-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .kakao-modal h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .kakao-qr {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .kakao-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav {
                 display: none;
@@ -269,32 +504,34 @@
                 gap: 15px;
             }
 
-            .hero h1 {
+            .slider-content h1 {
                 font-size: 32px;
             }
 
-            .hero p {
-                font-size: 16px;
+            .slider-content p {
+                font-size: 18px;
             }
 
             .quick-links {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
             }
 
             .products-grid {
                 grid-template-columns: 1fr;
             }
 
-            .info-grid {
-                grid-template-columns: 1fr;
+            .kakao-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .kakao-button {
+                width: 60px;
+                height: 60px;
             }
         }
 
-        /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
         }
@@ -305,7 +542,12 @@
     <header class="header">
         <div class="container">
             <div class="header-inner">
-                <div class="logo">태일전기(주)</div>
+                <div class="logo-container">
+                    <!-- 로고 이미지가 있으면: <img src="images/logo.png" alt="태일전기" class="logo-img"> -->
+                    <!-- 지금은 placeholder -->
+                    <div class="logo-placeholder">태일전기 로고</div>
+                    <div class="logo-text">태일전기(주)</div>
+                </div>
                 <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
                 <nav class="nav" id="nav">
                     <ul>
@@ -319,27 +561,36 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>원활하고 안전한 전기를 만들어내는</h1>
+    <!-- Main Slider -->
+    <section class="main-slider">
+        <div class="slider-content">
+            <h1><span class="highlight">원활</span>하고 <span class="highlight">안전한</span> 전기를 만들어내는</h1>
             <p>태일전기(주)</p>
-            
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-section">
+        <div class="container">
             <div class="quick-links">
                 <div class="quick-link" onclick="scrollToSection('company')">
-                    <h3>📋 CEO인사말</h3>
+                    <div class="quick-link-icon">👔</div>
+                    <h3>CEO인사말</h3>
                     <p>태일전기의 비전을 확인하세요</p>
                 </div>
                 <div class="quick-link" onclick="scrollToSection('contact')">
-                    <h3>📍 찾아오시는길</h3>
+                    <div class="quick-link-icon">📍</div>
+                    <h3>찾아오시는길</h3>
                     <p>인천시 서구 원당대로 480번길 6-11</p>
                 </div>
                 <div class="quick-link" onclick="scrollToSection('promotion')">
-                    <h3>🏆 인증서</h3>
+                    <div class="quick-link-icon">🏆</div>
+                    <h3>인증서</h3>
                     <p>각종 인증 및 특허 정보</p>
                 </div>
                 <div class="quick-link" onclick="alert('문의하기 기능은 추후 추가 예정입니다.')">
-                    <h3>💬 1:1문의</h3>
+                    <div class="quick-link-icon">💬</div>
+                    <h3>1:1 문의</h3>
                     <p>궁금하신 사항을 문의하세요</p>
                 </div>
             </div>
@@ -352,50 +603,72 @@
             <h2 class="section-title">제품소개</h2>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image">⚡</div>
+                    <div class="product-image">
+                        <!-- 이미지 있으면: <img src="images/prod_img1.jpg" alt="고압배전반"> -->
+                        <span style="font-size: 64px;">⚡</span>
+                        <div class="product-badge">NEW</div>
+                    </div>
                     <div class="product-content">
-                        <h3>수배전반</h3>
-                        <p>고압배전반, 저압배전반 등 다양한 수배전 설비를 제공합니다. 안정적이고 신뢰성 높은 전력 공급을 위한 최적의 솔루션입니다.</p>
+                        <h3>고압배전반</h3>
+                        <p>안정적이고 신뢰성 높은 고압 전력 공급을 위한 최적의 솔루션입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image">🔧</div>
+                    <div class="product-image">
+                        <span style="font-size: 64px;">🔧</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>저압배전반</h3>
+                        <p>다양한 산업 현장에서 활용 가능한 저압 배전 시스템을 제공합니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">🏗️</span>
+                        <div class="product-badge">인기</div>
+                    </div>
                     <div class="product-content">
                         <h3>면진배전반</h3>
-                        <p>이상 검출용 IR데이터 송신센서를 통한 감시제어시스템 및 진동 저감장치가 장착된 내진(면진) 배전반입니다.</p>
+                        <p>IR데이터 송신센서를 통한 감시제어시스템 및 진동 저감장치가 장착된 내진(면진) 배전반입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image">⚙️</div>
+                    <div class="product-image">
+                        <span style="font-size: 64px;">⚙️</span>
+                    </div>
                     <div class="product-content">
                         <h3>전동기제어반</h3>
-                        <p>안정적인 전동기 제어를 위한 전문 제어반 시스템으로, 다양한 산업 현장에서 활용됩니다.</p>
+                        <p>안정적인 전동기 제어를 위한 전문 제어반 시스템입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image">💡</div>
+                    <div class="product-image">
+                        <span style="font-size: 64px;">📦</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>분전반</h3>
+                        <p>안전하고 효율적인 전력 분배를 위한 분전반 시스템입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">💡</span>
+                        <div class="product-badge">SMART</div>
+                    </div>
                     <div class="product-content">
                         <h3>스마트배전반</h3>
-                        <p>전자유도자가충전센서시스템을 이용한 상태표시 고압배전반, 저압배전반, 전동기제어반으로 스마트한 전력 관리가 가능합니다.</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">🎛️</div>
-                    <div class="product-content">
-                        <h3>자동제어시스템</h3>
-                        <p>첨단 자동화 기술을 적용한 제어 시스템으로, 효율적인 전력 운영을 지원합니다.</p>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">☀️</div>
-                    <div class="product-content">
-                        <h3>태양광 발전장치</h3>
-                        <p>친환경 신재생 에너지 태양광 발전 시스템으로, 지속가능한 에너지 솔루션을 제공합니다.</p>
+                        <p>전자유도자가충전센서시스템을 이용한 상태표시 스마트 배전반입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
                     </div>
                 </div>
             </div>
@@ -408,6 +681,7 @@
             <h2 class="section-title">회사소개</h2>
             <div class="info-grid">
                 <div class="info-card">
+                    <div class="info-card-icon">🎯</div>
                     <h3>경영철학</h3>
                     <p>
                         태일전기는 고객만족을 최우선으로 하며, 
@@ -418,6 +692,7 @@
                 </div>
 
                 <div class="info-card">
+                    <div class="info-card-icon">💎</div>
                     <h3>핵심가치</h3>
                     <p>
                         품질, 안전, 혁신을 바탕으로 
@@ -428,6 +703,7 @@
                 </div>
 
                 <div class="info-card">
+                    <div class="info-card-icon">🔬</div>
                     <h3>기술력</h3>
                     <p>
                         수십년간 축적된 기술력과 노하우를 바탕으로 
@@ -440,12 +716,13 @@
         </div>
     </section>
 
-    <!-- Promotion Section (placeholder) -->
-    <section class="company-info" id="promotion" style="background: #f8f9fa;">
+    <!-- Promotion Section -->
+    <section class="products" id="promotion" style="background: white;">
         <div class="container">
             <h2 class="section-title">홍보관</h2>
             <div class="info-grid">
-                <div class="info-card" style="background: white;">
+                <div class="info-card">
+                    <div class="info-card-icon">📜</div>
                     <h3>인증서</h3>
                     <p>
                         태일전기는 다양한 품질인증 및 특허를 보유하고 있으며, 
@@ -453,7 +730,8 @@
                     </p>
                 </div>
 
-                <div class="info-card" style="background: white;">
+                <div class="info-card">
+                    <div class="info-card-icon">📊</div>
                     <h3>납품실적</h3>
                     <p>
                         주요 대기업 및 공공기관에 제품을 납품한 실적을 보유하고 있으며, 
@@ -461,7 +739,8 @@
                     </p>
                 </div>
 
-                <div class="info-card" style="background: white;">
+                <div class="info-card">
+                    <div class="info-card-icon">📢</div>
                     <h3>공지사항</h3>
                     <p>
                         태일전기의 최신 소식과 제품 정보, 
@@ -477,6 +756,10 @@
         <div class="container">
             <div class="footer-content">
                 <div>
+                    <div class="footer-logo">
+                        <!-- 로고 이미지가 있으면: <img src="images/logo.png" alt="태일전기" class="footer-logo-img"> -->
+                        <div class="footer-logo-placeholder">태일전기(주)</div>
+                    </div>
                     <h4>태일전기(주)</h4>
                     <p>대표이사: 여규철</p>
                     <p>전화번호: 032-568-7051~3</p>
@@ -487,11 +770,20 @@
                     <h4>찾아오시는 길</h4>
                     <p>인천시 서구 원당대로 480번길 6-11</p>
                     <p>(왕길동 128-300번지)</p>
-                    <p style="margin-top: 20px;">
-                        <strong>찾아오시는 방법:</strong><br>
-                        인천 지하철 공항철도 이용 시<br>
-                        검암역 하차 후 택시 이용 (약 5분 거리)
-                    </p>
+                    <br>
+                    <p><strong>찾아오시는 방법:</strong></p>
+                    <p>인천 지하철 공항철도 이용 시</p>
+                    <p>검암역 하차 후 택시 이용</p>
+                    <p>(약 5분 거리)</p>
+                </div>
+                <div>
+                    <h4>고객센터</h4>
+                    <p>평일: 09:00 - 18:00</p>
+                    <p>토요일: 09:00 - 13:00</p>
+                    <p>일요일/공휴일 휴무</p>
+                    <br>
+                    <p>카카오톡 문의</p>
+                    <p>우측 하단 버튼 클릭!</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -500,6 +792,36 @@
         </div>
     </footer>
 
+    <!-- Kakao Floating Button -->
+    <div class="kakao-float">
+        <div class="kakao-button" onclick="openKakaoModal()">
+            <!-- 카카오톡 아이콘 -->
+            <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3C6.477 3 2 6.477 2 10.75C2 13.287 3.526 15.558 5.88 16.958L4.91 20.244C4.847 20.468 5.07 20.646 5.274 20.54L9.243 18.305C10.127 18.519 11.051 18.5 12 18.5C17.523 18.5 22 15.023 22 10.75C22 6.477 17.523 3 12 3Z" fill="#3C1E1E"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Kakao QR Modal -->
+    <div class="kakao-modal" id="kakaoModal">
+        <div class="kakao-modal-content">
+            <span class="kakao-modal-close" onclick="closeKakaoModal()">×</span>
+            <h3>카카오톡 문의</h3>
+            <p>QR코드를 스캔해주세요</p>
+            <div class="kakao-qr">
+                <!-- 실제 QR코드 이미지: <img src="images/kakao-qr.png" alt="카카오톡 QR"> -->
+                <div style="text-align: center; color: #999;">
+                    <p style="font-size: 14px;">QR코드 이미지를</p>
+                    <p style="font-size: 14px;">여기에 넣어주세요</p>
+                    <p style="font-size: 12px; margin-top: 10px;">(images/kakao-qr.png)</p>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                또는 카카오톡에서 "태일전기" 검색
+            </p>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         function toggleMenu() {
@@ -507,13 +829,29 @@
             nav.classList.toggle('active');
         }
 
-        // Smooth scroll to section
+        // Smooth scroll
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        // Kakao Modal
+        function openKakaoModal() {
+            document.getElementById('kakaoModal').classList.add('active');
+        }
+
+        function closeKakaoModal() {
+            document.getElementById('kakaoModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('kakaoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeKakaoModal();
+            }
+        });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav a').forEach(link => {
