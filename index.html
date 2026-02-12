@@ -535,6 +535,61 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* 탭 버튼 */
+        .tab-btn {
+            padding: 12px 28px;
+            border: 2px solid #0066cc;
+            background: white;
+            color: #0066cc;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: #0066cc;
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* 인증서 그리드 */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .cert-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #0066cc;
+        }
+        .cert-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: top;
+        }
+        .cert-card p {
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            font-weight: 500;
+        }
+        @media (max-width: 1024px) { .cert-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
@@ -717,39 +772,194 @@
     </section>
 
     <!-- Promotion Section -->
-    <section class="products" id="promotion" style="background: white;">
+    <section id="promotion" style="padding: 80px 0; background: white;">
         <div class="container">
             <h2 class="section-title">홍보관</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-card-icon">📜</div>
-                    <h3>인증서</h3>
-                    <p>
-                        태일전기는 다양한 품질인증 및 특허를 보유하고 있으며, 
-                        지속적인 품질 관리를 통해 고객에게 최상의 제품을 제공하고 있습니다.
-                    </p>
-                </div>
 
-                <div class="info-card">
-                    <div class="info-card-icon">📊</div>
-                    <h3>납품실적</h3>
-                    <p>
-                        주요 대기업 및 공공기관에 제품을 납품한 실적을 보유하고 있으며, 
-                        축적된 경험과 노하우로 고객 만족을 실현하고 있습니다.
-                    </p>
-                </div>
+            <!-- 탭 메뉴 -->
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:50px; flex-wrap:wrap;">
+                <button class="tab-btn active" onclick="showTab('cert')">📜 인증서</button>
+                <button class="tab-btn" onclick="showTab('patent')">💡 특허</button>
+                <button class="tab-btn" onclick="showTab('award')">🏆 표창/수상</button>
+                <button class="tab-btn" onclick="showTab('reg')">📋 등록증</button>
+            </div>
 
-                <div class="info-card">
-                    <div class="info-card-icon">📢</div>
-                    <h3>공지사항</h3>
-                    <p>
-                        태일전기의 최신 소식과 제품 정보, 
-                        기술 동향 등 다양한 정보를 제공합니다.
-                    </p>
+            <!-- 인증서 탭 -->
+            <div id="tab-cert" class="tab-content active">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/ISO9001_1.jpg','ISO 9001 품질경영시스템')">
+                        <img src="images/ISO9001_1.jpg" alt="ISO 9001">
+                        <p>ISO 9001 품질경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/ISO14001_1.jpg','ISO 14001 환경경영시스템')">
+                        <img src="images/ISO14001_1.jpg" alt="ISO 14001">
+                        <p>ISO 14001 환경경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/iso14001.png','ISO 45001 안전보건경영시스템')">
+                        <img src="images/iso14001.png" alt="ISO 45001">
+                        <p>ISO 45001 안전보건경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/성능인증서-스마트배전반.jpg','성능인증서 (스마트배전반)')">
+                        <img src="images/성능인증서-스마트배전반.jpg" alt="성능인증서">
+                        <p>성능인증서 (스마트배전반)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/성능인증서-2023_1.jpg','성능인증서 (2023)')">
+                        <img src="images/성능인증서-2023_1.jpg" alt="성능인증서 2023">
+                        <p>성능인증서 (2023)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/단체표준인증서_1.jpg','단체표준제품인증서')">
+                        <img src="images/단체표준인증서_1.jpg" alt="단체표준인증서">
+                        <p>단체표준제품인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수단체표준제품확인서_1.jpg','우수단체표준제품확인서')">
+                        <img src="images/우수단체표준제품확인서_1.jpg" alt="우수단체표준제품">
+                        <p>우수단체표준제품확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수제품지정증서-2023_1.jpg','우수제품지정증서 (2023)')">
+                        <img src="images/우수제품지정증서-2023_1.jpg" alt="우수제품지정증서">
+                        <p>우수제품지정증서 (2023)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수조달_공동상표_지정증서_1.jpg','우수조달공동상표 지정증서')">
+                        <img src="images/우수조달_공동상표_지정증서_1.jpg" alt="우수조달공동상표">
+                        <p>우수조달공동상표 지정증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우선구매선정확인서.png','우선구매선정 확인서')">
+                        <img src="images/우선구매선정확인서.png" alt="우선구매선정">
+                        <p>우선구매선정 확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/품질우수제품.png','인천광역시 품질우수제품')">
+                        <img src="images/품질우수제품.png" alt="품질우수제품">
+                        <p>인천광역시 품질우수제품</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/경영혁신형_중소기업확인서.jpg','경영혁신형 중소기업(Main-Biz)')">
+                        <img src="images/경영혁신형_중소기업확인서.jpg" alt="경영혁신형중소기업">
+                        <p>경영혁신형 중소기업(Main-Biz)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/기술혁신형_중소기업확인서_1.jpg','기술혁신형 중소기업(Inno-Biz)')">
+                        <img src="images/기술혁신형_중소기업확인서_1.jpg" alt="기술혁신형중소기업">
+                        <p>기술혁신형 중소기업(Inno-Biz)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/벤처기업_확인서.jpg','벤처기업 확인서')">
+                        <img src="images/벤처기업_확인서.jpg" alt="벤처기업">
+                        <p>벤처기업 확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/비전기업인증서.png','비전기업 인증서')">
+                        <img src="images/비전기업인증서.png" alt="비전기업">
+                        <p>비전기업 인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/일자리창출_우수기업_인증서.jpg','일자리창출 우수기업 인증서')">
+                        <img src="images/일자리창출_우수기업_인증서.jpg" alt="일자리창출">
+                        <p>일자리창출 우수기업 인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/기업부설연구소_인정서.jpg','기업부설연구소 인정서')">
+                        <img src="images/기업부설연구소_인정서.jpg" alt="기업부설연구소">
+                        <p>기업부설연구소 인정서</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 특허 탭 -->
+            <div id="tab-patent" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/특허-무선센서.jpg','특허 - 무선센서')">
+                        <img src="images/특허-무선센서.jpg" alt="특허-무선센서">
+                        <p>특허 - 무선센서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-부스바커넥터.jpg','특허 - 부스바커넥터')">
+                        <img src="images/특허-부스바커넥터.jpg" alt="특허-부스바커넥터">
+                        <p>특허 - 부스바커넥터</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-송신센서.jpg','특허 - IR데이터 송신센서')">
+                        <img src="images/특허-송신센서.jpg" alt="특허-송신센서">
+                        <p>특허 - IR데이터 송신센서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-스마트_수배전반의_상태표시시스템.jpg','특허 - 스마트 수배전반 상태표시시스템')">
+                        <img src="images/특허-스마트_수배전반의_상태표시시스템.jpg" alt="특허-스마트수배전반">
+                        <p>특허 - 스마트 수배전반 상태표시시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-진동흡수형_수배전반.jpg','특허 - 진동흡수형 수배전반')">
+                        <img src="images/특허-진동흡수형_수배전반.jpg" alt="특허-진동흡수형">
+                        <p>특허 - 진동흡수형 수배전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-면진기능을갖는수배전반.jpg','특허 - 면진기능을 갖는 수배전반')">
+                        <img src="images/특허-면진기능을갖는수배전반.jpg" alt="특허-면진기능">
+                        <p>특허 - 면진기능을 갖는 수배전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-컴팩트분전반.jpg','특허 - 컴팩트 분전반')">
+                        <img src="images/특허-컴팩트분전반.jpg" alt="특허-컴팩트분전반">
+                        <p>특허 - 컴팩트 분전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-태양광발전과___.jpg','특허 - 태양광발전과 에너지저장장치')">
+                        <img src="images/특허-태양광발전과___.jpg" alt="특허-태양광발전">
+                        <p>특허 - 태양광발전과 에너지저장장치</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-하베스팅_기술___.jpg','특허 - 하베스팅 기술 배전반 감시제어')">
+                        <img src="images/특허-하베스팅_기술___.jpg" alt="특허-하베스팅">
+                        <p>특허 - 하베스팅 기술 배전반 감시제어</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/디자인등록증.jpg','디자인등록증 - 분전반용 케이스')">
+                        <img src="images/디자인등록증.jpg" alt="디자인등록증">
+                        <p>디자인등록증 - 분전반용 케이스</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 표창/수상 탭 -->
+            <div id="tab-award" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/표창장-조달청장09년.jpg','표창장 - 조달청장 (2009)')">
+                        <img src="images/표창장-조달청장09년.jpg" alt="표창장-조달청장2009">
+                        <p>표창장 - 조달청장 (2009)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-중소기업청장.jpg','표창장 - 중소기업청장')">
+                        <img src="images/표창장-중소기업청장.jpg" alt="표창장-중소기업청장">
+                        <p>표창장 - 중소기업청장</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-산업통상자원부장관.jpg','표창장 - 산업통상자원부장관')">
+                        <img src="images/표창장-산업통상자원부장관.jpg" alt="표창장-산업통상자원부">
+                        <p>표창장 - 산업통상자원부장관</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-모범중소기업인.jpg','표창장 - 모범중소기업인')">
+                        <img src="images/표창장-모범중소기업인.jpg" alt="표창장-모범중소기업인">
+                        <p>표창장 - 모범중소기업인</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-조달청장.jpg','표창장 - 조달청장 (2021)')">
+                        <img src="images/표창장-조달청장.jpg" alt="표창장-조달청장2021">
+                        <p>표창장 - 조달청장 (2021)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 등록증 탭 -->
+            <div id="tab-reg" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/전기공사업등록증.jpg','전기공사업 등록증')">
+                        <img src="images/전기공사업등록증.jpg" alt="전기공사업등록증">
+                        <p>전기공사업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/소방시설업등록증.jpg','소방시설업 등록증')">
+                        <img src="images/소방시설업등록증.jpg" alt="소방시설업등록증">
+                        <p>소방시설업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/정보통신공사업등록증.jpg','정보통신공사업 등록증')">
+                        <img src="images/정보통신공사업등록증.jpg" alt="정보통신공사업등록증">
+                        <p>정보통신공사업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/신_재생에너지전문기업등록증.jpg','신·재생에너지전문기업 등록증')">
+                        <img src="images/신_재생에너지전문기업등록증.jpg" alt="신재생에너지등록증">
+                        <p>신·재생에너지전문기업 등록증</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- 이미지 확대 모달 -->
+    <div id="imgModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center; flex-direction:column;">
+        <button onclick="closeImg()" style="position:absolute; top:20px; right:30px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">×</button>
+        <p id="imgModalTitle" style="color:white; font-size:18px; margin-bottom:15px;"></p>
+        <img id="imgModalSrc" src="" style="max-width:85vw; max-height:80vh; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.5);">
+    </div>
 
     <!-- Footer -->
     <footer class="footer" id="contact">
@@ -859,6 +1069,28 @@
                 const nav = document.getElementById('nav');
                 nav.classList.remove('active');
             });
+        });
+
+        // 탭 기능
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 이미지 확대 모달
+        function openImg(src, title) {
+            document.getElementById('imgModalSrc').src = src;
+            document.getElementById('imgModalTitle').textContent = title;
+            const modal = document.getElementById('imgModal');
+            modal.style.display = 'flex';
+        }
+        function closeImg() {
+            document.getElementById('imgModal').style.display = 'none';
+        }
+        document.getElementById('imgModal').addEventListener('click', function(e) {
+            if (e.target === this) closeImg();
         });
     </script>
 </body>
