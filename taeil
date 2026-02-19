@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태일전기(주) - 원활하고 안전한 전기를 만들어내는</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        /* Placeholder for logo */
+        .logo-placeholder {
+            width: 180px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #0066cc;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #0066cc;
+        }
+
+        /* Main Slider */
+        .main-slider {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(0,102,204,0.9) 0%, rgba(0,73,153,0.9) 100%),
+                        url('images/main-bg.jpg') center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slider-content h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slider-content h1 .highlight {
+            color: #ffeb3b;
+        }
+
+        .slider-content p {
+            font-size: 28px;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        /* Quick Links */
+        .quick-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .quick-link {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .quick-link:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .quick-link-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .quick-link h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+
+        .quick-link p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: #333;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #0066cc;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #0066cc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0066cc;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 25px;
+        }
+
+        .product-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .product-content p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .product-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0066cc;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .product-more:hover {
+            color: #004999;
+        }
+
+        /* Company Info Section */
+        .company-info {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .info-card {
+            padding: 40px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #0066cc;
+        }
+
+        .info-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-img {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo-placeholder {
+            width: 200px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .footer p {
+            line-height: 1.8;
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            opacity: 0.7;
+            font-size: 13px;
+        }
+
+        /* Kakao Floating Button */
+        .kakao-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .kakao-button {
+            width: 70px;
+            height: 70px;
+            background: #FEE500;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .kakao-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .kakao-button img {
+            width: 45px;
+            height: 45px;
+        }
+
+        /* Kakao QR Modal */
+        .kakao-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kakao-modal.active {
+            display: flex;
+        }
+
+        .kakao-modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .kakao-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .kakao-modal h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .kakao-qr {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .kakao-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav.active {
+                display: block;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+
+            .nav.active ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .slider-content h1 {
+                font-size: 32px;
+            }
+
+            .slider-content p {
+                font-size: 18px;
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kakao-float {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .kakao-button {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 탭 버튼 */
+        .tab-btn {
+            padding: 12px 28px;
+            border: 2px solid #0066cc;
+            background: white;
+            color: #0066cc;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: #0066cc;
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* 인증서 그리드 */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .cert-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #0066cc;
+        }
+        .cert-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: top;
+        }
+        .cert-card p {
+            padding: 12px;
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            font-weight: 500;
+        }
+        @media (max-width: 1024px) { .cert-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .cert-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo-container">
+                    <!-- 로고 이미지가 있으면: <img src="images/logo.png" alt="태일전기" class="logo-img"> -->
+                    <!-- 지금은 placeholder -->
+                    <div class="logo-placeholder">태일전기 로고</div>
+                    <div class="logo-text">태일전기(주)</div>
+                </div>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <nav class="nav" id="nav">
+                    <ul>
+                        <li><a href="#company">회사소개</a></li>
+                        <li><a href="#products">제품소개</a></li>
+                        <li><a href="#promotion">홍보관</a></li>
+                        <li><a href="#contact">고객센터</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Slider -->
+    <section class="main-slider">
+        <div class="slider-content">
+            <h1><span class="highlight">원활</span>하고 <span class="highlight">안전한</span> 전기를 만들어내는</h1>
+            <p>태일전기(주)</p>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-section">
+        <div class="container">
+            <div class="quick-links">
+                <div class="quick-link" onclick="scrollToSection('company')">
+                    <div class="quick-link-icon">👔</div>
+                    <h3>CEO인사말</h3>
+                    <p>태일전기의 비전을 확인하세요</p>
+                </div>
+                <div class="quick-link" onclick="scrollToSection('contact')">
+                    <div class="quick-link-icon">📍</div>
+                    <h3>찾아오시는길</h3>
+                    <p>인천시 서구 원당대로 480번길 6-11</p>
+                </div>
+                <div class="quick-link" onclick="scrollToSection('promotion')">
+                    <div class="quick-link-icon">🏆</div>
+                    <h3>인증서</h3>
+                    <p>각종 인증 및 특허 정보</p>
+                </div>
+                <div class="quick-link" onclick="alert('문의하기 기능은 추후 추가 예정입니다.')">
+                    <div class="quick-link-icon">💬</div>
+                    <h3>1:1 문의</h3>
+                    <p>궁금하신 사항을 문의하세요</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">제품소개</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <!-- 이미지 있으면: <img src="images/prod_img1.jpg" alt="고압배전반"> -->
+                        <span style="font-size: 64px;">⚡</span>
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-content">
+                        <h3>고압배전반</h3>
+                        <p>안정적이고 신뢰성 높은 고압 전력 공급을 위한 최적의 솔루션입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">🔧</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>저압배전반</h3>
+                        <p>다양한 산업 현장에서 활용 가능한 저압 배전 시스템을 제공합니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">🏗️</span>
+                        <div class="product-badge">인기</div>
+                    </div>
+                    <div class="product-content">
+                        <h3>면진배전반</h3>
+                        <p>IR데이터 송신센서를 통한 감시제어시스템 및 진동 저감장치가 장착된 내진(면진) 배전반입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">⚙️</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>전동기제어반</h3>
+                        <p>안정적인 전동기 제어를 위한 전문 제어반 시스템입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">📦</span>
+                    </div>
+                    <div class="product-content">
+                        <h3>분전반</h3>
+                        <p>안전하고 효율적인 전력 분배를 위한 분전반 시스템입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <span style="font-size: 64px;">💡</span>
+                        <div class="product-badge">SMART</div>
+                    </div>
+                    <div class="product-content">
+                        <h3>스마트배전반</h3>
+                        <p>전자유도자가충전센서시스템을 이용한 상태표시 스마트 배전반입니다.</p>
+                        <a href="#" class="product-more">자세히 보기 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="company-info" id="company">
+        <div class="container">
+            <h2 class="section-title">회사소개</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-icon">🎯</div>
+                    <h3>경영철학</h3>
+                    <p>
+                        태일전기는 고객만족을 최우선으로 하며, 
+                        안전하고 신뢰할 수 있는 전기설비를 제공하기 위해 
+                        끊임없이 노력하고 있습니다. 품질과 안전을 바탕으로 
+                        고객의 신뢰를 얻고, 함께 성장하는 기업이 되겠습니다.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">💎</div>
+                    <h3>핵심가치</h3>
+                    <p>
+                        품질, 안전, 혁신을 바탕으로 
+                        고객에게 최고의 가치를 제공하며, 
+                        지속가능한 성장을 추구합니다. 
+                        우리의 기술력과 노하우로 산업 발전에 기여하겠습니다.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-icon">🔬</div>
+                    <h3>기술력</h3>
+                    <p>
+                        수십년간 축적된 기술력과 노하우를 바탕으로 
+                        최첨단 전기설비 솔루션을 제공하며, 
+                        지속적인 R&D 투자를 통해 기술 혁신을 이루고 있습니다. 
+                        고객의 요구에 맞는 맞춤형 솔루션을 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotion Section -->
+    <section id="promotion" style="padding: 80px 0; background: white;">
+        <div class="container">
+            <h2 class="section-title">홍보관</h2>
+
+            <!-- 탭 메뉴 -->
+            <div style="display:flex; justify-content:center; gap:10px; margin-bottom:50px; flex-wrap:wrap;">
+                <button class="tab-btn active" onclick="showTab('cert')">📜 인증서</button>
+                <button class="tab-btn" onclick="showTab('patent')">💡 특허</button>
+                <button class="tab-btn" onclick="showTab('award')">🏆 표창/수상</button>
+                <button class="tab-btn" onclick="showTab('reg')">📋 등록증</button>
+            </div>
+
+            <!-- 인증서 탭 -->
+            <div id="tab-cert" class="tab-content active">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/ISO9001_1.jpg','ISO 9001 품질경영시스템')">
+                        <img src="images/ISO9001_1.jpg" alt="ISO 9001">
+                        <p>ISO 9001 품질경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/ISO14001_1.jpg','ISO 14001 환경경영시스템')">
+                        <img src="images/ISO14001_1.jpg" alt="ISO 14001">
+                        <p>ISO 14001 환경경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/iso14001.png','ISO 45001 안전보건경영시스템')">
+                        <img src="images/iso14001.png" alt="ISO 45001">
+                        <p>ISO 45001 안전보건경영시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/성능인증서-스마트배전반.jpg','성능인증서 (스마트배전반)')">
+                        <img src="images/성능인증서-스마트배전반.jpg" alt="성능인증서">
+                        <p>성능인증서 (스마트배전반)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/성능인증서-2023_1.jpg','성능인증서 (2023)')">
+                        <img src="images/성능인증서-2023_1.jpg" alt="성능인증서 2023">
+                        <p>성능인증서 (2023)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/단체표준인증서_1.jpg','단체표준제품인증서')">
+                        <img src="images/단체표준인증서_1.jpg" alt="단체표준인증서">
+                        <p>단체표준제품인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수단체표준제품확인서_1.jpg','우수단체표준제품확인서')">
+                        <img src="images/우수단체표준제품확인서_1.jpg" alt="우수단체표준제품">
+                        <p>우수단체표준제품확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수제품지정증서-2023_1.jpg','우수제품지정증서 (2023)')">
+                        <img src="images/우수제품지정증서-2023_1.jpg" alt="우수제품지정증서">
+                        <p>우수제품지정증서 (2023)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우수조달_공동상표_지정증서_1.jpg','우수조달공동상표 지정증서')">
+                        <img src="images/우수조달_공동상표_지정증서_1.jpg" alt="우수조달공동상표">
+                        <p>우수조달공동상표 지정증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/우선구매선정확인서.png','우선구매선정 확인서')">
+                        <img src="images/우선구매선정확인서.png" alt="우선구매선정">
+                        <p>우선구매선정 확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/품질우수제품.png','인천광역시 품질우수제품')">
+                        <img src="images/품질우수제품.png" alt="품질우수제품">
+                        <p>인천광역시 품질우수제품</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/경영혁신형_중소기업확인서.jpg','경영혁신형 중소기업(Main-Biz)')">
+                        <img src="images/경영혁신형_중소기업확인서.jpg" alt="경영혁신형중소기업">
+                        <p>경영혁신형 중소기업(Main-Biz)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/기술혁신형_중소기업확인서_1.jpg','기술혁신형 중소기업(Inno-Biz)')">
+                        <img src="images/기술혁신형_중소기업확인서_1.jpg" alt="기술혁신형중소기업">
+                        <p>기술혁신형 중소기업(Inno-Biz)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/벤처기업_확인서.jpg','벤처기업 확인서')">
+                        <img src="images/벤처기업_확인서.jpg" alt="벤처기업">
+                        <p>벤처기업 확인서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/비전기업인증서.png','비전기업 인증서')">
+                        <img src="images/비전기업인증서.png" alt="비전기업">
+                        <p>비전기업 인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/일자리창출_우수기업_인증서.jpg','일자리창출 우수기업 인증서')">
+                        <img src="images/일자리창출_우수기업_인증서.jpg" alt="일자리창출">
+                        <p>일자리창출 우수기업 인증서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/기업부설연구소_인정서.jpg','기업부설연구소 인정서')">
+                        <img src="images/기업부설연구소_인정서.jpg" alt="기업부설연구소">
+                        <p>기업부설연구소 인정서</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 특허 탭 -->
+            <div id="tab-patent" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/특허-무선센서.jpg','특허 - 무선센서')">
+                        <img src="images/특허-무선센서.jpg" alt="특허-무선센서">
+                        <p>특허 - 무선센서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-부스바커넥터.jpg','특허 - 부스바커넥터')">
+                        <img src="images/특허-부스바커넥터.jpg" alt="특허-부스바커넥터">
+                        <p>특허 - 부스바커넥터</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-송신센서.jpg','특허 - IR데이터 송신센서')">
+                        <img src="images/특허-송신센서.jpg" alt="특허-송신센서">
+                        <p>특허 - IR데이터 송신센서</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-스마트_수배전반의_상태표시시스템.jpg','특허 - 스마트 수배전반 상태표시시스템')">
+                        <img src="images/특허-스마트_수배전반의_상태표시시스템.jpg" alt="특허-스마트수배전반">
+                        <p>특허 - 스마트 수배전반 상태표시시스템</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-진동흡수형_수배전반.jpg','특허 - 진동흡수형 수배전반')">
+                        <img src="images/특허-진동흡수형_수배전반.jpg" alt="특허-진동흡수형">
+                        <p>특허 - 진동흡수형 수배전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-면진기능을갖는수배전반.jpg','특허 - 면진기능을 갖는 수배전반')">
+                        <img src="images/특허-면진기능을갖는수배전반.jpg" alt="특허-면진기능">
+                        <p>특허 - 면진기능을 갖는 수배전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-컴팩트분전반.jpg','특허 - 컴팩트 분전반')">
+                        <img src="images/특허-컴팩트분전반.jpg" alt="특허-컴팩트분전반">
+                        <p>특허 - 컴팩트 분전반</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-태양광발전과___.jpg','특허 - 태양광발전과 에너지저장장치')">
+                        <img src="images/특허-태양광발전과___.jpg" alt="특허-태양광발전">
+                        <p>특허 - 태양광발전과 에너지저장장치</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/특허-하베스팅_기술___.jpg','특허 - 하베스팅 기술 배전반 감시제어')">
+                        <img src="images/특허-하베스팅_기술___.jpg" alt="특허-하베스팅">
+                        <p>특허 - 하베스팅 기술 배전반 감시제어</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/디자인등록증.jpg','디자인등록증 - 분전반용 케이스')">
+                        <img src="images/디자인등록증.jpg" alt="디자인등록증">
+                        <p>디자인등록증 - 분전반용 케이스</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 표창/수상 탭 -->
+            <div id="tab-award" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/표창장-조달청장09년.jpg','표창장 - 조달청장 (2009)')">
+                        <img src="images/표창장-조달청장09년.jpg" alt="표창장-조달청장2009">
+                        <p>표창장 - 조달청장 (2009)</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-중소기업청장.jpg','표창장 - 중소기업청장')">
+                        <img src="images/표창장-중소기업청장.jpg" alt="표창장-중소기업청장">
+                        <p>표창장 - 중소기업청장</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-산업통상자원부장관.jpg','표창장 - 산업통상자원부장관')">
+                        <img src="images/표창장-산업통상자원부장관.jpg" alt="표창장-산업통상자원부">
+                        <p>표창장 - 산업통상자원부장관</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-모범중소기업인.jpg','표창장 - 모범중소기업인')">
+                        <img src="images/표창장-모범중소기업인.jpg" alt="표창장-모범중소기업인">
+                        <p>표창장 - 모범중소기업인</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/표창장-조달청장.jpg','표창장 - 조달청장 (2021)')">
+                        <img src="images/표창장-조달청장.jpg" alt="표창장-조달청장2021">
+                        <p>표창장 - 조달청장 (2021)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 등록증 탭 -->
+            <div id="tab-reg" class="tab-content">
+                <div class="cert-grid">
+                    <div class="cert-card" onclick="openImg('images/전기공사업등록증.jpg','전기공사업 등록증')">
+                        <img src="images/전기공사업등록증.jpg" alt="전기공사업등록증">
+                        <p>전기공사업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/소방시설업등록증.jpg','소방시설업 등록증')">
+                        <img src="images/소방시설업등록증.jpg" alt="소방시설업등록증">
+                        <p>소방시설업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/정보통신공사업등록증.jpg','정보통신공사업 등록증')">
+                        <img src="images/정보통신공사업등록증.jpg" alt="정보통신공사업등록증">
+                        <p>정보통신공사업 등록증</p>
+                    </div>
+                    <div class="cert-card" onclick="openImg('images/신_재생에너지전문기업등록증.jpg','신·재생에너지전문기업 등록증')">
+                        <img src="images/신_재생에너지전문기업등록증.jpg" alt="신재생에너지등록증">
+                        <p>신·재생에너지전문기업 등록증</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 이미지 확대 모달 -->
+    <div id="imgModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:2000; align-items:center; justify-content:center; flex-direction:column;">
+        <button onclick="closeImg()" style="position:absolute; top:20px; right:30px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">×</button>
+        <p id="imgModalTitle" style="color:white; font-size:18px; margin-bottom:15px;"></p>
+        <img id="imgModalSrc" src="" style="max-width:85vw; max-height:80vh; border-radius:8px; box-shadow:0 0 30px rgba(0,0,0,0.5);">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <!-- 로고 이미지가 있으면: <img src="images/logo.png" alt="태일전기" class="footer-logo-img"> -->
+                        <div class="footer-logo-placeholder">태일전기(주)</div>
+                    </div>
+                    <h4>태일전기(주)</h4>
+                    <p>대표이사: 여규철</p>
+                    <p>전화번호: 032-568-7051~3</p>
+                    <p>팩스: 032-568-7054</p>
+                    <p>이메일: 문의 시 연락 바랍니다</p>
+                </div>
+                <div>
+                    <h4>찾아오시는 길</h4>
+                    <p>인천시 서구 원당대로 480번길 6-11</p>
+                    <p>(왕길동 128-300번지)</p>
+                    <br>
+                    <p><strong>찾아오시는 방법:</strong></p>
+                    <p>인천 지하철 공항철도 이용 시</p>
+                    <p>검암역 하차 후 택시 이용</p>
+                    <p>(약 5분 거리)</p>
+                </div>
+                <div>
+                    <h4>고객센터</h4>
+                    <p>평일: 09:00 - 18:00</p>
+                    <p>토요일: 09:00 - 13:00</p>
+                    <p>일요일/공휴일 휴무</p>
+                    <br>
+                    <p>카카오톡 문의</p>
+                    <p>우측 하단 버튼 클릭!</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>COPYRIGHT © TAEILELE. ALL RIGHTS RESERVED.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Kakao Floating Button -->
+    <div class="kakao-float">
+        <div class="kakao-button" onclick="openKakaoModal()">
+            <!-- 카카오톡 아이콘 -->
+            <svg width="45" height="45" viewBox="0 0 24 24" fill="none">
+                <path d="M12 3C6.477 3 2 6.477 2 10.75C2 13.287 3.526 15.558 5.88 16.958L4.91 20.244C4.847 20.468 5.07 20.646 5.274 20.54L9.243 18.305C10.127 18.519 11.051 18.5 12 18.5C17.523 18.5 22 15.023 22 10.75C22 6.477 17.523 3 12 3Z" fill="#3C1E1E"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Kakao QR Modal -->
+    <div class="kakao-modal" id="kakaoModal">
+        <div class="kakao-modal-content">
+            <span class="kakao-modal-close" onclick="closeKakaoModal()">×</span>
+            <h3>카카오톡 문의</h3>
+            <p>QR코드를 스캔해주세요</p>
+            <div class="kakao-qr">
+                <!-- 실제 QR코드 이미지: <img src="images/kakao-qr.png" alt="카카오톡 QR"> -->
+                <div style="text-align: center; color: #999;">
+                    <p style="font-size: 14px;">QR코드 이미지를</p>
+                    <p style="font-size: 14px;">여기에 넣어주세요</p>
+                    <p style="font-size: 12px; margin-top: 10px;">(images/kakao-qr.png)</p>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                또는 카카오톡에서 "태일전기" 검색
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scroll
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Kakao Modal
+        function openKakaoModal() {
+            document.getElementById('kakaoModal').classList.add('active');
+        }
+
+        function closeKakaoModal() {
+            document.getElementById('kakaoModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('kakaoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeKakaoModal();
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.getElementById('nav');
+                nav.classList.remove('active');
+            });
+        });
+
+        // 탭 기능
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // 이미지 확대 모달
+        function openImg(src, title) {
+            document.getElementById('imgModalSrc').src = src;
+            document.getElementById('imgModalTitle').textContent = title;
+            const modal = document.getElementById('imgModal');
+            modal.style.display = 'flex';
+        }
+        function closeImg() {
+            document.getElementById('imgModal').style.display = 'none';
+        }
+        document.getElementById('imgModal').addEventListener('click', function(e) {
+            if (e.target === this) closeImg();
+        });
+    </script>
+</body>
+</html>
