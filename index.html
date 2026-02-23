@@ -696,6 +696,51 @@
     transform: none;
   }
 
+  /* ── CLIENTS ── */
+  .client-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 20px 28px;
+    min-width: 140px;
+    height: 90px;
+    transition: border-color 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+  .client-card:hover {
+    border-color: var(--accent);
+    background: rgba(244,161,0,0.05);
+  }
+  .client-card img {
+    height: 32px;
+    width: auto;
+    max-width: 90px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.7;
+  }
+  .client-card span {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .clients-slider-wrap {
+    -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+  }
+  @keyframes slide {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .clients-slider-wrap:hover .clients-track { animation-play-state: paused; }
+
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: var(--navy); }
@@ -725,6 +770,7 @@
   <nav>
     <a href="about.html">회사소개</a>
     <a href="products.html">제품소개</a>
+    <a href="#clients">거래처</a>
     <a href="#certs">홍보관</a>
     <a href="#contact">고객센터</a>
   </nav>
@@ -865,6 +911,55 @@
   </div>
 </section>
 
+<!-- CLIENTS -->
+<section id="clients" style="padding:80px 60px; background:rgba(255,255,255,0.02); overflow:hidden;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-tag reveal" style="opacity:0; text-align:center;">CLIENTS</div>
+    <div class="section-title reveal" style="opacity:0; text-align:center; margin-bottom:8px;">주요 <span style="color:var(--accent)">거래처</span></div>
+    <p class="reveal" style="opacity:0; text-align:center; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px; margin-bottom:56px;">국내 주요 건설사 및 공공기관과 함께합니다</p>
+
+    <!-- 슬라이드 트랙 1 -->
+    <div class="clients-slider-wrap" style="overflow:hidden; margin-bottom:24px;">
+      <div class="clients-track track1" style="display:flex; gap:32px; width:max-content; animation:slide 30s linear infinite;">
+        <!-- 카드 set 1 -->
+        <div class="client-card"><img src="https://logo.clearbit.com/hobanbuilt.com" onerror="this.style.display='none'" alt=""><span>호반건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/woomi.co.kr" onerror="this.style.display='none'" alt=""><span>우미건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kolonglobal.com" onerror="this.style.display='none'" alt=""><span>코오롱글로벌</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/dlenc.co.kr" onerror="this.style.display='none'" alt=""><span>DL건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/gyeryong.co.kr" onerror="this.style.display='none'" alt=""><span>계룡건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/hanyang.co.kr" onerror="this.style.display='none'" alt=""><span>한양건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/skecoplant.com" onerror="this.style.display='none'" alt=""><span>SK에코플랜트</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/poscoenc.com" onerror="this.style.display='none'" alt=""><span>포스코건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kccenc.com" onerror="this.style.display='none'" alt=""><span>KCC건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/shinahn.co.kr" onerror="this.style.display='none'" alt=""><span>신안</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/daewooenc.com" onerror="this.style.display='none'" alt=""><span>대우건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/doosanheavy.com" onerror="this.style.display='none'" alt=""><span>두산중공업</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kukdong.co.kr" onerror="this.style.display='none'" alt=""><span>극동건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/hanjinenc.com" onerror="this.style.display='none'" alt=""><span>한진중공업</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/ssangyong.co.kr" onerror="this.style.display='none'" alt=""><span>쌍용건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/gsretail.com" onerror="this.style.display='none'" alt=""><span>GS리테일</span></div>
+        <!-- set 2 (무한루프용 복사) -->
+        <div class="client-card"><img src="https://logo.clearbit.com/hobanbuilt.com" onerror="this.style.display='none'" alt=""><span>호반건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/woomi.co.kr" onerror="this.style.display='none'" alt=""><span>우미건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kolonglobal.com" onerror="this.style.display='none'" alt=""><span>코오롱글로벌</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/dlenc.co.kr" onerror="this.style.display='none'" alt=""><span>DL건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/gyeryong.co.kr" onerror="this.style.display='none'" alt=""><span>계룡건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/hanyang.co.kr" onerror="this.style.display='none'" alt=""><span>한양건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/skecoplant.com" onerror="this.style.display='none'" alt=""><span>SK에코플랜트</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/poscoenc.com" onerror="this.style.display='none'" alt=""><span>포스코건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kccenc.com" onerror="this.style.display='none'" alt=""><span>KCC건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/shinahn.co.kr" onerror="this.style.display='none'" alt=""><span>신안</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/daewooenc.com" onerror="this.style.display='none'" alt=""><span>대우건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/doosanheavy.com" onerror="this.style.display='none'" alt=""><span>두산중공업</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/kukdong.co.kr" onerror="this.style.display='none'" alt=""><span>극동건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/hanjinenc.com" onerror="this.style.display='none'" alt=""><span>한진중공업</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/ssangyong.co.kr" onerror="this.style.display='none'" alt=""><span>쌍용건설</span></div>
+        <div class="client-card"><img src="https://logo.clearbit.com/gsretail.com" onerror="this.style.display='none'" alt=""><span>GS리테일</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CERTIFICATIONS -->
 <section id="certs">
   <div class="section-header reveal">
@@ -989,6 +1084,7 @@
   </div>
   <div class="contact-form reveal">
     <input type="text" placeholder="성함">
+    <input type="text" placeholder="기관명 또는 기업명">
     <input type="text" placeholder="연락처 또는 이메일">
     <div class="select-wrap">
       <select id="inquiry-type" >
