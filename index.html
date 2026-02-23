@@ -609,42 +609,6 @@
   }
   .submit-btn:hover { opacity: 0.85; }
 
-  /* ── 회사소개/제품 탭 ── */
-  .about-tab-btn {
-    padding: 16px 28px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.5);
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 1px;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
-    transition: all 0.2s;
-  }
-  .about-tab-btn.active, .about-tab-btn:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-  .about-panel { display: block; }
-  .prod-panel { display: block; }
-  .sub-tab-btn2 {
-    padding: 12px 28px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 1px solid rgba(255,255,255,0.2);
-    background: transparent;
-    color: rgba(255,255,255,0.6);
-    font-family: 'Noto Sans KR', sans-serif;
-    transition: all 0.2s;
-  }
-  .sub-tab-btn2:first-child { border-radius: 4px 0 0 4px; }
-  .sub-tab-btn2:last-child { border-radius: 0 4px 4px 0; }
-  .sub-tab-btn2.active { background: #e02020; color: white; border-color: #e02020; }
-
   .select-wrap {
     position: relative;
   }
@@ -759,8 +723,8 @@
 <header>
   <div class="logo">태일<span>전기</span></div>
   <nav>
-    <a href="#about">회사소개</a>
-    <a href="#products">제품소개</a>
+    <a href="about.html">회사소개</a>
+    <a href="products.html">제품소개</a>
     <a href="#certs">홍보관</a>
     <a href="#contact">고객센터</a>
   </nav>
@@ -824,236 +788,78 @@
 </section>
 
 <!-- PRODUCTS -->
-<section id="products" style="padding:100px 60px; max-width:100%;">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div class="section-tag reveal" style="opacity:0">PRODUCTS</div>
-    <div class="section-title reveal" style="opacity:0; margin-bottom:40px;">제품 <span style="color:var(--accent)">소개</span></div>
-
-    <div class="about-tabs reveal" style="opacity:0; display:flex; gap:0; margin-bottom:48px; border-bottom:2px solid rgba(255,255,255,0.1);">
-      <button class="about-tab-btn active" onclick="showProdTab('switchboard', this)">수배전반</button>
-      <button class="about-tab-btn" onclick="showProdTab('control', this)">자동제어시스템</button>
-      <button class="about-tab-btn" onclick="showProdTab('solar', this)">태양광 발전장치</button>
+<section id="products">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-tag">PRODUCTS</div>
+      <div class="section-title">제품 소개</div>
     </div>
-
-    <!-- 수배전반 -->
-    <div id="prod-switchboard" class="prod-panel active">
-      <div style="display:flex; gap:0; margin-bottom:32px;">
-        <button class="sub-tab-btn2 active" onclick="showSubProd('seismic', this)">내진(면진)배전반</button>
-        <button class="sub-tab-btn2" onclick="showSubProd('smart', this)">스마트 배전반</button>
-      </div>
-
-      <div id="subprod-seismic" class="subprod-panel active">
-        <div style="font-size:15px; font-weight:700; color:#e02020; margin-bottom:10px;">이상 검출용 IR 데이터 송신센서를 통한 감시제어시스템 및 진동저감장치가 장착된 내진(면진) 배전반</div>
-        <p style="font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); margin-bottom:32px;">배전반 모선(부스바)에 별도 전원공급이 필요 없는 무전원 IR 데이터 송신센서 및 배전반 내부에 다수 개의 감시센서를 장착, 배전반 이상상태를 검출하고 사용자에게 모니터 및 음성경보 등으로 통보하여 전기안전사고 및 전기화재를 예방하는 등 배전반 안전성을 제고</p>
-        <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 핵심기술</div>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px;">
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">특허 제10-1946345호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">하베스팅 기술 적용 이상 검출용 IR 데이터 송신센서를 통한 배전반 감시제어시스템</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">특허 제10-1864772호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">전위차를 이용한 배전반 이상 검출용 IR 데이터 송신센서</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">특허 제10-1860922호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">면진 기능을 갖춘 수배전반</div>
-          </div>
-        </div>
-        <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 제품사진</div>
-        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_1_2_img5.jpg" alt="특고압배전반" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_1_2_img6.jpg" alt="배전반" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_1_2_img7.jpg" alt="저압배전반" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_1_2_img8.jpg" alt="저압배전반2" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-        </div>
-      </div>
-
-      <div id="subprod-smart" class="subprod-panel" style="display:none;">
-        <div style="font-size:15px; font-weight:700; color:#e02020; margin-bottom:10px;">전자유도자가충전센서시스템을 이용한 상태표시 배전반 — 고압·저압·전동기제어반·분전반</div>
-        <p style="font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); margin-bottom:32px;">전기가 흐르는 도진부(BUS-BAR)에 자력을 검출할 수 있는 센서를 설치하여 적외선(IR)통신 방식으로 무선으로 도전부에 전기가 흐르고 있는지의 여부를 유기되는 자력을 전기로 변환하여 무 전원으로 전송할 수 있는 기술</p>
-        <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 핵심기술</div>
-        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px;">
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">특허 제10-1086455호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">스마트 수배전반의 상태표시시스템</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">특허 제10-1175529호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">배전반의 단전 및 결상상태를 검지하는 무선센서</div>
-          </div>
-          <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:24px; text-align:center;">
-            <div style="font-size:12px; font-weight:700; color:#e02020; margin-bottom:8px;">성능인증 제21-332호</div>
-            <div style="font-size:12px; color:rgba(255,255,255,0.7);">중소기업청 성능인증 제품</div>
-          </div>
-        </div>
-        <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 기기구성도</div>
-        <div style="background:white; border-radius:4px; padding:20px;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_2.jpg" alt="기기구성도" style="width:100%;">
-        </div>
+    <a href="#" class="view-all">전체 보기 →</a>
+  </div>
+  <div class="products-grid reveal">
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg,#0a1628,#1a3a6e); width:100%;height:100%;"></div>
+      <div class="product-info">
+        <div class="product-tag">FEATURED</div>
+        <div class="product-name">스마트 배전반</div>
+        <div class="product-desc">전자유도자가충전센서시스템을 이용한 상태표시 고압배전반, 저압배전반, 전동기제어반, 분전반</div>
       </div>
     </div>
-
-    <!-- 자동제어시스템 -->
-    <div id="prod-control" class="prod-panel" style="display:none;">
-      <div style="font-size:15px; font-weight:700; color:#e02020; margin-bottom:16px;">자동제어</div>
-      <p style="font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); margin-bottom:28px;">제어가 자동적으로 이루어지는 시스템으로, 시스템 상태를 이미 설정된 범위에서 자동적으로 변화시키는 시스템입니다. 화력발전, 석유 정제, 철강 생산 등 이른바 플랜트 등의 적용이 중심을 이루고 있습니다.</p>
-      <div style="font-size:15px; font-weight:700; color:#e02020; margin-bottom:16px;">전력제어</div>
-      <p style="font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); margin-bottom:40px;">건물내의 각종 전력설비(수배전반, 분전반, 발전기, 정류기, 변압기등)와 각종 계기류 및 차단기류, 계전기류등의 제어, 계측, 감시기능의 자동화를 구축하여 건물의 가장 큰 에너지지원인 전력계통의 효율적인 이용 및 관리와 한전 전원 정전시 비상 발전기를 효율적으로 이용하여 주요 전력설비 계통의 안정적인 운전이 가능토록 구성</p>
-      <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 제품사진</div>
-      <div style="text-align:center;">
-        <img src="http://www.taeilele.co.kr/images/sub/sub2_3_img1.jpg" alt="자동제어시스템" style="max-width:500px; width:100%; border-radius:4px;">
-        <div style="margin-top:12px; font-size:13px; color:rgba(255,255,255,0.5);">자동제어시스템</div>
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg,#0d2040,#1e4080); width:100%;height:100%;"></div>
+      <div class="product-info">
+        <div class="product-name">고압배전반</div>
       </div>
     </div>
-
-    <!-- 태양광 발전장치 -->
-    <div id="prod-solar" class="prod-panel" style="display:none;">
-      <p style="font-size:13px; line-height:1.9; color:rgba(255,255,255,0.7); margin-bottom:32px;">태양 광을 직접 전기에너지로 변환시키는 장비로 필요한 단위용량에 따라 직렬 또는 병렬로 연결하여 상용전원을 사용할 수 없는 섬에 위치한 무인등대나 등부표의 전원용으로 사용하며, 태양 광을 이용할 수 없는 경우를 대비하여 축전지를 병행 사용 새로운 에너지를 공급하여 축전지의 사용시간을 연장시켜주는 장치입니다.</p>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:32px;">
-        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:20px;">
-          <div style="font-size:13px; font-weight:700; color:#e02020; margin-bottom:8px;">태양광 전지모듈</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.7);">태양 에너지를 전기 에너지로 변환할 목적으로 제작된 광전지로, 태양으로부터 생성된 빛에너지를 전기 에너지로 바꾸는 반도체</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:20px;">
-          <div style="font-size:13px; font-weight:700; color:#e02020; margin-bottom:8px;">태양광 접속반</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.7);">모듈에서 생성되는 직류 에너지를 병렬로 연결해 주는 기능을 하고 발전량에 따라 발생할 수 있는 태양광 모듈간의 충돌을 방지해주는 역할</div>
-        </div>
-        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:4px; padding:20px;">
-          <div style="font-size:13px; font-weight:700; color:#e02020; margin-bottom:8px;">태양광 인버터</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.7);">직류형태로 저장된 발전 전력을 교류로 변환시켜 실생활에서 사용할 수 있는 전기형태로 바꿔주는 설비</div>
-        </div>
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg,#0a1830,#162e58); width:100%;height:100%;"></div>
+      <div class="product-info">
+        <div class="product-name">저압배전반</div>
       </div>
-      <div style="font-size:16px; font-weight:700; margin-bottom:20px; display:flex; align-items:center; gap:8px;"><span style="color:var(--accent)">◈</span> 제품사진</div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
-        <div style="text-align:center;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_3_img1.jpg" alt="태양광 전지모듈" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.5);">태양광 전지모듈</div>
-        </div>
-        <div style="text-align:center;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_3_img2.jpg" alt="태양광 접속반" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.5);">태양광 접속반</div>
-        </div>
-        <div style="text-align:center;">
-          <img src="http://www.taeilele.co.kr/images/sub/sub2_3_img3.jpg" alt="태양광 인버터" style="width:100%; border-radius:4px; aspect-ratio:4/3; object-fit:cover;">
-          <div style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.5);">태양광 인버터</div>
-        </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg,#0d1a30,#1a3260); width:100%;height:100%;"></div>
+      <div class="product-info">
+        <div class="product-name">전동기제어반</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background: linear-gradient(135deg,#0c1828,#182e50); width:100%;height:100%;"></div>
+      <div class="product-info">
+        <div class="product-name">태양광 발전장치</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" style="display:block; padding:100px 60px; max-width:100%; background:linear-gradient(180deg,#0a1628 0%,#0d1e3a 100%);">
-  <div style="max-width:1200px; margin:0 auto;">
-    <div class="section-tag reveal" style="opacity:0">ABOUT US</div>
-    <div class="section-title reveal" style="opacity:0; margin-bottom:40px;">회사 <span style="color:var(--accent)">소개</span></div>
-
-    <!-- 회사소개 탭 -->
-    <div class="about-tabs reveal" style="opacity:0; display:flex; gap:0; margin-bottom:48px; border-bottom:2px solid rgba(255,255,255,0.1);">
-      <button class="about-tab-btn active" onclick="showAboutTab('ceo', this)">CEO 인사말</button>
-      <button class="about-tab-btn" onclick="showAboutTab('philosophy', this)">경영철학</button>
-      <button class="about-tab-btn" onclick="showAboutTab('history', this)">회사연혁</button>
-    </div>
-
-    <!-- CEO -->
-    <div id="about-ceo" class="about-panel active">
-      <div style="display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:center;">
-        <div>
-          <div style="font-size:22px; font-weight:900; line-height:1.6; margin-bottom:28px;"><span style="color:var(--accent)">최고의 기술력</span>으로 고객의 가치를 추구하는 태일전기!</div>
-          <p style="font-size:14px; line-height:1.9; color:rgba(255,255,255,0.75); margin-bottom:16px;">수·배전반 및 자동제어반 전문제작에 전념해온 태일전기㈜는 풍부한 실무 경험을 바탕으로 21세기를 이끌어 갈 젊고 유능한 업체입니다.</p>
-          <p style="font-size:14px; line-height:1.9; color:rgba(255,255,255,0.75); margin-bottom:16px;">저희 태일전기㈜ 임직원 일동은 항상 고객에게 기대 이상의 품질과 서비스로 도덕심과 성실함에 기초한 신뢰를 얻음으로써 고객과 같이 상생하는 전문 업체로 최고가 되고자 끊임없이 노력하고 있습니다.</p>
-          <p style="font-size:14px; line-height:1.9; color:rgba(255,255,255,0.75); margin-bottom:32px;">우리 태일전기㈜를 아껴주신 고객 여러분의 성원 속에 앞으로 더욱 정진하여 보다 우수한 제품을 생산 공급하여 고객의 성원에 보답하고자 최선을 다하겠습니다.</p>
-          <div style="font-size:16px; color:rgba(255,255,255,0.5);">대표이사 &nbsp;<strong style="color:var(--white); font-size:20px;">여 규 철</strong></div>
-        </div>
-        <div style="border-radius:4px; overflow:hidden; border:1px solid rgba(244,161,0,0.2);">
-          <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80" alt="CEO" style="width:100%; height:340px; object-fit:cover; display:block;">
-        </div>
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-tag">ABOUT US</div>
+    <div class="section-title">태일전기(주)</div>
+    <p class="about-desc">
+      태일전기(주)는 수배전반 및 자동제어시스템, 태양광 발전장치 전문 제조기업입니다.<br><br>
+      30년 이상의 기술 축적과 끊임없는 연구개발을 통해 고객에게 최고의 전기 솔루션을 제공하고 있으며, 국내외 다양한 프로젝트를 성공적으로 완수하였습니다.
+    </p>
+    <a href="#contact" class="btn-primary">회사 소개 더 보기</a>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-box">
+      <div class="about-stat">
+        <div class="num">30<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">YEARS EXPERIENCE</div>
       </div>
-    </div>
-
-    <!-- 경영철학 -->
-    <div id="about-philosophy" class="about-panel" style="display:none;">
-      <div style="font-size:18px; font-weight:700; text-align:center; margin-bottom:48px;"><span style="color:var(--accent)">태일전기 주식회사</span>는 아래와 같은 경영철학으로 최고의 기업을 추구합니다.</div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:32px;">
-        <div style="border:2px solid rgba(244,161,0,0.4); border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center;">
-          <div style="font-size:40px; margin-bottom:14px;">💡</div>
-          <div style="font-size:18px; font-weight:900; color:var(--accent); margin-bottom:10px;">경영이념</div>
-          <div style="font-size:12px; line-height:1.8; color:rgba(255,255,255,0.7);">최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다.</div>
-        </div>
-        <div style="border:2px solid rgba(244,161,0,0.6); border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center; margin-top:-20px;">
-          <div style="font-size:40px; margin-bottom:14px;">🏆</div>
-          <div style="font-size:18px; font-weight:900; color:var(--accent); margin-bottom:10px;">목표</div>
-          <div style="font-size:12px; line-height:1.8; color:rgba(255,255,255,0.7);">행복한 삶의 가치를 추구하기위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결</div>
-        </div>
-        <div style="border:2px solid rgba(244,161,0,0.4); border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center;">
-          <div style="font-size:40px; margin-bottom:14px;">🤝</div>
-          <div style="font-size:18px; font-weight:900; color:var(--accent); margin-bottom:10px;">사회공헌</div>
-          <div style="font-size:12px; line-height:1.8; color:rgba(255,255,255,0.7);">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기위해 항상 노력합니다.</div>
-        </div>
+      <div class="about-stat">
+        <div class="num">500<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">PROJECTS DONE</div>
       </div>
-    </div>
-
-    <!-- 회사연혁 -->
-    <div id="about-history" class="about-panel" style="display:none;">
-      <div style="position:relative; padding-left:40px; border-left:2px solid rgba(244,161,0,0.3);">
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2024</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">12</span>우수발명품 우선구매추천 연장 (제2021-2441(연장)호)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">11</span>중소벤처기업부 공공구매 유공자 포상 (제18417호)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">07</span>인천광역시 일자리창출 우수기업 인증 (제2024-19호)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">06</span>벤처기업확인서(혁신성장유형) 재확인</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">02</span>다수공급자계약(MAS) 등록 (폐쇄형배전반 등 3품목)</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2023</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">12</span>중소벤처기업부 성능인증서 연장 (23-CBD0450)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">10</span>조달청 우수제품 연장 · 특허등록(내진구조 수배전반) · 디자인 등록</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">03</span>기술혁신형(Inno-Biz) 중소기업 연장</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2022</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">09</span>우수소달 공동상표 지정 (배전반·전동기제어반·분전반)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">03</span>ISO45001 안전보건경영시스템 인증</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2021</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">12</span>우수발명품 우선구매선정 (2021-2441)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">11</span>인천광역시 비전기업 인증</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">06</span>조달청 우수제품 지정 (2021044)</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2016</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">05</span>본사 및 공장이전 (인천시 서구 원당대로 480번길 6-11)</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2011 ~ 2012</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">  </span>특허등록 다수 (스마트수배전반, 부스바커넥터, 컴팩트분전반 등)</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">  </span>기업부설 연구소 설립</div>
-          </div>
-        </div>
-        <div style="margin-bottom:40px;">
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2001 ~ 2002</div>
-          <div style="display:flex; flex-direction:column; gap:8px; font-size:13px; color:rgba(255,255,255,0.75);">
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">  </span>ISO9001 · ISO14001 인증획득</div>
-            <div><span style="color:var(--accent); font-weight:700; margin-right:12px;">  </span>우수단체표준인증 KEMC2101 획득</div>
-          </div>
-        </div>
-        <div>
-          <div style="font-size:26px; font-weight:900; color:var(--accent); margin-bottom:12px;">2000</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.75);"><span style="color:var(--accent); font-weight:700; margin-right:12px;">10</span>태일전기 설립</div>
-        </div>
+      <div class="about-stat">
+        <div class="num">10<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">CERTIFICATIONS</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">99<span style="font-size:28px;color:#f4a100">%</span></div>
+        <div class="label">SATISFACTION</div>
       </div>
     </div>
   </div>
@@ -1194,25 +1000,6 @@
 </footer>
 
 <script>
-  function showAboutTab(tab, btn) {
-    document.querySelectorAll('.about-panel').forEach(p => p.style.display = 'none');
-    document.querySelectorAll('.about-tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('about-' + tab).style.display = 'block';
-    btn.classList.add('active');
-  }
-  function showProdTab(tab, btn) {
-    document.querySelectorAll('.prod-panel').forEach(p => p.style.display = 'none');
-    document.querySelectorAll('[onclick^="showProdTab"]').forEach(b => b.classList.remove('active'));
-    document.getElementById('prod-' + tab).style.display = 'block';
-    btn.classList.add('active');
-  }
-  function showSubProd(tab, btn) {
-    document.querySelectorAll('.subprod-panel').forEach(p => p.style.display = 'none');
-    document.querySelectorAll('.sub-tab-btn2').forEach(b => b.classList.remove('active'));
-    document.getElementById('subprod-' + tab).style.display = 'block';
-    btn.classList.add('active');
-  }
-
   // 탭 전환
   function updateDept() {
     var sel = document.getElementById("inquiry-type");
