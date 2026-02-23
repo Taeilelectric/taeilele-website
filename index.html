@@ -600,6 +600,46 @@
   }
   .submit-btn:hover { opacity: 0.85; }
 
+  .select-wrap {
+    position: relative;
+  }
+  .select-wrap select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2px;
+    padding: 16px 48px 16px 20px;
+    color: var(--white);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .select-wrap select:focus { border-color: var(--accent); }
+  .select-wrap select option { background: #0d2244; color: var(--white); }
+  .select-wrap select option[disabled] { color: var(--gray); }
+  .select-arrow {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+    font-size: 11px;
+    pointer-events: none;
+  }
+  .dept-badge {
+    background: rgba(13,71,161,0.3);
+    border: 1px solid rgba(13,71,161,0.6);
+    border-radius: 2px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
   /* ── FOOTER ── */
   footer {
     background: #060f1e;
@@ -923,6 +963,17 @@
   <div class="contact-form reveal">
     <input type="text" placeholder="성함">
     <input type="text" placeholder="연락처 또는 이메일">
+    <div class="select-wrap">
+      <select id="inquiry-type" >
+        <option value="" disabled selected>문의 분류를 선택해주세요</option>
+        <option value="영업부">제품 문의</option>
+        <option value="설계팀">기술 문의</option>
+        <option value="사업본부">관급제품 문의</option>
+        <option value="영업부_as">A/S 문의</option>
+        <option value="경영부">기타 문의</option>
+      </select>
+      <span class="select-arrow">▼</span>
+    </div>
     <input type="text" placeholder="제목">
     <textarea placeholder="문의 내용을 입력해주세요."></textarea>
     <button class="submit-btn">문의 보내기</button>
@@ -941,6 +992,24 @@
 
 <script>
   // 탭 전환
+  function updateDept() {
+    var sel = document.getElementById("inquiry-type");
+    var badge = document.getElementById("dept-badge");
+    var deptMap = {
+      "영업부": "→ 담당부서: 영업부로 연결됩니다",
+      "설계팀": "→ 담당부서: 설계팀으로 연결됩니다",
+      "사업본부": "→ 담당부서: 사업본부로 연결됩니다",
+      "영업부_as": "→ 담당부서: 영업부 (A/S)로 연결됩니다",
+      "경영부": "→ 담당부서: 경영부로 연결됩니다"
+    };
+    if (sel.value) {
+      badge.style.display = "block";
+      badge.textContent = deptMap[sel.value];
+    } else {
+      badge.style.display = "none";
+    }
+  }
+
   function showTab(tabId) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.cert-tab').forEach(t => t.classList.remove('active'));
