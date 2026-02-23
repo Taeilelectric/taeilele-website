@@ -112,6 +112,39 @@
     .tab-nav { padding:0 24px; overflow-x:auto; }
     #certs { padding:48px 24px; }
   }
+
+  /* 파트너사 슬라이드 */
+  .client-card {
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);
+    border-radius:6px; padding:18px 32px; height:70px; flex-shrink:0;
+    transition:border-color 0.3s, background 0.3s;
+  }
+  .client-card:hover { border-color:var(--accent); background:rgba(244,161,0,0.06); }
+  .client-card span { font-size:14px; font-weight:700; color:rgba(255,255,255,0.65); letter-spacing:1px; white-space:nowrap; transition:color 0.3s; }
+  .client-card:hover span { color:var(--accent); }
+  @keyframes slide { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+
+  /* 자료실 */
+  .dl-card {
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+    border-radius:8px; padding:32px; display:flex; flex-direction:column;
+    align-items:center; text-align:center; gap:16px;
+    transition:border-color 0.3s;
+  }
+  .dl-card:hover { border-color:var(--accent); }
+  .dl-icon { font-size:48px; }
+  .dl-title { font-size:18px; font-weight:700; margin-bottom:6px; }
+  .dl-desc { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.6; margin-bottom:4px; }
+  .dl-meta { font-size:11px; color:var(--gray); letter-spacing:1px; }
+  .dl-btn {
+    display:inline-block; margin-top:8px;
+    background:var(--accent); color:var(--navy);
+    padding:12px 28px; border-radius:4px;
+    font-size:13px; font-weight:700; letter-spacing:1px;
+    text-decoration:none; transition:opacity 0.2s;
+  }
+  .dl-btn:hover { opacity:0.85; }
 </style>
 </head>
 <body>
@@ -137,6 +170,8 @@
   <button class="cert-tab active" onclick="showTab('tab-cert')">인증서</button>
   <button class="cert-tab" onclick="showTab('tab-patent')">특허증</button>
   <button class="cert-tab" onclick="showTab('tab-award')">표창장</button>
+  <button class="cert-tab" onclick="showTab('tab-partners')">파트너사</button>
+  <button class="cert-tab" onclick="showTab('tab-download')">자료실</button>
 </div>
 
 <section id="certs">
@@ -196,6 +231,79 @@
   </div>
 
 </section>
+
+
+  <!-- 파트너사 탭 -->
+  <div id="tab-partners" class="tab-panel">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div style="font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px;">국내 주요 건설사 및 공공기관과 함께합니다</div>
+    </div>
+    <div style="overflow:hidden; -webkit-mask:linear-gradient(90deg,transparent,white 8%,white 92%,transparent); mask:linear-gradient(90deg,transparent,white 8%,white 92%,transparent);">
+      <div class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
+        <div class="client-card"><span>호반건설</span></div>
+        <div class="client-card"><span>우미건설</span></div>
+        <div class="client-card"><span>코오롱글로벌</span></div>
+        <div class="client-card"><span>DL건설</span></div>
+        <div class="client-card"><span>계룡건설</span></div>
+        <div class="client-card"><span>한양건설</span></div>
+        <div class="client-card"><span>SK에코플랜트</span></div>
+        <div class="client-card"><span>포스코건설</span></div>
+        <div class="client-card"><span>KCC건설</span></div>
+        <div class="client-card"><span>신안</span></div>
+        <div class="client-card"><span>대우건설</span></div>
+        <div class="client-card"><span>두산중공업</span></div>
+        <div class="client-card"><span>극동건설</span></div>
+        <div class="client-card"><span>한진중공업</span></div>
+        <div class="client-card"><span>쌍용건설</span></div>
+        <div class="client-card"><span>GS리테일</span></div>
+        <div class="client-card"><span>호반건설</span></div>
+        <div class="client-card"><span>우미건설</span></div>
+        <div class="client-card"><span>코오롱글로벌</span></div>
+        <div class="client-card"><span>DL건설</span></div>
+        <div class="client-card"><span>계룡건설</span></div>
+        <div class="client-card"><span>한양건설</span></div>
+        <div class="client-card"><span>SK에코플랜트</span></div>
+        <div class="client-card"><span>포스코건설</span></div>
+        <div class="client-card"><span>KCC건설</span></div>
+        <div class="client-card"><span>신안</span></div>
+        <div class="client-card"><span>대우건설</span></div>
+        <div class="client-card"><span>두산중공업</span></div>
+        <div class="client-card"><span>극동건설</span></div>
+        <div class="client-card"><span>한진중공업</span></div>
+        <div class="client-card"><span>쌍용건설</span></div>
+        <div class="client-card"><span>GS리테일</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 자료실 탭 -->
+  <div id="tab-download" class="tab-panel">
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:800px; margin:0 auto;">
+      
+      <!-- 카탈로그 -->
+      <div class="dl-card">
+        <div class="dl-icon">📄</div>
+        <div class="dl-info">
+          <div class="dl-title">회사 카탈로그</div>
+          <div class="dl-desc">태일전기(주) 제품 및 회사 소개 카탈로그</div>
+          <div class="dl-meta">PDF · 12페이지</div>
+        </div>
+        <a href="태일전기_카다로그.pdf" download class="dl-btn">⬇ 다운로드</a>
+      </div>
+
+      <!-- 지명원 -->
+      <div class="dl-card" style="opacity:0.5; pointer-events:none;">
+        <div class="dl-icon">📋</div>
+        <div class="dl-info">
+          <div class="dl-title">지명원</div>
+          <div class="dl-desc">태일전기(주) 지명원 서류</div>
+          <div class="dl-meta">PDF · 준비중</div>
+        </div>
+        <span class="dl-btn" style="background:rgba(255,255,255,0.1); cursor:default;">준비중</span>
+      </div>
+
+    </div>
+  </div>
 
 <!-- 라이트박스 -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
