@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회사소개 - 태일전기(주)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --light:#e8edf5; --white:#fff; --gray:#8a96a8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); }
+
+  header {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 60px;
+    background:rgba(10,22,40,0.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(244,161,0,0.15);
+  }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:var(--white); text-decoration:none; }
+  .logo span { color:var(--accent); }
+  nav a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:1px; margin-left:36px; transition:color 0.2s; }
+  nav a:hover, nav a.active { color:var(--accent); }
+  .header-cta { background:var(--accent); color:var(--navy); padding:10px 24px; font-size:12px; font-weight:700; letter-spacing:1px; text-decoration:none; border-radius:2px; margin-left:36px; }
+
+  /* 페이지 히어로 */
+  .page-hero {
+    padding: 140px 60px 60px;
+    background: linear-gradient(135deg, #0a1628 0%, #0d2244 100%);
+    border-bottom: 1px solid rgba(244,161,0,0.2);
+  }
+  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
+  .page-hero-title { font-size:48px; font-weight:900; }
+  .page-hero-title span { color:var(--accent); }
+
+  /* 탭 */
+  .tab-nav { display:flex; gap:0; border-bottom:2px solid rgba(255,255,255,0.1); padding:0 60px; background:rgba(10,22,40,0.8); position:sticky; top:80px; z-index:50; }
+  .tab-btn { padding:20px 32px; font-size:14px; font-weight:600; color:rgba(255,255,255,0.5); cursor:pointer; border:none; background:none; letter-spacing:1px; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+  .tab-btn.active, .tab-btn:hover { color:var(--accent); border-bottom-color:var(--accent); }
+
+  /* 섹션 공통 */
+  .section { padding:80px 60px; max-width:1200px; margin:0 auto; display:none; }
+  .section.active { display:block; }
+  .section-title { font-size:32px; font-weight:900; margin-bottom:48px; }
+  .section-title span { color:var(--accent); }
+
+  /* CEO */
+  .ceo-wrap { display:grid; grid-template-columns:1fr 420px; gap:80px; align-items:center; }
+  .ceo-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
+  .ceo-headline { font-size:26px; font-weight:900; line-height:1.5; margin-bottom:32px; }
+  .ceo-headline em { color:var(--accent); font-style:normal; }
+  .ceo-text { font-size:15px; line-height:1.9; color:rgba(255,255,255,0.75); margin-bottom:20px; }
+  .ceo-sign { font-size:18px; color:rgba(255,255,255,0.5); margin-top:40px; }
+  .ceo-sign strong { color:var(--white); font-size:22px; }
+  .ceo-img { border-radius:4px; overflow:hidden; position:relative; }
+  .ceo-img img { width:100%; height:380px; object-fit:cover; }
+  .ceo-img::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(135deg, rgba(13,71,161,0.2), transparent); }
+
+  /* 경영철학 */
+  .philosophy-intro { font-size:20px; font-weight:700; text-align:center; margin-bottom:64px; }
+  .philosophy-intro span { color:var(--accent); }
+  .philosophy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+  .philosophy-card { border:2px solid rgba(244,161,0,0.3); border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center; transition:border-color 0.3s; }
+  .philosophy-card:hover { border-color:var(--accent); }
+  .philosophy-card:nth-child(2) { border-color:rgba(244,161,0,0.5); margin-top:-20px; }
+  .philosophy-icon { font-size:48px; margin-bottom:16px; }
+  .philosophy-label { font-size:20px; font-weight:900; color:var(--accent); margin-bottom:12px; }
+  .philosophy-text { font-size:13px; line-height:1.8; color:rgba(255,255,255,0.7); }
+
+  /* 회사연혁 */
+  .timeline { position:relative; padding-left:40px; }
+  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:rgba(244,161,0,0.3); }
+  .timeline-year { margin-bottom:48px; position:relative; }
+  .timeline-year::before { content:''; position:absolute; left:-46px; top:8px; width:14px; height:14px; border-radius:50%; border:2px solid var(--accent); background:var(--navy); }
+  .timeline-year-label { font-size:28px; font-weight:900; color:var(--accent); margin-bottom:16px; }
+  .timeline-items { display:flex; flex-direction:column; gap:8px; }
+  .timeline-item { display:flex; gap:20px; font-size:14px; color:rgba(255,255,255,0.75); }
+  .timeline-month { color:var(--accent); font-weight:700; min-width:24px; }
+
+  @media(max-width:900px){
+    header { padding:16px 24px; }
+    nav { display:none; }
+    .page-hero { padding:120px 24px 48px; }
+    .tab-nav { padding:0 24px; overflow-x:auto; }
+    .section { padding:48px 24px; }
+    .ceo-wrap { grid-template-columns:1fr; }
+    .ceo-img { display:none; }
+    .philosophy-grid { grid-template-columns:1fr; }
+    .philosophy-card { border-radius:8px; aspect-ratio:unset; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">태일<span>전기</span></a>
+  <nav>
+    <a href="index.html">홈</a>
+    <a href="about.html" class="active">회사소개</a>
+    <a href="products.html">제품소개</a>
+    <a href="index.html#certs">홍보관</a>
+    <a href="index.html#contact">고객센터</a>
+  </nav>
+  <a href="index.html#contact" class="header-cta">문의하기</a>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-tag">ABOUT US</div>
+  <h1 class="page-hero-title">회사<span>소개</span></h1>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('ceo')">CEO 인사말</button>
+  <button class="tab-btn" onclick="showTab('philosophy')">경영철학</button>
+  <button class="tab-btn" onclick="showTab('history')">회사연혁</button>
+</div>
+
+<!-- CEO 인사말 -->
+<div id="tab-ceo" class="section active">
+  <div class="ceo-wrap">
+    <div>
+      <div class="ceo-tag">CEO MESSAGE</div>
+      <div class="ceo-headline"><em>최고의 기술력</em>으로<br>고객의 가치를 추구하는 태일전기!</div>
+      <p class="ceo-text">수·배전반 및 자동제어반 전문제작에 전념해온 태일전기㈜는 풍부한 실무 경험을 바탕으로 21세기를 이끌어 갈 젊고 유능한 업체입니다.</p>
+      <p class="ceo-text">저희 태일전기㈜ 임직원 일동은 항상 고객에게 기대 이상의 품질과 서비스로 도덕심과 성실함에 기초한 신뢰를 얻음으로써 고객과 같이 상생하는 전문 업체로 최고가 되고자 끊임없이 노력하고 있습니다.</p>
+      <p class="ceo-text">우리 태일전기㈜를 아껴주신 고객 여러분의 성원 속에 앞으로 더욱 정진하여 보다 우수한 제품을 생산 공급하여 고객의 성원에 보답하고자 최선을 다하겠습니다.</p>
+      <div class="ceo-sign">대표이사 &nbsp;<strong>여 규 철</strong></div>
+    </div>
+    <div class="ceo-img">
+      <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=600&q=80" alt="CEO">
+    </div>
+  </div>
+</div>
+
+<!-- 경영철학 -->
+<div id="tab-philosophy" class="section">
+  <div class="philosophy-intro"><span>태일전기 주식회사</span>는 아래와 같은 경영철학으로 최고의 기업을 추구합니다.</div>
+  <div class="philosophy-grid">
+    <div class="philosophy-card">
+      <div class="philosophy-icon">💡</div>
+      <div class="philosophy-label">경영이념</div>
+      <div class="philosophy-text">최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다.</div>
+    </div>
+    <div class="philosophy-card">
+      <div class="philosophy-icon">🏆</div>
+      <div class="philosophy-label">목표</div>
+      <div class="philosophy-text">행복한 삶의 가치를 추구하기위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결</div>
+    </div>
+    <div class="philosophy-card">
+      <div class="philosophy-icon">🤝</div>
+      <div class="philosophy-label">사회공헌</div>
+      <div class="philosophy-text">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기위해 항상 노력합니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 회사연혁 -->
+<div id="tab-history" class="section">
+  <div class="timeline">
+    <div class="timeline-year">
+      <div class="timeline-year-label">2024</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>우수발명품 우선구매추천 연장 (제2021-2441(연장)호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">11</span><span>중소벤처기업부 공공구매 유공자 포상 (제18417호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">07</span><span>인천광역시 일자리창출 우수기업 인증 (제2024-19호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">06</span><span>벤처기업확인서(혁신성장유형) 재확인 (제2024061903000058호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">02</span><span>다수공급자계약(MAS) 등록 (폐쇄형배전반 등 3품목)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2023</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>중소벤처기업부 성능인증서 연장 (23-CBD0450)</span></div>
+        <div class="timeline-item"><span class="timeline-month">10</span><span>조달청 우수제품 연장 (2021044)</span></div>
+        <div class="timeline-item"><span class="timeline-month">10</span><span>특허 등록(내진구조가 적용된 수배전반) (제10-2597342호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">10</span><span>디자인 등록(수배전반용 보강부재) (제30-1236597호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">03</span><span>기술혁신형(Inno-Biz) 중소기업 연장 (제R200701-00452호)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2022</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">09</span><span>우수소달 공동상표 지정 (배전반 2022004-10, 전동기제어반 2022005-10, 분전반 2022006-10)</span></div>
+        <div class="timeline-item"><span class="timeline-month">07</span><span>우수발명품 우선구매추천확인서 규격추가 (2021-2441)</span></div>
+        <div class="timeline-item"><span class="timeline-month">04</span><span>조달청우수제품 규격추가 (2021044)</span></div>
+        <div class="timeline-item"><span class="timeline-month">03</span><span>ISO45001 안전보건경영시스템 인증 (AK22HM2598)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2021</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>우수발명품 우선구매선정 (2021-2441)</span></div>
+        <div class="timeline-item"><span class="timeline-month">11</span><span>인천광역시 비전기업 인증 (2021-9)</span></div>
+        <div class="timeline-item"><span class="timeline-month">10</span><span>인천광역시 품질우수제품 지정 (2021-20)</span></div>
+        <div class="timeline-item"><span class="timeline-month">07</span><span>인천광역시 일자리창출 우수기업 인증 (2021-9)</span></div>
+        <div class="timeline-item"><span class="timeline-month">06</span><span>조달청 우수제품 지정 (2021044)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2020</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">10</span><span>중소벤처기업부 성능인증서 획득 (내진&lt;면진&gt; 배전반)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2019</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">06</span><span>특허등록(태양광발전과 에너지 저장 장치의 지능적 연계를 위한 PMS 기반의 능동형 수배전반) (제10-1988485호)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2018</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">09</span><span>특허등록(하베스팅 기술을 적용한 이상 검출용IR 데이터 송신센서를 통한 배전반 감시제어 시스템) (제10-1946345호)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2017</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">10</span><span>특허등록(전위차를 이용한 배전반 이상 검출용IR 데이터 송신센서) (제10-1864772호)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2016</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>5개 발전사 정비서적격업체 등록 (고압, 저압)</span></div>
+        <div class="timeline-item"><span class="timeline-month">05</span><span>본사 및 공장이전 (인천시 서구 원당대로 480번길 6-11)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2012</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">08</span><span>특허등록(배전반의 단전 및 결선상태를 검지하는 무선센서) (제10-1175529호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">08</span><span>특허등록(컴팩트분전반) (제10-1176626호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">01</span><span>기업부설 연구소 설립 (경기도 김포시 양촌읍 학운리 1489)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2011</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">11</span><span>특허등록(스마트 수배전반의 상태표시 시스템) (제10-1086455호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">08</span><span>특허등록(부스바 커넥터) (제10-1058547호)</span></div>
+        <div class="timeline-item"><span class="timeline-month">01</span><span>특허등록(진동흡수형 배전반) (제10-1012733호)</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2005</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>전기공사 업종 추가 (인천-00766)</span></div>
+        <div class="timeline-item"><span class="timeline-month">08</span><span>성능인증(중소기업청 기술개발제품 우선구매제도) 획득</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2002</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">09</span><span>우수단체표준인증 KEMC2101 획득</span></div>
+        <div class="timeline-item"><span class="timeline-month">06</span><span>ISO14001(환경) 인증획득</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2001</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">12</span><span>ISO9001 인증획득</span></div>
+        <div class="timeline-item"><span class="timeline-month">05</span><span>한국전기공업협동조합 가입</span></div>
+      </div>
+    </div>
+    <div class="timeline-year">
+      <div class="timeline-year-label">2000</div>
+      <div class="timeline-items">
+        <div class="timeline-item"><span class="timeline-month">10</span><span>태일전기 설립</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
