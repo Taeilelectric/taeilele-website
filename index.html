@@ -649,6 +649,37 @@
     letter-spacing: 1px;
   }
 
+  .file-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .file-label input[type="file"] { display: none; }
+  .file-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 2px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .file-label:hover .file-btn {
+    border-color: var(--accent);
+    background: rgba(244,161,0,0.08);
+    color: var(--accent);
+  }
+  .file-name {
+    font-size: 12px;
+    color: var(--gray);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   /* ── FOOTER ── */
   footer {
     background: #060f1e;
@@ -1010,6 +1041,11 @@
     </div>
     <input type="text" placeholder="제목">
     <textarea placeholder="문의 내용을 입력해주세요."></textarea>
+    <label class="file-label">
+      <input type="file" id="file-input" multiple onchange="updateFileName(this)">
+      <span class="file-btn">📎 첨부파일 선택</span>
+      <span id="file-name" class="file-name">선택된 파일 없음</span>
+    </label>
     <button class="submit-btn">문의 보내기</button>
   </div>
 </section>
@@ -1041,6 +1077,17 @@
       badge.textContent = deptMap[sel.value];
     } else {
       badge.style.display = "none";
+    }
+  }
+
+  function updateFileName(input) {
+    const label = document.getElementById('file-name');
+    if (input.files.length === 0) {
+      label.textContent = '선택된 파일 없음';
+    } else if (input.files.length === 1) {
+      label.textContent = input.files[0].name;
+    } else {
+      label.textContent = input.files[0].name + ' 외 ' + (input.files.length - 1) + '개';
     }
   }
 
