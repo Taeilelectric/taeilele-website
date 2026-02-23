@@ -699,41 +699,33 @@
   /* ── CLIENTS ── */
   .client-card {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 8px;
-    padding: 20px 28px;
-    min-width: 140px;
-    height: 90px;
-    transition: border-color 0.3s, background 0.3s;
+    border-radius: 6px;
+    padding: 18px 32px;
+    height: 70px;
     flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s;
   }
   .client-card:hover {
     border-color: var(--accent);
-    background: rgba(244,161,0,0.05);
-  }
-  .client-card img {
-    height: 32px;
-    width: auto;
-    max-width: 90px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    opacity: 0.7;
+    background: rgba(244,161,0,0.06);
   }
   .client-card span {
-    font-size: 11px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1px;
     white-space: nowrap;
+    transition: color 0.3s;
   }
+  .client-card:hover span { color: var(--accent); }
   .clients-slider-wrap {
-    -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
-    mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+    mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
   }
   @keyframes slide {
     0%   { transform: translateX(0); }
@@ -771,7 +763,7 @@
     <a href="about.html">회사소개</a>
     <a href="products.html">제품소개</a>
     <a href="#clients">거래처</a>
-    <a href="#certs">홍보관</a>
+    <a href="promo.html">홍보관</a>
     <a href="#contact">고객센터</a>
   </nav>
   <a href="#contact" class="header-cta">문의하기</a>
@@ -912,130 +904,49 @@
 </section>
 
 <!-- CLIENTS -->
-<section id="clients" style="padding:80px 60px; background:rgba(255,255,255,0.02); overflow:hidden;">
-  <div style="max-width:1200px; margin:0 auto;">
+<section id="clients" style="padding:80px 0; background:rgba(255,255,255,0.02); overflow:hidden;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 60px;">
     <div class="section-tag reveal" style="opacity:0; text-align:center;">CLIENTS</div>
-    <div class="section-title reveal" style="opacity:0; text-align:center; margin-bottom:8px;">주요 <span style="color:var(--accent)">거래처</span></div>
+    <div class="section-title reveal" style="opacity:0; text-align:center; margin-bottom:8px;">태일전기 주요 <span style="color:var(--accent)">파트너사</span></div>
     <p class="reveal" style="opacity:0; text-align:center; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px; margin-bottom:56px;">국내 주요 건설사 및 공공기관과 함께합니다</p>
-
-    <!-- 슬라이드 트랙 1 -->
-    <div class="clients-slider-wrap" style="overflow:hidden; margin-bottom:24px;">
-      <div class="clients-track track1" style="display:flex; gap:32px; width:max-content; animation:slide 30s linear infinite;">
-        <!-- 카드 set 1 -->
-        <div class="client-card"><img src="https://logo.clearbit.com/hobanbuilt.com" onerror="this.style.display='none'" alt=""><span>호반건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/woomi.co.kr" onerror="this.style.display='none'" alt=""><span>우미건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kolonglobal.com" onerror="this.style.display='none'" alt=""><span>코오롱글로벌</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/dlenc.co.kr" onerror="this.style.display='none'" alt=""><span>DL건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/gyeryong.co.kr" onerror="this.style.display='none'" alt=""><span>계룡건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/hanyang.co.kr" onerror="this.style.display='none'" alt=""><span>한양건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/skecoplant.com" onerror="this.style.display='none'" alt=""><span>SK에코플랜트</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/poscoenc.com" onerror="this.style.display='none'" alt=""><span>포스코건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kccenc.com" onerror="this.style.display='none'" alt=""><span>KCC건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/shinahn.co.kr" onerror="this.style.display='none'" alt=""><span>신안</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/daewooenc.com" onerror="this.style.display='none'" alt=""><span>대우건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/doosanheavy.com" onerror="this.style.display='none'" alt=""><span>두산중공업</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kukdong.co.kr" onerror="this.style.display='none'" alt=""><span>극동건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/hanjinenc.com" onerror="this.style.display='none'" alt=""><span>한진중공업</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/ssangyong.co.kr" onerror="this.style.display='none'" alt=""><span>쌍용건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/gsretail.com" onerror="this.style.display='none'" alt=""><span>GS리테일</span></div>
-        <!-- set 2 (무한루프용 복사) -->
-        <div class="client-card"><img src="https://logo.clearbit.com/hobanbuilt.com" onerror="this.style.display='none'" alt=""><span>호반건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/woomi.co.kr" onerror="this.style.display='none'" alt=""><span>우미건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kolonglobal.com" onerror="this.style.display='none'" alt=""><span>코오롱글로벌</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/dlenc.co.kr" onerror="this.style.display='none'" alt=""><span>DL건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/gyeryong.co.kr" onerror="this.style.display='none'" alt=""><span>계룡건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/hanyang.co.kr" onerror="this.style.display='none'" alt=""><span>한양건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/skecoplant.com" onerror="this.style.display='none'" alt=""><span>SK에코플랜트</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/poscoenc.com" onerror="this.style.display='none'" alt=""><span>포스코건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kccenc.com" onerror="this.style.display='none'" alt=""><span>KCC건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/shinahn.co.kr" onerror="this.style.display='none'" alt=""><span>신안</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/daewooenc.com" onerror="this.style.display='none'" alt=""><span>대우건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/doosanheavy.com" onerror="this.style.display='none'" alt=""><span>두산중공업</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/kukdong.co.kr" onerror="this.style.display='none'" alt=""><span>극동건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/hanjinenc.com" onerror="this.style.display='none'" alt=""><span>한진중공업</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/ssangyong.co.kr" onerror="this.style.display='none'" alt=""><span>쌍용건설</span></div>
-        <div class="client-card"><img src="https://logo.clearbit.com/gsretail.com" onerror="this.style.display='none'" alt=""><span>GS리테일</span></div>
-      </div>
+  </div>
+  <div class="clients-slider-wrap">
+    <div class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
+        <div class="client-card"><span>호반건설</span></div>
+        <div class="client-card"><span>우미건설</span></div>
+        <div class="client-card"><span>코오롱글로벌</span></div>
+        <div class="client-card"><span>DL건설</span></div>
+        <div class="client-card"><span>계룡건설</span></div>
+        <div class="client-card"><span>한양건설</span></div>
+        <div class="client-card"><span>SK에코플랜트</span></div>
+        <div class="client-card"><span>포스코건설</span></div>
+        <div class="client-card"><span>KCC건설</span></div>
+        <div class="client-card"><span>신안</span></div>
+        <div class="client-card"><span>대우건설</span></div>
+        <div class="client-card"><span>두산중공업</span></div>
+        <div class="client-card"><span>극동건설</span></div>
+        <div class="client-card"><span>한진중공업</span></div>
+        <div class="client-card"><span>쌍용건설</span></div>
+        <div class="client-card"><span>GS리테일</span></div>
+        <div class="client-card"><span>호반건설</span></div>
+        <div class="client-card"><span>우미건설</span></div>
+        <div class="client-card"><span>코오롱글로벌</span></div>
+        <div class="client-card"><span>DL건설</span></div>
+        <div class="client-card"><span>계룡건설</span></div>
+        <div class="client-card"><span>한양건설</span></div>
+        <div class="client-card"><span>SK에코플랜트</span></div>
+        <div class="client-card"><span>포스코건설</span></div>
+        <div class="client-card"><span>KCC건설</span></div>
+        <div class="client-card"><span>신안</span></div>
+        <div class="client-card"><span>대우건설</span></div>
+        <div class="client-card"><span>두산중공업</span></div>
+        <div class="client-card"><span>극동건설</span></div>
+        <div class="client-card"><span>한진중공업</span></div>
+        <div class="client-card"><span>쌍용건설</span></div>
+        <div class="client-card"><span>GS리테일</span></div>
     </div>
   </div>
 </section>
-
-<!-- CERTIFICATIONS -->
-<section id="certs">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-tag">CERTIFICATIONS & PATENTS</div>
-      <div class="section-title">인증 · 특허 · 수상</div>
-    </div>
-  </div>
-
-  <!-- 탭 버튼 -->
-  <div class="cert-tabs reveal">
-    <button class="cert-tab active" onclick="showTab('tab-cert')">인증서</button>
-    <button class="cert-tab" onclick="showTab('tab-patent')">특허증</button>
-    <button class="cert-tab" onclick="showTab('tab-award')">표창장</button>
-  </div>
-
-  <!-- 인증서 탭 -->
-  <div id="tab-cert" class="tab-panel active">
-    <div class="certs-grid">
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/vvgvwgS2/2023-1.jpg')"><img src="https://i.ibb.co/vvgvwgS2/2023-1.jpg" alt=""><div class="cert-card-label">성능인증서 (2023)</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/39tRNHRK/image.jpg')"><img src="https://i.ibb.co/39tRNHRK/image.jpg" alt=""><div class="cert-card-label">성능인증서 (스마트배전반)</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/WN8nFpWm/ISO9001-1.jpg')"><img src="https://i.ibb.co/WN8nFpWm/ISO9001-1.jpg" alt=""><div class="cert-card-label">ISO 9001</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/zMQQN8D/ISO14001-1.jpg')"><img src="https://i.ibb.co/zMQQN8D/ISO14001-1.jpg" alt=""><div class="cert-card-label">ISO 14001</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/hF4FFcng/iso14001.png')"><img src="https://i.ibb.co/hF4FFcng/iso14001.png" alt=""><div class="cert-card-label">ISO 45001</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/d4CCd2DQ/2023-1.jpg')"><img src="https://i.ibb.co/d4CCd2DQ/2023-1.jpg" alt=""><div class="cert-card-label">우수제품지정증서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/fV0t7p51/1.jpg')"><img src="https://i.ibb.co/fV0t7p51/1.jpg" alt=""><div class="cert-card-label">우수조달공동상표</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/zW8vVVWH/1.jpg')"><img src="https://i.ibb.co/zW8vVVWH/1.jpg" alt=""><div class="cert-card-label">우수단체표준제품</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/qYScJb2q/image.png')"><img src="https://i.ibb.co/qYScJb2q/image.png" alt=""><div class="cert-card-label">우선구매선정확인서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/QvPcnLVm/image.png')"><img src="https://i.ibb.co/QvPcnLVm/image.png" alt=""><div class="cert-card-label">품질우수제품 지정서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/6cCn139Z/image.jpg')"><img src="https://i.ibb.co/6cCn139Z/image.jpg" alt=""><div class="cert-card-label">전기공사업등록증</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/Pqv76pN/image.jpg')"><img src="https://i.ibb.co/Pqv76pN/image.jpg" alt=""><div class="cert-card-label">소방시설업등록증</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/jkmb8Z7k/image.jpg')"><img src="https://i.ibb.co/jkmb8Z7k/image.jpg" alt=""><div class="cert-card-label">정보통신공사업등록증</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/S47yLt0Q/image.jpg')"><img src="https://i.ibb.co/S47yLt0Q/image.jpg" alt=""><div class="cert-card-label">신재생에너지 전문기업</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/C5HTKJPL/image.jpg')"><img src="https://i.ibb.co/C5HTKJPL/image.jpg" alt=""><div class="cert-card-label">벤처기업확인서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/svnMNPpD/1.jpg')"><img src="https://i.ibb.co/svnMNPpD/1.jpg" alt=""><div class="cert-card-label">기술혁신형 중소기업</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/NQ6hx3T/image.jpg')"><img src="https://i.ibb.co/NQ6hx3T/image.jpg" alt=""><div class="cert-card-label">경영혁신형 중소기업</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/tPNMSkCk/image.jpg')"><img src="https://i.ibb.co/tPNMSkCk/image.jpg" alt=""><div class="cert-card-label">일자리창출 우수기업</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/PsmjfT1W/image.png')"><img src="https://i.ibb.co/PsmjfT1W/image.png" alt=""><div class="cert-card-label">비전기업인증서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/GfvPMbsr/image.jpg')"><img src="https://i.ibb.co/GfvPMbsr/image.jpg" alt=""><div class="cert-card-label">기업부설연구소 인정서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/vxCvTVgV/1.jpg')"><img src="https://i.ibb.co/vxCvTVgV/1.jpg" alt=""><div class="cert-card-label">단체표준인증서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/0pJ61ypp/image.jpg')"><img src="https://i.ibb.co/0pJ61ypp/image.jpg" alt=""><div class="cert-card-label">디자인등록증</div></div>
-    </div>
-  </div>
-
-  <!-- 특허증 탭 -->
-  <div id="tab-patent" class="tab-panel">
-    <div class="certs-grid">
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/N669Qyhn/image.jpg')"><img src="https://i.ibb.co/N669Qyhn/image.jpg" alt=""><div class="cert-card-label">면진기능을 갖는 수배전반</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/BH2h9tGm/image.jpg')"><img src="https://i.ibb.co/BH2h9tGm/image.jpg" alt=""><div class="cert-card-label">배전반 검지 무선센서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/6RQSKjpc/image.jpg')"><img src="https://i.ibb.co/6RQSKjpc/image.jpg" alt=""><div class="cert-card-label">부스바 커넥터</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/bpm1C2P/image.jpg')"><img src="https://i.ibb.co/bpm1C2P/image.jpg" alt=""><div class="cert-card-label">IR 데이터 송신센서</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/SDJJ83fW/image.jpg')"><img src="https://i.ibb.co/SDJJ83fW/image.jpg" alt=""><div class="cert-card-label">스마트 수배전반 상태표시</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/zh2TcSdf/image.jpg')"><img src="https://i.ibb.co/zh2TcSdf/image.jpg" alt=""><div class="cert-card-label">진동흡수형 수배전반</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/27K1v7SS/image.jpg')"><img src="https://i.ibb.co/27K1v7SS/image.jpg" alt=""><div class="cert-card-label">컴팩트 분전반</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/GvYyBqqG/image.jpg')"><img src="https://i.ibb.co/GvYyBqqG/image.jpg" alt=""><div class="cert-card-label">태양광발전 연계 수배전반</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/pjH49XvV/image.jpg')"><img src="https://i.ibb.co/pjH49XvV/image.jpg" alt=""><div class="cert-card-label">하베스팅 기술 배전반</div></div>
-    </div>
-  </div>
-
-  <!-- 표창장 탭 -->
-  <div id="tab-award" class="tab-panel">
-    <div class="certs-grid">
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/t5Hwcry/image.jpg')"><img src="https://i.ibb.co/t5Hwcry/image.jpg" alt=""><div class="cert-card-label">표창장 - 모범중소기업인</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/S7ypvJkx/image.jpg')"><img src="https://i.ibb.co/S7ypvJkx/image.jpg" alt=""><div class="cert-card-label">표창장 - 조달청장 (2021)</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/200zTQVC/09.jpg')"><img src="https://i.ibb.co/200zTQVC/09.jpg" alt=""><div class="cert-card-label">표창장 - 조달청장 (2009)</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/20hgkyTY/image.jpg')"><img src="https://i.ibb.co/20hgkyTY/image.jpg" alt=""><div class="cert-card-label">표창장 - 산업통상자원부장관</div></div>
-      <div class="cert-card" onclick="openLightbox('https://i.ibb.co/CpfS77Qf/image.jpg')"><img src="https://i.ibb.co/CpfS77Qf/image.jpg" alt=""><div class="cert-card-label">표창장 - 중소기업청장</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 라이트박스 -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">×</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
 
 <!-- CONTACT -->
 <section id="contact">
