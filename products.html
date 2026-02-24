@@ -143,33 +143,33 @@
     <div class="nav-item">
       <a href="about.html">회사소개</a>
       <div class="dropdown">
-        <a href="about.html">CEO 인사말</a>
-        <a href="about.html">경영철학</a>
-        <a href="about.html">회사연혁</a>
+        <a href="about.html#ceo">CEO 인사말</a>
+        <a href="about.html#philosophy">경영철학</a>
+        <a href="about.html#history">회사연혁</a>
       </div>
     </div>
     <div class="nav-item">
       <a href="products.html" class="active">사업영역</a>
       <div class="dropdown">
-        <a href="products.html">수배전반</a>
-        <a href="products.html">자동제어시스템</a>
-        <a href="products.html">태양광 발전장치</a>
+        <a href="products.html#switchboard">수배전반</a>
+        <a href="products.html#control">자동제어시스템</a>
+        <a href="products.html#solar">태양광 발전장치</a>
       </div>
     </div>
     <div class="nav-item">
       <a href="promo.html">홍보관</a>
       <div class="dropdown">
-        <a href="promo.html">인증서</a>
-        <a href="promo.html">특허증</a>
-        <a href="promo.html">표창장</a>
-        <a href="promo.html">파트너사</a>
+        <a href="promo.html#tab-cert">인증서</a>
+        <a href="promo.html#tab-patent">특허증</a>
+        <a href="promo.html#tab-award">표창장</a>
+        <a href="promo.html#tab-partners">파트너사</a>
       </div>
     </div>
     <div class="nav-item">
       <a href="contact.html">고객센터</a>
       <div class="dropdown">
-        <a href="contact.html">문의하기</a>
-        <a href="contact.html">자료실</a>
+        <a href="contact.html#inquiry">문의하기</a>
+        <a href="contact.html#download">자료실</a>
       </div>
     </div>
   </nav>
@@ -372,6 +372,15 @@ function showSubTab(tab, btn) {
   document.getElementById('sub-' + tab).classList.add('active');
   btn.classList.add('active');
 }
+
+  // URL 해시로 탭 자동 이동
+  (function() {
+    var hash = window.location.hash.replace('#', '');
+    if (hash === 'switchboard' || hash === 'control' || hash === 'solar') {
+      var btn = document.querySelector('.tab-btn[onclick*="' + hash + '"]');
+      if (btn) showTab(hash, btn);
+    }
+  })();
 </script>
 </body>
 </html>
