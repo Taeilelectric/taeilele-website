@@ -140,27 +140,19 @@
     position: relative;
     overflow: hidden;
     padding: 0 60px;
+    background: #050d1a;
   }
 
-  .hero-bg {
+  #hero-canvas {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(13,71,161,0.35) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(244,161,0,0.12) 0%, transparent 60%),
-      linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
   }
 
-  /* 전기 회로 패턴 */
-  .circuit {
-    position: absolute;
-    inset: 0;
-    opacity: 0.06;
-    background-image:
-      linear-gradient(rgba(244,161,0,0.8) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(244,161,0,0.8) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
+  .hero-bg { display: none; }
+  .circuit { display: none; }
 
   .hero-content {
     position: relative;
@@ -267,6 +259,53 @@
     color: var(--gray);
     letter-spacing: 2px;
     font-weight: 500;
+  }
+
+
+  /* ── HERO SLIDES ── */
+  .hero-slides { position: relative; z-index: 2; width: 100%; }
+  .hero-slide { display: none; animation: fadeUp 0.9s ease both; }
+  .hero-slide.active { display: block; }
+
+  .slide-indicators {
+    position: absolute;
+    bottom: 48px;
+    left: 60px;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+  }
+  .indicator {
+    width: 28px; height: 3px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.3s, width 0.3s;
+  }
+  .indicator.active { background: var(--accent); width: 48px; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 44px;
+    right: 60px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(244,161,0,0.6), transparent);
+    animation: scrollPulse 1.8s ease infinite;
+  }
+  @keyframes scrollPulse {
+    0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
   }
 
   /* ── QUICK LINKS ── */
@@ -878,27 +917,84 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="circuit"></div>
-  <div class="hero-content">
-    <div class="hero-tag">⚡ SINCE 1990 · 태일전기(주)</div>
-    <h1 class="hero-title">
-      원활하고<br>
-      <span class="line2">안전한</span><br>
-      전기
-    </h1>
-    <p class="hero-sub">
-      수배전반·자동제어시스템·태양광 발전장치 전문 제조기업<br>
-      신뢰와 기술로 대한민국 전력 인프라를 지원합니다.
-    </p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-primary">제품 보기</a>
-      <a href="contact.html" class="btn-outline">상담 문의</a>
+  <canvas id="hero-canvas"></canvas>
+
+  <!-- 슬라이드 컨테이너 -->
+  <div class="hero-slides">
+
+    <!-- 슬라이드 1: 미래 기술 -->
+    <div class="hero-slide active">
+      <div class="hero-content">
+        <div class="hero-tag">⚡ SINCE 2000 · 태일전기(주)</div>
+        <h1 class="hero-title">
+          스마트한<br>
+          <span class="line2">전력</span><br>
+          솔루션
+        </h1>
+        <p class="hero-sub">
+          차세대 스마트 배전반으로 대한민국 전력 인프라를 선도합니다<br>
+          기술혁신과 신뢰로 안전한 미래를 만들어갑니다
+        </p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn-primary">사업영역 보기</a>
+          <a href="contact.html" class="btn-outline">상담 문의</a>
+        </div>
+      </div>
     </div>
+
+    <!-- 슬라이드 2: ESG/환경 -->
+    <div class="hero-slide">
+      <div class="hero-content">
+        <div class="hero-tag">🌿 ESG · 지속가능한 미래</div>
+        <h1 class="hero-title">
+          친환경<br>
+          <span class="line2">에너지</span><br>
+          혁신
+        </h1>
+        <p class="hero-sub">
+          태양광 발전장치와 에너지 관리 솔루션으로<br>
+          지구와 사람이 함께하는 지속가능한 내일을 만듭니다
+        </p>
+        <div class="hero-btns">
+          <a href="products.html" class="btn-primary">태양광 발전장치</a>
+          <a href="about.html" class="btn-outline">회사 소개</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 슬라이드 3: 신뢰/안전 -->
+    <div class="hero-slide">
+      <div class="hero-content">
+        <div class="hero-tag">🏆 조달청 우수제품 · 특허 9건</div>
+        <h1 class="hero-title">
+          안전하고<br>
+          <span class="line2">신뢰할 수</span><br>
+          있는
+        </h1>
+        <p class="hero-sub">
+          내진·면진 배전반으로 재난에도 끄떡없는 전력 시스템<br>
+          공공기관 100% 수의계약 가능 우수제품 인증
+        </p>
+        <div class="hero-btns">
+          <a href="promo.html" class="btn-primary">인증 현황</a>
+          <a href="contact.html" class="btn-outline">문의하기</a>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <!-- 슬라이드 인디케이터 -->
+  <div class="slide-indicators">
+    <span class="indicator active" onclick="goSlide(0)"></span>
+    <span class="indicator" onclick="goSlide(1)"></span>
+    <span class="indicator" onclick="goSlide(2)"></span>
+  </div>
+
+  <!-- 통계 -->
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="stat-num">30<span>+</span></div>
+      <div class="stat-num">25<span>+</span></div>
       <div class="stat-label">YEARS OF EXPERIENCE</div>
     </div>
     <div class="stat-item">
@@ -906,9 +1002,15 @@
       <div class="stat-label">PROJECTS COMPLETED</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">99<span>%</span></div>
-      <div class="stat-label">CLIENT SATISFACTION</div>
+      <div class="stat-num">9<span></span></div>
+      <div class="stat-label">PATENTS</div>
     </div>
+  </div>
+
+  <!-- 스크롤 유도 -->
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
@@ -1064,6 +1166,222 @@
   </div>
   <div class="footer-copy">COPYRIGHT © TAEILELE. ALL RIGHTS RESERVED.</div>
 </footer>
+
+<script>
+// ── HERO CANVAS 애니메이션 ──
+(function() {
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], lines = [], frame = 0;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // 파티클 생성
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+      this.r = Math.random() * 1.8 + 0.4;
+      this.alpha = Math.random() * 0.5 + 0.2;
+      // 색상: 파란계열, 초록계열(ESG), 주황(포인트)
+      const colors = ['rgba(13,71,161,', 'rgba(30,120,255,', 'rgba(0,180,120,', 'rgba(244,161,0,'];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+    update() {
+      this.x += this.vx; this.y += this.vy;
+      if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color + this.alpha + ')';
+      ctx.fill();
+    }
+  }
+
+  // 에너지 라인 (수직으로 흐르는 전기선)
+  class EnergyLine {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * W;
+      this.y = -50;
+      this.speed = Math.random() * 2 + 1;
+      this.length = Math.random() * 120 + 40;
+      this.alpha = Math.random() * 0.4 + 0.1;
+      this.color = Math.random() > 0.6 ? 'rgba(244,161,0,' : 'rgba(30,120,255,';
+      this.width = Math.random() * 1.5 + 0.3;
+    }
+    update() {
+      this.y += this.speed;
+      if (this.y > H + 100) this.reset();
+    }
+    draw() {
+      const grad = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.length);
+      grad.addColorStop(0, this.color + '0)');
+      grad.addColorStop(0.5, this.color + this.alpha + ')');
+      grad.addColorStop(1, this.color + '0)');
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(this.x, this.y + this.length);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = this.width;
+      ctx.stroke();
+    }
+  }
+
+  // 지구 오브 (오른쪽에 천천히 회전하는 원형 그리드)
+  function drawGlobe() {
+    const cx = W * 0.78, cy = H * 0.5, r = Math.min(W, H) * 0.28;
+    ctx.save();
+    // 외곽 글로우
+    const glow = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r * 1.2);
+    glow.addColorStop(0, 'rgba(13,71,161,0.15)');
+    glow.addColorStop(0.6, 'rgba(0,180,120,0.06)');
+    glow.addColorStop(1, 'transparent');
+    ctx.beginPath(); ctx.arc(cx, cy, r * 1.2, 0, Math.PI * 2);
+    ctx.fillStyle = glow; ctx.fill();
+
+    // 원 테두리
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(30,120,255,0.2)'; ctx.lineWidth = 1; ctx.stroke();
+
+    // 위도선 (수평 타원)
+    ctx.clip();
+    const latLines = 7;
+    for (let i = 1; i < latLines; i++) {
+      const lat = (i / latLines) * Math.PI;
+      const ry = Math.sin(lat) * r;
+      const y = cy - r + (i / latLines) * r * 2;
+      ctx.beginPath();
+      ctx.ellipse(cx, y, Math.sqrt(r * r - Math.pow(y - cy, 2)) || 0, ry * 0.25, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(30,120,255,0.12)'; ctx.lineWidth = 0.8; ctx.stroke();
+    }
+
+    // 경도선 (세로 타원, 시간에 따라 회전)
+    const lonLines = 8;
+    for (let i = 0; i < lonLines; i++) {
+      const angle = (i / lonLines) * Math.PI + frame * 0.003;
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.ellipse(0, 0, r * 0.2, r, 0, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(0,180,120,0.1)'; ctx.lineWidth = 0.8; ctx.stroke();
+      ctx.restore();
+    }
+    ctx.restore();
+
+    // 도트 포인트들 (도시/거점)
+    const dots = [
+      {a: 0.3, b: 0.2}, {a: 1.1, b: 0.6}, {a: 2.0, b: 0.3},
+      {a: 0.8, b: 0.8}, {a: 1.6, b: 0.15}, {a: 2.5, b: 0.5},
+      {a: 3.0, b: 0.7}, {a: 0.5, b: 0.5}, {a: 1.8, b: 0.85},
+    ];
+    dots.forEach(d => {
+      const angle = d.a + frame * 0.003;
+      const dx = cx + Math.cos(angle) * r * Math.sin(d.b * Math.PI);
+      const dy = cy + Math.cos(d.b * Math.PI) * r * 0.6;
+      ctx.beginPath(); ctx.arc(dx, dy, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(244,161,0,0.7)'; ctx.fill();
+      // 글로우
+      ctx.beginPath(); ctx.arc(dx, dy, 6, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(244,161,0,0.1)'; ctx.fill();
+    });
+  }
+
+  // 헥사곤 그리드 배경
+  function drawHexGrid() {
+    const size = 40, cols = Math.ceil(W / (size * 1.7)) + 2;
+    const rows = Math.ceil(H / (size * 1.5)) + 2;
+    ctx.strokeStyle = 'rgba(30,80,180,0.06)'; ctx.lineWidth = 0.8;
+    for (let row = -1; row < rows; row++) {
+      for (let col = -1; col < cols; col++) {
+        const x = col * size * 1.73 + (row % 2 === 0 ? 0 : size * 0.87);
+        const y = row * size * 1.5;
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = (Math.PI / 3) * i - Math.PI / 6;
+          i === 0 ? ctx.moveTo(x + size * Math.cos(a), y + size * Math.sin(a))
+                  : ctx.lineTo(x + size * Math.cos(a), y + size * Math.sin(a));
+        }
+        ctx.closePath(); ctx.stroke();
+      }
+    }
+  }
+
+  // 파티클 연결선
+  function drawConnections() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(30,100,220,${0.15 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5; ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // 초기화
+  for (let i = 0; i < 80; i++) particles.push(new Particle());
+  for (let i = 0; i < 18; i++) lines.push(new EnergyLine());
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+
+    // 배경 그라데이션
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, '#050d1a');
+    bg.addColorStop(0.5, '#081422');
+    bg.addColorStop(1, '#060f1c');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+    // 왼쪽 빛 포인트
+    const lg = ctx.createRadialGradient(W * 0.15, H * 0.4, 0, W * 0.15, H * 0.4, H * 0.6);
+    lg.addColorStop(0, 'rgba(13,71,161,0.2)');
+    lg.addColorStop(1, 'transparent');
+    ctx.fillStyle = lg; ctx.fillRect(0, 0, W, H);
+
+    drawHexGrid();
+    lines.forEach(l => { l.update(); l.draw(); });
+    drawConnections();
+    particles.forEach(p => { p.update(); p.draw(); });
+    drawGlobe();
+
+    frame++;
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ── 슬라이드 ──
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const indicators = document.querySelectorAll('.indicator');
+let slideTimer = setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  indicators[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  indicators[currentSlide].classList.add('active');
+  clearInterval(slideTimer);
+  slideTimer = setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
+}
 
 <script>
   // 탭 전환
