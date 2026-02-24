@@ -145,6 +145,38 @@
     text-decoration:none; transition:opacity 0.2s;
   }
   .dl-btn:hover { opacity:0.85; }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  @media(max-width:900px){ .partners-grid { grid-template-columns: repeat(3,1fr); } }
+  @media(max-width:600px){ .partners-grid { grid-template-columns: repeat(2,1fr); } }
+  .partner-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 24px 16px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .partner-card:hover {
+    border-color: var(--accent);
+    background: rgba(244,161,0,0.06);
+  }
+  .partner-card span {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+  .partner-card:hover span { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -235,44 +267,26 @@
 
   <!-- 파트너사 탭 -->
   <div id="tab-partners" class="tab-panel">
-    <div style="text-align:center; margin-bottom:48px;">
+    <div style="text-align:center; margin-bottom:40px;">
       <div style="font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px;">국내 주요 건설사 및 공공기관과 함께합니다</div>
     </div>
-    <div style="overflow:hidden; -webkit-mask:linear-gradient(90deg,transparent,white 8%,white 92%,transparent); mask:linear-gradient(90deg,transparent,white 8%,white 92%,transparent);">
-      <div class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
-        <div class="client-card"><span>호반건설</span></div>
-        <div class="client-card"><span>우미건설</span></div>
-        <div class="client-card"><span>코오롱글로벌</span></div>
-        <div class="client-card"><span>DL건설</span></div>
-        <div class="client-card"><span>계룡건설</span></div>
-        <div class="client-card"><span>한양건설</span></div>
-        <div class="client-card"><span>SK에코플랜트</span></div>
-        <div class="client-card"><span>포스코건설</span></div>
-        <div class="client-card"><span>KCC건설</span></div>
-        <div class="client-card"><span>신안</span></div>
-        <div class="client-card"><span>대우건설</span></div>
-        <div class="client-card"><span>두산중공업</span></div>
-        <div class="client-card"><span>극동건설</span></div>
-        <div class="client-card"><span>한진중공업</span></div>
-        <div class="client-card"><span>쌍용건설</span></div>
-        <div class="client-card"><span>GS리테일</span></div>
-        <div class="client-card"><span>호반건설</span></div>
-        <div class="client-card"><span>우미건설</span></div>
-        <div class="client-card"><span>코오롱글로벌</span></div>
-        <div class="client-card"><span>DL건설</span></div>
-        <div class="client-card"><span>계룡건설</span></div>
-        <div class="client-card"><span>한양건설</span></div>
-        <div class="client-card"><span>SK에코플랜트</span></div>
-        <div class="client-card"><span>포스코건설</span></div>
-        <div class="client-card"><span>KCC건설</span></div>
-        <div class="client-card"><span>신안</span></div>
-        <div class="client-card"><span>대우건설</span></div>
-        <div class="client-card"><span>두산중공업</span></div>
-        <div class="client-card"><span>극동건설</span></div>
-        <div class="client-card"><span>한진중공업</span></div>
-        <div class="client-card"><span>쌍용건설</span></div>
-        <div class="client-card"><span>GS리테일</span></div>
-      </div>
+    <div class="partners-grid">
+        <div class="partner-card"><span>호반건설</span></div>
+        <div class="partner-card"><span>우미건설</span></div>
+        <div class="partner-card"><span>코오롱글로벌</span></div>
+        <div class="partner-card"><span>DL건설</span></div>
+        <div class="partner-card"><span>계룡건설</span></div>
+        <div class="partner-card"><span>한양건설</span></div>
+        <div class="partner-card"><span>SK에코플랜트</span></div>
+        <div class="partner-card"><span>포스코건설</span></div>
+        <div class="partner-card"><span>KCC건설</span></div>
+        <div class="partner-card"><span>신안</span></div>
+        <div class="partner-card"><span>대우건설</span></div>
+        <div class="partner-card"><span>두산중공업</span></div>
+        <div class="partner-card"><span>극동건설</span></div>
+        <div class="partner-card"><span>한진중공업</span></div>
+        <div class="partner-card"><span>쌍용건설</span></div>
+        <div class="partner-card"><span>GS리테일</span></div>
     </div>
   </div>
 
