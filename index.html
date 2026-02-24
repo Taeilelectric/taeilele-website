@@ -139,15 +139,47 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 0 60px;
-    background: #050d1a;
+    padding: 0;
   }
-  #hero-canvas {
+  .hero-slides {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    inset: 0;
     z-index: 0;
+  }
+  .hero-slide {
+    display: none;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide.active {
     display: block;
+  }
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.06);
+    animation: kenBurns 8s ease-out forwards;
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1.06); }
+    to   { transform: scale(1.0); }
+  }
+  .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(100deg, rgba(5,13,26,0.82) 0%, rgba(5,13,26,0.55) 55%, rgba(5,13,26,0.25) 100%),
+      linear-gradient(to top, rgba(5,13,26,0.6) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 700px;
+    padding: 0 60px;
+    padding-top: 80px;
   }
   .hero-bg, .circuit { display: none; }
 
@@ -232,7 +264,7 @@
     right: 60px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     gap: 32px;
@@ -914,13 +946,12 @@
 
 <!-- HERO -->
 <section id="hero">
-  <canvas id="hero-canvas"></canvas>
+  <canvas id="hero-canvas" style="display:none"></canvas>
 
-  <!-- 슬라이드 컨테이너 -->
   <div class="hero-slides">
-
-    <!-- 슬라이드 1: 미래 기술 -->
     <div class="hero-slide active">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=85')"></div>
+      <div class="slide-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">⚡ SINCE 2000 · 태일전기(주)</div>
         <h1 class="hero-title">
@@ -928,19 +959,16 @@
           <span class="line2">전력</span><br>
           솔루션
         </h1>
-        <p class="hero-sub">
-          차세대 스마트 배전반으로 대한민국 전력 인프라를 선도합니다<br>
-          기술혁신과 신뢰로 안전한 미래를 만들어갑니다
-        </p>
+        <p class="hero-sub">차세대 스마트 배전반으로 대한민국 전력 인프라를 선도합니다<br>기술혁신과 신뢰로 안전한 미래를 만들어갑니다</p>
         <div class="hero-btns">
           <a href="products.html" class="btn-primary">사업영역 보기</a>
           <a href="contact.html" class="btn-outline">상담 문의</a>
         </div>
       </div>
     </div>
-
-    <!-- 슬라이드 2: ESG/환경 -->
     <div class="hero-slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=85')"></div>
+      <div class="slide-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">🌿 ESG · 지속가능한 미래</div>
         <h1 class="hero-title">
@@ -948,19 +976,16 @@
           <span class="line2">에너지</span><br>
           혁신
         </h1>
-        <p class="hero-sub">
-          태양광 발전장치와 에너지 관리 솔루션으로<br>
-          지구와 사람이 함께하는 지속가능한 내일을 만듭니다
-        </p>
+        <p class="hero-sub">태양광 발전장치와 에너지 관리 솔루션으로<br>지구와 사람이 함께하는 지속가능한 내일을 만듭니다</p>
         <div class="hero-btns">
-          <a href="products.html" class="btn-primary">태양광 발전장치</a>
+          <a href="products.html#solar" class="btn-primary">태양광 발전장치</a>
           <a href="about.html" class="btn-outline">회사 소개</a>
         </div>
       </div>
     </div>
-
-    <!-- 슬라이드 3: 신뢰/안전 -->
     <div class="hero-slide">
+      <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e12c1e?w=1920&q=85')"></div>
+      <div class="slide-overlay"></div>
       <div class="hero-content">
         <div class="hero-tag">🏆 조달청 우수제품 · 특허 9건</div>
         <h1 class="hero-title">
@@ -968,27 +993,21 @@
           <span class="line2">신뢰할 수</span><br>
           있는
         </h1>
-        <p class="hero-sub">
-          내진·면진 배전반으로 재난에도 끄떡없는 전력 시스템<br>
-          공공기관 100% 수의계약 가능 우수제품 인증
-        </p>
+        <p class="hero-sub">내진·면진 배전반으로 재난에도 끄떡없는 전력 시스템<br>공공기관 100% 수의계약 가능 우수제품 인증</p>
         <div class="hero-btns">
           <a href="promo.html" class="btn-primary">인증 현황</a>
           <a href="contact.html" class="btn-outline">문의하기</a>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- 슬라이드 인디케이터 -->
   <div class="slide-indicators">
     <span class="indicator active" onclick="goSlide(0)"></span>
     <span class="indicator" onclick="goSlide(1)"></span>
     <span class="indicator" onclick="goSlide(2)"></span>
   </div>
 
-  <!-- 통계 -->
   <div class="hero-stats">
     <div class="stat-item">
       <div class="stat-num">25<span>+</span></div>
@@ -999,12 +1018,11 @@
       <div class="stat-label">PROJECTS COMPLETED</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">9<span></span></div>
+      <div class="stat-num">9</div>
       <div class="stat-label">PATENTS</div>
     </div>
   </div>
 
-  <!-- 스크롤 유도 -->
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="scroll-line"></div>
@@ -1165,203 +1183,6 @@
 </footer>
 
 <script>
-// ── HERO CANVAS ──
-window.addEventListener('load', function() {
-  var canvas = document.getElementById('hero-canvas');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var W, H, particles = [], energyLines = [], frame = 0;
-
-  function resize() {
-    W = canvas.width = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  // 파티클
-  function Particle() { this.init(); }
-  Particle.prototype.init = function() {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.vx = (Math.random() - 0.5) * 0.35;
-    this.vy = (Math.random() - 0.5) * 0.35;
-    this.r = Math.random() * 1.6 + 0.4;
-    this.alpha = Math.random() * 0.45 + 0.15;
-    var c = [
-      [13,71,161], [30,130,255], [0,180,120], [244,161,0]
-    ];
-    var col = c[Math.floor(Math.random() * c.length)];
-    this.rgb = col[0]+','+col[1]+','+col[2];
-  };
-  Particle.prototype.update = function() {
-    this.x += this.vx; this.y += this.vy;
-    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.init();
-  };
-  Particle.prototype.draw = function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba('+this.rgb+','+this.alpha+')';
-    ctx.fill();
-  };
-
-  // 에너지 라인
-  function EnergyLine() { this.reset(); }
-  EnergyLine.prototype.reset = function() {
-    this.x = Math.random() * W;
-    this.y = -80;
-    this.speed = Math.random() * 1.8 + 0.8;
-    this.len = Math.random() * 100 + 40;
-    this.alpha = Math.random() * 0.35 + 0.08;
-    this.isGold = Math.random() > 0.65;
-    this.w = Math.random() * 1.2 + 0.3;
-  };
-  EnergyLine.prototype.update = function() {
-    this.y += this.speed;
-    if (this.y > H + 100) this.reset();
-  };
-  EnergyLine.prototype.draw = function() {
-    var g = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.len);
-    var col = this.isGold ? '244,161,0' : '30,130,255';
-    g.addColorStop(0, 'rgba('+col+',0)');
-    g.addColorStop(0.5, 'rgba('+col+','+this.alpha+')');
-    g.addColorStop(1, 'rgba('+col+',0)');
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y);
-    ctx.lineTo(this.x, this.y + this.len);
-    ctx.strokeStyle = g;
-    ctx.lineWidth = this.w;
-    ctx.stroke();
-  };
-
-  // 헥사곤 배경
-  function drawHex() {
-    var s = 38;
-    ctx.strokeStyle = 'rgba(30,80,180,0.055)';
-    ctx.lineWidth = 0.8;
-    var cols = Math.ceil(W / (s*1.73)) + 2;
-    var rows = Math.ceil(H / (s*1.5)) + 2;
-    for (var r = -1; r < rows; r++) {
-      for (var c = -1; c < cols; c++) {
-        var px = c * s*1.73 + (r%2===0 ? 0 : s*0.87);
-        var py = r * s*1.5;
-        ctx.beginPath();
-        for (var i = 0; i < 6; i++) {
-          var a = (Math.PI/3)*i - Math.PI/6;
-          if (i===0) ctx.moveTo(px + s*Math.cos(a), py + s*Math.sin(a));
-          else ctx.lineTo(px + s*Math.cos(a), py + s*Math.sin(a));
-        }
-        ctx.closePath(); ctx.stroke();
-      }
-    }
-  }
-
-  // 파티클 연결선
-  function drawLinks() {
-    for (var i = 0; i < particles.length; i++) {
-      for (var j = i+1; j < particles.length; j++) {
-        var dx = particles[i].x - particles[j].x;
-        var dy = particles[i].y - particles[j].y;
-        var d = Math.sqrt(dx*dx + dy*dy);
-        if (d < 110) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = 'rgba(30,100,220,'+(0.12*(1-d/110))+')';
-          ctx.lineWidth = 0.4; ctx.stroke();
-        }
-      }
-    }
-  }
-
-  // 지구 오브
-  function drawGlobe() {
-    var cx = W * 0.78, cy = H * 0.5;
-    var r = Math.min(W * 0.26, H * 0.38, 240);
-    if (W < 900) return; // 모바일 숨김
-
-    ctx.save();
-    // 글로우
-    var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, r*1.3);
-    glow.addColorStop(0, 'rgba(13,71,161,0.18)');
-    glow.addColorStop(0.5, 'rgba(0,180,120,0.06)');
-    glow.addColorStop(1, 'transparent');
-    ctx.beginPath(); ctx.arc(cx, cy, r*1.3, 0, Math.PI*2);
-    ctx.fillStyle = glow; ctx.fill();
-
-    // 외곽선
-    ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
-    ctx.strokeStyle = 'rgba(30,120,255,0.18)'; ctx.lineWidth = 1; ctx.stroke();
-
-    // 위도선
-    ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.clip();
-    for (var i = 1; i < 7; i++) {
-      var fy = cy - r + (i/7)*r*2;
-      var rx = Math.sqrt(Math.max(0, r*r - Math.pow(fy-cy, 2)));
-      ctx.beginPath();
-      ctx.ellipse(cx, fy, rx, rx*0.22, 0, 0, Math.PI*2);
-      ctx.strokeStyle = 'rgba(30,120,255,0.1)'; ctx.lineWidth = 0.7; ctx.stroke();
-    }
-    // 경도선
-    for (var k = 0; k < 8; k++) {
-      var ang = (k/8)*Math.PI + frame*0.0025;
-      ctx.save(); ctx.translate(cx, cy); ctx.rotate(ang);
-      ctx.beginPath(); ctx.ellipse(0, 0, r*0.18, r, 0, 0, Math.PI*2);
-      ctx.strokeStyle = 'rgba(0,180,120,0.09)'; ctx.lineWidth = 0.7; ctx.stroke();
-      ctx.restore();
-    }
-    ctx.restore();
-
-    // 노드 포인트
-    var pts = [[0.3,0.2],[1.1,0.6],[2.0,0.3],[0.8,0.8],[1.6,0.15],[2.5,0.5],[3.0,0.7],[0.5,0.5]];
-    pts.forEach(function(p) {
-      var ang = p[0] + frame*0.0025;
-      var dx = cx + Math.cos(ang) * r * Math.sin(p[1]*Math.PI);
-      var dy = cy + Math.cos(p[1]*Math.PI) * r * 0.55;
-      ctx.beginPath(); ctx.arc(dx, dy, 2.5, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(244,161,0,0.75)'; ctx.fill();
-      ctx.beginPath(); ctx.arc(dx, dy, 6, 0, Math.PI*2);
-      ctx.fillStyle = 'rgba(244,161,0,0.1)'; ctx.fill();
-    });
-    ctx.restore();
-  }
-
-  // 초기화
-  for (var i = 0; i < 75; i++) particles.push(new Particle());
-  for (var i = 0; i < 16; i++) {
-    var el = new EnergyLine();
-    el.y = Math.random() * H; // 시작 시 분산
-    energyLines.push(el);
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-
-    // 배경
-    var bg = ctx.createLinearGradient(0, 0, W, H);
-    bg.addColorStop(0, '#050d1a');
-    bg.addColorStop(0.6, '#070f1e');
-    bg.addColorStop(1, '#060c18');
-    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-
-    // 왼쪽 빛
-    var lg = ctx.createRadialGradient(W*0.1, H*0.45, 0, W*0.1, H*0.45, H*0.65);
-    lg.addColorStop(0, 'rgba(13,71,161,0.22)');
-    lg.addColorStop(1, 'transparent');
-    ctx.fillStyle = lg; ctx.fillRect(0, 0, W, H);
-
-    drawHex();
-    energyLines.forEach(function(l){ l.update(); l.draw(); });
-    drawLinks();
-    particles.forEach(function(p){ p.update(); p.draw(); });
-    drawGlobe();
-
-    frame++;
-    requestAnimationFrame(animate);
-  }
-  animate();
-});
-
 // ── 슬라이드 ──
 var currentSlide = 0;
 var slides = document.querySelectorAll('.hero-slide');
@@ -1374,87 +1195,60 @@ function goSlide(n) {
   currentSlide = (n + slides.length) % slides.length;
   slides[currentSlide].classList.add('active');
   indicators[currentSlide].classList.add('active');
+  var bg = slides[currentSlide].querySelector('.slide-bg');
+  if (bg) { bg.style.animation = 'none'; bg.offsetHeight; bg.style.animation = ''; }
   clearInterval(slideTimer);
-  slideTimer = setInterval(function(){ goSlide(currentSlide + 1); }, 5000);
+  slideTimer = setInterval(function() { goSlide(currentSlide + 1); }, 6000);
 }
-slideTimer = setInterval(function(){ goSlide(currentSlide + 1); }, 5000);
+slideTimer = setInterval(function() { goSlide(currentSlide + 1); }, 6000);
 
-function goSlide(n) {
-  slides[currentSlide].classList.remove('active');
-  indicators[currentSlide].classList.remove('active');
-  currentSlide = n;
-  slides[currentSlide].classList.add('active');
-  indicators[currentSlide].classList.add('active');
-  clearInterval(slideTimer);
-  slideTimer = setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
+// ── 탭 전환 (홍보관 등) ──
+function showTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.cert-tab').forEach(function(t) { t.classList.remove('active'); });
+  var panel = document.getElementById(tabId);
+  if (panel) panel.classList.add('active');
+  var btn = document.querySelector('.cert-tab[onclick*="' + tabId + '"]');
+  if (btn) btn.classList.add('active');
 }
 
-  // 탭 전환
-  function updateDept() {
-    var sel = document.getElementById("inquiry-type");
-    var badge = document.getElementById("dept-badge");
-    var deptMap = {
-      "영업부": "→ 담당부서: 영업부로 연결됩니다",
-      "설계팀": "→ 담당부서: 설계팀으로 연결됩니다",
-      "사업본부": "→ 담당부서: 사업본부로 연결됩니다",
-      "영업부_as": "→ 담당부서: 영업부 (A/S)로 연결됩니다",
-      "경영부": "→ 담당부서: 경영부로 연결됩니다"
-    };
-    if (sel.value) {
-      badge.style.display = "block";
-      badge.textContent = deptMap[sel.value];
-    } else {
-      badge.style.display = "none";
-    }
-  }
+// ── 첨부파일 ──
+function updateFileName(input) {
+  var label = document.getElementById('file-name');
+  if (!label) return;
+  if (input.files.length === 0) label.textContent = '선택된 파일 없음';
+  else if (input.files.length === 1) label.textContent = input.files[0].name;
+  else label.textContent = input.files[0].name + ' 외 ' + (input.files.length - 1) + '개';
+}
 
-  function updateFileName(input) {
-    const label = document.getElementById('file-name');
-    if (input.files.length === 0) {
-      label.textContent = '선택된 파일 없음';
-    } else if (input.files.length === 1) {
-      label.textContent = input.files[0].name;
-    } else {
-      label.textContent = input.files[0].name + ' 외 ' + (input.files.length - 1) + '개';
-    }
-  }
+// ── 라이트박스 ──
+function openLightbox(url) {
+  var lb = document.getElementById('lightbox');
+  var img = document.getElementById('lightbox-img');
+  if (lb && img) { img.src = url; lb.classList.add('open'); }
+}
+function closeLightbox() {
+  var lb = document.getElementById('lightbox');
+  if (lb) lb.classList.remove('open');
+}
 
-  function showTab(tabId) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.cert-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  // 라이트박스
-  function openLightbox(filename) {
-    document.getElementById('lightbox-img').src = filename;
-    document.getElementById('lightbox').classList.add('open');
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-  }
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
-
-  // Header shrink on scroll
-  window.addEventListener('scroll', () => {
-    const h = document.querySelector('header');
-    if (window.scrollY > 50) {
-      h.style.padding = '12px 60px';
-    } else {
-      h.style.padding = '20px 60px';
+// ── Scroll reveal ──
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('visible'); }, i * 80);
     }
   });
+}, { threshold: 0.1 });
+reveals.forEach(function(r) { observer.observe(r); });
+
+// ── Header shrink ──
+window.addEventListener('scroll', function() {
+  var h = document.querySelector('header');
+  if (!h) return;
+  h.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
+});
 </script>
 
 </body>
