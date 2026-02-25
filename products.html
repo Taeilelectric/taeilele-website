@@ -6,74 +6,74 @@
 <title>사업영역 - 태일전기(주)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --white:#fff; --gray:#8a96a8; }
+  :root { --navy:#0a1628; --accent:#f4a100; --blue:#0d47a1; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); }
-
-  /* 헤더 */
-  header { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:20px 60px; background:rgba(10,22,40,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(244,161,0,0.15); }
-  .logo { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:var(--white); text-decoration:none; }
+  body { font-family:"Noto Sans KR",sans-serif; background:var(--bg); color:var(--text); }
+  header { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:20px 60px; background:rgba(10,22,40,0.97); backdrop-filter:blur(12px); border-bottom:1px solid rgba(244,161,0,0.2); }
+  .logo { font-family:"Bebas Neue",sans-serif; font-size:28px; letter-spacing:3px; color:#fff; text-decoration:none; }
   .logo span { color:var(--accent); }
   nav { display:flex; gap:40px; align-items:center; }
-  .nav-item { position:relative; }
-  .nav-item > a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:14px; font-weight:500; letter-spacing:1px; display:block; padding-bottom:28px; margin-bottom:-28px; transition:color 0.2s; position:relative; }
-  .nav-item > a::after { content:''; position:absolute; bottom:28px; left:0; width:0; height:2px; background:var(--accent); transition:width 0.3s; }
+  .nav-item { position:relative; padding-bottom:24px; margin-bottom:-24px; }
+  .nav-item > a { color:rgba(255,255,255,0.75); text-decoration:none; font-size:14px; font-weight:500; letter-spacing:1px; display:block; transition:color 0.2s; position:relative; }
+  .nav-item > a::after { content:""; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--accent); transition:width 0.3s; }
   .nav-item > a:hover, .nav-item > a.active { color:var(--accent); }
   .nav-item > a:hover::after, .nav-item > a.active::after { width:100%; }
-  .dropdown { visibility:hidden; opacity:0; pointer-events:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,22,40,0.97); border:1px solid rgba(244,161,0,0.25); border-top:2px solid var(--accent); border-radius:0 0 6px 6px; min-width:160px; padding:8px 0; z-index:200; white-space:nowrap; box-shadow:0 16px 40px rgba(0,0,0,0.5); transition:opacity 0.2s, visibility 0.2s; }
-  .dropdown::before { content:''; position:absolute; top:-10px; left:0; right:0; height:10px; background:transparent; }
-  .dropdown a { display:block !important; padding:11px 22px; font-size:13px; color:rgba(255,255,255,0.7) !important; text-decoration:none; transition:background 0.15s, color 0.15s; margin-left:0 !important; letter-spacing:0.5px; border-left:2px solid transparent; }
+  .dropdown { display:none; position:absolute; top:100%; left:50%; transform:translateX(-50%); background:rgba(10,22,40,0.98); border:1px solid rgba(244,161,0,0.25); border-top:2px solid var(--accent); border-radius:0 0 6px 6px; min-width:160px; padding:8px 0; z-index:200; white-space:nowrap; box-shadow:0 16px 40px rgba(0,0,0,0.5); }
+  .dropdown a { display:block !important; padding:10px 20px; font-size:13px; color:rgba(255,255,255,0.7) !important; text-decoration:none; border-left:2px solid transparent; transition:all 0.15s; }
   .dropdown a::after { display:none !important; }
-  .dropdown a:hover { background:rgba(244,161,0,0.08); color:var(--accent) !important; border-left-color:var(--accent); }
-  .nav-item:hover .dropdown { visibility:visible; opacity:1; pointer-events:auto; }
+  .dropdown a:hover { background:rgba(244,161,0,0.08); color:var(--accent) !important; border-left-color:var(--accent); padding-left:26px; }
+  .nav-item:hover .dropdown { display:block; }
   .header-cta { background:var(--accent); color:var(--navy); padding:10px 24px; font-size:12px; font-weight:700; letter-spacing:1px; text-decoration:none; border-radius:2px; }
-
-  /* 드롭다운 CSS */
-  .nav-item { position: relative; }
-  .nav-item > a { display: block; }
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10,22,40,0.98);
-    border: 1px solid rgba(244,161,0,0.25);
-    border-top: 3px solid var(--accent);
-    border-radius: 0 0 6px 6px;
-    min-width: 160px;
-    padding: 8px 0;
-    z-index: 200;
-    white-space: nowrap;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    /* 위쪽에 invisible bridge로 gap 없애기 */
-    margin-top: 0;
-  }
-  /* nav-item에 padding-bottom으로 hover 영역 확보 */
-  .nav-item {
-    position: relative;
-    padding-bottom: 24px;
-    margin-bottom: -24px;
-  }
-  .dropdown a {
-    display: block !important;
-    padding: 10px 20px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.7) !important;
-    text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: background 0.15s, color 0.15s, padding-left 0.15s;
-    margin-left: 0 !important;
-    border-left: 2px solid transparent;
-  }
-  .dropdown a::after { display: none !important; }
-  .dropdown a:hover {
-    background: rgba(244,161,0,0.08);
-    color: var(--accent) !important;
-    padding-left: 26px;
-    border-left-color: var(--accent);
-  }
-  .nav-item:hover .dropdown { display: block; }<header>
+  .page-hero { padding:130px 60px 0; background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%); position:relative; overflow:hidden; }
+  .page-hero::before { content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px); background-size:48px 48px; }
+  .page-hero::after { content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px; background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%); }
+  .page-hero-inner { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding-bottom:72px; }
+  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
+  .page-hero-title { font-size:52px; font-weight:900; color:#fff; margin-bottom:14px; line-height:1.1; }
+  .page-hero-title span { color:var(--accent); }
+  .page-hero-sub { font-size:15px; color:rgba(255,255,255,0.55); }
+  .tab-nav { display:flex; padding:0 60px; background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
+  .tab-btn { padding:20px 28px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:"Noto Sans KR",sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+  .tab-btn:hover { color:var(--blue); }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
+  .section { display:none; }
+  .section.active { display:block; }
+  .section-inner { max-width:1200px; margin:0 auto; padding:56px 60px 80px; }
+  .sec-header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:40px; padding-bottom:24px; border-bottom:2px solid var(--border); }
+  .sec-title { font-size:26px; font-weight:900; color:var(--text); }
+  .sec-title span { font-size:12px; font-weight:700; letter-spacing:2px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:4px 10px; border-radius:2px; margin-left:12px; vertical-align:middle; }
+  .sec-desc { font-size:13.5px; color:var(--text2); line-height:1.9; max-width:500px; text-align:right; }
+  .sub-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
+  .sub-tab-btn { padding:9px 22px; font-size:13px; font-weight:600; cursor:pointer; border:1.5px solid var(--border); background:var(--surface); color:var(--text2); font-family:"Noto Sans KR",sans-serif; border-radius:20px; transition:all 0.2s; }
+  .sub-tab-btn:hover { border-color:var(--blue); color:var(--blue); }
+  .sub-tab-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 4px 12px rgba(13,71,161,0.25); }
+  .sub-panel { display:none; }
+  .sub-panel.active { display:block; animation:fadeInUp 0.3s ease; }
+  @keyframes fadeInUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .product-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); }
+  .product-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
+  .product-card-img { height:200px; overflow:hidden; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
+  .product-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+  .product-card:hover .product-card-img img { transform:scale(1.05); }
+  .product-card-body { padding:22px; }
+  .product-card-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:10px; }
+  .product-card-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .product-card-desc { font-size:13px; color:var(--text2); line-height:1.8; }
+  .work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .work-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:40px 32px; text-align:center; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); }
+  .work-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
+  .work-icon { font-size:44px; margin-bottom:20px; }
+  .work-title { font-size:18px; font-weight:800; color:var(--text); margin-bottom:14px; }
+  .work-desc { font-size:13.5px; color:var(--text2); line-height:1.9; }
+  .work-badge { display:inline-block; margin-top:16px; font-size:11px; font-weight:700; color:var(--blue); background:rgba(13,71,161,0.07); border:1px solid rgba(13,71,161,0.2); padding:4px 14px; border-radius:20px; }
+  @media(max-width:1024px) { .product-grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:900px) { header { padding:16px 24px; } nav { display:none; } .page-hero { padding:120px 24px 0; } .page-hero-title { font-size:38px; } .tab-nav { padding:0 16px; } .section-inner { padding:40px 24px 60px; } .work-grid { grid-template-columns:1fr; } .sec-header { flex-direction:column; align-items:flex-start; gap:10px; } .sec-desc { text-align:left; max-width:100%; } }
+  @media(max-width:600px) { .product-grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
   <div class="logo">태일<span>전기</span></div>
   <nav>
     <div class="nav-item">
@@ -112,154 +112,110 @@
   </nav>
   <a href="contact.html" class="header-cta">문의하기</a>
 </header>
-
 <div class="page-hero">
-  <div class="page-hero-tag">BUSINESS AREA</div>
-  <h1 class="page-hero-title">사업<span>영역</span></h1>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">BUSINESS AREA</div>
+    <h1 class="page-hero-title">사업<span>영역</span></h1>
+    <p class="page-hero-sub">수배전반 · 제어시스템 · 신재생에너지 · 공사부문</p>
+  </div>
 </div>
-
 <div class="tab-nav">
   <button class="tab-btn active" onclick="showTab('switchboard')">수배전반</button>
   <button class="tab-btn" onclick="showTab('control')">제어시스템</button>
   <button class="tab-btn" onclick="showTab('energy')">신재생에너지</button>
   <button class="tab-btn" onclick="showTab('construction')">공사부문</button>
 </div>
-
-<!-- 수배전반 -->
 <div id="tab-switchboard" class="section active">
-  <div class="sec-title">수배전반 <span>Switchgear</span></div>
-  <p class="sec-desc">전력 시스템의 핵심 설비로, 전기의 효율적인 분배와 보호를 담당합니다.<br>태일전기(주)는 고객 맞춤형 설계 및 제작으로 최적의 솔루션을 제공합니다.</p>
-  <div class="sub-tabs">
-    <button class="sub-tab-btn active" onclick="showSubTab('sw1', this)">특고압 수배전반</button>
-    <button class="sub-tab-btn" onclick="showSubTab('sw2', this)">저압 배전반</button>
-    <button class="sub-tab-btn" onclick="showSubTab('sw3', this)">전동기 제어반</button>
-    <button class="sub-tab-btn" onclick="showSubTab('sw4', this)">분전반</button>
-    <button class="sub-tab-btn" onclick="showSubTab('sw5', this)">동력반</button>
-    <button class="sub-tab-btn" onclick="showSubTab('sw6', this)">무정전전원장치(UPS)</button>
-  </div>
-  <div id="sub-sw1" class="sub-panel active">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg" alt="특고압 수배전반"></div><div class="product-card-body"><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">22.9kV 특고압 수전설비. 내진 기능 및 스마트 감시 시스템 탑재.</div></div></div>
-      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg" alt="고압배전반"></div><div class="product-card-body"><div class="product-card-title">고압 배전반</div><div class="product-card-desc">고압 전력을 안전하게 분배. 이상검출 IR 센서 탑재, 실시간 모니터링.</div></div></div>
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">⚡</span></div><div class="product-card-body"><div class="product-card-title">내진(면진) 수배전반</div><div class="product-card-desc">규모 8.3 지진에도 안전. 압축 스프링 적용 진동 저감.</div></div></div>
+  <div class="section-inner">
+    <div class="sec-header"><div class="sec-title">수배전반 <span>SWITCHGEAR</span></div><p class="sec-desc">전력 시스템의 핵심 설비로 전기의 효율적인 분배와 보호를 담당합니다.<br>고객 맞춤형 설계 및 제작으로 최적의 솔루션을 제공합니다.</p></div>
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="showSubTab('sw1',this)">특고압 수배전반</button>
+      <button class="sub-tab-btn" onclick="showSubTab('sw2',this)">저압 배전반</button>
+      <button class="sub-tab-btn" onclick="showSubTab('sw3',this)">전동기 제어반</button>
+      <button class="sub-tab-btn" onclick="showSubTab('sw4',this)">분전반</button>
+      <button class="sub-tab-btn" onclick="showSubTab('sw5',this)">동력반</button>
+      <button class="sub-tab-btn" onclick="showSubTab('sw6',this)">무정전전원장치(UPS)</button>
     </div>
-  </div>
-  <div id="sub-sw2" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/mVVCKTRg/sub2-1-img2.jpg" alt="저압배전반"></div><div class="product-card-body"><div class="product-card-title">저압 배전반</div><div class="product-card-desc">수전한 전력을 각 부하에 안전하게 분배. ACB, MCCB 등 차단기 적용.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-sw3" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/Xf4nhNrd/sub2-1-img3.jpg" alt="전동기제어반"></div><div class="product-card-body"><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">전동기의 기동·정지·정역 운전 및 보호. 인버터, 소프트스타터 적용 가능.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-sw4" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/B2q1QFJx/sub2-1-img4.jpg" alt="분전반"></div><div class="product-card-body"><div class="product-card-title">분전반</div><div class="product-card-desc">조명, 콘센트 등 말단 부하에 전력 공급. MCCB, ELB 등 적용.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-sw5" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0d2244,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">🔌</span></div><div class="product-card-body"><div class="product-card-title">동력반</div><div class="product-card-desc">냉난방, 환기, 엘리베이터 등 동력 부하를 제어·보호하는 설비.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-sw6" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0d2244,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">🔋</span></div><div class="product-card-body"><div class="product-card-title">무정전전원장치 (UPS)</div><div class="product-card-desc">정전 시 중단 없이 전력을 공급. 서버, 의료기기 등 중요 부하 보호.</div></div></div>
-    </div>
+    <div id="sub-sw1" class="sub-panel active"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg" alt="특고압 수배전반"></div><div class="product-card-body"><div class="product-card-tag">SPECIAL HIGH VOLTAGE</div><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">22.9kV 특고압 수전설비. 내진 기능 및 스마트 감시 시스템 탑재. 대형 건물·산업시설에 적용.</div></div></div>
+      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg" alt="고압배전반"></div><div class="product-card-body"><div class="product-card-tag">HIGH VOLTAGE</div><div class="product-card-title">고압 배전반</div><div class="product-card-desc">고압 전력을 안전하게 분배. IR 데이터 송신센서 탑재, 실시간 모니터링 가능.</div></div></div>
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">⚡</span></div><div class="product-card-body"><div class="product-card-tag">SEISMIC PROOF</div><div class="product-card-title">내진(면진) 수배전반</div><div class="product-card-desc">규모 8.3 지진에도 안전. 압축 스프링 적용으로 진동 저감.</div></div></div>
+    </div></div>
+    <div id="sub-sw2" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/mVVCKTRg/sub2-1-img2.jpg" alt="저압배전반"></div><div class="product-card-body"><div class="product-card-tag">LOW VOLTAGE</div><div class="product-card-title">저압 배전반</div><div class="product-card-desc">수전한 전력을 각 부하에 안전하게 분배. ACB, MCCB 등 차단기 적용.</div></div></div>
+    </div></div>
+    <div id="sub-sw3" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/Xf4nhNrd/sub2-1-img3.jpg" alt="전동기제어반"></div><div class="product-card-body"><div class="product-card-tag">MOTOR CONTROL</div><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">전동기의 기동·정지·정역 운전 및 보호. 인버터, 소프트스타터 적용 가능.</div></div></div>
+    </div></div>
+    <div id="sub-sw4" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img"><img src="https://i.ibb.co/B2q1QFJx/sub2-1-img4.jpg" alt="분전반"></div><div class="product-card-body"><div class="product-card-tag">DISTRIBUTION</div><div class="product-card-title">분전반</div><div class="product-card-desc">조명·콘센트 등 말단 부하에 전력 공급. MCCB, ELB 등 적용.</div></div></div>
+    </div></div>
+    <div id="sub-sw5" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔌</span></div><div class="product-card-body"><div class="product-card-tag">POWER PANEL</div><div class="product-card-title">동력반</div><div class="product-card-desc">냉난방·환기·엘리베이터 등 동력 부하를 제어·보호. 대용량 부하에 최적화 설계.</div></div></div>
+    </div></div>
+    <div id="sub-sw6" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔋</span></div><div class="product-card-body"><div class="product-card-tag">UPS</div><div class="product-card-title">무정전전원장치 (UPS)</div><div class="product-card-desc">정전 발생 시 중단 없이 전력 공급. 서버·의료기기 등 중요 부하 보호에 필수.</div></div></div>
+    </div></div>
   </div>
 </div>
-
-<!-- 제어시스템 -->
 <div id="tab-control" class="section">
-  <div class="sec-title">제어시스템 <span>Control System</span></div>
-  <p class="sec-desc">건물 내 전력설비의 제어·계측·감시 기능을 자동화하여 효율적인 에너지 관리와 안정적인 운전을 지원합니다.</p>
-  <div class="sub-tabs">
-    <button class="sub-tab-btn active" onclick="showSubTab('ctrl1', this)">전력감시 제어시스템</button>
-    <button class="sub-tab-btn" onclick="showSubTab('ctrl2', this)">자동 제어시스템</button>
-    <button class="sub-tab-btn" onclick="showSubTab('ctrl3', this)">계장 제어시스템</button>
-    <button class="sub-tab-btn" onclick="showSubTab('ctrl4', this)">계측 제어시스템</button>
-  </div>
-  <div id="sub-ctrl1" class="sub-panel active">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">📡</span></div><div class="product-card-body"><div class="product-card-title">전력감시 제어시스템</div><div class="product-card-desc">수배전반, 분전반, 발전기 등 전력 계통 실시간 감시·제어. 이상 발생 시 음성 경보 및 화면 알림.</div></div></div>
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">🖥️</span></div><div class="product-card-body"><div class="product-card-title">배전반 이상감지 시스템</div><div class="product-card-desc">IR 데이터 송신센서를 통한 부스바 온도·단선·결상 실시간 검출 및 이상 기록·저장.</div></div></div>
+  <div class="section-inner">
+    <div class="sec-header"><div class="sec-title">제어시스템 <span>CONTROL SYSTEM</span></div><p class="sec-desc">건물 내 전력설비의 제어·계측·감시를 자동화하여<br>효율적인 에너지 관리와 안정적인 운전을 지원합니다.</p></div>
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="showSubTab('ctrl1',this)">전력감시 제어시스템</button>
+      <button class="sub-tab-btn" onclick="showSubTab('ctrl2',this)">자동 제어시스템</button>
+      <button class="sub-tab-btn" onclick="showSubTab('ctrl3',this)">계장 제어시스템</button>
+      <button class="sub-tab-btn" onclick="showSubTab('ctrl4',this)">계측 제어시스템</button>
     </div>
-  </div>
-  <div id="sub-ctrl2" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">⚙️</span></div><div class="product-card-body"><div class="product-card-title">자동 제어시스템</div><div class="product-card-desc">정전 시 비상 발전기 자동 기동, 주요 전력설비 자동 운전. PLC 기반 안정적인 제어.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-ctrl3" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">🎛️</span></div><div class="product-card-body"><div class="product-card-title">계장 제어시스템</div><div class="product-card-desc">온도·압력·유량·레벨 등 공정 변수 측정·제어. PLC 기반 자동화 시스템 구축.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-ctrl4" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a1628,#1a3a6e);align-items:center;justify-content:center;"><span style="font-size:48px;">📊</span></div><div class="product-card-body"><div class="product-card-title">계측 제어시스템</div><div class="product-card-desc">전력량계, 전류계, 전압계 등 각종 계측 기기 통합 관리. 에너지 사용 현황 정밀 분석.</div></div></div>
-    </div>
+    <div id="sub-ctrl1" class="sub-panel active"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">📡</span></div><div class="product-card-body"><div class="product-card-tag">MONITORING</div><div class="product-card-title">전력감시 제어시스템</div><div class="product-card-desc">수배전반·분전반·발전기 등 전력 계통 실시간 감시·제어. 이상 발생 시 음성 경보 및 화면 알림.</div></div></div>
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🖥️</span></div><div class="product-card-body"><div class="product-card-tag">FAULT DETECTION</div><div class="product-card-title">배전반 이상감지 시스템</div><div class="product-card-desc">IR 데이터 송신센서를 통한 부스바 온도·단선·결상 실시간 검출 및 이상 상황 기록.</div></div></div>
+    </div></div>
+    <div id="sub-ctrl2" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">⚙️</span></div><div class="product-card-body"><div class="product-card-tag">AUTOMATION</div><div class="product-card-title">자동 제어시스템</div><div class="product-card-desc">정전 시 비상 발전기 자동 기동, 주요 전력설비 자동 운전. PLC 기반 안정적 제어.</div></div></div>
+    </div></div>
+    <div id="sub-ctrl3" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🎛️</span></div><div class="product-card-body"><div class="product-card-tag">INSTRUMENTATION</div><div class="product-card-title">계장 제어시스템</div><div class="product-card-desc">온도·압력·유량·레벨 등 공정 변수 측정·제어. PLC 기반 자동화 시스템 구축.</div></div></div>
+    </div></div>
+    <div id="sub-ctrl4" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">📊</span></div><div class="product-card-body"><div class="product-card-tag">MEASUREMENT</div><div class="product-card-title">계측 제어시스템</div><div class="product-card-desc">전력량계·전류계·전압계 등 각종 계측 기기 통합 관리. 에너지 사용 현황 정밀 분석.</div></div></div>
+    </div></div>
   </div>
 </div>
-
-<!-- 신재생에너지 -->
 <div id="tab-energy" class="section">
-  <div class="sec-title">신재생에너지 <span>Renewable Energy</span></div>
-  <p class="sec-desc">친환경 미래를 위한 태양광 발전 설비 전문 제조 및 시공.<br>ESG 경영과 탄소중립 실현을 위한 최적의 신재생에너지 솔루션을 제공합니다.</p>
-  <div class="sub-tabs">
-    <button class="sub-tab-btn active" onclick="showSubTab('en1', this)">신재생에너지 설비</button>
-    <button class="sub-tab-btn" onclick="showSubTab('en2', this)">태양광 발전설비</button>
-    <button class="sub-tab-btn" onclick="showSubTab('en3', this)">태양전지 모듈</button>
-    <button class="sub-tab-btn" onclick="showSubTab('en4', this)">계통연계형 태양광 인버터</button>
-  </div>
-  <div id="sub-en1" class="sub-panel active">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a2010,#1a4020);align-items:center;justify-content:center;"><span style="font-size:48px;">🌿</span></div><div class="product-card-body"><div class="product-card-title">신재생에너지 설비</div><div class="product-card-desc">태양광, 풍력 등 신재생에너지원을 활용한 발전 설비 일체. ESS 연계 가능.</div></div></div>
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a2010,#1a4020);align-items:center;justify-content:center;"><span style="font-size:48px;">♻️</span></div><div class="product-card-body"><div class="product-card-title">에너지 저장장치 (ESS)</div><div class="product-card-desc">생산 전력을 저장·공급하는 에너지 저장 시스템. 피크 전력 저감 및 비상 전원 활용.</div></div></div>
+  <div class="section-inner">
+    <div class="sec-header"><div class="sec-title">신재생에너지 <span>RENEWABLE ENERGY</span></div><p class="sec-desc">친환경 미래를 위한 태양광 발전 설비 전문 제조 및 시공.<br>ESG 경영과 탄소중립 실현을 위한 최적의 솔루션을 제공합니다.</p></div>
+    <div class="sub-tabs">
+      <button class="sub-tab-btn active" onclick="showSubTab('en1',this)">신재생에너지 설비</button>
+      <button class="sub-tab-btn" onclick="showSubTab('en2',this)">태양광 발전설비</button>
+      <button class="sub-tab-btn" onclick="showSubTab('en3',this)">태양전지 모듈</button>
+      <button class="sub-tab-btn" onclick="showSubTab('en4',this)">계통연계형 태양광 인버터</button>
     </div>
-  </div>
-  <div id="sub-en2" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a2010,#1a4020);align-items:center;justify-content:center;"><span style="font-size:48px;">☀️</span></div><div class="product-card-body"><div class="product-card-title">태양광 발전설비</div><div class="product-card-desc">옥상, 지붕, 주차장 등 유휴 공간 활용. 주택용·상업용·산업용 전 분야 시공.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-en3" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a2010,#1a4020);align-items:center;justify-content:center;"><span style="font-size:48px;">🔆</span></div><div class="product-card-body"><div class="product-card-title">태양전지 모듈</div><div class="product-card-desc">고효율 단결정·다결정 태양전지 모듈. 우수한 내구성과 장기 성능 보증.</div></div></div>
-    </div>
-  </div>
-  <div id="sub-en4" class="sub-panel">
-    <div class="product-grid">
-      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#0a2010,#1a4020);align-items:center;justify-content:center;"><span style="font-size:48px;">⚡</span></div><div class="product-card-body"><div class="product-card-title">계통연계형 태양광 인버터</div><div class="product-card-desc">태양전지 직류를 한전 계통 연계 교류로 변환. MPPT 제어로 최대 발전 효율 실현.</div></div></div>
-    </div>
+    <div id="sub-en1" class="sub-panel active"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d8eedd,#a8d4b0);"><span style="font-size:56px;">🌿</span></div><div class="product-card-body"><div class="product-card-tag">RENEWABLE</div><div class="product-card-title">신재생에너지 설비</div><div class="product-card-desc">태양광·풍력 등 신재생에너지원을 활용한 발전 설비 일체. ESS 연계 가능.</div></div></div>
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d8eedd,#a8d4b0);"><span style="font-size:56px;">♻️</span></div><div class="product-card-body"><div class="product-card-tag">ESS</div><div class="product-card-title">에너지 저장장치 (ESS)</div><div class="product-card-desc">생산 전력을 저장·공급하는 에너지 저장 시스템. 피크 전력 저감 및 비상 전원 활용.</div></div></div>
+    </div></div>
+    <div id="sub-en2" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d8eedd,#a8d4b0);"><span style="font-size:56px;">☀️</span></div><div class="product-card-body"><div class="product-card-tag">SOLAR</div><div class="product-card-title">태양광 발전설비</div><div class="product-card-desc">옥상·지붕·주차장 등 유휴 공간 활용. 주택용·상업용·산업용 전 분야 시공.</div></div></div>
+    </div></div>
+    <div id="sub-en3" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d8eedd,#a8d4b0);"><span style="font-size:56px;">🔆</span></div><div class="product-card-body"><div class="product-card-tag">SOLAR MODULE</div><div class="product-card-title">태양전지 모듈</div><div class="product-card-desc">고효율 단결정·다결정 태양전지 모듈. 우수한 내구성과 장기 성능 보증.</div></div></div>
+    </div></div>
+    <div id="sub-en4" class="sub-panel"><div class="product-grid">
+      <div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d8eedd,#a8d4b0);"><span style="font-size:56px;">⚡</span></div><div class="product-card-body"><div class="product-card-tag">INVERTER</div><div class="product-card-title">계통연계형 태양광 인버터</div><div class="product-card-desc">태양전지 직류를 한전 계통 연계 교류로 변환. MPPT 제어로 최대 발전 효율 실현.</div></div></div>
+    </div></div>
   </div>
 </div>
-
-<!-- 공사부문 -->
 <div id="tab-construction" class="section">
-  <div class="sec-title">공사부문 <span>Construction</span></div>
-  <p class="sec-desc">전기·소방·정보통신 분야의 전문 면허를 보유한 종합 공사 기업.<br>설계부터 시공, 유지보수까지 원스톱 서비스를 제공합니다.</p>
-  <div class="work-grid">
-    <div class="work-card">
-      <div class="work-icon">⚡</div>
-      <div class="work-title">전기공사업</div>
-      <div class="work-desc">수배전설비, 간선공사, 동력공사, 조명공사, 전기안전관리 등 전기 전 분야 시공 및 유지보수. 전기공사업 면허 보유 (인천-00766).</div>
-    </div>
-    <div class="work-card">
-      <div class="work-icon">🚒</div>
-      <div class="work-title">소방공사업</div>
-      <div class="work-desc">자동화재탐지설비, 소화설비, 비상방송설비 등 소방 전기 설비 시공 및 정기 점검.</div>
-    </div>
-    <div class="work-card">
-      <div class="work-icon">📡</div>
-      <div class="work-title">정보통신공사업</div>
-      <div class="work-desc">구내통신설비, CCTV, 네트워크, UTP 배선 등 정보통신 인프라 구축 및 유지보수.</div>
+  <div class="section-inner">
+    <div class="sec-header"><div class="sec-title">공사부문 <span>CONSTRUCTION</span></div><p class="sec-desc">전기·소방·정보통신 분야 전문 면허 보유 종합 공사 기업.<br>설계부터 시공, 유지보수까지 원스톱 서비스를 제공합니다.</p></div>
+    <div class="work-grid">
+      <div class="work-card"><div class="work-icon">⚡</div><div class="work-title">전기공사업</div><div class="work-desc">수배전설비, 간선공사, 동력공사, 조명공사, 전기안전관리 등 전기 전 분야 시공 및 유지보수.</div><span class="work-badge">면허번호 인천-00766</span></div>
+      <div class="work-card"><div class="work-icon">🚒</div><div class="work-title">소방공사업</div><div class="work-desc">자동화재탐지설비, 소화설비, 비상방송설비 등 소방 전기 설비 시공 및 정기 점검.</div><span class="work-badge">소방공사업 면허 보유</span></div>
+      <div class="work-card"><div class="work-icon">📡</div><div class="work-title">정보통신공사업</div><div class="work-desc">구내통신설비, CCTV, 네트워크, UTP 배선 등 정보통신 인프라 구축 및 유지보수.</div><span class="work-badge">정보통신공사업 면허 보유</span></div>
     </div>
   </div>
 </div>
-
 <script>
   function showTab(tab) {
     document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
@@ -286,6 +242,10 @@
   }
   window.addEventListener('DOMContentLoaded', handleHash);
   window.addEventListener('hashchange', handleHash);
+  window.addEventListener('scroll', function() {
+    var h = document.querySelector('header');
+    if (h) h.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
+  });
 </script>
 </body>
 </html>
