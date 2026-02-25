@@ -324,27 +324,34 @@
 </div>
 
 <script>
-  function showTab(tabId, btn) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    btn.classList.add('active');
+
+  function showTab(tabId) {
+    document.querySelectorAll('.tab-panel').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b) {
+      b.classList.remove('active');
+    });
+    var panel = document.getElementById(tabId);
+    if (panel) panel.classList.add('active');
+    document.querySelectorAll('.tab-btn').forEach(function(b) {
+      if ((b.getAttribute('onclick') || '').indexOf(tabId) !== -1) {
+        b.classList.add('active');
+      }
+    });
   }
   function updateFileName(input) {
-    const label = document.getElementById('file-name');
+    var label = document.getElementById('file-name');
+    if (!label) return;
     if (input.files.length === 0) label.textContent = '선택된 파일 없음';
     else if (input.files.length === 1) label.textContent = input.files[0].name;
     else label.textContent = input.files[0].name + ' 외 ' + (input.files.length - 1) + '개';
   }
+  window.addEventListener('DOMContentLoaded', function() {
+    var hash = window.location.hash.replace('#','');
+    if (hash === 'download') { showTab('tab-download'); }
+  });
 
-  // URL 해시로 탭 자동 이동
-  (function() {
-    var hash = window.location.hash.replace('#', '');
-    if (hash === 'download') {
-      var btn = document.querySelector('.tab-btn[onclick*="tab-download"]');
-      if (btn) showTab('tab-download', btn);
-    }
-  })();
 </script>
 </body>
 </html>
