@@ -367,10 +367,13 @@
       }
     });
   }
-  window.addEventListener('DOMContentLoaded', function() {
+  function handleHash() {
     var hash = window.location.hash.replace('#','');
     if (['ceo','philosophy','history'].indexOf(hash) !== -1) { showTab(hash); }
-  });
+    else { showTab('ceo'); }
+  }
+  window.addEventListener('DOMContentLoaded', handleHash);
+  window.addEventListener('hashchange', handleHash);
 
 </script>
 </body>
