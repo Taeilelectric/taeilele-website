@@ -423,11 +423,14 @@
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
   }
-  window.addEventListener('DOMContentLoaded', function() {
+  function handleHash() {
     var hash = window.location.hash.replace('#','');
     var valid = ['tab-cert','tab-patent','tab-award','tab-partners'];
     if (valid.indexOf(hash) !== -1) { showTab(hash); }
-  });
+    else { showTab('tab-cert'); }
+  }
+  window.addEventListener('DOMContentLoaded', handleHash);
+  window.addEventListener('hashchange', handleHash);
 
 </script>
 </body>
