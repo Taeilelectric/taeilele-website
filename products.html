@@ -387,10 +387,13 @@
     if (panel) panel.classList.add('active');
     if (btn) btn.classList.add('active');
   }
-  window.addEventListener('DOMContentLoaded', function() {
+  function handleHash() {
     var hash = window.location.hash.replace('#','');
     if (['switchboard','control','solar'].indexOf(hash) !== -1) { showTab(hash); }
-  });
+    else { showTab('switchboard'); }
+  }
+  window.addEventListener('DOMContentLoaded', handleHash);
+  window.addEventListener('hashchange', handleHash);
 
 </script>
 </body>
