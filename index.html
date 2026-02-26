@@ -1059,6 +1059,31 @@
     .hero-sub { font-size: 12px; }
     .hero-btns { margin-top: 18px; }
   }
+
+  /* 파트너사 필터 버튼 */
+  .client-filter-btn {
+    padding: 9px 22px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: rgba(255,255,255,0.55);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .client-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .client-filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--navy);
+  }
+
 </style>
 </head>
 <body>
@@ -1196,6 +1221,21 @@
     <span class="indicator" onclick="goSlide(2)"></span>
   </div>
 
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">25<span>+</span></div>
+      <div class="stat-label">YEARS OF EXPERIENCE</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">500<span>+</span></div>
+      <div class="stat-label">PROJECTS COMPLETED</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">9</div>
+      <div class="stat-label">PATENTS</div>
+    </div>
+  </div>
+
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="scroll-line"></div>
@@ -1215,6 +1255,24 @@
     <a href="about.html" class="btn-primary">회사 소개 더 보기</a>
   </div>
   <div class="about-visual reveal">
+    <div class="about-box">
+      <div class="about-stat">
+        <div class="num">30<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">YEARS EXPERIENCE</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">500<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">PROJECTS DONE</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">10<span style="font-size:28px;color:#f4a100">+</span></div>
+        <div class="label">CERTIFICATIONS</div>
+      </div>
+      <div class="about-stat">
+        <div class="num">99<span style="font-size:28px;color:#f4a100">%</span></div>
+        <div class="label">SATISFACTION</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1223,44 +1281,61 @@
   <div style="max-width:1200px; margin:0 auto; padding:0 60px;">
     <div class="section-tag reveal" style="text-align:center;">CLIENTS</div>
     <div class="section-title reveal" style="text-align:center; margin-bottom:8px;">태일전기 <span style="color:var(--accent)">파트너사</span></div>
-    <p class="reveal" style="text-align:center; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px; margin-bottom:56px;">국내 주요 건설사 및 공공기관과 함께합니다</p>
-  </div>
-  <div class="clients-slider-wrap">
-    <div class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
-        <div class="client-card"><span>호반건설</span></div>
-        <div class="client-card"><span>우미건설</span></div>
-        <div class="client-card"><span>코오롱글로벌</span></div>
-        <div class="client-card"><span>DL건설</span></div>
-        <div class="client-card"><span>계룡건설</span></div>
-        <div class="client-card"><span>한양건설</span></div>
-        <div class="client-card"><span>SK에코플랜트</span></div>
-        <div class="client-card"><span>포스코건설</span></div>
-        <div class="client-card"><span>KCC건설</span></div>
-        <div class="client-card"><span>신안</span></div>
-        <div class="client-card"><span>대우건설</span></div>
-        <div class="client-card"><span>두산중공업</span></div>
-        <div class="client-card"><span>극동건설</span></div>
-        <div class="client-card"><span>한진중공업</span></div>
-        <div class="client-card"><span>쌍용건설</span></div>
-        <div class="client-card"><span>GS리테일</span></div>
-        <div class="client-card"><span>호반건설</span></div>
-        <div class="client-card"><span>우미건설</span></div>
-        <div class="client-card"><span>코오롱글로벌</span></div>
-        <div class="client-card"><span>DL건설</span></div>
-        <div class="client-card"><span>계룡건설</span></div>
-        <div class="client-card"><span>한양건설</span></div>
-        <div class="client-card"><span>SK에코플랜트</span></div>
-        <div class="client-card"><span>포스코건설</span></div>
-        <div class="client-card"><span>KCC건설</span></div>
-        <div class="client-card"><span>신안</span></div>
-        <div class="client-card"><span>대우건설</span></div>
-        <div class="client-card"><span>두산중공업</span></div>
-        <div class="client-card"><span>극동건설</span></div>
-        <div class="client-card"><span>한진중공업</span></div>
-        <div class="client-card"><span>쌍용건설</span></div>
-        <div class="client-card"><span>GS리테일</span></div>
+    <p class="reveal" style="text-align:center; font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px; margin-bottom:36px;">국내 주요 건설사 및 공공기관과 함께합니다</p>
+    <div style="display:flex; justify-content:center; gap:12px; margin-bottom:48px;">
+      <button onclick="setClientFilter('all',this)" class="client-filter-btn active">전체</button>
+      <button onclick="setClientFilter('private',this)" class="client-filter-btn">민간 건설사</button>
+      <button onclick="setClientFilter('public',this)" class="client-filter-btn">공공 발주처</button>
     </div>
   </div>
+  <div class="clients-slider-wrap">
+    <div id="clients-track" class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
+      <div class="client-card" data-type="private"><span>호반건설</span></div>
+      <div class="client-card" data-type="private"><span>우미건설</span></div>
+      <div class="client-card" data-type="private"><span>코오롱글로벌</span></div>
+      <div class="client-card" data-type="private"><span>DL건설</span></div>
+      <div class="client-card" data-type="private"><span>계룡건설</span></div>
+      <div class="client-card" data-type="private"><span>한양건설</span></div>
+      <div class="client-card" data-type="private"><span>SK에코플랜트</span></div>
+      <div class="client-card" data-type="private"><span>포스코건설</span></div>
+      <div class="client-card" data-type="private"><span>KCC건설</span></div>
+      <div class="client-card" data-type="private"><span>신안</span></div>
+      <div class="client-card" data-type="private"><span>대우건설</span></div>
+      <div class="client-card" data-type="private"><span>두산중공업</span></div>
+      <div class="client-card" data-type="private"><span>극동건설</span></div>
+      <div class="client-card" data-type="private"><span>한진중공업</span></div>
+      <div class="client-card" data-type="private"><span>쌍용건설</span></div>
+      <div class="client-card" data-type="private"><span>GS리테일</span></div>
+      <div class="client-card" data-type="public"><span>한국전력공사</span></div>
+      <div class="client-card" data-type="public"><span>한국토지주택공사</span></div>
+      <div class="client-card" data-type="public"><span>인천도시공사</span></div>
+      <div class="client-card" data-type="public"><span>경기주택도시공사</span></div>
+      <div class="client-card" data-type="public"><span>한국수자원공사</span></div>
+      <!-- 무한루프 복제 -->
+      <div class="client-card" data-type="private"><span>호반건설</span></div>
+      <div class="client-card" data-type="private"><span>우미건설</span></div>
+      <div class="client-card" data-type="private"><span>코오롱글로벌</span></div>
+      <div class="client-card" data-type="private"><span>DL건설</span></div>
+      <div class="client-card" data-type="private"><span>계룡건설</span></div>
+      <div class="client-card" data-type="private"><span>한양건설</span></div>
+      <div class="client-card" data-type="private"><span>SK에코플랜트</span></div>
+      <div class="client-card" data-type="private"><span>포스코건설</span></div>
+      <div class="client-card" data-type="private"><span>KCC건설</span></div>
+      <div class="client-card" data-type="private"><span>신안</span></div>
+      <div class="client-card" data-type="private"><span>대우건설</span></div>
+      <div class="client-card" data-type="private"><span>두산중공업</span></div>
+      <div class="client-card" data-type="private"><span>극동건설</span></div>
+      <div class="client-card" data-type="private"><span>한진중공업</span></div>
+      <div class="client-card" data-type="private"><span>쌍용건설</span></div>
+      <div class="client-card" data-type="private"><span>GS리테일</span></div>
+      <div class="client-card" data-type="public"><span>한국전력공사</span></div>
+      <div class="client-card" data-type="public"><span>한국토지주택공사</span></div>
+      <div class="client-card" data-type="public"><span>인천도시공사</span></div>
+      <div class="client-card" data-type="public"><span>경기주택도시공사</span></div>
+      <div class="client-card" data-type="public"><span>한국수자원공사</span></div>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:20px; font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:1px;">* 그 외 다수</div>
 </section>
 
 <!-- FOOTER -->
@@ -1402,6 +1477,26 @@ window.addEventListener('scroll', function() {
     });
   });
 })();
+
+// ── 파트너사 필터 ──
+function setClientFilter(type, btn) {
+  document.querySelectorAll('.client-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  var track = document.getElementById('clients-track');
+  var cards = track.querySelectorAll('.client-card');
+  cards.forEach(function(card){
+    if (type === 'all' || card.getAttribute('data-type') === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  // 애니메이션 리셋
+  track.style.animation = 'none';
+  track.offsetHeight;
+  track.style.animation = 'slide 30s linear infinite';
+}
+
 </script>
 </body>
 </html>
