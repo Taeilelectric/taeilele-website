@@ -1011,7 +1011,7 @@
   /* ── index 반응형 ── */
   @media (max-width: 900px) {
     #hero { min-height: 100svh; }
-    .hero-content { left: 40px; right: 40px; bottom: 100px; max-width: 100%; }
+    .hero-content { left: 32px; right: 32px; bottom: 80px; max-width: calc(100vw - 64px); }
     .hero-stats { display: none; }
     .scroll-hint { display: none; }
     #quick { grid-template-columns: repeat(2,1fr); }
@@ -1027,9 +1027,10 @@
     .footer-left { align-items: flex-start; }
   }
   @media (max-width: 768px) {
-    .hero-content { left: 20px; right: 20px; bottom: 80px; }
-    .hero-title { font-size: clamp(38px, 11vw, 60px); }
-    .hero-btns { flex-direction: column; gap: 12px; }
+    .hero-content { left: 16px; right: 16px; bottom: 60px; max-width: calc(100vw - 32px); }
+    .hero-title { font-size: clamp(28px, 8.5vw, 44px); letter-spacing: 0; }
+    .hero-sub { font-size: 13px; margin-top: 12px; }
+    .hero-btns { flex-direction: column; gap: 10px; margin-top: 24px; }
     .hero-btns a, .hero-btns button { width: 100%; text-align: center; padding: 14px 20px; }
     #quick { grid-template-columns: repeat(2,1fr); }
     .quick-item { padding: 28px 12px; }
@@ -1039,11 +1040,25 @@
     .about-stat .num { font-size: 38px; }
     .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
     #certs { padding: 48px 16px; }
-    footer { padding: 32px 20px; gap: 28px; }
-    .footer-info { flex-direction: column; gap: 28px; justify-content: flex-start; }
-    .footer-col { min-width: unset; }
+    footer { padding: 28px 20px; gap: 20px; flex-direction: row; align-items: flex-start; flex-wrap: nowrap; }
+    .footer-left { flex-shrink: 0; max-width: 120px; }
+    .footer-left img { height: 32px; }
+    .footer-tagline { font-size: 10px; letter-spacing: 0; }
+    .footer-copy { display: none; }
+    .footer-info { flex-direction: row; gap: 16px; justify-content: flex-start; flex: 1; }
+    .footer-col { min-width: unset; flex: 1; gap: 10px; }
+    .footer-col-title { font-size: 11px; padding-bottom: 8px; margin-bottom: 0; }
+    .footer-col-value { font-size: 11px; }
+    .footer-col-label { font-size: 9px; }
   }
 
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: clamp(24px, 7.5vw, 36px) !important; }
+    .hero-content { left: 14px; right: 14px; bottom: 48px; }
+    .hero-sub { font-size: 12px; }
+    .hero-btns { margin-top: 18px; }
+  }
 </style>
 </head>
 <body>
