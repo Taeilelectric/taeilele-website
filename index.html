@@ -810,38 +810,40 @@
   .footer-logo span { color: var(--accent); }
 
   .footer-info {
-    font-size: 12px;
-    color: var(--gray);
-    line-height: 2.2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     text-align: center;
   }
-  .footer-info-row {
+  .footer-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 0 20px;
+    gap: 0;
   }
-  .footer-info-item {
+  .footer-cell {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
+    padding: 0 28px;
   }
-  .footer-info-label {
+  .footer-cell-label {
     font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--accent);
+    letter-spacing: 1.5px;
     font-weight: 700;
-    background: rgba(244,161,0,0.12);
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .footer-cell-value {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
     white-space: nowrap;
   }
-  .footer-info-divider {
+  .footer-vline {
     width: 1px;
-    height: 12px;
+    height: 36px;
     background: rgba(255,255,255,0.15);
-    display: inline-block;
+    flex-shrink: 0;
   }
 
   .footer-copy {
@@ -936,6 +938,7 @@
         <a href="about.html#ceo">CEO 인사말</a>
         <a href="about.html#philosophy">경영철학</a>
         <a href="about.html#history">회사연혁</a>
+        <a href="about.html#location">찾아오시는 길</a>
       </div>
     </div>
     <div class="nav-item">
@@ -959,7 +962,7 @@
     <div class="nav-item">
       <a href="contact.html">고객센터</a>
       <div class="dropdown">
-        <a href="contact.html#inquiry">문의하기</a>
+        <a href="contact.html#inquiry">1:1 문의</a>
         <a href="contact.html#download">자료실</a>
       </div>
     </div>
@@ -1121,31 +1124,33 @@
 <footer>
   <div class="footer-logo"><img src="taeil_logo.png" alt="태일전기" style="height:44px;width:auto;object-fit:contain;"></div>
   <div class="footer-info">
-    <div class="footer-info-row">
-      <div class="footer-info-item">
-        <span class="footer-info-label">대표이사</span>
-        <span>여규철</span>
+    <!-- 1행: 대표이사 | 본사 연락처 | 사업본부 연락처 -->
+    <div class="footer-row">
+      <div class="footer-cell">
+        <div class="footer-cell-label">대표이사</div>
+        <div class="footer-cell-value">여규철</div>
       </div>
-      <span class="footer-info-divider"></span>
-      <div class="footer-info-item">
-        <span class="footer-info-label">본사</span>
-        <span>032-568-7051~3</span>
+      <div class="footer-vline"></div>
+      <div class="footer-cell">
+        <div class="footer-cell-label">본사 연락처</div>
+        <div class="footer-cell-value">032-568-7051~3</div>
       </div>
-      <span class="footer-info-divider"></span>
-      <div class="footer-info-item">
-        <span class="footer-info-label">사업본부</span>
-        <span>070-4130-1261</span>
+      <div class="footer-vline"></div>
+      <div class="footer-cell">
+        <div class="footer-cell-label">사업본부 연락처</div>
+        <div class="footer-cell-value">070-4130-1261</div>
       </div>
     </div>
-    <div class="footer-info-row" style="margin-top:6px;">
-      <div class="footer-info-item">
-        <span class="footer-info-label">본사 주소</span>
-        <span>인천시 서구 원당대로 480번길 6-11</span>
+    <!-- 2행: 본사 주소 | 사업본부 주소 -->
+    <div class="footer-row">
+      <div class="footer-cell">
+        <div class="footer-cell-label">본사 주소</div>
+        <div class="footer-cell-value">인천시 서구 원당대로 480번길 6-11</div>
       </div>
-      <span class="footer-info-divider"></span>
-      <div class="footer-info-item">
-        <span class="footer-info-label">사업본부 주소</span>
-        <span>경기 성남시 분당구 야탑로 338, 201호</span>
+      <div class="footer-vline"></div>
+      <div class="footer-cell">
+        <div class="footer-cell-label">사업본부 주소</div>
+        <div class="footer-cell-value">경기 성남시 분당구 야탑로 338, 201호</div>
       </div>
     </div>
   </div>
