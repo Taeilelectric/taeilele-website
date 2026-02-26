@@ -6,10 +6,10 @@
 <title>회사소개 - 태일전기(주)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --light:#e8edf5; --white:#fff; --gray:#8a96a8; }
+  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
   header {
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -27,68 +27,82 @@
 
   /* 페이지 히어로 */
   .page-hero {
-    padding: 140px 60px 60px;
-    background: linear-gradient(135deg, #0a1628 0%, #0d2244 100%);
-    border-bottom: 1px solid rgba(244,161,0,0.2);
+    padding:130px 60px 0;
+    background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%);
+    position:relative; overflow:hidden;
   }
-  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
-  .page-hero-title { font-size:48px; font-weight:900; }
+  .page-hero::before {
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+    background-size:48px 48px;
+  }
+  .page-hero::after {
+    content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
+    background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
+  }
+  .page-hero-inner { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding-bottom:72px; }
+  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
+  .page-hero-title { font-size:52px; font-weight:900; color:#fff; margin-bottom:14px; line-height:1.1; }
   .page-hero-title span { color:var(--accent); }
+  .page-hero-sub { font-size:15px; color:rgba(255,255,255,0.55); }
 
   /* 탭 */
-  .tab-nav { display:flex; gap:0; border-bottom:2px solid rgba(255,255,255,0.1); padding:0 60px; background:rgba(10,22,40,0.8); position:sticky; top:80px; z-index:50; }
-  .tab-btn { padding:20px 32px; font-size:14px; font-weight:600; color:rgba(255,255,255,0.5); cursor:pointer; border:none; background:none; letter-spacing:1px; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
-  .tab-btn.active, .tab-btn:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  .tab-nav { display:flex; padding:0 60px; background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
+  .tab-btn { padding:20px 28px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:'Noto Sans KR',sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+  .tab-btn:hover { color:var(--blue); }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
 
   /* 섹션 공통 */
-  .section { padding:80px 60px; max-width:1200px; margin:0 auto; display:none; }
+  .section { padding:64px 60px; max-width:1200px; margin:0 auto; display:none; background:var(--bg); }
   .section.active { display:block; }
-  .section-title { font-size:32px; font-weight:900; margin-bottom:48px; }
+  .section-title { font-size:32px; font-weight:900; margin-bottom:48px; color:var(--text); }
   .section-title span { color:var(--accent); }
+  .section-sub { font-size:14px; color:var(--text2); margin-top:-36px; margin-bottom:48px; line-height:1.8; }
 
   /* CEO */
   .ceo-wrap { display:grid; grid-template-columns:1fr 420px; gap:80px; align-items:center; }
-  .ceo-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
-  .ceo-headline { font-size:26px; font-weight:900; line-height:1.5; margin-bottom:32px; }
+  .ceo-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
+  .ceo-headline { font-size:26px; font-weight:900; line-height:1.5; margin-bottom:32px; color:var(--text); }
   .ceo-headline em { color:var(--accent); font-style:normal; }
-  .ceo-text { font-size:15px; line-height:1.9; color:rgba(255,255,255,0.75); margin-bottom:20px; }
-  .ceo-sign { font-size:18px; color:rgba(255,255,255,0.5); margin-top:40px; }
-  .ceo-sign strong { color:var(--white); font-size:22px; }
+  .ceo-text { font-size:15px; line-height:1.9; color:var(--text2); margin-bottom:20px; }
+  .ceo-sign { font-size:18px; color:var(--text2); margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
+  .ceo-sign strong { color:var(--text); font-size:22px; }
   .ceo-img { border-radius:4px; overflow:hidden; position:relative; }
   .ceo-img img { width:100%; height:380px; object-fit:cover; }
   .ceo-img::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(135deg, rgba(13,71,161,0.2), transparent); }
 
   /* 경영철학 */
-  .philosophy-intro { font-size:20px; font-weight:700; text-align:center; margin-bottom:64px; }
+  .philosophy-intro { font-size:18px; font-weight:700; text-align:center; margin-bottom:48px; color:var(--text); }
   .philosophy-intro span { color:var(--accent); }
   .philosophy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
-  .philosophy-card { border:2px solid rgba(244,161,0,0.3); border-radius:50%; aspect-ratio:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; text-align:center; transition:border-color 0.3s; }
-  .philosophy-card:hover { border-color:var(--accent); }
-  .philosophy-card:nth-child(2) { border-color:rgba(244,161,0,0.5); margin-top:-20px; }
+  .philosophy-card { background:var(--surface); border:1.5px solid var(--border); border-radius:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 40px; text-align:center; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.06); }
+  .philosophy-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
+  .philosophy-card:nth-child(2) { border-color:rgba(244,161,0,0.4); }
   .philosophy-icon { font-size:48px; margin-bottom:16px; }
   .philosophy-label { font-size:20px; font-weight:900; color:var(--accent); margin-bottom:12px; }
-  .philosophy-text { font-size:13px; line-height:1.8; color:rgba(255,255,255,0.7); }
+  .philosophy-text { font-size:13px; line-height:1.8; color:var(--text2); }
 
   /* 회사연혁 */
   .timeline { position:relative; padding-left:40px; }
-  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:rgba(244,161,0,0.3); }
+  .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--border); }
   .timeline-year { margin-bottom:48px; position:relative; }
-  .timeline-year::before { content:''; position:absolute; left:-46px; top:8px; width:14px; height:14px; border-radius:50%; border:2px solid var(--accent); background:var(--navy); }
+  .timeline-year::before { content:''; position:absolute; left:-46px; top:8px; width:14px; height:14px; border-radius:50%; border:2px solid var(--accent); background:var(--bg); }
   .timeline-year-label { font-size:28px; font-weight:900; color:var(--accent); margin-bottom:16px; }
   .timeline-items { display:flex; flex-direction:column; gap:8px; }
-  .timeline-item { display:flex; gap:20px; font-size:14px; color:rgba(255,255,255,0.75); }
+  .timeline-item { display:flex; gap:20px; font-size:14px; color:var(--text2); }
   .timeline-month { color:var(--accent); font-weight:700; min-width:24px; }
 
   @media(max-width:900px){
     header { padding:16px 24px; }
     nav { display:none; }
-    .page-hero { padding:120px 24px 48px; }
-    .tab-nav { padding:0 24px; overflow-x:auto; }
+    .page-hero { padding:120px 24px 0; }
+    .page-hero-title { font-size:38px; }
+    .tab-nav { padding:0 16px; }
     .section { padding:48px 24px; }
     .ceo-wrap { grid-template-columns:1fr; }
     .ceo-img { display:none; }
     .philosophy-grid { grid-template-columns:1fr; }
-    .philosophy-card { border-radius:8px; aspect-ratio:unset; }
+    .philosophy-card { border-radius:12px; }
   }
 
   /* ── DROPDOWN ── */
@@ -224,6 +238,36 @@
     #tab-location > div > div:last-child { grid-template-columns: 1fr !important; gap: 20px !important; }
   }
 
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 52px 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-left { flex-shrink:0; display:flex; flex-direction:column; gap:16px; }
+  .footer-tagline { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:1.5px; line-height:1.6; }
+  .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); letter-spacing:0.5px; margin-top:8px; }
+  .footer-info { display:flex; gap:80px; flex:1; justify-content:flex-end; }
+  .footer-col { display:flex; flex-direction:column; gap:14px; min-width:200px; }
+  .footer-col-title { font-size:13px; font-weight:700; color:#fff; letter-spacing:0.5px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:2px; }
+  .footer-col-row { display:flex; flex-direction:column; gap:2px; }
+  .footer-col-label { font-size:10px; font-weight:700; color:var(--accent); letter-spacing:1px; }
+  .footer-col-value { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
+  @media(max-width:900px) {
+    footer { flex-direction:column; gap:32px; padding:40px 24px; }
+    .footer-info { flex-direction:row; gap:40px; justify-content:flex-start; }
+  }
+  @media(max-width:768px) {
+    footer { padding:32px 20px; gap:28px; }
+    .footer-info { flex-direction:column; gap:28px; }
+    .footer-col { min-width:unset; }
+  }
+
 </style>
 </head>
 <body>
@@ -312,8 +356,11 @@
 </header>
 
 <div class="page-hero">
-  <div class="page-hero-tag">ABOUT US</div>
-  <h1 class="page-hero-title">회사<span>소개</span></h1>
+  <div class="page-hero-inner">
+    <div class="page-hero-tag">ABOUT US</div>
+    <h1 class="page-hero-title">회사<span>소개</span></h1>
+    <p class="page-hero-sub">태일전기 주식회사를 소개합니다</p>
+  </div>
 </div>
 
 <div class="tab-nav">
@@ -488,10 +535,10 @@
     <div style="font-size:13px; letter-spacing:2px; color:var(--accent); font-weight:600; margin-bottom:12px;">LOCATION</div>
     <div style="font-size:28px; font-weight:900; margin-bottom:48px;">찾아오시는 <span style="color:var(--accent)">길</span></div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;">
-      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:32px;">
+      <div style="background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:32px; box-shadow:0 2px 8px rgba(10,22,40,0.06);">
         <div style="font-size:10px; letter-spacing:2px; color:var(--accent); font-weight:700; margin-bottom:8px;">본 사</div>
         <div style="font-size:17px; font-weight:800; margin-bottom:18px;">인천 본사</div>
-        <div style="font-size:13px; color:rgba(255,255,255,0.7); line-height:2;">
+        <div style="font-size:13px; color:var(--text2); line-height:2;">
           <div>📍 인천시 서구 원당대로 480번길 6-11</div>
           <div>📞 032-568-7051~3</div>
         </div>
@@ -500,10 +547,10 @@
             width="100%" height="200" style="border:0;display:block;" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:32px;">
+      <div style="background:var(--surface); border:1.5px solid var(--border); border-radius:16px; padding:32px; box-shadow:0 2px 8px rgba(10,22,40,0.06);">
         <div style="font-size:10px; letter-spacing:2px; color:var(--accent); font-weight:700; margin-bottom:8px;">사업본부</div>
         <div style="font-size:17px; font-weight:800; margin-bottom:18px;">성남 사업본부</div>
-        <div style="font-size:13px; color:rgba(255,255,255,0.7); line-height:2;">
+        <div style="font-size:13px; color:var(--text2); line-height:2;">
           <div>📍 경기 성남시 분당구 야탑로 338, 201호</div>
           <div>📞 070-4130-1261</div>
         </div>
@@ -573,5 +620,38 @@
   });
 })();
 </script>
+
+<footer>
+  <div class="footer-left">
+    <div><img src="taeil_logo.png" alt="태일전기" style="height:44px;width:auto;object-fit:contain;"></div>
+    <div class="footer-tagline">원활하고 안전한 전기<br>대표이사 : 여규철</div>
+    <div class="footer-copy">COPYRIGHT &copy; TAEILELE. ALL RIGHTS RESERVED.</div>
+  </div>
+  <div class="footer-info">
+    <div class="footer-col">
+      <div class="footer-col-title">본사</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">인천시 서구 원당대로 480번길 6-11</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">032-568-7051~3</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">사업본부</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">경기 성남시 분당구 야탑로 338, 201호</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">070-4130-1261</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
