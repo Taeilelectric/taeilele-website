@@ -239,53 +239,75 @@
   /* ══════════════════════════════════════
      RESPONSIVE  (태블릿 900px / 모바일 768px)
      ══════════════════════════════════════ */
+  /* ── 햄버거 버튼 ── */
   .ham-btn {
     display: none;
     flex-direction: column;
     justify-content: center;
-    gap: 5px;
-    width: 40px; height: 40px;
+    gap: 6px;
+    width: 44px; height: 44px;
     cursor: pointer;
     background: none; border: none;
-    padding: 4px; z-index: 201;
+    padding: 4px; z-index: 301;
+    flex-shrink: 0;
   }
   .ham-btn span {
     display: block; height: 2px; width: 100%;
     background: var(--white); border-radius: 2px;
     transition: all 0.3s;
   }
-  .ham-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .ham-btn.open span:nth-child(2) { opacity: 0; }
-  .ham-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .ham-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .ham-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .ham-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+  /* ── 모바일 드로어 ── */
   .mobile-nav {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(6,15,30,0.98);
-    z-index: 200;
+    z-index: 300;
     flex-direction: column;
-    padding: 80px 32px 40px;
+    padding: 88px 32px 40px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .mobile-nav.open { display: flex; }
   .mobile-nav-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
   .mobile-nav-item > a {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 0; color: var(--white); text-decoration: none;
-    font-size: 16px; font-weight: 600; letter-spacing: 1px;
+    padding: 20px 0; color: var(--white); text-decoration: none;
+    font-size: 17px; font-weight: 600; letter-spacing: 0.5px;
   }
-  .mobile-nav-item > a .arrow { font-size: 12px; color: var(--accent); transition: transform 0.3s; }
+  .mobile-nav-item > a .arrow {
+    font-size: 11px; color: var(--accent);
+    transition: transform 0.3s; display: inline-block;
+  }
   .mobile-nav-item.open > a .arrow { transform: rotate(180deg); }
-  .mobile-sub { display: none; flex-direction: column; padding: 0 0 12px 16px; gap: 4px; }
+  .mobile-sub {
+    display: none; flex-direction: column;
+    padding: 4px 0 16px 20px; gap: 0;
+  }
   .mobile-nav-item.open .mobile-sub { display: flex; }
   .mobile-sub a {
-    padding: 10px 0 10px 14px; color: rgba(255,255,255,0.6);
-    text-decoration: none; font-size: 14px;
+    padding: 12px 0 12px 16px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none; font-size: 15px;
     border-left: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
-  .mobile-sub a:hover { color: var(--accent); border-left-color: var(--accent); }
+  .mobile-sub a:hover, .mobile-sub a:active {
+    color: var(--accent); border-left-color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .ham-btn { display: flex; }
+    nav { display: none !important; }
+    .header-cta { display: none; }
+  }
+  @media (max-width: 768px) {
+    header { padding: 14px 20px !important; }
+  }
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
@@ -306,7 +328,7 @@
   @media (max-width: 768px) {
     .page-hero { padding: 100px 20px 40px; }
     .page-hero-title { font-size: 36px; }
-    .tab-nav { padding: 0 16px; }
+    .tab-nav { top: 64px; padding: 0 16px; }
     .tab-btn { padding: 14px 12px; font-size: 12px; }
     .certs-grid { grid-template-columns: repeat(2,1fr) !important; padding: 24px 16px !important; }
     .partners-grid { grid-template-columns: repeat(2,1fr) !important; padding: 24px 16px !important; }
@@ -386,11 +408,11 @@
     </div>
   </nav>
   <a href="contact.html" class="header-cta">문의하기</a>
-<!-- 햄버거 버튼 -->
 <button class="ham-btn" id="hamBtn" aria-label="메뉴 열기">
   <span></span><span></span><span></span>
 </button>
-<!-- 모바일 드로어 -->
+</header>
+<!-- 모바일 드로어 (header 밖) -->
 <nav class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-item">
     <a href="about.html">회사소개 <span class="arrow">▼</span></a>
@@ -428,7 +450,6 @@
   </div>
   <a href="contact.html" style="margin-top:32px;display:block;background:var(--accent);color:var(--navy);text-align:center;padding:16px;font-weight:700;letter-spacing:1px;text-decoration:none;border-radius:2px;">문의하기</a>
 </nav>
-</header>
 
 <div class="page-hero">
   <div class="page-hero-tag">PR CENTER</div>
