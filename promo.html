@@ -385,6 +385,31 @@
     .page-hero-sub { font-size: 12px; }
     .tab-btn, .cert-tab { padding: 14px 12px; font-size: 12px; }
   }
+
+  /* 파트너사 필터 버튼 */
+  .partner-filter-btn {
+    padding: 9px 22px;
+    border-radius: 50px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .partner-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .partner-filter-btn.active {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: #fff;
+  }
+
 </style>
 </head>
 <body>
@@ -544,27 +569,40 @@
 
   <!-- 파트너사 탭 -->
   <div id="tab-partners" class="tab-panel" style="padding-bottom:48px;">
-    <div style="text-align:center; margin-bottom:40px;">
-      <div style="font-size:13px; color:rgba(255,255,255,0.45); letter-spacing:1px;">국내 주요 건설사 및 공공기관과 함께합니다</div>
+    <div style="text-align:center; margin-bottom:32px;">
+      <div style="font-size:13px; color:var(--text2); letter-spacing:1px;">국내 주요 건설사 및 공공기관과 함께합니다</div>
     </div>
-    <div class="partners-grid">
-        <div class="partner-card"><img class="partner-logo" src="logo_hoban.png" alt="호반건설" onerror="this.style.display='none'"><span>호반건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_wumi.png" alt="우미건설" onerror="this.style.display='none'"><span>우미건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_kolon.png" alt="코오롱글로벌" onerror="this.style.display='none'"><span>코오롱글로벌</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_dl.png" alt="DL건설" onerror="this.style.display='none'"><span>DL건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_gyeryong.png" alt="계룡건설" onerror="this.style.display='none'"><span>계룡건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_hanyang.png" alt="한양건설" onerror="this.style.display='none'"><span>한양건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_sk.png" alt="SK에코플랜트" onerror="this.style.display='none'"><span>SK에코플랜트</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_posco.png" alt="포스코건설" onerror="this.style.display='none'"><span>포스코건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_kcc.png" alt="KCC건설" onerror="this.style.display='none'"><span>KCC건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_sinan.png" alt="신안" onerror="this.style.display='none'"><span>신안</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_daewoo.png" alt="대우건설" onerror="this.style.display='none'"><span>대우건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_doosan.png" alt="두산중공업" onerror="this.style.display='none'"><span>두산중공업</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_kukdong.png" alt="극동건설" onerror="this.style.display='none'"><span>극동건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_hanjin.png" alt="한진중공업" onerror="this.style.display='none'"><span>한진중공업</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_ssangyong.png" alt="쌍용건설" onerror="this.style.display='none'"><span>쌍용건설</span></div>
-        <div class="partner-card"><img class="partner-logo" src="logo_gs.png" alt="GS리테일" onerror="this.style.display='none'"><span>GS리테일</span></div>
+    <!-- 필터 버튼 -->
+    <div style="display:flex; justify-content:center; gap:12px; margin-bottom:40px;">
+      <button onclick="setPartnerFilter('private',this)" class="partner-filter-btn active">민간 건설사</button>
+      <button onclick="setPartnerFilter('public',this)" class="partner-filter-btn">공공 발주처</button>
     </div>
+    <div class="partners-grid" id="partners-grid">
+      <!-- 민간 건설사 -->
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_hoban.png" alt="호반건설" onerror="this.style.display='none'"><span>호반건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_wumi.png" alt="우미건설" onerror="this.style.display='none'"><span>우미건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_kolon.png" alt="코오롱글로벌" onerror="this.style.display='none'"><span>코오롱글로벌</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_dl.png" alt="DL건설" onerror="this.style.display='none'"><span>DL건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_gyeryong.png" alt="계룡건설" onerror="this.style.display='none'"><span>계룡건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_hanyang.png" alt="한양건설" onerror="this.style.display='none'"><span>한양건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_sk.png" alt="SK에코플랜트" onerror="this.style.display='none'"><span>SK에코플랜트</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_posco.png" alt="포스코건설" onerror="this.style.display='none'"><span>포스코건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_kcc.png" alt="KCC건설" onerror="this.style.display='none'"><span>KCC건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_sinan.png" alt="신안" onerror="this.style.display='none'"><span>신안</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_daewoo.png" alt="대우건설" onerror="this.style.display='none'"><span>대우건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_doosan.png" alt="두산중공업" onerror="this.style.display='none'"><span>두산중공업</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_kukdong.png" alt="극동건설" onerror="this.style.display='none'"><span>극동건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_hanjin.png" alt="한진중공업" onerror="this.style.display='none'"><span>한진중공업</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_ssangyong.png" alt="쌍용건설" onerror="this.style.display='none'"><span>쌍용건설</span></div>
+      <div class="partner-card" data-type="private"><img class="partner-logo" src="logo_gs.png" alt="GS리테일" onerror="this.style.display='none'"><span>GS리테일</span></div>
+      <!-- 공공 발주처 -->
+      <div class="partner-card" data-type="public" style="display:none;"><img class="partner-logo" src="logo_kepco.png" alt="한국전력공사" onerror="this.style.display='none'"><span>한국전력공사</span></div>
+      <div class="partner-card" data-type="public" style="display:none;"><img class="partner-logo" src="logo_lh.png" alt="한국토지주택공사" onerror="this.style.display='none'"><span>한국토지주택공사</span></div>
+      <div class="partner-card" data-type="public" style="display:none;"><img class="partner-logo" src="logo_iudc.png" alt="인천도시공사" onerror="this.style.display='none'"><span>인천도시공사</span></div>
+      <div class="partner-card" data-type="public" style="display:none;"><img class="partner-logo" src="logo_ghc.png" alt="경기주택도시공사" onerror="this.style.display='none'"><span>경기주택도시공사</span></div>
+      <div class="partner-card" data-type="public" style="display:none;"><img class="partner-logo" src="logo_kwater.png" alt="한국수자원공사" onerror="this.style.display='none'"><span>한국수자원공사</span></div>
+    </div>
+    <div style="text-align:center; margin-top:32px; font-size:13px; color:var(--text2); letter-spacing:1px;">* 그 외 다수</div>
   </div>
 
   <!-- 자료실 탭 -->
@@ -666,6 +704,20 @@
     });
   });
 })();
+
+// ── 파트너사 필터 ──
+function setPartnerFilter(type, btn) {
+  document.querySelectorAll('.partner-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('#partners-grid .partner-card').forEach(function(card){
+    if (card.getAttribute('data-type') === type) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
 </script>
 
 <footer>
