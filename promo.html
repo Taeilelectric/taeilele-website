@@ -6,10 +6,10 @@
 <title>홍보관 - 태일전기(주)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --white:#fff; --gray:#8a96a8; }
+  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
   header {
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -28,36 +28,47 @@
   .header-cta { background:var(--accent); color:var(--navy); padding:10px 24px; border-radius:2px; font-size:13px; font-weight:700; text-decoration:none; letter-spacing:1px; }
 
   .page-hero {
-    padding:140px 60px 60px;
-    background:linear-gradient(135deg,#0a1628 0%,#0d2244 100%);
-    border-bottom:1px solid rgba(244,161,0,0.2);
+    padding:130px 60px 0;
+    background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%);
+    position:relative; overflow:hidden;
   }
-  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
-  .page-hero-title { font-size:48px; font-weight:900; }
+  .page-hero::before {
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+    background-size:48px 48px;
+  }
+  .page-hero::after {
+    content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
+    background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
+  }
+  .page-hero-inner { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding-bottom:72px; }
+  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
+  .page-hero-title { font-size:52px; font-weight:900; color:#fff; margin-bottom:14px; line-height:1.1; }
   .page-hero-title span { color:var(--accent); }
+  .page-hero-sub { font-size:15px; color:rgba(255,255,255,0.55); }
 
   /* 탭 */
   .tab-nav {
     display:flex; padding:0 60px;
-    border-bottom:2px solid rgba(255,255,255,0.1);
-    background:rgba(10,22,40,0.9);
-    position:sticky; top:80px; z-index:50;
+    background:var(--surface); border-bottom:2px solid var(--border);
+    position:sticky; top:80px; z-index:50; overflow-x:auto;
+    box-shadow:0 2px 16px rgba(10,22,40,0.08);
   }
   .cert-tab {
-    padding:20px 32px; font-size:14px; font-weight:600;
-    color:rgba(255,255,255,0.5); cursor:pointer; border:none;
+    padding:20px 28px; font-size:14px; font-weight:600;
+    color:var(--text2); cursor:pointer; border:none;
     background:none; font-family:'Noto Sans KR',sans-serif;
-    letter-spacing:1px; border-bottom:2px solid transparent;
-    margin-bottom:-2px; transition:all 0.2s;
+    letter-spacing:0.5px; border-bottom:3px solid transparent;
+    margin-bottom:-2px; transition:all 0.2s; white-space:nowrap;
   }
-  .cert-tab:hover { color:rgba(255,255,255,0.8); }
-  .cert-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .cert-tab:hover { color:var(--blue); }
+  .cert-tab.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
 
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
 
   /* 인증 그리드 */
-  #certs { padding:60px 60px; }
+  #certs { padding:60px 60px; background:var(--bg); }
   .certs-grid {
     display:grid;
     grid-template-columns:repeat(6,1fr);
@@ -68,27 +79,26 @@
   @media(max-width:600px) { .certs-grid { grid-template-columns:repeat(2,1fr); } }
 
   .cert-card {
-    background:rgba(255,255,255,0.03);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:4px; overflow:hidden;
+    background:var(--surface);
+    border:1.5px solid var(--border);
+    border-radius:10px; overflow:hidden;
     cursor:pointer;
-    transition:border-color 0.3s, transform 0.3s;
+    transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05);
   }
-  .cert-card:hover { border-color:var(--accent); transform:translateY(-4px); }
+  .cert-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
   .cert-card img {
     width:100%; height:180px;
     object-fit:contain;
-    background:rgba(255,255,255,0.02);
+    background:#f8f9fb;
     display:block;
-    filter:brightness(0.9);
-    transition:filter 0.3s;
+    transition:transform 0.3s;
   }
-  .cert-card:hover img { filter:brightness(1); }
+  .cert-card:hover img { transform:scale(1.03); }
   .cert-card-label {
     padding:10px 12px; font-size:11px; font-weight:600;
-    color:rgba(255,255,255,0.7); letter-spacing:0.5px;
+    color:var(--text2); letter-spacing:0.5px;
     text-align:center; white-space:nowrap;
-    overflow:hidden; text-overflow:ellipsis;
+    overflow:hidden; text-overflow:ellipsis; border-top:1px solid var(--border);
   }
 
   /* 라이트박스 */
@@ -127,7 +137,7 @@
 
   /* 자료실 */
   .dl-card {
-    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+    background:var(--surface); border:1.5px solid var(--border);
     border-radius:8px; padding:32px; display:flex; flex-direction:column;
     align-items:center; text-align:center; gap:16px;
     transition:border-color 0.3s;
@@ -301,6 +311,36 @@
     .certs-grid { grid-template-columns: repeat(2,1fr) !important; padding: 24px 16px !important; }
     .partners-grid { grid-template-columns: repeat(2,1fr) !important; padding: 24px 16px !important; }
     .cert-tab { padding: 10px 14px; font-size: 12px; }
+  }
+
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 52px 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-left { flex-shrink:0; display:flex; flex-direction:column; gap:16px; }
+  .footer-tagline { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:1.5px; line-height:1.6; }
+  .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); letter-spacing:0.5px; margin-top:8px; }
+  .footer-info { display:flex; gap:80px; flex:1; justify-content:flex-end; }
+  .footer-col { display:flex; flex-direction:column; gap:14px; min-width:200px; }
+  .footer-col-title { font-size:13px; font-weight:700; color:#fff; letter-spacing:0.5px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:2px; }
+  .footer-col-row { display:flex; flex-direction:column; gap:2px; }
+  .footer-col-label { font-size:10px; font-weight:700; color:var(--accent); letter-spacing:1px; }
+  .footer-col-value { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
+  @media(max-width:900px) {
+    footer { flex-direction:column; gap:32px; padding:40px 24px; }
+    .footer-info { flex-direction:row; gap:40px; justify-content:flex-start; }
+  }
+  @media(max-width:768px) {
+    footer { padding:32px 20px; gap:28px; }
+    .footer-info { flex-direction:column; gap:28px; }
+    .footer-col { min-width:unset; }
   }
 
 </style>
@@ -586,5 +626,38 @@
   });
 })();
 </script>
+
+<footer>
+  <div class="footer-left">
+    <div><img src="taeil_logo.png" alt="태일전기" style="height:44px;width:auto;object-fit:contain;"></div>
+    <div class="footer-tagline">원활하고 안전한 전기<br>대표이사 : 여규철</div>
+    <div class="footer-copy">COPYRIGHT &copy; TAEILELE. ALL RIGHTS RESERVED.</div>
+  </div>
+  <div class="footer-info">
+    <div class="footer-col">
+      <div class="footer-col-title">본사</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">인천시 서구 원당대로 480번길 6-11</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">032-568-7051~3</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">사업본부</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">경기 성남시 분당구 야탑로 338, 201호</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">070-4130-1261</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
