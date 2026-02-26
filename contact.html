@@ -6,10 +6,10 @@
 <title>고객센터 - 태일전기(주)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --white:#fff; --gray:#8a96a8; }
+  :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); }
+  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
   header {
     position:fixed; top:0; left:0; right:0; z-index:100;
@@ -28,85 +28,96 @@
   .header-cta { background:var(--accent); color:var(--navy); padding:10px 24px; border-radius:2px; font-size:13px; font-weight:700; text-decoration:none; letter-spacing:1px; }
 
   .page-hero {
-    padding:140px 60px 60px;
-    background:linear-gradient(135deg,#0a1628 0%,#0d2244 100%);
-    border-bottom:1px solid rgba(244,161,0,0.2);
+    padding:130px 60px 0;
+    background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%);
+    position:relative; overflow:hidden;
   }
-  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; }
-  .page-hero-title { font-size:48px; font-weight:900; }
+  .page-hero::before {
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);
+    background-size:48px 48px;
+  }
+  .page-hero::after {
+    content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
+    background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
+  }
+  .page-hero-inner { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding-bottom:72px; }
+  .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
+  .page-hero-title { font-size:52px; font-weight:900; color:#fff; margin-bottom:14px; line-height:1.1; }
   .page-hero-title span { color:var(--accent); }
+  .page-hero-sub { font-size:15px; color:rgba(255,255,255,0.55); }
 
   /* 탭 */
   .tab-nav {
     display:flex; padding:0 60px;
-    border-bottom:2px solid rgba(255,255,255,0.1);
-    background:rgba(10,22,40,0.9);
-    position:sticky; top:80px; z-index:50;
+    background:var(--surface); border-bottom:2px solid var(--border);
+    position:sticky; top:80px; z-index:50; overflow-x:auto;
+    box-shadow:0 2px 16px rgba(10,22,40,0.08);
   }
   .tab-btn {
-    padding:20px 32px; font-size:14px; font-weight:600;
-    color:rgba(255,255,255,0.5); cursor:pointer; border:none;
+    padding:20px 28px; font-size:14px; font-weight:600;
+    color:var(--text2); cursor:pointer; border:none;
     background:none; font-family:'Noto Sans KR',sans-serif;
-    letter-spacing:1px; border-bottom:2px solid transparent;
-    margin-bottom:-2px; transition:all 0.2s;
+    letter-spacing:0.5px; border-bottom:3px solid transparent;
+    margin-bottom:-2px; transition:all 0.2s; white-space:nowrap;
   }
-  .tab-btn:hover { color:rgba(255,255,255,0.8); }
-  .tab-btn.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .tab-btn:hover { color:var(--blue); }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
 
   /* 연락처 + 문의 */
-  #tab-inquiry { padding:60px; }
+  #tab-inquiry { padding:60px; background:var(--bg); }
   .contact-wrap {
     display:grid; grid-template-columns:1fr 1.4fr; gap:60px;
     max-width:1100px; margin:0 auto;
   }
-  .contact-info-title { font-size:13px; letter-spacing:3px; color:var(--accent); font-weight:700; margin-bottom:12px; }
+  .contact-info-title { font-size:11px; letter-spacing:3px; color:var(--accent); font-weight:700; margin-bottom:12px; }
   .contact-divider { border-top:1px solid rgba(255,255,255,0.08); margin:24px 0; padding-top:24px; }
-  .contact-item { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+  .contact-item { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--border); }
   .contact-item:last-child { border-bottom:none; }
-  .contact-icon { width:44px; height:44px; flex-shrink:0; background:rgba(13,71,161,0.3); border:1px solid rgba(13,71,161,0.6); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:18px; }
-  .contact-label { font-size:11px; color:var(--gray); letter-spacing:2px; margin-bottom:4px; }
-  .contact-value { font-size:15px; font-weight:500; }
+  .contact-icon { width:44px; height:44px; flex-shrink:0; background:rgba(13,71,161,0.08); border:1.5px solid rgba(13,71,161,0.2); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .contact-label { font-size:10px; color:var(--text2); letter-spacing:2px; margin-bottom:4px; font-weight:700; }
+  .contact-value { font-size:15px; font-weight:600; color:var(--text); }
 
   /* 문의 폼 */
   .contact-form { display:flex; flex-direction:column; gap:14px; }
   .contact-form input,
   .contact-form textarea {
-    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
-    border-radius:2px; padding:16px 20px; color:var(--white);
+    background:var(--surface); border:1.5px solid var(--border);
+    border-radius:8px; padding:16px 20px; color:var(--text);
     font-family:'Noto Sans KR',sans-serif; font-size:14px; outline:none; transition:border-color 0.2s;
   }
-  .contact-form input:focus, .contact-form textarea:focus { border-color:var(--accent); }
-  .contact-form input::placeholder, .contact-form textarea::placeholder { color:var(--gray); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(13,71,161,0.08); }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color:#aab4c4; }
   .contact-form textarea { height:140px; resize:none; }
   .select-wrap { position:relative; }
   .select-wrap select {
-    width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
-    border-radius:2px; padding:16px 48px 16px 20px; color:var(--white);
+    width:100%; background:var(--surface); border:1.5px solid var(--border);
+    border-radius:8px; padding:16px 48px 16px 20px; color:var(--text);
     font-family:'Noto Sans KR',sans-serif; font-size:14px; outline:none;
     appearance:none; cursor:pointer; transition:border-color 0.2s;
   }
-  .select-wrap select:focus { border-color:var(--accent); }
-  .select-wrap select option { background:#0d2244; color:var(--white); }
-  .select-wrap select option[disabled] { color:var(--gray); }
+  .select-wrap select:focus { border-color:var(--blue); }
+  .select-wrap select option { background:var(--surface); color:var(--text); }
+  .select-wrap select option[disabled] { color:#aab4c4; }
   .select-arrow { position:absolute; right:18px; top:50%; transform:translateY(-50%); color:var(--gray); font-size:11px; pointer-events:none; }
   .file-label { display:flex; align-items:center; gap:12px; cursor:pointer; }
   .file-label input[type="file"] { display:none; }
-  .file-btn { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:2px; padding:12px 20px; font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); white-space:nowrap; transition:border-color 0.2s, background 0.2s; }
-  .file-label:hover .file-btn { border-color:var(--accent); background:rgba(244,161,0,0.08); color:var(--accent); }
+  .file-btn { background:var(--surface); border:1.5px solid var(--border); border-radius:8px; padding:12px 20px; font-size:13px; font-weight:600; color:var(--text2); white-space:nowrap; transition:border-color 0.2s, background 0.2s; }
+  .file-label:hover .file-btn { border-color:var(--blue); background:rgba(13,71,161,0.05); color:var(--blue); }
   .file-name { font-size:12px; color:var(--gray); }
   .submit-btn { background:var(--accent); color:var(--navy); border:none; padding:18px; font-family:'Noto Sans KR',sans-serif; font-size:14px; font-weight:700; letter-spacing:2px; cursor:pointer; border-radius:2px; transition:opacity 0.2s; }
   .submit-btn:hover { opacity:0.85; }
 
   /* 자료실 */
-  #tab-download { padding:60px; }
+  #tab-download { padding:60px; background:var(--bg); }
   .dl-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:800px; margin:0 auto; }
-  .dl-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:40px 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; transition:border-color 0.3s; }
-  .dl-card:hover { border-color:var(--accent); }
+  .dl-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:40px 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); }
+  .dl-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
   .dl-icon { font-size:52px; }
-  .dl-title { font-size:18px; font-weight:700; }
-  .dl-desc { font-size:13px; color:rgba(255,255,255,0.55); line-height:1.6; }
+  .dl-title { font-size:18px; font-weight:700; color:var(--text); }
+  .dl-desc { font-size:13px; color:var(--text2); line-height:1.6; }
   .dl-meta { font-size:11px; color:var(--gray); letter-spacing:1px; }
   .dl-btn { display:inline-block; margin-top:8px; background:var(--accent); color:var(--navy); padding:12px 28px; border-radius:4px; font-size:13px; font-weight:700; letter-spacing:1px; text-decoration:none; transition:opacity 0.2s; }
   .dl-btn:hover { opacity:0.85; }
@@ -243,6 +254,36 @@
     .contact-wrap { padding: 40px 20px; gap: 36px; }
     .contact-item { gap: 14px; }
     .dl-grid { grid-template-columns: 1fr !important; padding: 24px 20px !important; }
+  }
+
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1e;
+    padding: 52px 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-left { flex-shrink:0; display:flex; flex-direction:column; gap:16px; }
+  .footer-tagline { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:1.5px; line-height:1.6; }
+  .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); letter-spacing:0.5px; margin-top:8px; }
+  .footer-info { display:flex; gap:80px; flex:1; justify-content:flex-end; }
+  .footer-col { display:flex; flex-direction:column; gap:14px; min-width:200px; }
+  .footer-col-title { font-size:13px; font-weight:700; color:#fff; letter-spacing:0.5px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom:2px; }
+  .footer-col-row { display:flex; flex-direction:column; gap:2px; }
+  .footer-col-label { font-size:10px; font-weight:700; color:var(--accent); letter-spacing:1px; }
+  .footer-col-value { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
+  @media(max-width:900px) {
+    footer { flex-direction:column; gap:32px; padding:40px 24px; }
+    .footer-info { flex-direction:row; gap:40px; justify-content:flex-start; }
+  }
+  @media(max-width:768px) {
+    footer { padding:32px 20px; gap:28px; }
+    .footer-info { flex-direction:column; gap:28px; }
+    .footer-col { min-width:unset; }
   }
 
 </style>
@@ -388,7 +429,7 @@
 
     <!-- 문의 폼 -->
     <div>
-      <div style="font-size:24px; font-weight:900; margin-bottom:32px;">1:1 문의</div>
+      <div style="font-size:24px; font-weight:900; margin-bottom:32px; color:var(--text);">1:1 문의</div>
       <div class="contact-form">
         <input type="text" placeholder="성함">
         <input type="text" placeholder="기관명 또는 기업명">
@@ -502,5 +543,38 @@
   });
 })();
 </script>
+
+<footer>
+  <div class="footer-left">
+    <div><img src="taeil_logo.png" alt="태일전기" style="height:44px;width:auto;object-fit:contain;"></div>
+    <div class="footer-tagline">원활하고 안전한 전기<br>대표이사 : 여규철</div>
+    <div class="footer-copy">COPYRIGHT &copy; TAEILELE. ALL RIGHTS RESERVED.</div>
+  </div>
+  <div class="footer-info">
+    <div class="footer-col">
+      <div class="footer-col-title">본사</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">인천시 서구 원당대로 480번길 6-11</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">032-568-7051~3</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">사업본부</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">경기 성남시 분당구 야탑로 338, 201호</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">070-4130-1261</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
