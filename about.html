@@ -191,6 +191,7 @@
   <button class="tab-btn active" onclick="showTab('ceo')">CEO 인사말</button>
   <button class="tab-btn" onclick="showTab('philosophy')">경영철학</button>
   <button class="tab-btn" onclick="showTab('history')">회사연혁</button>
+  <button class="tab-btn" onclick="showTab('location')">찾아오시는 길</button>
 </div>
 
 <!-- CEO 인사말 -->
@@ -351,6 +352,60 @@
   </div>
 </div>
 
+<!-- 찾아오시는 길 -->
+<div id="tab-location" class="section">
+  <div style="max-width:900px; margin:0 auto; padding:60px 0;">
+    <div style="font-size:13px; letter-spacing:2px; color:var(--accent); font-weight:600; margin-bottom:12px;">LOCATION</div>
+    <div style="font-size:28px; font-weight:900; margin-bottom:48px;">찾아오시는 <span style="color:var(--accent)">길</span></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:40px;">
+      <!-- 본사 -->
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:32px;">
+        <div style="font-size:11px; letter-spacing:2px; color:var(--accent); font-weight:700; margin-bottom:10px;">본 사</div>
+        <div style="font-size:18px; font-weight:800; margin-bottom:20px; color:#fff;">인천 본사</div>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--accent); font-size:16px; margin-top:1px;">📍</span>
+            <span>인천시 서구 원당대로 480번길 6-11</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--accent); font-size:16px; margin-top:1px;">📞</span>
+            <span>032-568-7051~3</span>
+          </div>
+        </div>
+        <div style="margin-top:24px; border-radius:10px; overflow:hidden;">
+          <iframe
+            src="https://maps.google.com/maps?q=인천시+서구+원당대로+480번길+6-11&output=embed&z=16"
+            width="100%" height="220" style="border:0; display:block;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- 사업본부 -->
+      <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:32px;">
+        <div style="font-size:11px; letter-spacing:2px; color:var(--accent); font-weight:700; margin-bottom:10px;">사업본부</div>
+        <div style="font-size:18px; font-weight:800; margin-bottom:20px; color:#fff;">성남 사업본부</div>
+        <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7;">
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--accent); font-size:16px; margin-top:1px;">📍</span>
+            <span>경기 성남시 분당구 야탑로 338, 201호</span>
+          </div>
+          <div style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--accent); font-size:16px; margin-top:1px;">📞</span>
+            <span>070-4130-1261</span>
+          </div>
+        </div>
+        <div style="margin-top:24px; border-radius:10px; overflow:hidden;">
+          <iframe
+            src="https://maps.google.com/maps?q=경기+성남시+분당구+야탑로+338&output=embed&z=16"
+            width="100%" height="220" style="border:0; display:block;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
   function showTab(tab) {
@@ -370,7 +425,7 @@
   }
   function handleHash() {
     var hash = window.location.hash.replace('#','');
-    if (['ceo','philosophy','history'].indexOf(hash) !== -1) { showTab(hash); }
+    if (['ceo','philosophy','history','location'].indexOf(hash) !== -1) { showTab(hash); }
     else { showTab('ceo'); }
   }
   window.addEventListener('DOMContentLoaded', handleHash);
