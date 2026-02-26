@@ -813,16 +813,18 @@
     display: block;
   }
   .footer-tagline {
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 1.5px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.5px;
     line-height: 1.6;
   }
   .footer-copy {
     font-size: 10px;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.25);
     letter-spacing: 0.5px;
-    margin-top: 8px;
+    text-align: right;
+    flex-shrink: 0;
+    align-self: flex-end;
   }
 
   /* 우측 정보 영역 */
@@ -1273,19 +1275,16 @@
 
 <!-- FOOTER -->
 <footer>
-  <!-- 좌측: 로고 + 카피라이트 -->
+  <!-- 좌측: 로고 -->
   <div class="footer-left">
     <div class="footer-logo">
       <img src="taeil_logo.png" alt="태일전기" style="height:44px;width:auto;object-fit:contain;">
     </div>
-    <div class="footer-tagline">원활하고 안전한 전기<br>대표이사 : 여규철</div>
-    <div class="footer-copy">COPYRIGHT © TAEILELE. ALL RIGHTS RESERVED.</div>
+    <div class="footer-tagline">대표이사 : 여규철</div>
   </div>
 
-  <!-- 우측: 본사 / 사업본부 두 컬럼 -->
+  <!-- 중앙: 본사 / 사업본부 두 컬럼 -->
   <div class="footer-info">
-
-    <!-- 본사 -->
     <div class="footer-col">
       <div class="footer-col-title">본사</div>
       <div class="footer-col-row">
@@ -1297,8 +1296,6 @@
         <span class="footer-col-value">032-568-7051~3</span>
       </div>
     </div>
-
-    <!-- 사업본부 -->
     <div class="footer-col">
       <div class="footer-col-title">사업본부</div>
       <div class="footer-col-row">
@@ -1310,8 +1307,10 @@
         <span class="footer-col-value">070-4130-1261</span>
       </div>
     </div>
-
   </div>
+
+  <!-- 우측: 카피라이트 -->
+  <div class="footer-copy">COPYRIGHT © TAEILELE.<br>ALL RIGHTS RESERVED.</div>
 </footer>
 
 <script>
