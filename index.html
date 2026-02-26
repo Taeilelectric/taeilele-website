@@ -188,7 +188,7 @@
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(52px, 7vw, 96px);
-    line-height: 1.1;
+    line-height: 0.95;
     letter-spacing: 2px;
     animation: fadeUp 0.8s 0.15s ease both;
   }
@@ -1027,7 +1027,7 @@
     .footer-left { align-items: flex-start; }
   }
   @media (max-width: 768px) {
-    .hero-content { left: 16px; right: 16px; bottom: auto; top: 50%; transform: translateY(-50%); max-width: calc(100vw - 32px); padding-top: 80px; }
+    .hero-content { left: 16px; right: 16px; bottom: 60px; max-width: calc(100vw - 32px); }
     .hero-title { font-size: clamp(28px, 8.5vw, 44px); letter-spacing: 0; }
     .hero-sub { font-size: 13px; margin-top: 12px; }
     .hero-btns { flex-direction: column; gap: 10px; margin-top: 24px; }
@@ -1054,8 +1054,8 @@
 
 
   @media (max-width: 480px) {
-    .hero-title { font-size: clamp(32px, 10vw, 52px) !important; }
-    .hero-content { left: 14px; right: 14px; padding-top: 90px; }
+    .hero-title { font-size: clamp(24px, 7.5vw, 36px) !important; }
+    .hero-content { left: 14px; right: 14px; bottom: 48px; }
     .hero-sub { font-size: 12px; }
     .hero-btns { margin-top: 18px; }
   }
@@ -1196,21 +1196,6 @@
     <span class="indicator" onclick="goSlide(2)"></span>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">25<span>+</span></div>
-      <div class="stat-label">YEARS OF EXPERIENCE</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">500<span>+</span></div>
-      <div class="stat-label">PROJECTS COMPLETED</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">9</div>
-      <div class="stat-label">PATENTS</div>
-    </div>
-  </div>
-
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="scroll-line"></div>
@@ -1230,24 +1215,6 @@
     <a href="about.html" class="btn-primary">회사 소개 더 보기</a>
   </div>
   <div class="about-visual reveal">
-    <div class="about-box">
-      <div class="about-stat">
-        <div class="num">30<span style="font-size:28px;color:#f4a100">+</span></div>
-        <div class="label">YEARS EXPERIENCE</div>
-      </div>
-      <div class="about-stat">
-        <div class="num">500<span style="font-size:28px;color:#f4a100">+</span></div>
-        <div class="label">PROJECTS DONE</div>
-      </div>
-      <div class="about-stat">
-        <div class="num">10<span style="font-size:28px;color:#f4a100">+</span></div>
-        <div class="label">CERTIFICATIONS</div>
-      </div>
-      <div class="about-stat">
-        <div class="num">99<span style="font-size:28px;color:#f4a100">%</span></div>
-        <div class="label">SATISFACTION</div>
-      </div>
-    </div>
   </div>
 </section>
 
