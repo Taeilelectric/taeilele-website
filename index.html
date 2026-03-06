@@ -34,41 +34,49 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 60px;
-    background: rgba(10,22,40,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(244,161,0,0.15);
-    transition: padding 0.3s;
+    padding: 0 60px;
+    height: 70px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+    transition: box-shadow 0.3s;
+  }
+  header.scrolled {
+    box-shadow: 0 2px 16px rgba(0,0,0,0.1);
   }
 
   .logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 80px;
     letter-spacing: 3px;
-    color: var(--white);
+    color: var(--navy);
   }
   .logo span { color: var(--accent); }
 
-  nav { display: flex; gap: 40px; }
-  nav a {
-    color: rgba(255,255,255,0.75);
+  nav { display: flex; gap: 0; align-items: stretch; height: 70px; }
+  .nav-item > a {
+    display: flex !important;
+    align-items: center;
+    padding: 0 28px;
+    height: 70px;
+    color: #222 !important;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     transition: color 0.2s;
     position: relative;
   }
-  nav a::after {
+  .nav-item > a::after {
     content: '';
     position: absolute;
-    bottom: -4px; left: 0;
-    width: 0; height: 2px;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
     background: var(--accent);
-    transition: width 0.3s;
+    transform: scaleX(0);
+    transition: transform 0.25s;
   }
-  nav a:hover { color: var(--white); }
-  nav a:hover::after { width: 100%; }
+  .nav-item:hover > a { color: var(--accent) !important; }
+  .nav-item:hover > a::after { transform: scaleX(1); }
 
   .header-cta {
     background: var(--accent);
@@ -85,52 +93,51 @@
 
 
   /* ── DROPDOWN ── */
-  .nav-item { position: relative; }
-  .nav-item > a { display: block; }
+  .nav-item {
+    position: relative;
+  }
   .dropdown {
     display: none;
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10,22,40,0.98);
-    border: 1px solid rgba(244,161,0,0.25);
+    top: 70px;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
     border-top: 3px solid var(--accent);
-    border-radius: 0 0 6px 6px;
-    min-width: 160px;
-    padding: 8px 0;
+    min-width: 180px;
     z-index: 200;
-    white-space: nowrap;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    /* 위쪽에 invisible bridge로 gap 없애기 */
-    margin-top: 0;
-  }
-  /* nav-item에 padding-bottom으로 hover 영역 확보 */
-  .nav-item {
-    position: relative;
-    padding-bottom: 24px;
-    margin-bottom: -24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
   }
   .dropdown a {
     display: block !important;
-    padding: 10px 20px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.7) !important;
+    padding: 14px 28px;
+    font-size: 14px;
+    color: #333 !important;
     text-decoration: none;
-    letter-spacing: 0.5px;
-    transition: background 0.15s, color 0.15s, padding-left 0.15s;
-    margin-left: 0 !important;
-    border-left: 2px solid transparent;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    transition: color 0.15s, background 0.15s;
+    border: none !important;
+  }
+  .dropdown a + a {
+    border-top: 1px solid #f0f0f0 !important;
   }
   .dropdown a::after { display: none !important; }
   .dropdown a:hover {
-    background: rgba(244,161,0,0.08);
     color: var(--accent) !important;
-    padding-left: 26px;
-    border-left-color: var(--accent);
+    background: #fafafa;
   }
-  .nav-item:hover .dropdown { display: block; }
-  nav { display: flex; gap: 40px; align-items: center; }
+  .nav-item:hover .dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  nav { display: flex; gap: 0; align-items: stretch; height: 70px; }
 
   /* ── HERO ── */
   #hero {
@@ -1461,6 +1468,26 @@ function setClientFilter(type, btn) {
   track.offsetHeight;
   track.style.animation = 'slide 30s linear infinite';
 }
+
+// ── 드롭다운 부드러운 표시/숨김 ──
+document.querySelectorAll('.nav-item').forEach(item => {
+  const dropdown = item.querySelector('.dropdown');
+  if (!dropdown) return;
+  let timer;
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(timer);
+    dropdown.style.display = 'block';
+    requestAnimationFrame(() => {
+      dropdown.style.opacity = '1';
+      dropdown.style.transform = 'translateY(0)';
+    });
+  });
+  item.addEventListener('mouseleave', () => {
+    dropdown.style.opacity = '0';
+    dropdown.style.transform = 'translateY(-6px)';
+    timer = setTimeout(() => { dropdown.style.display = 'none'; }, 200);
+  });
+});
 
 </script>
 </body>
