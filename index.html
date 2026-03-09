@@ -12,7 +12,7 @@
     --accent: #e08c00;
     --light: #f4f6fa;
     --white: #ffffff;
-    --gray: #6b7a8f;
+    --gray: #4a5a70;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,7 +22,7 @@
   body {
     font-family: 'Noto Sans KR', sans-serif;
     background: #f4f6fa;
-    color: #1a2434;
+    color: #0d1829;
     overflow-x: hidden;
   }
 
@@ -65,10 +65,10 @@
     align-items: center;
     padding: 0 28px;
     height: 70px;
-    color: rgba(26,43,74,0.8) !important;
+    color: #1a2b4a !important;
     text-decoration: none;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
     transition: color 0.2s;
     position: relative;
@@ -107,9 +107,9 @@
     align-items: center;
     gap: 5px;
     cursor: pointer;
-    color: rgba(26,36,52,0.8);
+    color: rgba(15,26,46,0.8);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.5px;
     padding: 6px 10px;
     border-radius: 4px;
@@ -477,7 +477,7 @@
     font-size: 56px;
     letter-spacing: 2px;
     line-height: 1;
-    color: var(--navy);
+    color: #0d1829;
   }
 
   .view-all {
@@ -544,7 +544,7 @@
 
   .product-desc {
     font-size: 12px;
-    color: rgba(26,36,52,0.6);
+    color: #2e3d55;
     line-height: 1.6;
     display: none;
   }
@@ -578,9 +578,9 @@
 
   .about-desc {
     font-size: 15px;
-    color: rgba(26,36,52,0.65);
+    color: #2a3a52;
     line-height: 1.9;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 40px;
   }
 
@@ -624,7 +624,7 @@
   .cert-tab {
     background: transparent;
     border: none;
-    color: rgba(26,36,52,0.55);
+    color: #3a4a60;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -636,7 +636,7 @@
     transition: color 0.2s, border-color 0.2s;
   }
 
-  .cert-tab:hover { color: rgba(26,36,52,0.85); }
+  .cert-tab:hover { color: #1a2534; }
   .cert-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
   .tab-panel { display: none; }
@@ -697,7 +697,7 @@
     padding: 10px 12px;
     font-size: 11px;
     font-weight: 600;
-    color: rgba(26,36,52,0.75);
+    color: #223044;
     letter-spacing: 0.5px;
     text-align: center;
     white-space: nowrap;
@@ -855,7 +855,7 @@
     padding: 12px 20px;
     font-size: 13px;
     font-weight: 600;
-    color: rgba(26,36,52,0.8);
+    color: #1e2b3e;
     white-space: nowrap;
     transition: border-color 0.2s, background 0.2s;
   }
@@ -895,7 +895,7 @@
   }
   .footer-tagline {
     font-size: 12px;
-    color: rgba(26,36,52,0.6);
+    color: #2e3d55;
     letter-spacing: 0.5px;
     line-height: 1.6;
   }
@@ -945,7 +945,7 @@
   }
   .footer-col-value {
     font-size: 12px;
-    color: rgba(26,36,52,0.7);
+    color: #253549;
     line-height: 1.6;
   }
 
@@ -985,7 +985,7 @@
   .client-card span {
     font-size: 14px;
     font-weight: 700;
-    color: rgba(26,36,52,0.7);
+    color: #253549;
     letter-spacing: 1px;
     white-space: nowrap;
     transition: color 0.3s;
@@ -1053,51 +1053,50 @@
   .mega-menu-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 48px 60px 52px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    padding: 40px 60px 48px;
+    display: flex;
+    flex-direction: column;
     gap: 0;
   }
   .mega-col {
-    padding: 0 32px;
-    border-right: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
   }
-  .mega-col:first-child { padding-left: 0; }
-  .mega-col:last-child { padding-right: 0; border-right: none; }
+  .mega-col:last-child { border-bottom: none; }
   .mega-col-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--navy);
     letter-spacing: 0.5px;
-    margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid var(--accent);
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-  .mega-col-title .col-icon {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px;
+    min-width: 130px;
     flex-shrink: 0;
   }
-  .mega-sub-link {
-    display: block;
-    padding: 10px 0;
-    font-size: 14px;
-    color: #555;
-    text-decoration: none;
-    border-bottom: 1px solid #f7f7f7;
-    transition: color 0.2s, padding-left 0.2s;
-    letter-spacing: 0.2px;
+  .mega-col-title .col-icon { display: none; }
+  .mega-col-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 28px;
   }
-  .mega-sub-link:last-child { border-bottom: none; }
+  .mega-sub-link {
+    display: inline-block;
+    padding: 4px 0;
+    font-size: 14px;
+    color: #3a4a60;
+    text-decoration: none;
+    background: none;
+    border: none;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    transition: color 0.18s;
+  }
   .mega-sub-link:hover {
     color: var(--accent);
-    padding-left: 6px;
   }
   /* 메가메뉴 뒷배경 딤처리 */
   .mega-overlay {
@@ -1164,7 +1163,7 @@
   .mobile-nav-item.open .mobile-sub { display: flex; }
   .mobile-sub a {
     padding: 12px 0 12px 16px;
-    color: rgba(26,36,52,0.6);
+    color: #2e3d55;
     text-decoration: none; font-size: 15px;
     border-left: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
@@ -1249,7 +1248,7 @@
     border-radius: 50px;
     border: 1.5px solid rgba(26,43,74,0.2);
     background: transparent;
-    color: rgba(26,36,52,0.55);
+    color: #3a4a60;
     font-size: 13px;
     font-weight: 600;
     font-family: 'Noto Sans KR', sans-serif;
@@ -1379,38 +1378,46 @@
       <div class="mega-col-title">
         <span class="col-icon">🏢</span> 회사소개
       </div>
-      <a href="about.html#ceo" class="mega-sub-link">CEO 인사말</a>
-      <a href="about.html#philosophy" class="mega-sub-link">경영철학</a>
-      <a href="about.html#history" class="mega-sub-link">회사연혁</a>
-      <a href="about.html#location" class="mega-sub-link">찾아오시는 길</a>
+      <div class="mega-col-links">
+        <a href="about.html#ceo" class="mega-sub-link">CEO 인사말</a>
+        <a href="about.html#philosophy" class="mega-sub-link">경영철학</a>
+        <a href="about.html#history" class="mega-sub-link">회사연혁</a>
+        <a href="about.html#location" class="mega-sub-link">찾아오시는 길</a>
+      </div>
     </div>
     <!-- 사업영역 -->
     <div class="mega-col">
       <div class="mega-col-title">
         <span class="col-icon">⚡</span> 사업영역
       </div>
-      <a href="products.html#switchboard" class="mega-sub-link">수배전반</a>
-      <a href="products.html#control" class="mega-sub-link">제어시스템</a>
-      <a href="products.html#energy" class="mega-sub-link">신재생에너지</a>
-      <a href="products.html#construction" class="mega-sub-link">공사부문</a>
+      <div class="mega-col-links">
+        <a href="products.html#switchboard" class="mega-sub-link">수배전반</a>
+        <a href="products.html#control" class="mega-sub-link">제어시스템</a>
+        <a href="products.html#energy" class="mega-sub-link">신재생에너지</a>
+        <a href="products.html#construction" class="mega-sub-link">공사부문</a>
+      </div>
     </div>
     <!-- 홍보관 -->
     <div class="mega-col">
       <div class="mega-col-title">
         <span class="col-icon">📢</span> 홍보관
       </div>
-      <a href="promo.html#tab-cert" class="mega-sub-link">인증서</a>
-      <a href="promo.html#tab-patent" class="mega-sub-link">특허증</a>
-      <a href="promo.html#tab-award" class="mega-sub-link">표창장</a>
-      <a href="promo.html#tab-partners" class="mega-sub-link">파트너사</a>
+      <div class="mega-col-links">
+        <a href="promo.html#tab-cert" class="mega-sub-link">인증서</a>
+        <a href="promo.html#tab-patent" class="mega-sub-link">특허증</a>
+        <a href="promo.html#tab-award" class="mega-sub-link">표창장</a>
+        <a href="promo.html#tab-partners" class="mega-sub-link">파트너사</a>
+      </div>
     </div>
     <!-- 고객센터 -->
     <div class="mega-col">
       <div class="mega-col-title">
         <span class="col-icon">💬</span> 고객센터
       </div>
-      <a href="contact.html#inquiry" class="mega-sub-link">1:1 문의</a>
-      <a href="contact.html#download" class="mega-sub-link">자료실</a>
+      <div class="mega-col-links">
+        <a href="contact.html#inquiry" class="mega-sub-link">1:1 문의</a>
+        <a href="contact.html#download" class="mega-sub-link">자료실</a>
+      </div>
     </div>
   </div>
 </div>
