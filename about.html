@@ -13,12 +13,17 @@
   body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
 
   header {
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:20px 60px;
-    background:rgba(255,255,255,0.97);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(26,43,74,0.1);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0 60px;
+    height: 90px;
+    background: #f4f6fa;
+    border-bottom: 1px solid rgba(26,43,74,0.1);
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
   }
   .logo { font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; color:var(--navy); text-decoration:none; }
   .logo span { color:var(--accent); }
@@ -108,7 +113,19 @@
 
   
   .nav-item { position: relative; }
-  .nav-item > a { display: block; }
+  .nav-item > a {
+    display: flex !important;
+    align-items: center;
+    padding: 0 32px;
+    height: 90px;
+    color: #1a2b4a !important;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    position: relative;
+  }
   .dropdown {
     display: none;
     position: absolute;
@@ -356,7 +373,7 @@
 </head>
 <body>
 <header>
-<a class="logo" href="index.html"><img alt="태일전기" src="img/about_img_1.webp" style="height:44px;width:auto;object-fit:contain;"/></a>
+<a class="logo" href="index.html"><img alt="태일전기" src="img/promo_img_1.webp" style="height:44px;width:auto;object-fit:contain;"/></a>
 <nav>
 <div class="nav-item">
 <a class="active" data-en="About Us" data-ko="회사소개" href="about.html">회사소개</a>
@@ -393,7 +410,7 @@
 </div>
 </div>
 </nav>
-<a class="header-cta" data-en="Contact" data-ko="문의하기" href="contact.html">문의하기</a>
+
 <div class="lang-switcher" id="langSwitcher">
 <svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18">
 <circle cx="12" cy="12" r="10"></circle>
@@ -705,7 +722,7 @@
 </script>
 <footer>
 <div class="footer-left">
-<div><img alt="태일전기" src="img/about_img_1.webp" style="height:44px;width:auto;object-fit:contain;"/></div>
+<div><img alt="태일전기" src="img/promo_img_1.webp" style="height:44px;width:auto;object-fit:contain;"/></div>
 <div class="footer-tagline">대표이사 : 여규철</div>
 <div class="footer-copy">COPYRIGHT © TAEILELE. ALL RIGHTS RESERVED.</div>
 </div>
