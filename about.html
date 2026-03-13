@@ -527,7 +527,24 @@
 </div>
 
 <div class="section" id="tab-history">
+
+<!-- 연혁 서브탭 -->
+<div style="display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:48px;">
+  <button class="hist-tab active" onclick="showHistTab('h2021')" style="padding:12px 28px; font-size:14px; font-weight:700; border:none; background:none; cursor:pointer; border-bottom:3px solid var(--accent); color:var(--accent); font-family:'Noto Sans KR',sans-serif; margin-bottom:-2px; transition:all 0.2s;">2021 ~ 현재</button>
+  <button class="hist-tab" onclick="showHistTab('h2011')" style="padding:12px 28px; font-size:14px; font-weight:700; border:none; background:none; cursor:pointer; border-bottom:3px solid transparent; color:var(--text2); font-family:'Noto Sans KR',sans-serif; margin-bottom:-2px; transition:all 0.2s;">2011 ~ 2020</button>
+  <button class="hist-tab" onclick="showHistTab('h2000')" style="padding:12px 28px; font-size:14px; font-weight:700; border:none; background:none; cursor:pointer; border-bottom:3px solid transparent; color:var(--text2); font-family:'Noto Sans KR',sans-serif; margin-bottom:-2px; transition:all 0.2s;">2000 ~ 2010</button>
+</div>
+
+<!-- 2021~현재 -->
+<div id="h2021" class="hist-panel">
 <div class="timeline">
+<div class="timeline-year">
+<div class="timeline-year-label">2025</div>
+<div class="timeline-items">
+<div class="timeline-item"><span class="timeline-month">05</span><span>경기 성남시 야탑로338 태일전기 사업본부 신설</span></div>
+<div class="timeline-item"><span class="timeline-month">04</span><span>발전5사 정비적격업체 선정</span></div>
+</div>
+</div>
 <div class="timeline-year">
 <div class="timeline-year-label">2024</div>
 <div class="timeline-items">
@@ -551,7 +568,7 @@
 <div class="timeline-year">
 <div class="timeline-year-label">2022</div>
 <div class="timeline-items">
-<div class="timeline-item"><span class="timeline-month">09</span><span>우수소달 공동상표 지정 (배전반 2022004-10, 전동기제어반 2022005-10, 분전반 2022006-10)</span></div>
+<div class="timeline-item"><span class="timeline-month">09</span><span>우수조달 공동상표 지정 (배전반 2022004-10, 전동기제어반 2022005-10, 분전반 2022006-10)</span></div>
 <div class="timeline-item"><span class="timeline-month">07</span><span>우수발명품 우선구매추천확인서 규격추가 (2021-2441)</span></div>
 <div class="timeline-item"><span class="timeline-month">04</span><span>조달청우수제품 규격추가 (2021044)</span></div>
 <div class="timeline-item"><span class="timeline-month">03</span><span>ISO45001 안전보건경영시스템 인증 (AK22HM2598)</span></div>
@@ -567,6 +584,12 @@
 <div class="timeline-item"><span class="timeline-month">06</span><span>조달청 우수제품 지정 (2021044)</span></div>
 </div>
 </div>
+</div>
+</div>
+
+<!-- 2011~2020 -->
+<div id="h2011" class="hist-panel" style="display:none;">
+<div class="timeline">
 <div class="timeline-year">
 <div class="timeline-year-label">2020</div>
 <div class="timeline-items">
@@ -614,6 +637,12 @@
 <div class="timeline-item"><span class="timeline-month">01</span><span>특허등록(진동흡수형 배전반) (제10-1012733호)</span></div>
 </div>
 </div>
+</div>
+</div>
+
+<!-- 2000~2010 -->
+<div id="h2000" class="hist-panel" style="display:none;">
+<div class="timeline">
 <div class="timeline-year">
 <div class="timeline-year-label">2005</div>
 <div class="timeline-items">
@@ -642,6 +671,21 @@
 </div>
 </div>
 </div>
+</div>
+
+<script>
+function showHistTab(id) {
+  document.querySelectorAll('.hist-panel').forEach(function(p){ p.style.display='none'; });
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('.hist-tab').forEach(function(t){
+    t.style.borderBottomColor='transparent';
+    t.style.color='var(--text2)';
+  });
+  event.target.style.borderBottomColor='var(--accent)';
+  event.target.style.color='var(--accent)';
+}
+</script>
+
 </div>
 
 <div class="section" id="tab-location">
