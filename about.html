@@ -55,8 +55,8 @@
   .page-hero-sub { font-size:15px; color:rgba(26,43,74,0.55); }
 
   
-  .tab-nav { display:flex; padding:0 60px; background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
-  .tab-btn { padding:20px 28px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:'Noto Sans KR',sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+  .tab-nav { display:flex; padding: 0 max(60px, calc((100% - 1200px) / 2)); background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
+  .tab-btn { padding: 14px 24px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:'Noto Sans KR',sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
   .tab-btn:hover { color:var(--blue); }
   .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
 
@@ -120,7 +120,7 @@
     align-items: center;
     padding: 0 32px;
     height: 90px;
-    color: #1a2b4a !important;
+    color: #0d1829 !important;
     text-decoration: none;
     font-size: 17px;
     font-weight: 600;
@@ -196,39 +196,42 @@
   .ham-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
   
-  .mobile-nav {
+.mobile-nav {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: #f4f6fa;
+    background: #ffffff;
     z-index: 300;
     flex-direction: column;
-    padding: 88px 32px 40px;
+    padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    border-right: none;
   }
   .mobile-nav.open { display: flex; }
-  .mobile-nav-item { border-bottom: 1px solid rgba(26,43,74,0.07); }
+  .mobile-nav-item {
+    border-bottom: 1px solid #e8ecf0;
+  }
   .mobile-nav-item > a {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 0; color: #1a2434; text-decoration: none;
-    font-size: 17px; font-weight: 600; letter-spacing: 0.5px;
+    padding: 18px 0; color: #0d1829; text-decoration: none;
+    font-size: 16px; font-weight: 700; letter-spacing: 0.3px;
   }
   .mobile-nav-item > a .arrow {
-    font-size: 11px; color: var(--accent);
+    font-size: 10px; color: #888;
     transition: transform 0.3s; display: inline-block;
   }
   .mobile-nav-item.open > a .arrow { transform: rotate(180deg); }
   .mobile-sub {
     display: none; flex-direction: column;
-    padding: 4px 0 16px 20px; gap: 0;
+    padding: 4px 0 12px 16px; gap: 0;
   }
   .mobile-nav-item.open .mobile-sub { display: flex; }
   .mobile-sub a {
-    padding: 12px 0 12px 16px;
-    color: rgba(26,36,52,0.6);
-    text-decoration: none; font-size: 15px;
-    border-left: 2px solid transparent;
+    padding: 11px 0 11px 12px;
+    color: #4a5a70;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    border-left: 2px solid #e8ecf0;
     transition: color 0.2s, border-color 0.2s;
   }
   .mobile-sub a:hover, .mobile-sub a:active {
@@ -259,7 +262,7 @@
     .ceo-wrap { flex-direction: column; gap: 40px; padding: 60px 40px; }
     .ceo-img { width: 100%; max-width: 400px; margin: 0 auto; }
     .tab-nav { padding: 0 24px; overflow-x: auto; white-space: nowrap; }
-    .tab-btn { padding: 16px 20px; font-size: 13px; }
+    .tab-btn { padding: 12px 18px; font-size: 13px; }
     .philosophy-grid { grid-template-columns: 1fr; gap: 16px; padding: 40px; }
     .timeline { padding: 40px; }
   }
@@ -270,7 +273,7 @@
     .ceo-headline { font-size: 22px; }
     .ceo-text { font-size: 14px; }
     .tab-nav { top: 64px; padding: 0 16px; gap: 0; }
-    .tab-btn { padding: 14px 14px; font-size: 12px; }
+    .tab-btn { padding: 10px 14px; font-size: 12px; }
     .philosophy-grid { padding: 24px 20px; }
     .timeline { padding: 24px 20px; }
     .timeline-year { flex-direction: column; gap: 8px; }
@@ -311,7 +314,7 @@
     .page-hero { padding-top: 76px !important; padding-bottom: 100px !important; }
     .page-hero-title { font-size: clamp(24px, 7.5vw, 34px) !important; }
     .page-hero-sub { font-size: 12px; }
-    .tab-btn, .cert-tab { padding: 14px 12px; font-size: 12px; }
+    .tab-btn, .cert-tab { padding: 10px 12px; font-size: 12px; }
   }
 
   .lang-switcher {
@@ -437,41 +440,40 @@
 </header>
 
 <nav class="mobile-nav" id="mobileNav">
-<div class="mobile-nav-item">
-<a data-en="About Us" data-ko="회사소개" href="about.html">회사소개 </a>
-<div class="mobile-sub">
-<a data-en="CEO Message" data-ko="CEO 인사말" href="about.html#ceo">CEO 인사말</a>
-<a data-en="Philosophy" data-ko="경영철학" href="about.html#philosophy">경영철학</a>
-<a data-en="History" data-ko="회사연혁" href="about.html#history">회사연혁</a>
-<a data-en="Location" data-ko="찾아오시는 길" href="about.html#location">찾아오시는 길</a>
-</div>
-</div>
-<div class="mobile-nav-item">
-<a data-en="Business" data-ko="사업영역" href="products.html">사업영역 </a>
-<div class="mobile-sub">
-<a data-en="Switchboard" data-ko="수배전반" href="products.html#switchboard">수배전반</a>
-<a data-en="Control System" data-ko="제어시스템" href="products.html#control">제어시스템</a>
-<a data-en="Renewable Energy" data-ko="신재생에너지" href="products.html#energy">신재생에너지</a>
-<a data-en="Construction" data-ko="공사부문" href="products.html#construction">공사부문</a>
-</div>
-</div>
-<div class="mobile-nav-item">
-<a data-en="Media" data-ko="홍보관" href="promo.html">홍보관 </a>
-<div class="mobile-sub">
-<a data-en="Certificates" data-ko="인증서" href="promo.html#tab-cert">인증서</a>
-<a data-en="Patents" data-ko="특허증" href="promo.html#tab-patent">특허증</a>
-<a data-en="Awards" data-ko="표창장" href="promo.html#tab-award">표창장</a>
-<a data-en="Partners" data-ko="파트너사" href="promo.html#tab-partners">파트너사</a>
-</div>
-</div>
-<div class="mobile-nav-item">
-<a data-en="Support" data-ko="고객센터" href="contact.html">고객센터 </a>
-<div class="mobile-sub">
-<a data-en="Inquiry" data-ko="1:1 문의" href="contact.html#inquiry">1:1 문의</a>
-<a data-en="Downloads" data-ko="자료실" href="contact.html#download">자료실</a>
-</div>
-</div>
-<a data-en="Contact" data-ko="문의하기" href="contact.html" style="margin-top:32px;display:block;background:var(--accent);color:var(--navy);text-align:center;padding:16px;font-weight:700;letter-spacing:1px;text-decoration:none;border-radius:2px;">문의하기</a>
+  <div class="mobile-nav-item">
+    <a href="about.html">회사소개<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="about.html#ceo">CEO 인사말</a>
+      <a href="about.html#philosophy">경영철학</a>
+      <a href="about.html#history">회사연혁</a>
+      <a href="about.html#location">찾아오시는 길</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="products.html">사업영역<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="products.html#switchboard">수배전반</a>
+      <a href="products.html#control">제어시스템</a>
+      <a href="products.html#energy">신재생에너지</a>
+      <a href="products.html#construction">공사부문</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="promo.html">홍보관<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="promo.html#tab-cert">인증서</a>
+      <a href="promo.html#tab-patent">특허증</a>
+      <a href="promo.html#tab-award">표창장</a>
+      <a href="promo.html#tab-partners">파트너사</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="contact.html">고객센터<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="contact.html#inquiry">1:1 문의</a>
+      <a href="contact.html#download">자료실</a>
+    </div>
+  </div>
 </nav>
 <div class="page-hero">
 <div class="page-hero-inner">
