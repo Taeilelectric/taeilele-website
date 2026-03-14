@@ -1124,14 +1124,14 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
-    z-index: 300;
+    z-index: 9999;
     flex-direction: column;
     padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     border-right: none;
   }
-  .mobile-nav.open { display: flex; }
+  .mobile-nav.open { display: flex !important; z-index: 9999; }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
@@ -1163,6 +1163,7 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
+    .all-menu-btn { display: none; }
     nav { display: none !important; }
     .header-cta { display: none; }
     header {
@@ -1347,6 +1348,8 @@
     <div class="mobile-sub">
       <a href="contact.html#inquiry">1:1 문의</a>
       <a href="contact.html#download">자료실</a>
+      <a href="contact.html#tab-notice">공지사항</a>
+      <a href="contact.html#tab-recruit">채용공고</a>
     </div>
   </div>
 </nav>
@@ -1532,35 +1535,35 @@
       <div class="reveal" style="background:#fff; border-top:3px solid var(--navy); padding:32px 36px 28px;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
           <div style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--navy);">공지사항</div>
-          <a href="notice.html" style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px;">MORE +</a>
+          <a href="contact.html#tab-notice" style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px;">MORE +</a>
         </div>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:0;">
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="notice.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
+            <a href="contact.html#tab-notice" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
               <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:200px;">2025년 하절기 휴무 안내</span>
               <span style="font-size:11px; color:var(--gray); flex-shrink:0; margin-left:12px;">2025.07.01</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="notice.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
+            <a href="contact.html#tab-notice" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
               <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:200px;">사업본부 이전 안내</span>
               <span style="font-size:11px; color:var(--gray); flex-shrink:0; margin-left:12px;">2025.05.12</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="notice.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
+            <a href="contact.html#tab-notice" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
               <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:200px;">ISO 9001 인증 갱신 완료</span>
               <span style="font-size:11px; color:var(--gray); flex-shrink:0; margin-left:12px;">2025.03.20</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="notice.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
+            <a href="contact.html#tab-notice" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
               <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:200px;">홈페이지 개편 안내</span>
               <span style="font-size:11px; color:var(--gray); flex-shrink:0; margin-left:12px;">2025.02.10</span>
             </a>
           </li>
           <li>
-            <a href="notice.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
+            <a href="contact.html#tab-notice" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; color:#1a2434; font-size:14px; transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#1a2434'">
               <span style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:200px;">2025년 신년 인사</span>
               <span style="font-size:11px; color:var(--gray); flex-shrink:0; margin-left:12px;">2025.01.02</span>
             </a>
@@ -1572,35 +1575,35 @@
       <div class="reveal" style="background:#fff; border-top:3px solid var(--accent); padding:32px 36px 28px;">
         <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:24px;">
           <div style="font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:2px; color:var(--navy);">채용공고</div>
-          <a href="recruit.html" style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px;">MORE +</a>
+          <a href="contact.html#tab-recruit" style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent); padding-bottom:2px;">MORE +</a>
         </div>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:0;">
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="recruit.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
+            <a href="contact.html#tab-recruit" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
               <span style="font-size:14px; color:#1a2434; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color 0.2s;">전기 설계 엔지니어 (경력)</span>
               <span style="font-size:11px; background:var(--accent); color:var(--navy); font-weight:700; padding:3px 8px; border-radius:2px; flex-shrink:0;">채용중</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="recruit.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
+            <a href="contact.html#tab-recruit" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
               <span style="font-size:14px; color:#1a2434; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color 0.2s;">영업 담당자 (신입/경력)</span>
               <span style="font-size:11px; background:var(--accent); color:var(--navy); font-weight:700; padding:3px 8px; border-radius:2px; flex-shrink:0;">채용중</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="recruit.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
+            <a href="contact.html#tab-recruit" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
               <span style="font-size:14px; color:#1a2434; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color 0.2s;">품질관리 담당자 (경력)</span>
               <span style="font-size:11px; background:#aab0ba; color:#fff; font-weight:700; padding:3px 8px; border-radius:2px; flex-shrink:0;">마감</span>
             </a>
           </li>
           <li style="border-bottom:1px solid #f0f0f0;">
-            <a href="recruit.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
+            <a href="contact.html#tab-recruit" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
               <span style="font-size:14px; color:#1a2434; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color 0.2s;">생산직 (신입)</span>
               <span style="font-size:11px; background:#aab0ba; color:#fff; font-weight:700; padding:3px 8px; border-radius:2px; flex-shrink:0;">마감</span>
             </a>
           </li>
           <li>
-            <a href="recruit.html" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
+            <a href="contact.html#tab-recruit" style="display:flex; align-items:center; justify-content:space-between; padding:14px 0; text-decoration:none; gap:10px;" onmouseover="this.querySelector('span:first-child').style.color='var(--accent)'" onmouseout="this.querySelector('span:first-child').style.color='#1a2434'">
               <span style="font-size:14px; color:#1a2434; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; transition:color 0.2s;">회계/총무 담당 (경력)</span>
               <span style="font-size:11px; background:#aab0ba; color:#fff; font-weight:700; padding:3px 8px; border-radius:2px; flex-shrink:0;">마감</span>
             </a>
