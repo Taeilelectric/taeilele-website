@@ -37,9 +37,9 @@
     align-items: center;
     padding: 0 60px;
     height: 90px;
-    background: #f4f6fa;
-    border-bottom: 1px solid rgba(26,43,74,0.1);
-    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
   .header-right {
     display: flex;
@@ -48,6 +48,8 @@
     gap: 4px;
   }
   header.scrolled {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(26,43,74,0.08) !important;
     box-shadow: 0 2px 16px rgba(26,43,74,0.1);
   }
   header.nav-open {
@@ -60,9 +62,10 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 3px;
-    color: var(--navy);
+    color: #ffffff;
     transition: color 0.25s;
   }
+  header.scrolled .logo { color: var(--navy); }
   header.nav-open .logo { color: var(--navy); }
   .logo span { color: var(--accent); }
 
@@ -72,7 +75,7 @@
     align-items: center;
     padding: 0 32px;
     height: 90px;
-    color: #0d1829 !important;
+    color: #ffffff !important;
     text-decoration: none;
     font-size: 17px;
     font-weight: 600;
@@ -93,6 +96,8 @@
   .nav-item:hover > a::after { transform: scaleX(1); }
   header.nav-open .nav-item > a { color: #222 !important; }
   header.nav-open .nav-item:hover > a { color: var(--accent) !important; }
+  header.scrolled .nav-item > a { color: #0d1829 !important; }
+  header.scrolled .nav-item:hover > a { color: var(--accent) !important; }
 
   .header-cta {
     background: var(--accent);
@@ -109,6 +114,7 @@
 
   /* ── LANG SWITCHER ── */
   .lang-switcher {
+    color: #ffffff;
     position: relative;
     display: flex;
     align-items: center;
@@ -126,6 +132,7 @@
   }
   .lang-switcher:hover { color: #1a2434; }
   header.nav-open .lang-switcher { color: #333; }
+  header.scrolled .lang-switcher { color: var(--navy); }
   header.nav-open .lang-switcher:hover { color: var(--navy); }
 
   .lang-dropdown {
@@ -563,11 +570,40 @@
   /* ── ABOUT ── */
   #about {
     padding: 100px 60px;
+    background: #ffffff;
+  }
+  .about-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .about-top {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
-    background: #f4f6fa;
+    margin-bottom: 72px;
+  }
+  .about-circles {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .about-circle {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: -40px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 32px rgba(26,43,74,0.15);
+    border: 4px solid #ffffff;
+  }
+  .about-circle:first-child { margin-left: 0; }
+  .about-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .about-text .section-tag { margin-bottom: 12px; }
@@ -1011,9 +1047,10 @@
   }
   .all-menu-btn span {
     display: block; height: 2px; width: 100%;
-    background: #1a2434; border-radius: 2px;
+    background: #ffffff; border-radius: 2px;
     transition: all 0.3s;
   }
+  header.scrolled .all-menu-btn span { background: #1a2434; }
   .all-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .all-menu-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .all-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -1123,18 +1160,21 @@
 
   /* ── 모바일 드로어 ── */
 .mobile-nav {
-    display: none;
+    display: flex !important;
+    flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
     z-index: 9999;
-    flex-direction: column;
     padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    border-right: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
   }
-  .mobile-nav.open { display: flex !important; z-index: 9999; }
+  .mobile-nav.open {
+    transform: translateX(0) !important;
+  }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
@@ -1178,6 +1218,14 @@
     header { padding: 14px 20px !important; }
   }
 
+
+  @media (max-width: 900px) {
+    #board-section { padding: 60px 24px !important; }
+    #board-section .board-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    #board-section { padding: 48px 16px !important; }
+  }
   /* ── index 반응형 ── */
   @media (max-width: 900px) {
     #hero { min-height: 100svh; }
@@ -1188,7 +1236,10 @@
     #products { padding: 60px 24px; }
     .products-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
     .product-card:first-child { grid-column: span 2; }
-    #about { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    #about { padding: 60px 24px; }
+  .about-top { grid-template-columns: 1fr; gap: 40px; }
+  .about-circle { width: 140px; height: 140px; }
+  .about-circles { flex-wrap: wrap; justify-content: center; }
     #contact { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
     #certs { padding: 60px 24px; }
     .section-title { font-size: 40px; }
@@ -1458,16 +1509,33 @@
 <!-- QUICK LINKS -->
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-text reveal">
-    <div class="section-tag">ABOUT US</div>
-    <div class="section-title">태일전기(주)</div>
-    <p class="about-desc">
-      태일전기(주)는 수배전반 및 자동제어시스템, 태양광 발전장치 전문 제조기업입니다.<br><br>
-      30년 이상의 기술 축적과 끊임없는 연구개발을 통해 고객에게 최고의 전기 솔루션을 제공하고 있으며, 국내외 다양한 프로젝트를 성공적으로 완수하였습니다.
-    </p>
-    <a href="about.html" class="btn-primary">회사 소개 더 보기</a>
+  <div class="about-inner">
+    <div class="about-top">
+      <div class="about-text reveal">
+        <div class="section-tag">SINCE 2000</div>
+        <div class="section-title" style="font-size:42px; line-height:1.2; margin-bottom:28px;">세상을 밝히는<br>전력 인프라의 선도기업</div>
+        <p class="about-desc">
+          태일전기(주)는 2000년 창립 이래 수배전반·자동제어시스템·신재생에너지 분야에서 끊임없는 연구개발을 통해 고객으로부터 신뢰받는 우수기업입니다.<br><br>
+          조달청 우수제품, 발전5사 정비적격업체 선정 등 공인된 기술력으로 대한민국 전력 인프라를 지탱하고 있습니다.
+        </p>
+        <a href="about.html" style="font-size:15px; font-weight:700; color:var(--navy); text-decoration:none; letter-spacing:0.5px; border-bottom:2px solid var(--accent); padding-bottom:4px;">회사소개 바로가기 &rsaquo;</a>
+      </div>
+      <div class="about-circles reveal">
+        <div class="about-circle">
+          <img src="img/about_circle1.webp" alt="수배전반 제품" onerror="this.parentElement.style.background='#1a2b4a'">
+        </div>
+        <div class="about-circle">
+          <img src="img/about_circle2.webp" alt="발전소 전력 인프라" onerror="this.parentElement.style.background='#0d47a1'">
+        </div>
+        <div class="about-circle">
+          <img src="img/about_circle3.webp" alt="현장 기술 전문가" onerror="this.parentElement.style.background='#e08c00'">
+        </div>
+        <div class="about-circle">
+          <img src="img/about_circle4.webp" alt="인천 전력망" onerror="this.parentElement.style.background='#1a56c8'">
+        </div>
+      </div>
+    </div>
   </div>
-
 </section>
 
 <!-- CLIENTS -->
@@ -1534,7 +1602,7 @@
       </div>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:28px; align-items:start;">
+    <div class="board-grid" style="display:grid; grid-template-columns:1fr 1fr 1.2fr; gap:28px; align-items:start;">
 
       <!-- 공지사항 -->
       <div class="reveal" style="background:#fff; border-top:3px solid var(--navy); padding:32px 36px 28px;">
