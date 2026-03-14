@@ -3,14 +3,16 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>사업영역 - 태일전기(주)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
 <style>
   :root { --navy:#0a1628; --accent:#f4a100; --blue:#0d47a1; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  html { background:#060f1e; }
-  body { font-family:"Noto Sans KR",sans-serif; background:var(--bg); color:var(--text); }
+  html { background:#060f1e;   overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden; font-family:"Noto Sans KR",sans-serif; background:var(--bg); color:var(--text); }
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,7 +86,8 @@
   .product-card-img { height:200px; overflow:hidden; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
   .product-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
   .product-card:hover .product-card-img img { transform:scale(1.05); }
-  .product-card-body { padding:22px; }
+  .product-card-body {
+    overflow-x: hidden; padding:22px; }
   .product-card-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:10px; }
   .product-card-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:8px; }
   .product-card-desc { font-size:13px; color:var(--text2); line-height:1.8; }
@@ -123,18 +126,21 @@
 
   
 .mobile-nav {
-    display: none;
+    display: flex !important;
+    flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
     z-index: 9999;
-    flex-direction: column;
     padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    border-right: none;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
   }
-  .mobile-nav.open { display: flex !important; z-index: 9999; }
+  .mobile-nav.open {
+    transform: translateX(0) !important;
+  }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
