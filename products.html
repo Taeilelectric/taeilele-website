@@ -61,7 +61,7 @@
   .page-hero-title span { color: #ffffff; }
   .page-hero-sub { font-size:15px; color:rgba(26,43,74,0.55); }
   .tab-nav { display:flex; padding: 0 max(60px, calc((100% - 1200px) / 2)); background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
-  .tab-btn { padding: 14px 24px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:"Noto Sans KR",sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+  .tab-btn { padding: 14px 40px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:"Noto Sans KR",sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
   .tab-btn:hover { color:var(--blue); }
   .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
   .section { display:none; }
@@ -127,14 +127,14 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
-    z-index: 300;
+    z-index: 9999;
     flex-direction: column;
     padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     border-right: none;
   }
-  .mobile-nav.open { display: flex; }
+  .mobile-nav.open { display: flex !important; z-index: 9999; }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
@@ -166,6 +166,7 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
+    .all-menu-btn { display: none; }
     nav { display: none !important; }
     .header-cta { display: none; }
   }
@@ -175,6 +176,7 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
+    .all-menu-btn { display: none; }
     nav { display: none !important; }
     .header-cta { display: none; }
   }
@@ -385,6 +387,8 @@
     <div class="mobile-sub">
       <a href="contact.html#inquiry">1:1 문의</a>
       <a href="contact.html#download">자료실</a>
+      <a href="contact.html#tab-notice">공지사항</a>
+      <a href="contact.html#tab-recruit">채용공고</a>
     </div>
   </div>
 </nav>
