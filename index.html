@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>태일전기(주) - 원활하고 안전한 전기</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,8 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth;   overflow-x: hidden;
+  }
 
   body {
     font-family: 'Noto Sans KR', sans-serif;
@@ -1023,10 +1024,12 @@
     display: none;
     position: fixed;
     top: 90px; left: 0; right: 0;
+    background: #ffffff;
     border-top: 3px solid var(--accent);
     box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     padding: 0;
     overflow: hidden;
+    z-index: 200;
   }
   .mega-menu.open {
     display: block;
