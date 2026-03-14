@@ -30,6 +30,7 @@
   header {
     position: fixed !important;
     top: 0 !important; left: 0 !important; right: 0 !important;
+    transform: translateZ(0);
     z-index: 1000;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -1166,7 +1167,8 @@
     display: none;
     flex-direction: column;
     position: fixed !important;
-    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0;
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    transform: translateZ(0); bottom: 0;
     background: #ffffff;
     z-index: 9999;
     padding: 100px 32px 40px;
