@@ -16,7 +16,7 @@
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -386,6 +386,10 @@
     align-items: center;
     justify-content: flex-end;
     gap: 4px;
+  }
+  @media (min-width: 901px) {
+    .mobile-nav { display: none !important; }
+    .ham-btn { display: none !important; }
   }
 </style>
 </head>
