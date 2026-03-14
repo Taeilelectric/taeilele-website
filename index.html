@@ -64,6 +64,9 @@
     letter-spacing: 3px;
     color: #ffffff;
     transition: color 0.25s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
   header.scrolled .logo { color: var(--navy); }
   header.nav-open .logo { color: var(--navy); }
@@ -274,9 +277,10 @@
   .hero-title {
     color: #ffffff !important;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 4vw, 54px);
+    font-size: clamp(24px, 2.8vw, 44px);
     line-height: 1.05;
     letter-spacing: 1px;
+    white-space: nowrap;
     animation: fadeUp 0.8s 0.15s ease both;
   }
   .hero-title .line2 { color: #ffffff; }
@@ -1834,7 +1838,7 @@ reveals.forEach(function(r) { observer.observe(r); });
 window.addEventListener('scroll', function() {
   var h = document.querySelector('header');
   if (!h) return;
-  h.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
+  // padding 고정
 });
 </script>
 
