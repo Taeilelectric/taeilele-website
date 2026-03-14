@@ -201,14 +201,14 @@
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
-    z-index: 300;
+    z-index: 9999;
     flex-direction: column;
     padding: 100px 32px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     border-right: none;
   }
-  .mobile-nav.open { display: flex; }
+  .mobile-nav.open { display: flex !important; z-index: 9999; }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
@@ -240,6 +240,7 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
+    .all-menu-btn { display: none; }
     nav { display: none !important; }
     .header-cta { display: none; }
   }
@@ -249,6 +250,7 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
+    .all-menu-btn { display: none; }
     nav { display: none !important; }
     .header-cta { display: none; }
   }
@@ -472,6 +474,8 @@
     <div class="mobile-sub">
       <a href="contact.html#inquiry">1:1 문의</a>
       <a href="contact.html#download">자료실</a>
+      <a href="contact.html#tab-notice">공지사항</a>
+      <a href="contact.html#tab-recruit">채용공고</a>
     </div>
   </div>
 </nav>
