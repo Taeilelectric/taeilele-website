@@ -1168,24 +1168,21 @@
 
   /* ── 모바일 드로어 ── */
 .mobile-nav {
-    display: flex;
+    display: none;
     flex-direction: column;
     position: fixed;
     top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    width: 100%;
+    height: 100%;
     background: #ffffff;
     z-index: 99999;
     padding: 80px 28px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
     box-sizing: border-box;
   }
   .mobile-nav.open {
-    transform: translateX(0) !important;
+    display: flex !important;
   }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
@@ -1318,7 +1315,6 @@
   }
 
   @media (min-width: 901px) {
-    .mobile-nav { display: none !important; }
     .ham-btn { display: none !important; }
     .all-menu-btn { display: flex !important; }
   }
