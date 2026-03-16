@@ -13,6 +13,7 @@
   }
   body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); }
 
+/* ── HEADER ── */
   header {
     position: fixed !important;
     top: 0 !important; left: 0 !important; right: 0 !important;
@@ -23,8 +24,8 @@
     align-items: center;
     padding: 0 60px;
     height: 90px;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(26,43,74,0.1);
+    background: transparent;
+    border-bottom: 1px solid transparent;
     transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
   .header-right {
@@ -33,22 +34,183 @@
     justify-content: flex-end;
     gap: 4px;
   }
+  header.scrolled {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(26,43,74,0.08) !important;
+    box-shadow: 0 2px 16px rgba(26,43,74,0.1);
+  }
+  header.nav-open {
+    background: #ffffff;
+    border-bottom-color: #e8e8e8;
+    box-shadow: none;
+  }
+
   .logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 3px;
-    color: var(--navy);
+    color: #ffffff;
     transition: color 0.25s;
     flex-shrink: 0;
     display: flex;
     align-items: center;
   }
-  .logo span { color:var(--accent); }
-  nav a { color:rgba(26,43,74,0.75); text-decoration:none; font-size:13px; font-weight:500; letter-spacing:1px; margin-left:36px; transition:color 0.2s; }
-  nav a:hover, nav a.active { color:var(--accent); }
-  .header-cta { background:var(--accent); color:var(--navy); padding:10px 24px; font-size:12px; font-weight:700; letter-spacing:1px; text-decoration:none; border-radius:2px; margin-left:36px; }
+  header.scrolled .logo { color: var(--navy); }
+  header.nav-open .logo { color: var(--navy); }
+  .logo span { color: var(--accent); }
 
-  
+  nav { display: flex; gap: 0; align-items: stretch; height: 90px; justify-self: center; }
+  .nav-item > a {
+    display: flex !important;
+    align-items: center;
+    padding: 0 32px;
+    height: 90px;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-item > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+  .nav-item:hover > a { color: var(--accent) !important; }
+  .nav-item:hover > a::after { transform: scaleX(1); }
+  header.nav-open .nav-item > a { color: #222 !important; }
+  header.nav-open .nav-item:hover > a { color: var(--accent) !important; }
+  header.scrolled .nav-item > a { color: #0d1829 !important; }
+  header.scrolled .nav-item:hover > a { color: var(--accent) !important; }
+
+  .header-cta {
+    background: var(--accent);
+    color: var(--navy);
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
+  }
+  .header-cta:hover { opacity: 0.85; }
+
+  /* ── LANG SWITCHER ── */
+  .lang-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    color: rgba(15,26,46,0.8);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: color 0.2s;
+    margin-right: 0;
+    user-select: none;
+  }
+  .lang-switcher:hover { color: #1a2434; }
+  header.nav-open .lang-switcher { color: #333; }
+  header.scrolled .lang-switcher { color: var(--navy); }
+  header.nav-open .lang-switcher:hover { color: var(--navy); }
+
+  .lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px)(100% + 10px);
+    right: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: 3px solid var(--accent);
+    border-radius: 0 0 6px 6px;
+    min-width: 140px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    z-index: 300;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+  .lang-switcher.open .lang-dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .lang-option {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: #333;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .lang-option + .lang-option { border-top: 1px solid #f0f0f0; }
+  .lang-option:hover { background: #fafafa; color: var(--accent); }
+  .lang-option.active { color: var(--accent); font-weight: 600; }
+
+  /* ── DROPDOWN ── */
+  .nav-item {
+    position: relative;
+  }
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-top: 3px solid var(--accent);
+    min-width: 180px;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  .dropdown a {
+    display: block !important;
+    padding: 14px 28px;
+    font-size: 14px;
+    color: #333 !important;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    transition: color 0.15s, background 0.15s;
+    border: none !important;
+  }
+  .dropdown a + a {
+    border-top: 1px solid #f0f0f0 !important;
+  }
+  .dropdown a::after { display: none !important; }
+  .dropdown a:hover {
+    color: var(--accent) !important;
+    background: #fafafa;
+  }
+  .nav-item:hover .dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   .page-hero {
     padding: 150px 60px 80px;
     background:linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%);
@@ -212,28 +374,48 @@
   .ham-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .ham-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-  
+  /* ── 모바일 드로어 ── */
 .mobile-nav {
     display: none;
     flex-direction: column;
-    position: fixed !important;
-    top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
     background: #ffffff;
-    z-index: 9999;
-    padding: 100px 32px 40px;
+    z-index: 99999;
+    padding: 80px 28px 40px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
   }
   .mobile-nav.open {
     display: flex !important;
+  }
+
+  .mobile-nav-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #0d1829;
+    line-height: 1;
   }
   .mobile-nav-item {
     border-bottom: 1px solid #e8ecf0;
   }
   .mobile-nav-item > a {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 0; color: #0d1829; text-decoration: none;
-    font-size: 16px; font-weight: 700; letter-spacing: 0.3px;
+    padding: 13px 0; color: #0d1829; text-decoration: none;
+    font-size: 15px; font-weight: 700; letter-spacing: 0.3px;
   }
   .mobile-nav-item > a .arrow {
     font-size: 10px; color: #888;
@@ -242,13 +424,13 @@
   .mobile-nav-item.open > a .arrow { transform: rotate(180deg); }
   .mobile-sub {
     display: none; flex-direction: column;
-    padding: 4px 0 12px 16px; gap: 0;
+    padding: 2px 0 8px 16px; gap: 0;
   }
   .mobile-nav-item.open .mobile-sub { display: flex; }
   .mobile-sub a {
-    padding: 11px 0 11px 12px;
+    padding: 8px 0 8px 12px;
     color: #4a5a70;
-    text-decoration: none; font-size: 14px; font-weight: 500;
+    text-decoration: none; font-size: 13px; font-weight: 500;
     border-left: 2px solid #e8ecf0;
     transition: color 0.2s, border-color 0.2s;
   }
@@ -257,165 +439,268 @@
   }
 
   @media (max-width: 900px) {
-    nav { display: none !important; }
-    .ham-btn { display: flex !important; }
+    .ham-btn { display: flex; }
     .all-menu-btn { display: none !important; }
+    nav { display: none !important; }
+    .header-cta { display: none; }
+    .hero-content { left: 0 !important; right: 0 !important; transform: translateY(-50%) !important; max-width: 100% !important; padding: 0 20px !important; text-align: center !important; box-sizing: border-box !important; }
     header {
-      display: flex !important;
-      justify-content: space-between !important;
-      padding: 0 20px !important;
+      display: flex;
+      justify-content: space-between;
     }
   }
-  .footer-tagline { font-size:11px; color: #1a2434; letter-spacing:1.5px; line-height:1.6; }
-  .footer-copy { font-size: 13px; color:rgba(26,43,74,0.2); letter-spacing:0.5px; margin-top:8px; }
-  .footer-info { display:flex; gap:80px; flex:1; justify-content:flex-end; }
-  .footer-col { display:flex; flex-direction:column; gap:14px; min-width:200px; }
-  .footer-col-title { font-size: 17px; font-weight:700; color: #1a2434; letter-spacing:0.5px; padding-bottom:12px; border-bottom:1px solid rgba(26,43,74,0.1); margin-bottom:2px; }
-  .footer-col-row { display:flex; flex-direction:column; gap:2px; }
-  .footer-col-label { font-size: 13px; font-weight:700; color:var(--accent); letter-spacing:1px; }
-  .footer-col-value { font-size: 15px; color:rgba(26,43,74,0.55); line-height:1.6; }
-  @media(max-width:900px) {
-    footer { flex-direction:column; gap:32px; padding:40px 24px; }
-    .footer-info { flex-direction:row; gap:40px; justify-content:flex-start; }
+  @media (max-width: 768px) {
+    header { padding: 14px 20px !important; }
   }
-  @media(max-width:768px) {
-    footer { padding:32px 20px; gap:28px; }
-    .footer-info { flex-direction:column; gap:28px; }
-    .footer-col { min-width:unset; }
+
+
+  @media (max-width: 900px) {
+    #board-section { padding: 60px 24px !important; }
+    #board-section .board-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    #board-section { padding: 48px 16px !important; }
+  }
+  /* ── index 반응형 ── */
+  @media (max-width: 900px) {
+    #hero { min-height: 100svh; }
+    .hero-content { left: 32px; right: 32px; bottom: 80px; max-width: calc(100vw - 64px); }
+    .hero-stats { display: none; }
+    .scroll-hint { display: none; }
+    #quick { grid-template-columns: repeat(2,1fr); }
+    #products { padding: 60px 24px; }
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+    .product-card:first-child { grid-column: span 2; }
+    #about { padding: 60px 24px; }
+  .about-top { grid-template-columns: 1fr; gap: 40px; }
+  .about-circle { width: 140px; height: 140px; }
+  .about-circles { flex-wrap: wrap; justify-content: center; }
+    #contact { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    #certs { padding: 60px 24px; }
+    .section-title { font-size: 40px; }
+    footer { flex-direction: column; gap: 32px; padding: 40px 24px; }
+    .footer-info { flex-direction: row; gap: 40px; justify-content: flex-start; }
+    .footer-left { align-items: flex-start; }
+  }
+  @media (max-width: 768px) {
+    .hero-content { left: 16px; right: 16px; bottom: 60px; max-width: calc(100vw - 32px); }
+    .hero-title { font-size: clamp(16px, 4.5vw, 28px); letter-spacing: 0; }
+    .hero-sub { font-size: 14px; margin-top: 12px; white-space: normal; word-break: keep-all; }
+    .hero-btns { flex-direction: column; gap: 10px; margin-top: 24px; }
+    .hero-btns a, .hero-btns button { width: 100%; text-align: center; padding: 14px 20px; }
+    #quick { grid-template-columns: repeat(2,1fr); }
+    .quick-item { padding: 28px 12px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card:first-child { grid-column: span 1; }
+    .about-box { grid-template-columns: 1fr 1fr; padding: 28px; gap: 20px; }
+    .about-stat .num { font-size: 38px; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    #certs { padding: 48px 16px; }
+    footer { padding: 28px 20px; gap: 20px; flex-direction: row; align-items: flex-start; flex-wrap: nowrap; }
+    .footer-left { flex-shrink: 0; max-width: 120px; }
+    .footer-left img { height: 32px; }
+    .footer-tagline { font-size: 10px; letter-spacing: 0; }
+    .footer-copy { display: none; }
+    .footer-info { flex-direction: row; gap: 16px; justify-content: flex-start; flex: 1; }
+    .footer-col { min-width: unset; flex: 1; gap: 10px; }
+    .footer-col-title { font-size: 11px; padding-bottom: 8px; margin-bottom: 0; }
+    .footer-col-value { font-size: 11px; }
+    .footer-col-label { font-size: 9px; }
   }
 
   @media (max-width: 480px) {
-    .page-hero { padding-top: 76px !important; padding-bottom: 100px !important; }
-    .page-hero-title { font-size: clamp(24px, 7.5vw, 34px) !important; }
-    .page-hero-sub { font-size: 12px; }
-    .tab-btn, .cert-tab { padding: 10px 12px; font-size: 12px; }
+    .hero-title { font-size: clamp(14px, 4vw, 22px) !important; }
+    .hero-content { left: 14px; right: 14px; bottom: 48px; }
+    .hero-sub { font-size: 14px; }
+    .hero-btns { margin-top: 18px; }
   }
 
-  .lang-switcher {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    cursor: pointer;
-    color: rgba(26,36,52,0.8);
+  /* 파트너사 필터 버튼 */
+  .client-filter-btn {
+    padding: 9px 22px;
+    border-radius: 50px;
+    border: 1.5px solid rgba(26,43,74,0.2);
+    background: transparent;
+    color: #3a4a60;
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: color 0.2s;
-    margin-right: 8px;
-    user-select: none;
-  }
-  .lang-switcher:hover { color: #1a2434fff; }
-  .lang-dropdown {
-    display: none;
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-top: 3px solid var(--accent);
-    border-radius: 0 0 6px 6px;
-    min-width: 140px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    z-index: 300;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.2s, transform 0.2s;
-    pointer-events: none;
-  }
-  .lang-switcher.open .lang-dropdown {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .lang-option {
-    display: block;
-    width: 100%;
-    padding: 12px 18px;
-    font-size: 14px;
-    color: #333;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
     font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.25s;
   }
-  .lang-option + .lang-option { border-top: 1px solid #f0f0f0; }
-  .lang-option:hover { background: #fafafa; color: var(--accent); }
-  .lang-option.active { color: var(--accent); font-weight: 600; }
-
-  .header-right {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 4px;
+  .client-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .client-filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--navy);
   }
   @media (min-width: 901px) {
-    .mobile-nav { display: none !important; }
     .ham-btn { display: none !important; }
+    .all-menu-btn { display: flex !important; }
   }
 </style>
 </head>
 <body>
 <header>
-<a class="logo" href="index.html"><img alt="태일전기" src="img/promo_img_1.webp" style="height:60px;width:auto;object-fit:contain;"/></a>
-<nav>
-<div class="nav-item">
-<a class="active" data-en="About Us" data-ko="회사소개" href="about.html">회사소개</a>
-<div class="dropdown">
-<a data-en="CEO Message" data-ko="CEO 인사말" href="about.html#ceo">CEO 인사말</a>
-<a data-en="Philosophy" data-ko="경영철학" href="about.html#philosophy">경영철학</a>
-<a data-en="History" data-ko="회사연혁" href="about.html#history">회사연혁</a>
-<a data-en="Location" data-ko="찾아오시는 길" href="about.html#location">찾아오시는 길</a>
-</div>
-</div>
-<div class="nav-item">
-<a data-en="Business" data-ko="사업영역" href="products.html">사업영역</a>
-<div class="dropdown">
-<a data-en="Switchboard" data-ko="수배전반" href="products.html#switchboard">수배전반</a>
-<a data-en="Control System" data-ko="제어시스템" href="products.html#control">제어시스템</a>
-<a data-en="Renewable Energy" data-ko="신재생에너지" href="products.html#energy">신재생에너지</a>
-<a data-en="Construction" data-ko="공사부문" href="products.html#construction">공사부문</a>
-</div>
-</div>
-<div class="nav-item">
-<a data-en="Media" data-ko="홍보관" href="promo.html">홍보관</a>
-<div class="dropdown">
-<a data-en="Certificates" data-ko="인증서" href="promo.html#tab-cert">인증서</a>
-<a data-en="Patents" data-ko="특허증" href="promo.html#tab-patent">특허증</a>
-<a data-en="Awards" data-ko="표창장" href="promo.html#tab-award">표창장</a>
-<a data-en="Partners" data-ko="파트너사" href="promo.html#tab-partners">파트너사</a>
-</div>
-</div>
-<div class="nav-item">
-<a data-en="Support" data-ko="고객센터" href="contact.html">고객센터</a>
-<div class="dropdown">
-<a data-en="Inquiry" data-ko="1:1 문의" href="contact.html#inquiry">1:1 문의</a>
-<a data-en="Downloads" data-ko="자료실" href="contact.html#download">자료실</a>
-</div>
-</div>
+  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"></a>
+  <nav>
+    <div class="nav-item">
+      <a href="about.html" data-ko="회사소개" data-en="About Us">회사소개</a>
+      <div class="dropdown">
+        <a href="about.html#ceo" data-ko="CEO 인사말" data-en="CEO Message">CEO 인사말</a>
+        <a href="about.html#philosophy" data-ko="경영철학" data-en="Philosophy">경영철학</a>
+        <a href="about.html#history" data-ko="회사연혁" data-en="History">회사연혁</a>
+        <a href="about.html#location" data-ko="찾아오시는 길" data-en="Location">찾아오시는 길</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="products.html" data-ko="사업영역" data-en="Business">사업영역</a>
+      <div class="dropdown">
+        <a href="products.html#switchboard" data-ko="수배전반" data-en="Switchboard">수배전반</a>
+        <a href="products.html#control" data-ko="제어시스템" data-en="Control System">제어시스템</a>
+        <a href="products.html#energy" data-ko="신재생에너지" data-en="Renewable Energy">신재생에너지</a>
+        <a href="products.html#construction" data-ko="공사부문" data-en="Construction">공사부문</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="promo.html" data-ko="홍보관" data-en="Media">홍보관</a>
+      <div class="dropdown">
+        <a href="promo.html#tab-cert" data-ko="인증서" data-en="Certificates">인증서</a>
+        <a href="promo.html#tab-patent" data-ko="특허증" data-en="Patents">특허증</a>
+        <a href="promo.html#tab-award" data-ko="표창장" data-en="Awards">표창장</a>
+        <a href="promo.html#tab-partners" data-ko="파트너사" data-en="Partners">파트너사</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="contact.html" data-ko="고객센터" data-en="Support">고객센터</a>
+      <div class="dropdown">
+        <a href="contact.html#inquiry" data-ko="1:1 문의" data-en="Inquiry">1:1 문의</a>
+        <a href="contact.html#download" data-ko="자료실" data-en="Downloads">자료실</a>
+      </div>
+    </div>
+  </nav>
+  <div class="header-right">
+    <div class="lang-switcher" id="langSwitcher">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <span class="lang-label">KO</span>
+      <div class="lang-dropdown">
+        <button class="lang-option active" data-lang="ko">🇰🇷 한국어</button>
+        <button class="lang-option" data-lang="en">🇺🇸 English</button>
+      </div>
+    </div>
+    <button class="all-menu-btn" id="allMenuBtn" aria-label="전체메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="ham-btn" id="hamBtn" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<!-- 모바일 드로어 (header 밖) -->
+<nav class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="메뉴 닫기">✕</button>
+  <div class="mobile-nav-item">
+    <a href="about.html">회사소개<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="about.html#ceo">CEO 인사말</a>
+      <a href="about.html#philosophy">경영철학</a>
+      <a href="about.html#history">회사연혁</a>
+      <a href="about.html#location">찾아오시는 길</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="products.html">사업영역<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="products.html#switchboard">수배전반</a>
+      <a href="products.html#control">제어시스템</a>
+      <a href="products.html#energy">신재생에너지</a>
+      <a href="products.html#construction">공사부문</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="promo.html">홍보관<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="promo.html#tab-cert">인증서</a>
+      <a href="promo.html#tab-patent">특허증</a>
+      <a href="promo.html#tab-award">표창장</a>
+      <a href="promo.html#tab-partners">파트너사</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item">
+    <a href="contact.html">고객센터<span class="arrow">▼</span></a>
+    <div class="mobile-sub">
+      <a href="contact.html#inquiry">1:1 문의</a>
+      <a href="contact.html#download">자료실</a>
+      <a href="contact.html#tab-notice">공지사항</a>
+      <a href="contact.html#tab-recruit">채용공고</a>
+    </div>
+  </div>
 </nav>
 
-<div class="header-right"><div class="lang-switcher" id="langSwitcher">
-<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18">
-<circle cx="12" cy="12" r="10"></circle>
-<line x1="2" x2="22" y1="12" y2="12"></line>
-<path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-</svg>
-<span class="lang-label">KO</span>
-<div class="lang-dropdown">
-<button class="lang-option active" data-lang="ko">🇰🇷 한국어</button>
-<button class="lang-option" data-lang="en">🇺🇸 English</button>
+<!-- 메가메뉴 오버레이 -->
+<div class="mega-overlay" id="megaOverlay"></div>
+
+<!-- 전체메뉴 메가메뉴 -->
+<div class="mega-menu" id="megaMenu">
+  <div class="mega-menu-inner">
+    <!-- 회사소개 -->
+    <div class="mega-col">
+      <div class="mega-col-title">
+        <span class="col-icon">🏢</span> 회사소개
+      </div>
+      <div class="mega-col-links">
+        <a href="about.html#ceo" class="mega-sub-link">CEO 인사말</a>
+        <a href="about.html#philosophy" class="mega-sub-link">경영철학</a>
+        <a href="about.html#history" class="mega-sub-link">회사연혁</a>
+        <a href="about.html#location" class="mega-sub-link">찾아오시는 길</a>
+      </div>
+    </div>
+    <!-- 사업영역 -->
+    <div class="mega-col">
+      <div class="mega-col-title">
+        <span class="col-icon">⚡</span> 사업영역
+      </div>
+      <div class="mega-col-links">
+        <a href="products.html#switchboard" class="mega-sub-link">수배전반</a>
+        <a href="products.html#control" class="mega-sub-link">제어시스템</a>
+        <a href="products.html#energy" class="mega-sub-link">신재생에너지</a>
+        <a href="products.html#construction" class="mega-sub-link">공사부문</a>
+      </div>
+    </div>
+    <!-- 홍보관 -->
+    <div class="mega-col">
+      <div class="mega-col-title">
+        <span class="col-icon">📢</span> 홍보관
+      </div>
+      <div class="mega-col-links">
+        <a href="promo.html#tab-cert" class="mega-sub-link">인증서</a>
+        <a href="promo.html#tab-patent" class="mega-sub-link">특허증</a>
+        <a href="promo.html#tab-award" class="mega-sub-link">표창장</a>
+        <a href="promo.html#tab-partners" class="mega-sub-link">파트너사</a>
+      </div>
+    </div>
+    <!-- 고객센터 -->
+    <div class="mega-col">
+      <div class="mega-col-title">
+        <span class="col-icon">💬</span> 고객센터
+      </div>
+      <div class="mega-col-links">
+        <a href="contact.html#inquiry" class="mega-sub-link">1:1 문의</a>
+        <a href="contact.html#download" class="mega-sub-link">자료실</a>
+        <a href="contact.html#tab-notice" class="mega-sub-link">공지사항</a>
+        <a href="contact.html#tab-recruit" class="mega-sub-link">채용공고</a>
+      </div>
+    </div>
+  </div>
 </div>
-</div></div><button aria-label="메뉴 열기" class="ham-btn" id="hamBtn">
-<span></span><span></span><span></span>
-</button>
-</header>
 
 <nav class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-item">
@@ -724,37 +1009,7 @@ function showHistTab(id) {
   window.addEventListener('hashchange', handleHash);
 
 </script>
-<script>
-// ── 햄버거 메뉴 ──
-(function(){
-  var btn = document.getElementById('hamBtn');
-  var nav = document.getElementById('mobileNav');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', function(){
-    btn.classList.toggle('open');
-    nav.classList.toggle('open');
-    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-  });
-  nav.querySelectorAll('.mobile-nav-item > a').forEach(function(link){
-    var arrow = link.querySelector('.arrow');
-    if (!arrow) return;
-    link.addEventListener('click', function(e){
-      var item = link.parentElement;
-      var already = item.classList.contains('open');
-      nav.querySelectorAll('.mobile-nav-item').forEach(function(i){ i.classList.remove('open'); });
-      if (!already) item.classList.add('open');
-      e.preventDefault();
-    });
-  });
-  nav.querySelectorAll('.mobile-sub a').forEach(function(a){
-    a.addEventListener('click', function(){
-      btn.classList.remove('open');
-      nav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-})();
-</script>
+
 <footer>
 <div class="footer-left">
 <div><img alt="태일전기" src="img/promo_img_1.webp" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.5;"/></div>
@@ -819,5 +1074,89 @@ langOptions.forEach(btn => {
 document.addEventListener("click", (e) => {
   if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove("open");
 });
-</script></body>
+</script><script>
+// ── 햄버거 메뉴 ──
+(function(){
+  var btn = document.getElementById('hamBtn');
+  var nav = document.getElementById('mobileNav');
+  var closeBtn = document.getElementById('mobileNavClose');
+  if (!btn || !nav) return;
+  if (closeBtn) closeBtn.addEventListener('click', function(){
+    btn.classList.remove('open');
+    nav.classList.remove('open');
+    document.documentElement.style.overflow = '';
+  });
+  btn.addEventListener('click', function(){
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.documentElement.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  });
+  nav.querySelectorAll('.mobile-nav-item > a').forEach(function(link){
+    var arrow = link.querySelector('.arrow');
+    if (!arrow) return;
+    link.addEventListener('click', function(e){
+      var item = link.parentElement;
+      var already = item.classList.contains('open');
+      nav.querySelectorAll('.mobile-nav-item').forEach(function(i){ i.classList.remove('open'); });
+      if (!already) item.classList.add('open');
+      e.preventDefault();
+    });
+  });
+  nav.querySelectorAll('.mobile-sub a').forEach(function(a){
+    a.addEventListener('click', function(){
+      btn.classList.remove('open');
+      nav.classList.remove('open');
+      document.documentElement.style.overflow = '';
+    });
+  });
+})();
+
+
+// ── 전체메뉴(메가메뉴) ──
+(function(){
+  var allBtn = document.getElementById('allMenuBtn');
+  var megaMenu = document.getElementById('megaMenu');
+  var megaOverlay = document.getElementById('megaOverlay');
+  var isOpen = false;
+
+  function openMega() {
+    isOpen = true;
+    allBtn.classList.add('open');
+    megaMenu.classList.add('open');
+    megaOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMega() {
+    isOpen = false;
+    allBtn.classList.remove('open');
+    megaMenu.classList.remove('open');
+    megaOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  allBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (isOpen) closeMega(); else openMega();
+  });
+
+  megaOverlay.addEventListener('click', closeMega);
+
+  // 메가메뉴 링크 클릭 시 닫기
+  megaMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMega);
+  });
+
+  // ESC 키로 닫기
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeMega();
+  });
+})();
+window.addEventListener('scroll', function() {
+  var h = document.querySelector('header');
+  if (!h) return;
+  if (window.scrollY > 10) { h.classList.add('scrolled'); }
+  else { h.classList.remove('scrolled'); }
+});
+</script>
+</body>
 </html>
