@@ -236,8 +236,8 @@
   
   .tab-nav { display:flex; padding: 0 max(60px, calc((100% - 1200px) / 2)); background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
   .tab-btn { padding: 14px 24px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:'Noto Sans KR',sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
-  .tab-btn:hover { color:var(--blue); }
-  .tab-btn.active { color:var(--blue); border-bottom-color:var(--accent); font-weight:700; }
+  .tab-btn:hover { color:#0d1829; }
+  .tab-btn.active { color:#0d1829; border-bottom-color:var(--accent); font-weight:700; }
 
   
   .section { padding:64px 60px; max-width:1200px; margin:0 auto; display:none; background:var(--bg); }
@@ -541,6 +541,74 @@
   @media (min-width: 901px) {
     .ham-btn { display: none !important; }
     .all-menu-btn { display: flex !important; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #e8ecf2;
+    padding: 52px 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    border-top: 1px solid rgba(26,43,74,0.12);
+  }
+  .footer-left {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .footer-logo { display: block; }
+  .footer-tagline {
+    font-size: 15px;
+    color: #2e3d55;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(26,36,52,0.45);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    align-self: flex-end;
+  }
+  .footer-info {
+    display: flex;
+    gap: 80px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 200px;
+  }
+  .footer-col-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #1a2434;
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(26,43,74,0.12);
+    margin-bottom: 2px;
+  }
+  .footer-col-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .footer-col-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+  .footer-col-value {
+    font-size: 15px;
+    color: #253549;
+    line-height: 1.6;
   }
 </style>
 </head>
@@ -1011,35 +1079,37 @@ function showHistTab(id) {
 </script>
 
 <footer>
-<div class="footer-left">
-<div><img alt="태일전기" src="img/promo_img_1.webp" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.5;"/></div>
-<div class="footer-tagline">대표이사 : 여규철</div>
-<div class="footer-copy">COPYRIGHT © TAEILELE. ALL RIGHTS RESERVED.</div>
-</div>
-<div class="footer-info">
-<div class="footer-col">
-<div class="footer-col-title">본사</div>
-<div class="footer-col-row">
-<span class="footer-col-label">주소</span>
-<span class="footer-col-value">인천시 서구 원당대로 480번길 6-11</span>
-</div>
-<div class="footer-col-row">
-<span class="footer-col-label">대표전화</span>
-<span class="footer-col-value">032-568-7051~3</span>
-</div>
-</div>
-<div class="footer-col">
-<div class="footer-col-title">사업본부</div>
-<div class="footer-col-row">
-<span class="footer-col-label">주소</span>
-<span class="footer-col-value">경기 성남시 분당구 야탑로 338, 201호</span>
-</div>
-<div class="footer-col-row">
-<span class="footer-col-label">대표전화</span>
-<span class="footer-col-value">070-4130-1261</span>
-</div>
-</div>
-</div>
+  <div class="footer-left">
+    <div class="footer-logo">
+      <img src="img/promo_img_1.webp" alt="태일전기" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.5;">
+    </div>
+    <div class="footer-tagline">대표이사 : 여규철</div>
+    <div class="footer-copy">COPYRIGHT © TAEILELE.<br>ALL RIGHTS RESERVED.</div>
+  </div>
+  <div class="footer-info">
+    <div class="footer-col">
+      <div class="footer-col-title">본사</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">인천시 서구 원당대로 480번길 6-11</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">032-568-7051~3</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">사업본부</div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">주소</span>
+        <span class="footer-col-value">경기 성남시 분당구 야탑로 338, 201호</span>
+      </div>
+      <div class="footer-col-row">
+        <span class="footer-col-label">대표전화</span>
+        <span class="footer-col-value">070-4130-1261</span>
+      </div>
+    </div>
+  </div>
 </footer>
 <script>
 // ── 언어 전환 ──
