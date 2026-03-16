@@ -24,14 +24,11 @@
   
   .page-hero {
     padding:160px 60px 100px;
-    background: linear-gradient(rgba(10,22,50,0.65), rgba(10,22,50,0.65)), url('img/hero_about.webp') center/cover no-repeat;
+    background: linear-gradient(135deg,var(--navy) 0%,#1a3a6e 70%,#2a5298 100%);
     position:relative; overflow:hidden;
   }
   .page-hero::before { content: none; }
-  .page-hero::after {
-    content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
-    background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
-  }
+  .page-hero::after { content: none; }
   .page-hero-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding-bottom:100px;
   text-align: left;
   }
