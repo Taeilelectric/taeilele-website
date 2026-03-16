@@ -1043,7 +1043,7 @@
 
   /* ── 전체메뉴 버튼 ── */
   .all-menu-btn {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     gap: 5px;
@@ -1218,10 +1218,10 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
-    .all-menu-btn { display: none; }
+    .all-menu-btn { display: none !important; }
     nav { display: none !important; }
     .header-cta { display: none; }
-    .hero-content { left: 20px !important; right: 20px !important; transform: translateY(-50%) !important; max-width: 100% !important; padding: 0 !important; }
+    .hero-content { left: 0 !important; right: 0 !important; transform: translateY(-50%) !important; max-width: 100% !important; padding: 0 20px !important; text-align: center !important; box-sizing: border-box !important; }
     header {
       display: flex;
       justify-content: space-between;
@@ -1263,7 +1263,7 @@
   @media (max-width: 768px) {
     .hero-content { left: 16px; right: 16px; bottom: 60px; max-width: calc(100vw - 32px); }
     .hero-title { font-size: clamp(16px, 4.5vw, 28px); letter-spacing: 0; }
-    .hero-sub { font-size: 16px; margin-top: 12px; }
+    .hero-sub { font-size: 14px; margin-top: 12px; white-space: normal; word-break: keep-all; }
     .hero-btns { flex-direction: column; gap: 10px; margin-top: 24px; }
     .hero-btns a, .hero-btns button { width: 100%; text-align: center; padding: 14px 20px; }
     #quick { grid-template-columns: repeat(2,1fr); }
@@ -1320,6 +1320,7 @@
   @media (min-width: 901px) {
     .mobile-nav { display: none !important; }
     .ham-btn { display: none !important; }
+    .all-menu-btn { display: flex !important; }
   }
   /* ── BOARD SECTION ── */
   #board-section {
