@@ -37,8 +37,8 @@
     align-items: center;
     padding: 0 60px;
     height: 90px;
-    background: transparent;
-    border-bottom: 1px solid transparent;
+    background: #ffffff;
+    border-bottom: 1px solid rgba(26,43,74,0.1);
     transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
   }
   .header-right {
@@ -62,7 +62,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 3px;
-    color: #ffffff;
+    color: var(--navy);
     transition: color 0.25s;
     flex-shrink: 0;
     display: flex;
@@ -78,7 +78,7 @@
     align-items: center;
     padding: 0 32px;
     height: 90px;
-    color: #ffffff !important;
+    color: #0d1829 !important;
     text-decoration: none;
     font-size: 17px;
     font-weight: 600;
@@ -117,7 +117,6 @@
 
   /* ── LANG SWITCHER ── */
   .lang-switcher {
-    color: #ffffff;
     position: relative;
     display: flex;
     align-items: center;
@@ -1051,10 +1050,9 @@
   }
   .all-menu-btn span {
     display: block; height: 2px; width: 100%;
-    background: #ffffff; border-radius: 2px;
+    background: #1a2434; border-radius: 2px;
     transition: all 0.3s;
   }
-  header.scrolled .all-menu-btn span { background: #1a2434; }
   .all-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .all-menu-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .all-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -1872,12 +1870,11 @@ reveals.forEach(function(r) { observer.observe(r); });
 window.addEventListener('scroll', function() {
   var h = document.querySelector('header');
   if (!h) return;
-  // 헤더 항상 상단 고정
-  h.style.position = 'fixed';
-  h.style.top = '0';
-  h.style.left = '0';
-  h.style.right = '0';
-  h.style.zIndex = '10000';
+  if (window.scrollY > 10) {
+    h.classList.add('scrolled');
+  } else {
+    h.classList.remove('scrolled');
+  }
 });
 
 // 초기에도 강제 고정
