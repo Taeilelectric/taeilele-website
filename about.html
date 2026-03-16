@@ -27,11 +27,7 @@
     background: linear-gradient(rgba(10,22,50,0.65), rgba(10,22,50,0.65)), url('img/hero_about.webp') center/cover no-repeat;
     position:relative; overflow:hidden;
   }
-  .page-hero::before {
-    content:""; position:absolute; inset:0;
-    background-image:linear-gradient(rgba(26,43,74,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,43,74,0.04) 1px,transparent 1px);
-    background-size:48px 48px;
-  }
+  .page-hero::before { content: none; }
   .page-hero::after {
     content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
     background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
