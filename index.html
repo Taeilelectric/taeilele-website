@@ -1908,7 +1908,7 @@ window.addEventListener('scroll', function() {
   btn.addEventListener('click', function(){
     btn.classList.toggle('open');
     nav.classList.toggle('open');
-    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+    document.documentElement.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
   });
   nav.querySelectorAll('.mobile-nav-item > a').forEach(function(link){
     var arrow = link.querySelector('.arrow');
@@ -1925,7 +1925,7 @@ window.addEventListener('scroll', function() {
     a.addEventListener('click', function(){
       btn.classList.remove('open');
       nav.classList.remove('open');
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     });
   });
 })();
