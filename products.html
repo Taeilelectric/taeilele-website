@@ -600,7 +600,6 @@
     .footer-col-label { font-size: 9px; }
   }
 
-
   footer {
     background: #e8ecf2;
     padding: 52px 80px;
@@ -968,7 +967,9 @@
   window.addEventListener('hashchange', handleHash);
   window.addEventListener('scroll', function() {
     var h = document.querySelector('header');
-    if (h) h.style.padding = window.scrollY > 50 ? '12px 60px' : '20px 60px';
+    if (!h) return;
+    if (window.scrollY > 10) { h.classList.add('scrolled'); }
+    else { h.classList.remove('scrolled'); }
   });
 </script>
 
