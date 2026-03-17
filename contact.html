@@ -246,6 +246,17 @@
   }
   .tab-btn:hover { color:#0d1829; }
   .tab-btn.active { color:#0d1829; border-bottom-color:var(--accent); font-weight:700; }
+
+  /* 게시판 */
+  .board-table { max-width: 900px; margin: 40px auto; border-top: 2px solid #0d1829; }
+  .board-row { display: flex; align-items: center; padding: 14px 8px; border-bottom: 1px solid #e8ecf0; font-size: 15px; color: #253549; }
+  .board-header { background: #f4f6fa; font-weight: 700; font-size: 13px; color: #6a7a90; letter-spacing: 0.5px; }
+  .board-num { width: 60px; text-align: center; flex-shrink: 0; }
+  .board-title-col { flex: 1; }
+  .board-date-col { width: 120px; text-align: center; flex-shrink: 0; }
+  .board-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+  .board-badge.on { background: rgba(244,161,0,0.15); color: var(--accent); }
+  .board-badge.off { background: #f0f0f0; color: #999; }
   .tab-panel { display:none; }
   .tab-panel.active { display:block; }
 
@@ -946,6 +957,8 @@
 <div class="tab-nav">
 <button class="tab-btn active" onclick="showTab('tab-inquiry', this)">1:1 문의</button>
 <button class="tab-btn" onclick="showTab('tab-download', this)">자료실</button>
+<button class="tab-btn" onclick="showTab('tab-notice', this)">공지사항</button>
+<button class="tab-btn" onclick="showTab('tab-recruit', this)">채용공고</button>
 </div>
 <!-- 문의하기 탭 -->
 <div class="tab-panel active" id="tab-inquiry">
@@ -1035,6 +1048,64 @@
 </div>
 </div>
 </div>
+
+<!-- 공지사항 탭 -->
+<div class="tab-panel" id="tab-notice">
+<div class="board-table">
+  <div class="board-row board-header">
+    <span class="board-num">번호</span>
+    <span class="board-title-col">제목</span>
+    <span class="board-date-col">날짜</span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">4</span>
+    <span class="board-title-col">홈페이지 개편 안내</span>
+    <span class="board-date-col">2025.02.10</span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">3</span>
+    <span class="board-title-col">ISO 9001 인증 갱신 완료</span>
+    <span class="board-date-col">2025.03.20</span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">2</span>
+    <span class="board-title-col">사업본부 이전 안내</span>
+    <span class="board-date-col">2025.05.12</span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">1</span>
+    <span class="board-title-col">2025년 하절기 휴무 안내</span>
+    <span class="board-date-col">2025.07.01</span>
+  </div>
+</div>
+</div>
+
+<!-- 채용공고 탭 -->
+<div class="tab-panel" id="tab-recruit">
+<div class="board-table">
+  <div class="board-row board-header">
+    <span class="board-num">번호</span>
+    <span class="board-title-col">제목</span>
+    <span class="board-date-col">상태</span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">3</span>
+    <span class="board-title-col">품질관리 담당자 (경력)</span>
+    <span class="board-date-col"><span class="board-badge off">마감</span></span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">2</span>
+    <span class="board-title-col">영업 담당자 (신입/경력)</span>
+    <span class="board-date-col"><span class="board-badge on">채용중</span></span>
+  </div>
+  <div class="board-row">
+    <span class="board-num">1</span>
+    <span class="board-title-col">전기 설계 엔지니어 (경력)</span>
+    <span class="board-date-col"><span class="board-badge on">채용중</span></span>
+  </div>
+</div>
+</div>
+
 <script>
 
   function showTab(tabId) {
@@ -1061,8 +1132,10 @@
   }
   function handleHash() {
     var hash = window.location.hash.replace('#','');
-    if (hash === 'download') { showTab('tab-download'); }
-    else if (hash === 'inquiry' || hash === '') { showTab('tab-inquiry'); }
+    if (hash === 'download' || hash === 'tab-download') { showTab('tab-download'); }
+    else if (hash === 'tab-notice') { showTab('tab-notice'); }
+    else if (hash === 'tab-recruit') { showTab('tab-recruit'); }
+    else if (hash === 'inquiry' || hash === 'tab-inquiry' || hash === '') { showTab('tab-inquiry'); }
   }
   window.addEventListener('DOMContentLoaded', handleHash);
   window.addEventListener('hashchange', handleHash);
