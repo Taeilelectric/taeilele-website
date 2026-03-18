@@ -240,7 +240,20 @@
   .sub-panel.active { display:block; animation:fadeInUp 0.3s ease; }
   @keyframes fadeInUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
   .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .product-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); }
+  .seismic-info { background:#f8fafd; border:1.5px solid var(--border); border-radius:12px; padding:32px 36px; margin-bottom:36px; }
+  .seismic-feature { margin-bottom:28px; }
+  .seismic-feature-title { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; }
+  .seismic-feature-highlight { font-size:14px; font-weight:700; color:#c0392b; margin-bottom:10px; line-height:1.6; }
+  .seismic-feature-desc { font-size:13px; color:var(--text2); line-height:1.9; }
+  .seismic-tech-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px; }
+  .seismic-tech-card { background:#fff; border:1.5px solid var(--border); border-radius:10px; padding:20px 16px; text-align:center; }
+  .seismic-tech-badge { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
+  .seismic-tech-badge.patent { background:#eef2ff; color:#3b5bdb; }
+  .seismic-tech-badge.cert { background:#e6fcf5; color:#0ca678; }
+  .seismic-tech-badge.gov { background:#fff4e6; color:#e67700; }
+  .seismic-tech-num { font-size:13px; font-weight:700; color:var(--accent); margin-bottom:8px; }
+  .seismic-tech-desc { font-size:12px; color:var(--text2); line-height:1.7; }
+  .product-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); cursor:pointer; }
   .product-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
   .product-card-img { height:200px; overflow:hidden; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
   .product-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
@@ -855,19 +868,57 @@
 <button class="sub-tab-btn active" onclick="showSubTab('sw7',this)">내진(면진)배전반</button>
 <button class="sub-tab-btn" onclick="showSubTab('sw8',this)">스마트 배전반</button>
 </div>
-<div class="sub-panel active" id="sub-sw7"><div class="product-grid">
-<div class="product-card"><div class="product-card-img"><img alt="특고압 수배전반" src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · SPECIAL HIGH VOLTAGE</div><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">22.9kV 특고압 수전설비에 내진·면진 설계 적용. 규모 8.3 지진에도 안정적인 전력 공급 유지.</div></div></div>
-<div class="product-card"><div class="product-card-img"><img alt="저압 배전반" src="https://i.ibb.co/mVVCKTRg/sub2-1-img2.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · LOW VOLTAGE</div><div class="product-card-title">저압 배전반</div><div class="product-card-desc">저압 배전반에 내진 구조 적용. 지진 발생 시에도 각 부하에 안전한 전력 분배 유지.</div></div></div>
-<div class="product-card"><div class="product-card-img"><img alt="전동기 제어반" src="https://i.ibb.co/Xf4nhNrd/sub2-1-img3.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · MOTOR CONTROL</div><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">전동기 제어반에 내진 설계 적용. 지진 시에도 기동·정지·보호 기능 정상 작동.</div></div></div>
-<div class="product-card"><div class="product-card-img"><img alt="분전반" src="https://i.ibb.co/B2q1QFJx/sub2-1-img4.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · DISTRIBUTION</div><div class="product-card-title">분전반</div><div class="product-card-desc">분전반에 내진 구조 적용. 말단 부하의 전력 공급 안정성 확보.</div></div></div>
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔌</span></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · POWER PANEL</div><div class="product-card-title">동력반</div><div class="product-card-desc">냉난방·환기·엘리베이터 등 동력 부하 제어반에 내진 설계 적용. 재난 상황에서도 안정적 운전.</div></div></div>
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔋</span></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · UPS</div><div class="product-card-title">무정전전원장치 (UPS)</div><div class="product-card-desc">내진 구조의 UPS. 지진 발생 시에도 서버·의료기기 등 중요 부하에 무중단 전력 공급.</div></div></div>
+<div class="sub-panel active" id="sub-sw7">
+<div class="seismic-info">
+  <div class="seismic-feature">
+    <div class="seismic-feature-title">◇ 제품 특징</div>
+    <div class="seismic-feature-highlight">이상 검출용 IR 데이터 송신센서를 통한 감시제어시스템 및 진동저감장치가 장착된 내진(면진) 배전반</div>
+    <div class="seismic-feature-desc">배전반 모선(부스바)에 별도 전원공급이 필요 없는 무전원 IR 데이터 송신센서 및 배전반 내부에 다수 개의 감시센서를 장착, 배전반 이상상태를 검출하고 사용자(작업자)에게 모니터 및 음성경보 등으로 통보하여 전기안전사고 및 전기화재를 예방하는 등 배전반 안전성을 제고</div>
+  </div>
+  <div class="seismic-tech">
+    <div class="seismic-feature-title">◇ 핵심기술</div>
+    <div class="seismic-tech-grid">
+      <div class="seismic-tech-card">
+        <div class="seismic-tech-badge patent">특허청</div>
+        <div class="seismic-tech-num">특허 제10-1946345호</div>
+        <div class="seismic-tech-desc">하베스팅 기술을 적용한 이상 검출용<br>IR 데이터 송신센서를 통한 배전반 감시제어시스템</div>
+      </div>
+      <div class="seismic-tech-card">
+        <div class="seismic-tech-badge patent">특허청</div>
+        <div class="seismic-tech-num">특허 제10-1864772호</div>
+        <div class="seismic-tech-desc">전위차를 이용한 배전반 이상 검출용<br>IR 데이터 송신센서</div>
+      </div>
+      <div class="seismic-tech-card">
+        <div class="seismic-tech-badge patent">특허청</div>
+        <div class="seismic-tech-num">특허 제10-1860922호</div>
+        <div class="seismic-tech-desc">면진 기능을 갖춘 수 배전반</div>
+      </div>
+      <div class="seismic-tech-card">
+        <div class="seismic-tech-badge cert">성능인증</div>
+        <div class="seismic-tech-num">20-ABZ0482</div>
+        <div class="seismic-tech-desc">중소기업청 성능인증 제품</div>
+      </div>
+      <div class="seismic-tech-card">
+        <div class="seismic-tech-badge gov">조달청</div>
+        <div class="seismic-tech-num">2021044</div>
+        <div class="seismic-tech-desc">조달청 우수제품지정</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="product-grid">
+<div class="product-card" onclick="openModal('특고압 수배전반')"><div class="product-card-img"><img alt="특고압 수배전반" src="https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · SPECIAL HIGH VOLTAGE</div><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">22.9kV 특고압 수전설비에 내진·면진 설계 적용. 규모 8.3 지진에도 안정적인 전력 공급 유지.</div></div></div>
+<div class="product-card" onclick="openModal('저압 배전반')"><div class="product-card-img"><img alt="저압 배전반" src="https://i.ibb.co/mVVCKTRg/sub2-1-img2.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · LOW VOLTAGE</div><div class="product-card-title">저압 배전반</div><div class="product-card-desc">저압 배전반에 내진 구조 적용. 지진 발생 시에도 각 부하에 안전한 전력 분배 유지.</div></div></div>
+<div class="product-card" onclick="openModal('전동기 제어반')"><div class="product-card-img"><img alt="전동기 제어반" src="https://i.ibb.co/Xf4nhNrd/sub2-1-img3.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · MOTOR CONTROL</div><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">전동기 제어반에 내진 설계 적용. 지진 시에도 기동·정지·보호 기능 정상 작동.</div></div></div>
+<div class="product-card" onclick="openModal('분전반')"><div class="product-card-img"><img alt="분전반" src="https://i.ibb.co/B2q1QFJx/sub2-1-img4.jpg"/></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · DISTRIBUTION</div><div class="product-card-title">분전반</div><div class="product-card-desc">분전반에 내진 구조 적용. 말단 부하의 전력 공급 안정성 확보.</div></div></div>
+<div class="product-card" onclick="openModal('동력반')"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔌</span></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · POWER PANEL</div><div class="product-card-title">동력반</div><div class="product-card-desc">냉난방·환기·엘리베이터 등 동력 부하 제어반에 내진 설계 적용. 재난 상황에서도 안정적 운전.</div></div></div>
+<div class="product-card" onclick="openModal('무정전전원장치 (UPS)')"><div class="product-card-img" style="background:linear-gradient(135deg,#dde6f5,#a8c0e0);"><span style="font-size:56px;">🔋</span></div><div class="product-card-body"><div class="product-card-tag">SEISMIC · UPS</div><div class="product-card-title">무정전전원장치 (UPS)</div><div class="product-card-desc">내진 구조의 UPS. 지진 발생 시에도 서버·의료기기 등 중요 부하에 무중단 전력 공급.</div></div></div>
 </div></div>
 <div class="sub-panel" id="sub-sw8"><div class="product-grid">
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">🤖</span></div><div class="product-card-body"><div class="product-card-tag">SMART · SPECIAL HIGH VOLTAGE</div><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">IoT 센서 내장으로 전압·전류·온도 실시간 모니터링. 이상 징후 사전 감지 및 자동 알림.</div></div></div>
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">📱</span></div><div class="product-card-body"><div class="product-card-tag">SMART · LOW VOLTAGE</div><div class="product-card-title">저압 배전반</div><div class="product-card-desc">저압 배전반에 스마트 계측·감시 시스템 탑재. 원격 제어 및 에너지 사용 현황 실시간 분석.</div></div></div>
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">⚙️</span></div><div class="product-card-body"><div class="product-card-tag">SMART · MOTOR CONTROL</div><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">인버터·소프트스타터 연동 스마트 제어. 전동기 상태 실시간 모니터링 및 예방 유지보수.</div></div></div>
-<div class="product-card"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">📊</span></div><div class="product-card-body"><div class="product-card-tag">SMART · DISTRIBUTION</div><div class="product-card-title">분전반</div><div class="product-card-desc">말단 부하별 전력 사용량 실시간 계측·관리. 누전·과전류 자동 감지 및 원격 차단 가능.</div></div></div>
+<div class="product-card" onclick="openModal('특고압 수배전반_smart')"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">🤖</span></div><div class="product-card-body"><div class="product-card-tag">SMART · SPECIAL HIGH VOLTAGE</div><div class="product-card-title">특고압 수배전반</div><div class="product-card-desc">IoT 센서 내장으로 전압·전류·온도 실시간 모니터링. 이상 징후 사전 감지 및 자동 알림.</div></div></div>
+<div class="product-card" onclick="openModal('저압 배전반_smart')"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">📱</span></div><div class="product-card-body"><div class="product-card-tag">SMART · LOW VOLTAGE</div><div class="product-card-title">저압 배전반</div><div class="product-card-desc">저압 배전반에 스마트 계측·감시 시스템 탑재. 원격 제어 및 에너지 사용 현황 실시간 분석.</div></div></div>
+<div class="product-card" onclick="openModal('전동기 제어반_smart')"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">⚙️</span></div><div class="product-card-body"><div class="product-card-tag">SMART · MOTOR CONTROL</div><div class="product-card-title">전동기 제어반</div><div class="product-card-desc">인버터·소프트스타터 연동 스마트 제어. 전동기 상태 실시간 모니터링 및 예방 유지보수.</div></div></div>
+<div class="product-card" onclick="openModal('분전반_smart')"><div class="product-card-img" style="background:linear-gradient(135deg,#d0e8ff,#7ab8f5);"><span style="font-size:56px;">📊</span></div><div class="product-card-body"><div class="product-card-tag">SMART · DISTRIBUTION</div><div class="product-card-title">분전반</div><div class="product-card-desc">말단 부하별 전력 사용량 실시간 계측·관리. 누전·과전류 자동 감지 및 원격 차단 가능.</div></div></div>
 </div></div>
 </div>
 </div>
@@ -1110,6 +1161,168 @@ document.addEventListener("click", (e) => {
     if (e.key === 'Escape') closeMega();
   });
 })();
+</script>
+
+<!-- 제품 상세 팝업 모달 -->
+<div id="productModal" style="display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;">
+  <div id="modalOverlay" onclick="closeModal()" style="position:absolute;inset:0;background:rgba(10,22,40,0.6);backdrop-filter:blur(4px);"></div>
+  <div id="modalBox" style="position:relative;background:#fff;border-radius:16px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 24px 64px rgba(10,22,40,0.2);z-index:1;">
+    <button onclick="closeModal()" style="position:sticky;top:16px;float:right;margin:16px 16px 0 0;background:rgba(10,22,40,0.08);border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;color:#333;display:flex;align-items:center;justify-content:center;">✕</button>
+    <div id="modalContent" style="padding:36px 36px 36px;clear:both;"></div>
+  </div>
+</div>
+
+<style>
+#productModal.open { display:flex; }
+.modal-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:14px; }
+.modal-title { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:16px; }
+.modal-img { width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:20px; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
+.modal-section { margin-bottom:20px; }
+.modal-section-title { font-size:13px; font-weight:700; color:var(--accent); letter-spacing:1px; margin-bottom:8px; border-bottom:1px solid #f0f0f0; padding-bottom:6px; }
+.modal-section-body { font-size:14px; color:var(--text2); line-height:1.9; }
+.modal-specs { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
+.modal-spec-item { background:#f8fafd; border-radius:8px; padding:10px 14px; font-size:13px; }
+.modal-spec-label { color:var(--text2); font-size:11px; margin-bottom:3px; }
+.modal-spec-val { color:var(--navy); font-weight:700; }
+</style>
+
+<script>
+var productData = {
+  '특고압 수배전반': {
+    tag: 'SEISMIC · SPECIAL HIGH VOLTAGE',
+    img: 'https://i.ibb.co/MD7H72CB/sub2-1-img1.jpg',
+    desc: '22.9kV 특고압 수전설비에 내진·면진 설계를 적용한 제품으로, 규모 8.3 지진에도 안정적인 전력 공급을 유지합니다. 압축 스프링 및 면진 장치로 진동을 저감하여 설비를 보호합니다.',
+    specs: [
+      { label: '전압', val: '22.9kV' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '특허', val: '제10-1860922호' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '저압 배전반': {
+    tag: 'SEISMIC · LOW VOLTAGE',
+    img: 'https://i.ibb.co/mVVCKTRg/sub2-1-img2.jpg',
+    desc: '저압 배전반에 내진 구조를 적용하여 지진 발생 시에도 각 부하에 안전한 전력 분배를 유지합니다. ACB, MCCB 등 차단기를 적용하여 신뢰성을 높였습니다.',
+    specs: [
+      { label: '전압', val: '저압(600V 이하)' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '차단기', val: 'ACB / MCCB' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '전동기 제어반': {
+    tag: 'SEISMIC · MOTOR CONTROL',
+    img: 'https://i.ibb.co/Xf4nhNrd/sub2-1-img3.jpg',
+    desc: '전동기 제어반에 내진 설계를 적용하여 지진 시에도 기동·정지·보호 기능이 정상 작동합니다. 인버터, 소프트스타터 적용이 가능합니다.',
+    specs: [
+      { label: '제어방식', val: '기동·정지·정역' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '옵션', val: '인버터·소프트스타터' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '분전반': {
+    tag: 'SEISMIC · DISTRIBUTION',
+    img: 'https://i.ibb.co/B2q1QFJx/sub2-1-img4.jpg',
+    desc: '분전반에 내진 구조를 적용하여 말단 부하의 전력 공급 안정성을 확보합니다. MCCB, ELB 등을 적용하여 안전하게 전력을 분배합니다.',
+    specs: [
+      { label: '용도', val: '말단 부하 전력 공급' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '차단기', val: 'MCCB / ELB' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '동력반': {
+    tag: 'SEISMIC · POWER PANEL',
+    img: null,
+    desc: '냉난방·환기·엘리베이터 등 동력 부하 제어반에 내진 설계를 적용하여 재난 상황에서도 안정적인 운전이 가능합니다. 대용량 부하에 최적화된 설계로 제작됩니다.',
+    specs: [
+      { label: '용도', val: '동력 부하 제어·보호' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '적용설비', val: '냉난방·환기·엘리베이터' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '무정전전원장치 (UPS)': {
+    tag: 'SEISMIC · UPS',
+    img: null,
+    desc: '내진 구조의 UPS로, 지진 발생 시에도 서버·의료기기 등 중요 부하에 무중단 전력을 공급합니다. 정전 발생 시에도 중단 없이 전력을 공급하여 중요 설비를 보호합니다.',
+    specs: [
+      { label: '용도', val: '무중단 전력 공급' },
+      { label: '내진등급', val: '규모 8.3 대응' },
+      { label: '적용설비', val: '서버·의료기기 등' },
+      { label: '인증', val: '조달청 우수제품' }
+    ]
+  },
+  '특고압 수배전반_smart': {
+    tag: 'SMART · SPECIAL HIGH VOLTAGE',
+    img: null,
+    desc: 'IoT 센서를 내장하여 전압·전류·온도를 실시간으로 모니터링합니다. 이상 징후를 사전에 감지하고 자동으로 알림을 발송하여 예방 유지보수를 실현합니다.',
+    specs: [
+      { label: '전압', val: '22.9kV' },
+      { label: '감시방식', val: 'IoT 실시간 모니터링' },
+      { label: '알림', val: '이상 징후 자동 알림' },
+      { label: '제어', val: '원격 제어 가능' }
+    ]
+  },
+  '저압 배전반_smart': {
+    tag: 'SMART · LOW VOLTAGE',
+    img: null,
+    desc: '저압 배전반에 스마트 계측·감시 시스템을 탑재하여 원격 제어 및 에너지 사용 현황을 실시간으로 분석합니다.',
+    specs: [
+      { label: '전압', val: '저압(600V 이하)' },
+      { label: '감시방식', val: 'IoT 실시간 모니터링' },
+      { label: '제어', val: '원격 제어 가능' },
+      { label: '기능', val: '에너지 사용량 분석' }
+    ]
+  },
+  '전동기 제어반_smart': {
+    tag: 'SMART · MOTOR CONTROL',
+    img: null,
+    desc: '인버터·소프트스타터 연동 스마트 제어로 전동기 상태를 실시간으로 모니터링하고 예방 유지보수를 실현합니다.',
+    specs: [
+      { label: '제어방식', val: '인버터·소프트스타터 연동' },
+      { label: '감시방식', val: 'IoT 실시간 모니터링' },
+      { label: '기능', val: '예방 유지보수' },
+      { label: '제어', val: '원격 제어 가능' }
+    ]
+  },
+  '분전반_smart': {
+    tag: 'SMART · DISTRIBUTION',
+    img: null,
+    desc: '말단 부하별 전력 사용량을 실시간으로 계측·관리합니다. 누전·과전류를 자동으로 감지하고 원격 차단이 가능합니다.',
+    specs: [
+      { label: '용도', val: '말단 부하 전력 관리' },
+      { label: '감시방식', val: '실시간 계측' },
+      { label: '안전', val: '누전·과전류 자동 감지' },
+      { label: '제어', val: '원격 차단 가능' }
+    ]
+  }
+};
+
+function openModal(key) {
+  var data = productData[key];
+  if (!data) return;
+  var specsHtml = data.specs.map(function(s) {
+    return '<div class="modal-spec-item"><div class="modal-spec-label">' + s.label + '</div><div class="modal-spec-val">' + s.val + '</div></div>';
+  }).join('');
+  var imgHtml = data.img
+    ? '<img src="' + data.img + '" style="width:100%;height:220px;object-fit:cover;border-radius:10px;margin-bottom:20px;">'
+    : '<div style="width:100%;height:180px;background:linear-gradient(135deg,#dde6f5,#bccde8);border-radius:10px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:56px;">⚡</div>';
+  document.getElementById('modalContent').innerHTML =
+    '<div class="modal-tag">' + data.tag + '</div>' +
+    '<div class="modal-title">' + key.replace('_smart','') + '</div>' +
+    imgHtml +
+    '<div class="modal-section"><div class="modal-section-title">제품 설명</div><div class="modal-section-body">' + data.desc + '</div></div>' +
+    '<div class="modal-section"><div class="modal-section-title">주요 사양</div><div class="modal-specs">' + specsHtml + '</div></div>';
+  document.getElementById('productModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('productModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
