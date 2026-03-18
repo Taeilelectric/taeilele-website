@@ -261,17 +261,29 @@
 
   
   .philosophy-intro { font-size:18px; font-weight:700; text-align:center; margin-bottom:56px; color:var(--text); }
-  .philosophy-intro span { color: inherit; }
-  .philosophy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--border); border-radius:16px; overflow:hidden; }
-  .philosophy-card { background:var(--surface); display:flex; flex-direction:column; align-items:flex-start; padding:48px 40px; text-align:left; transition:all 0.3s; position:relative; overflow:hidden; }
-  .philosophy-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:transparent; transition:background 0.3s; }
-  .philosophy-card:hover { background:#fafbfd; }
-  .philosophy-card:hover::after { background:var(--accent); }
-  .philosophy-card:nth-child(2)::after { background:var(--accent); }
-  .philosophy-icon { width:52px; height:52px; border-radius:14px; background:linear-gradient(135deg,rgba(244,161,0,0.08),rgba(244,161,0,0.15)); display:flex; align-items:center; justify-content:center; margin-bottom:28px; }
-  .philosophy-num { font-size:10px; font-weight:700; letter-spacing:4px; color:var(--accent); margin-bottom:12px; }
-  .philosophy-label { font-size:22px; font-weight:900; color:var(--navy); margin-bottom:16px; letter-spacing:-0.5px; }
-  .philosophy-text { font-size:14px; line-height:2; color:var(--text2); }
+  .philosophy-intro span { color:#e63946; }
+  .philosophy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; padding:20px 0 60px; }
+  .philosophy-card {
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    position:relative; padding:0;
+  }
+  .philosophy-circle {
+    width:240px; height:240px; border-radius:50%;
+    border:3px solid #e63946;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:32px 28px; margin:0 auto;
+    position:relative; z-index:1;
+    background:#fff;
+    transition:all 0.3s;
+  }
+  .philosophy-card:nth-child(2) .philosophy-circle { border-color:#e63946; margin-left:-30px; margin-right:-30px; z-index:2; }
+  .philosophy-card:nth-child(3) .philosophy-circle { border-color:#f4a100; }
+  .philosophy-card:hover .philosophy-circle { transform:scale(1.04); box-shadow:0 12px 40px rgba(0,0,0,0.1); }
+  .philosophy-icon { width:52px; height:52px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; }
+  .philosophy-num { display:none; }
+  .philosophy-label { font-size:18px; font-weight:900; color:#e63946; margin-bottom:10px; }
+  .philosophy-card:nth-child(3) .philosophy-label { color:#f4a100; }
+  .philosophy-text { font-size:12px; line-height:1.8; color:var(--text2); }
 
   
   .timeline { position:relative; padding-left:40px; }
@@ -967,37 +979,40 @@
 <div class="philosophy-intro" data-ko="태일전기 주식회사는 아래와 같은 경영철학으로 최고의 기업을 추구합니다." data-en="Taeil Electric Co., Ltd. pursues excellence through the following management philosophy."><span>태일전기 주식회사</span>는 아래와 같은 경영철학으로 최고의 기업을 추구합니다.</div>
 <div class="philosophy-grid">
 <div class="philosophy-card">
+<div class="philosophy-circle">
 <div class="philosophy-icon">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z" fill="#f4a100" opacity="0.3"/>
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zm-1 14v-1h2v1h-2zm3-3.28V15h-4v-2.28C8.48 11.7 7 10.46 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.46-1.48 2.7-3 3.72z" fill="#f4a100"/>
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z" fill="#e63946" opacity="0.3"/>
+    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zm-1 14v-1h2v1h-2zm3-3.28V15h-4v-2.28C8.48 11.7 7 10.46 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.46-1.48 2.7-3 3.72z" fill="#e63946"/>
   </svg>
 </div>
-<div class="philosophy-num">01 · PHILOSOPHY</div>
 <div class="philosophy-label" data-ko="경영이념" data-en="Management Philosophy">경영이념</div>
 <div class="philosophy-text" data-ko="최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다." data-en="We strive to create the highest quality and future industries while contributing profits back to society.">최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다.</div>
 </div>
+</div>
 <div class="philosophy-card">
+<div class="philosophy-circle">
 <div class="philosophy-icon">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#f4a100" opacity="0.3"/>
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="#f4a100"/>
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#e63946" opacity="0.3"/>
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="#e63946"/>
   </svg>
 </div>
-<div class="philosophy-num">02 · GOAL</div>
 <div class="philosophy-label" data-ko="목표" data-en="Goals">목표</div>
 <div class="philosophy-text" data-ko="행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결." data-en="Maximizing management efficiency, continuous technological innovation, and unity toward a shared goal for a happy life.">행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결.</div>
 </div>
+</div>
 <div class="philosophy-card">
+<div class="philosophy-circle">
 <div class="philosophy-icon">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z" fill="#f4a100" opacity="0.3"/>
     <path d="M8 13c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm8 0c-.33 0-.71.02-1.11.06C16.19 13.93 17 15.1 17 17v2h7v-2c0-2.66-5.33-4-8-4z" fill="#f4a100"/>
   </svg>
 </div>
-<div class="philosophy-num">03 · CSR</div>
 <div class="philosophy-label" data-ko="사회공헌" data-en="Social Contribution">사회공헌</div>
 <div class="philosophy-text" data-ko="태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다." data-en="Taeil Electric always strives to share with others through support for the socially marginalized and volunteer activities for happiness.">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다.</div>
+</div>
 </div>
 </div>
 </div>
@@ -1301,7 +1316,6 @@ document.addEventListener("click", (e) => {
 // 페이지 로드시 저장된 언어 적용
 window.addEventListener("DOMContentLoaded", () => {
   if (currentLang === "en") applyLang("en");
-});
 });
 </script><script>
 // ── 햄버거 메뉴 ──
