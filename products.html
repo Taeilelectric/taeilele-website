@@ -5,14 +5,15 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>사업영역 - 태일전기(주)</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+
 <style>
   :root { --navy:#0a1628; --accent:#f4a100; --blue:#0d47a1; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { background:#060f1e;   overflow-x: hidden;
   }
   body {
-    font-family:"Noto Sans KR",sans-serif; background:var(--bg); color:var(--text); }
+    font-family:"IBM Plex Sans KR",sans-serif; background:var(--bg); color:var(--text); }
 /* ── HEADER ── */
   header {
     position: fixed !important;
@@ -159,7 +160,7 @@
     text-align: left;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .lang-option + .lang-option { border-top: 1px solid #f0f0f0; }
   .lang-option:hover { background: #fafafa; color: var(--accent); }
@@ -222,7 +223,7 @@
   .page-hero-title span { color: #ffffff; }
   .page-hero-sub { font-size:15px; color:rgba(26,43,74,0.55); }
   .tab-nav { display:flex; padding: 0 max(60px, calc((100% - 1200px) / 2)); background:var(--surface); border-bottom:2px solid var(--border); position:sticky; top:80px; z-index:50; overflow-x:auto; box-shadow:0 2px 16px rgba(10,22,40,0.08); }
-  .tab-btn { padding: 14px 24px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:"Noto Sans KR",sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+  .tab-btn { padding: 14px 24px; font-size:14px; font-weight:600; color:var(--text2); cursor:pointer; border:none; background:none; font-family:"IBM Plex Sans KR",sans-serif; letter-spacing:0.5px; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
   .tab-btn:hover { color:#0d1829; }
   .tab-btn.active { color:#0d1829; border-bottom-color:var(--accent); font-weight:700; }
   .section { display:none; }
@@ -233,7 +234,7 @@
   .sec-title span { font-size:12px; font-weight:700; letter-spacing:2px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:4px 10px; border-radius:2px; margin-left:12px; vertical-align:middle; }
   .sec-desc { font-size:13.5px; color:var(--text2); line-height:1.9; max-width:500px; text-align:right; }
   .sub-tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:36px; }
-  .sub-tab-btn { padding:9px 22px; font-size:13px; font-weight:600; cursor:pointer; border:1.5px solid var(--border); background:var(--surface); color:var(--text2); font-family:"Noto Sans KR",sans-serif; border-radius:20px; transition:all 0.2s; }
+  .sub-tab-btn { padding:9px 22px; font-size:13px; font-weight:600; cursor:pointer; border:1.5px solid var(--border); background:var(--surface); color:var(--text2); font-family:"IBM Plex Sans KR",sans-serif; border-radius:20px; transition:all 0.2s; }
   .sub-tab-btn:hover { border-color:var(--blue); color:var(--blue); }
   .sub-tab-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); box-shadow:0 4px 12px rgba(13,71,161,0.25); }
   .sub-panel { display:none; }
@@ -582,7 +583,7 @@
     color: #3a4a60;
     font-size: 13px;
     font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.25s;
@@ -689,6 +690,9 @@
     line-height: 1.6;
   }
 </style>
+
+
+
 </head>
 <body>
 <header>
@@ -856,14 +860,14 @@
 </div>
 </div>
 <div class="tab-nav">
-<button class="tab-btn active" onclick="showTab('switchboard')">수배전반</button>
-<button class="tab-btn" onclick="showTab('control')">제어시스템</button>
-<button class="tab-btn" onclick="showTab('energy')">신재생에너지</button>
-<button class="tab-btn" onclick="showTab('construction')">공사부문</button>
+<button class="tab-btn active" onclick="showTab('switchboard')" data-ko="수배전반" data-en="Switchgear">수배전반</button>
+<button class="tab-btn" onclick="showTab('control')" data-ko="제어시스템" data-en="Control System">제어시스템</button>
+<button class="tab-btn" onclick="showTab('energy')" data-ko="신재생에너지" data-en="Renewable Energy">신재생에너지</button>
+<button class="tab-btn" onclick="showTab('construction')" data-ko="공사부문" data-en="Construction">공사부문</button>
 </div>
 <div class="section active" id="tab-switchboard">
 <div class="section-inner">
-<div class="sec-header"><div class="sec-title">수배전반 <span>SWITCHGEAR</span></div><p class="sec-desc">전력 시스템의 핵심 설비로 전기의 효율적인 분배와 보호를 담당합니다.<br/>고객 맞춤형 설계 및 제작으로 최적의 솔루션을 제공합니다.</p></div>
+<div class="sec-header"><div class="sec-title" data-ko="수배전반" data-en="Switchgear">수배전반 <span>SWITCHGEAR</span></div><p class="sec-desc" data-ko="전력 시스템의 핵심 설비로 전기의 효율적인 분배와 보호를 담당합니다. 고객 맞춤형 설계 및 제작으로 최적의 솔루션을 제공합니다." data-en="Key equipment for power systems, responsible for efficient distribution and protection of electricity. We provide optimal solutions through customized design and manufacturing.">전력 시스템의 핵심 설비로 전기의 효율적인 분배와 보호를 담당합니다.<br/>고객 맞춤형 설계 및 제작으로 최적의 솔루션을 제공합니다.</p></div>
 <div class="sub-tabs">
 <button class="sub-tab-btn active" onclick="showSubTab('sw7',this)">내진(면진)배전반</button>
 <button class="sub-tab-btn" onclick="showSubTab('sw8',this)">스마트 배전반</button>
@@ -952,7 +956,7 @@
 </div>
 <div class="section" id="tab-control">
 <div class="section-inner">
-<div class="sec-header"><div class="sec-title">제어시스템 <span>CONTROL SYSTEM</span></div><p class="sec-desc">건물 내 전력설비의 제어·계측·감시를 자동화하여<br/>효율적인 에너지 관리와 안정적인 운전을 지원합니다.</p></div>
+<div class="sec-header"><div class="sec-title" data-ko="제어시스템" data-en="Control System">제어시스템 <span>CONTROL SYSTEM</span></div><p class="sec-desc" data-ko="건물 내 전력설비의 제어·계측·감시를 자동화하여 효율적인 에너지 관리와 안정적인 운전을 지원합니다." data-en="Automates control, measurement, and monitoring of building power equipment to support efficient energy management and stable operation.">건물 내 전력설비의 제어·계측·감시를 자동화하여<br/>효율적인 에너지 관리와 안정적인 운전을 지원합니다.</p></div>
 <div class="sub-tabs">
 <button class="sub-tab-btn active" onclick="showSubTab('ctrl1',this)">전력감시 제어시스템</button>
 <button class="sub-tab-btn" onclick="showSubTab('ctrl2',this)">자동 제어시스템</button>
@@ -976,7 +980,7 @@
 </div>
 <div class="section" id="tab-energy">
 <div class="section-inner">
-<div class="sec-header"><div class="sec-title">신재생에너지 <span>RENEWABLE ENERGY</span></div><p class="sec-desc">친환경 미래를 위한 태양광 발전 설비 전문 제조 및 시공.<br/>ESG 경영과 탄소중립 실현을 위한 최적의 솔루션을 제공합니다.</p></div>
+<div class="sec-header"><div class="sec-title" data-ko="신재생에너지" data-en="Renewable Energy">신재생에너지 <span>RENEWABLE ENERGY</span></div><p class="sec-desc" data-ko="친환경 미래를 위한 태양광 발전 설비 전문 제조 및 시공. ESG 경영과 탄소중립 실현을 위한 최적의 솔루션을 제공합니다." data-en="Specialized manufacturing and installation of solar power equipment for an eco-friendly future. Providing optimal solutions for ESG management and carbon neutrality.">친환경 미래를 위한 태양광 발전 설비 전문 제조 및 시공.<br/>ESG 경영과 탄소중립 실현을 위한 최적의 솔루션을 제공합니다.</p></div>
 <div class="sub-tabs">
 <button class="sub-tab-btn active" onclick="showSubTab('en1',this)">신재생에너지 설비</button>
 <button class="sub-tab-btn" onclick="showSubTab('en2',this)">태양광 발전설비</button>
@@ -1000,7 +1004,7 @@
 </div>
 <div class="section" id="tab-construction">
 <div class="section-inner">
-<div class="sec-header"><div class="sec-title">공사부문 <span>CONSTRUCTION</span></div><p class="sec-desc">전기·소방·정보통신 분야 전문 면허 보유 종합 공사 기업.<br/>설계부터 시공, 유지보수까지 원스톱 서비스를 제공합니다.</p></div>
+<div class="sec-header"><div class="sec-title" data-ko="공사부문" data-en="Construction">공사부문 <span>CONSTRUCTION</span></div><p class="sec-desc" data-ko="전기·소방·정보통신 분야 전문 면허 보유 종합 공사 기업. 설계부터 시공, 유지보수까지 원스톱 서비스를 제공합니다." data-en="A comprehensive construction company with licenses in electrical, fire safety, and ICT. One-stop service from design to construction and maintenance.">전기·소방·정보통신 분야 전문 면허 보유 종합 공사 기업.<br/>설계부터 시공, 유지보수까지 원스톱 서비스를 제공합니다.</p></div>
 <div class="work-grid">
 <div class="work-card"><div class="work-icon">⚡</div><div class="work-title">전기공사업</div><div class="work-desc">수배전설비, 간선공사, 동력공사, 조명공사, 전기안전관리 등 전기 전 분야 시공 및 유지보수.</div><span class="work-badge">면허번호 인천-00766</span></div>
 <div class="work-card"><div class="work-icon">🚒</div><div class="work-title">소방공사업</div><div class="work-desc">자동화재탐지설비, 소화설비, 비상방송설비 등 소방 전기 설비 시공 및 정기 점검.</div><span class="work-badge">소방공사업 면허 보유</span></div>
@@ -1084,7 +1088,24 @@
 const langSwitcher = document.getElementById("langSwitcher");
 const langLabel = langSwitcher.querySelector(".lang-label");
 const langOptions = langSwitcher.querySelectorAll(".lang-option");
-let currentLang = "ko";
+let currentLang = localStorage.getItem("taeil_lang") || "ko";
+
+// 초기 언어 적용
+function applyLang(lang) {
+  currentLang = lang;
+  langLabel.textContent = lang === "ko" ? "KO" : "EN";
+  langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+  localStorage.setItem("taeil_lang", lang);
+  document.querySelectorAll("[data-ko][data-en]").forEach(el => {
+    const text = lang === "ko" ? el.dataset.ko : el.dataset.en;
+    for (const node of el.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        node.textContent = text;
+        break;
+      }
+    }
+  });
+}
 
 langSwitcher.addEventListener("click", (e) => {
   if (e.target.classList.contains("lang-option")) return;
@@ -1093,24 +1114,19 @@ langSwitcher.addEventListener("click", (e) => {
 
 langOptions.forEach(btn => {
   btn.addEventListener("click", () => {
-    currentLang = btn.dataset.lang;
-    langLabel.textContent = currentLang === "ko" ? "KO" : "EN";
-    langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === currentLang));
+    applyLang(btn.dataset.lang);
     langSwitcher.classList.remove("open");
-    document.querySelectorAll("[data-ko][data-en]").forEach(el => {
-      const text = currentLang === "ko" ? el.dataset.ko : el.dataset.en;
-      for (const node of el.childNodes) {
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-          node.textContent = text;
-          break;
-        }
-      }
-    });
   });
 });
 
 document.addEventListener("click", (e) => {
   if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove("open");
+});
+
+// 페이지 로드시 저장된 언어 적용
+window.addEventListener("DOMContentLoaded", () => {
+  if (currentLang === "en") applyLang("en");
+});
 });
 </script><script>
 // ── 햄버거 메뉴 ──
