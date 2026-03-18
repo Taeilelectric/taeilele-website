@@ -1041,10 +1041,10 @@
 </div>
 </div>
 <div class="tab-nav">
-<button class="cert-tab active" onclick="showTab('tab-cert')">인증서</button>
-<button class="cert-tab" onclick="showTab('tab-patent')">특허증</button>
-<button class="cert-tab" onclick="showTab('tab-award')">표창장</button>
-<button class="cert-tab" onclick="showTab('tab-partners')">파트너사</button>
+<button class="cert-tab active" onclick="showTab('tab-cert')" data-ko="인증서" data-en="Certificates">인증서</button>
+<button class="cert-tab" onclick="showTab('tab-patent')" data-ko="특허증" data-en="Patents">특허증</button>
+<button class="cert-tab" onclick="showTab('tab-award')" data-ko="표창장" data-en="Awards">표창장</button>
+<button class="cert-tab" onclick="showTab('tab-partners')" data-ko="파트너사" data-en="Partners">파트너사</button>
 </div>
 <section id="certs">
 
@@ -1106,13 +1106,13 @@
 
 <div class="tab-panel" id="tab-partners" style="padding-bottom:48px;">
 <div style="text-align:center; margin-bottom:32px;">
-<div style="font-size:13px; color:var(--text2); letter-spacing:1px;">국내 주요 건설사 및 공공기관과 함께합니다</div>
+<div style="font-size:13px; color:var(--text2); letter-spacing:1px;" data-ko="국내 주요 건설사 및 공공기관과 함께합니다" data-en="We work with major domestic construction companies and public institutions.">국내 주요 건설사 및 공공기관과 함께합니다</div>
 </div>
 
 <div style="display:flex; justify-content:center; gap:12px; margin-bottom:40px;">
 <div class="partner-filter-wrap">
-<button class="partner-filter-btn active" onclick="setPartnerFilter('private',this)">민간 건설사</button>
-<button class="partner-filter-btn" onclick="setPartnerFilter('public',this)">공공 발주처</button>
+<button class="partner-filter-btn active" onclick="setPartnerFilter('private',this)" data-ko="민간 건설사" data-en="Private Sector">민간 건설사</button>
+<button class="partner-filter-btn" onclick="setPartnerFilter('public',this)" data-ko="공공 발주처" data-en="Public Sector">공공 발주처</button>
 </div>
 </div>
 <div class="partners-grid" id="partners-grid">
@@ -1277,7 +1277,24 @@
 const langSwitcher = document.getElementById("langSwitcher");
 const langLabel = langSwitcher.querySelector(".lang-label");
 const langOptions = langSwitcher.querySelectorAll(".lang-option");
-let currentLang = "ko";
+let currentLang = localStorage.getItem("taeil_lang") || "ko";
+
+// 초기 언어 적용
+function applyLang(lang) {
+  currentLang = lang;
+  langLabel.textContent = lang === "ko" ? "KO" : "EN";
+  langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+  localStorage.setItem("taeil_lang", lang);
+  document.querySelectorAll("[data-ko][data-en]").forEach(el => {
+    const text = lang === "ko" ? el.dataset.ko : el.dataset.en;
+    for (const node of el.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        node.textContent = text;
+        break;
+      }
+    }
+  });
+}
 
 langSwitcher.addEventListener("click", (e) => {
   if (e.target.classList.contains("lang-option")) return;
@@ -1286,24 +1303,19 @@ langSwitcher.addEventListener("click", (e) => {
 
 langOptions.forEach(btn => {
   btn.addEventListener("click", () => {
-    currentLang = btn.dataset.lang;
-    langLabel.textContent = currentLang === "ko" ? "KO" : "EN";
-    langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === currentLang));
+    applyLang(btn.dataset.lang);
     langSwitcher.classList.remove("open");
-    document.querySelectorAll("[data-ko][data-en]").forEach(el => {
-      const text = currentLang === "ko" ? el.dataset.ko : el.dataset.en;
-      for (const node of el.childNodes) {
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-          node.textContent = text;
-          break;
-        }
-      }
-    });
   });
 });
 
 document.addEventListener("click", (e) => {
   if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove("open");
+});
+
+// 페이지 로드시 저장된 언어 적용
+window.addEventListener("DOMContentLoaded", () => {
+  if (currentLang === "en") applyLang("en");
+});
 });
 </script><script>
 // ── 햄버거 메뉴 ──
