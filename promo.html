@@ -303,7 +303,7 @@
   .lightbox-close:hover { opacity:1; }
 
   @media(max-width:900px){
-    header { padding:16px 24px; }
+    header { padding: 0 16px !important; height: 70px !important; }
     nav { display:none; }
     .page-hero { padding:120px 24px 48px; }
     .tab-nav { padding:0 24px; overflow-x:auto; }
@@ -871,6 +871,18 @@
     color: #253549;
     line-height: 1.6;
   }
+
+  @media(max-width:480px){
+    html, body { overflow-x: hidden; width: 100%; }
+    header { padding: 0 16px !important; height: 70px !important; }
+    .page-hero { padding: 100px 20px 60px !important; }
+    .page-hero-title { font-size: 32px !important; }
+    .page-hero-sub { font-size: 13px !important; }
+    .section { padding: 40px 16px !important; }
+    .tab-nav { padding: 0 8px !important; }
+    .tab-btn { padding: 12px 12px !important; font-size: 13px !important; }
+  }
+
 </style>
 
 
