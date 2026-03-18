@@ -1192,7 +1192,7 @@ document.addEventListener("click", (e) => {
 </script>
 
 <!-- 제품 상세 팝업 모달 -->
-<div id="productModal" style="display:none;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;">
+<div id="productModal" style="display:flex;visibility:hidden;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;">
   <div id="modalOverlay" onclick="closeModal()" style="position:absolute;inset:0;background:rgba(10,22,40,0.6);backdrop-filter:blur(4px);"></div>
   <div id="modalBox" style="position:relative;background:#fff;border-radius:16px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:0 24px 64px rgba(10,22,40,0.2);z-index:1;">
     <button onclick="closeModal()" style="position:sticky;top:16px;float:right;margin:16px 16px 0 0;background:rgba(10,22,40,0.08);border:none;border-radius:50%;width:36px;height:36px;font-size:18px;cursor:pointer;color:#333;display:flex;align-items:center;justify-content:center;">✕</button>
@@ -1201,7 +1201,8 @@ document.addEventListener("click", (e) => {
 </div>
 
 <style>
-#productModal.open { display:flex; }
+#productModal.open { visibility:visible; pointer-events:auto; }
+#productModal { pointer-events:none; }
 .modal-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:14px; }
 .modal-title { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:16px; }
 .modal-img { width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:20px; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
