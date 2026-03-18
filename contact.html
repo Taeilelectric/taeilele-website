@@ -5,7 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>고객센터 - 태일전기(주)</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+
 <style>
   :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -158,7 +159,7 @@
     text-align: left;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
   }
   .lang-option + .lang-option { border-top: 1px solid #f0f0f0; }
   .lang-option:hover { background: #fafafa; color: var(--accent); }
@@ -683,7 +684,7 @@
     color: #3a4a60;
     font-size: 13px;
     font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'IBM Plex Sans KR', sans-serif;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.25s;
@@ -791,6 +792,9 @@
     line-height: 1.6;
   }
 </style>
+
+
+
 </head>
 <body>
 <header>
@@ -957,10 +961,10 @@
 </div>
 </div>
 <div class="tab-nav">
-<button class="tab-btn active" onclick="showTab('tab-inquiry', this)">1:1 문의</button>
-<button class="tab-btn" onclick="showTab('tab-download', this)">자료실</button>
-<button class="tab-btn" onclick="showTab('tab-notice', this)">공지사항</button>
-<button class="tab-btn" onclick="showTab('tab-recruit', this)">채용공고</button>
+<button class="tab-btn active" onclick="showTab('tab-inquiry', this)" data-ko="1:1 문의" data-en="Inquiry">1:1 문의</button>
+<button class="tab-btn" onclick="showTab('tab-download', this)" data-ko="자료실" data-en="Downloads">자료실</button>
+<button class="tab-btn" onclick="showTab('tab-notice', this)" data-ko="공지사항" data-en="Notices">공지사항</button>
+<button class="tab-btn" onclick="showTab('tab-recruit', this)" data-ko="채용공고" data-en="Careers">채용공고</button>
 </div>
 <!-- 문의하기 탭 -->
 <div class="tab-panel active" id="tab-inquiry">
@@ -1198,7 +1202,24 @@
 const langSwitcher = document.getElementById("langSwitcher");
 const langLabel = langSwitcher.querySelector(".lang-label");
 const langOptions = langSwitcher.querySelectorAll(".lang-option");
-let currentLang = "ko";
+let currentLang = localStorage.getItem("taeil_lang") || "ko";
+
+// 초기 언어 적용
+function applyLang(lang) {
+  currentLang = lang;
+  langLabel.textContent = lang === "ko" ? "KO" : "EN";
+  langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === lang));
+  localStorage.setItem("taeil_lang", lang);
+  document.querySelectorAll("[data-ko][data-en]").forEach(el => {
+    const text = lang === "ko" ? el.dataset.ko : el.dataset.en;
+    for (const node of el.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+        node.textContent = text;
+        break;
+      }
+    }
+  });
+}
 
 langSwitcher.addEventListener("click", (e) => {
   if (e.target.classList.contains("lang-option")) return;
@@ -1207,24 +1228,19 @@ langSwitcher.addEventListener("click", (e) => {
 
 langOptions.forEach(btn => {
   btn.addEventListener("click", () => {
-    currentLang = btn.dataset.lang;
-    langLabel.textContent = currentLang === "ko" ? "KO" : "EN";
-    langOptions.forEach(b => b.classList.toggle("active", b.dataset.lang === currentLang));
+    applyLang(btn.dataset.lang);
     langSwitcher.classList.remove("open");
-    document.querySelectorAll("[data-ko][data-en]").forEach(el => {
-      const text = currentLang === "ko" ? el.dataset.ko : el.dataset.en;
-      for (const node of el.childNodes) {
-        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
-          node.textContent = text;
-          break;
-        }
-      }
-    });
   });
 });
 
 document.addEventListener("click", (e) => {
   if (!langSwitcher.contains(e.target)) langSwitcher.classList.remove("open");
+});
+
+// 페이지 로드시 저장된 언어 적용
+window.addEventListener("DOMContentLoaded", () => {
+  if (currentLang === "en") applyLang("en");
+});
 });
 </script><script>
 // ── 햄버거 메뉴 ──
