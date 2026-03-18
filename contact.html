@@ -1059,26 +1059,7 @@
     <span class="board-title-col">제목</span>
     <span class="board-date-col">날짜</span>
   </div>
-  <div class="board-row">
-    <span class="board-num">4</span>
-    <span class="board-title-col">홈페이지 개편 안내</span>
-    <span class="board-date-col">2025.02.10</span>
-  </div>
-  <div class="board-row">
-    <span class="board-num">3</span>
-    <span class="board-title-col">ISO 9001 인증 갱신 완료</span>
-    <span class="board-date-col">2025.03.20</span>
-  </div>
-  <div class="board-row">
-    <span class="board-num">2</span>
-    <span class="board-title-col">사업본부 이전 안내</span>
-    <span class="board-date-col">2025.05.12</span>
-  </div>
-  <div class="board-row">
-    <span class="board-num">1</span>
-    <span class="board-title-col">2025년 하절기 휴무 안내</span>
-    <span class="board-date-col">2025.07.01</span>
-  </div>
+  <div id="notice-body"></div>
 </div>
 </div>
 
@@ -1090,21 +1071,7 @@
     <span class="board-title-col">제목</span>
     <span class="board-date-col">상태</span>
   </div>
-  <div class="board-row">
-    <span class="board-num">3</span>
-    <span class="board-title-col">품질관리 담당자 (경력)</span>
-    <span class="board-date-col"><span class="board-badge off">마감</span></span>
-  </div>
-  <div class="board-row">
-    <span class="board-num">2</span>
-    <span class="board-title-col">영업 담당자 (신입/경력)</span>
-    <span class="board-date-col"><span class="board-badge on">채용중</span></span>
-  </div>
-  <div class="board-row">
-    <span class="board-num">1</span>
-    <span class="board-title-col">전기 설계 엔지니어 (경력)</span>
-    <span class="board-date-col"><span class="board-badge on">채용중</span></span>
-  </div>
+  <div id="recruit-body"></div>
 </div>
 </div>
 
@@ -1139,8 +1106,53 @@
     else if (hash === 'tab-recruit') { showTab('tab-recruit'); }
     else if (hash === 'inquiry' || hash === 'tab-inquiry' || hash === '') { showTab('tab-inquiry'); }
   }
-  window.addEventListener('DOMContentLoaded', handleHash);
+  window.addEventListener('DOMContentLoaded', function() {
+    handleHash();
+    renderNotices();
+    renderRecruits();
+  });
   window.addEventListener('hashchange', handleHash);
+
+  // 공지사항 렌더링
+  function renderNotices() {
+    var notices = [];
+    try { notices = JSON.parse(localStorage.getItem('taeil_notices') || '[]'); } catch(e){}
+    var el = document.getElementById('notice-body');
+    if (!el) return;
+    if (notices.length === 0) {
+      el.innerHTML = '<div class="board-row" style="justify-content:center;color:#999;padding:32px;">등록된 공지사항이 없습니다.</div>';
+      return;
+    }
+    el.innerHTML = notices.map(function(n, i) {
+      return '<div class="board-row">' +
+        '<span class="board-num">' + (notices.length - i) + '</span>' +
+        '<span class="board-title-col" style="font-weight:500;">' + n.title + '</span>' +
+        '<span class="board-date-col">' + n.date + '</span>' +
+        '</div>';
+    }).join('');
+  }
+
+  // 채용공고 렌더링
+  function renderRecruits() {
+    var recruits = [];
+    try { recruits = JSON.parse(localStorage.getItem('taeil_recruits') || '[]'); } catch(e){}
+    var el = document.getElementById('recruit-body');
+    if (!el) return;
+    if (recruits.length === 0) {
+      el.innerHTML = '<div class="board-row" style="justify-content:center;color:#999;padding:32px;">등록된 채용공고가 없습니다.</div>';
+      return;
+    }
+    el.innerHTML = recruits.map(function(r, i) {
+      var badge = r.status === 'on'
+        ? '<span class="board-badge on">채용중</span>'
+        : '<span class="board-badge off">마감</span>';
+      return '<div class="board-row">' +
+        '<span class="board-num">' + (recruits.length - i) + '</span>' +
+        '<span class="board-title-col" style="font-weight:500;">' + r.title + '</span>' +
+        '<span class="board-date-col">' + badge + '</span>' +
+        '</div>';
+    }).join('');
+  }
 
 </script>
 
