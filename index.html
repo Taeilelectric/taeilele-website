@@ -1475,6 +1475,45 @@
     .board-contact { padding: 40px 28px; }
   }
 
+  /* 메가메뉴 열릴 때 헤더 변환 */
+  header.mega-open {
+    background: #ffffff !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+  }
+  header.mega-open nav { opacity: 0; pointer-events: none; }
+  header.mega-open .header-right { opacity: 0; pointer-events: none; }
+  header.mega-open .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mega-logo-text {
+    display: none;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--navy);
+  }
+  header.mega-open .mega-logo-text { display: block; }
+  .mega-close-btn {
+    display: none;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: var(--navy);
+    line-height: 1;
+    padding: 4px;
+  }
+  header.mega-open .mega-close-btn { display: block; }
+
 </style>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/>
 </head>
@@ -1482,7 +1521,7 @@
 
 <!-- HEADER -->
 <header>
-  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"></a>
+  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"><span class="mega-logo-text">TAEIL ELECTRIC</span></a>
   <nav>
     <div class="nav-item" data-menu="about">
       <a href="about.html" data-ko="회사소개" data-en="About Us">회사소개</a>
@@ -1547,6 +1586,7 @@
       <span></span><span></span><span></span>
     </button>
   </div>
+  <button class="mega-close-btn" id="megaCloseBtn">✕</button>
 </header>
 <!-- 모바일 드로어 (header 밖) -->
 <nav class="mobile-nav" id="mobileNav">
@@ -2126,6 +2166,8 @@ subNavBar.addEventListener('mouseleave', hideSubNav);
   var allBtn = document.getElementById('allMenuBtn');
   var megaMenu = document.getElementById('megaMenu');
   var megaOverlay = document.getElementById('megaOverlay');
+  var megaCloseBtn = document.getElementById('megaCloseBtn');
+  var headerEl = document.querySelector('header');
   var isOpen = false;
 
   function openMega() {
@@ -2133,6 +2175,7 @@ subNavBar.addEventListener('mouseleave', hideSubNav);
     allBtn.classList.add('open');
     megaMenu.classList.add('open');
     megaOverlay.classList.add('open');
+    headerEl.classList.add('mega-open');
     document.body.style.overflow = 'hidden';
   }
   function closeMega() {
@@ -2140,6 +2183,7 @@ subNavBar.addEventListener('mouseleave', hideSubNav);
     allBtn.classList.remove('open');
     megaMenu.classList.remove('open');
     megaOverlay.classList.remove('open');
+    headerEl.classList.remove('mega-open');
     document.body.style.overflow = '';
   }
 
@@ -2148,14 +2192,13 @@ subNavBar.addEventListener('mouseleave', hideSubNav);
     if (isOpen) closeMega(); else openMega();
   });
 
+  if (megaCloseBtn) megaCloseBtn.addEventListener('click', closeMega);
   megaOverlay.addEventListener('click', closeMega);
 
-  // 메가메뉴 링크 클릭 시 닫기
   megaMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', closeMega);
   });
 
-  // ESC 키로 닫기
   document.addEventListener('keydown', function(e){
     if (e.key === 'Escape') closeMega();
   });
