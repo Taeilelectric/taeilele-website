@@ -267,7 +267,7 @@
     display:grid; grid-template-columns:1fr 1.4fr; gap:60px;
     max-width:1100px; margin:0 auto;
   }
-  .contact-info-title { font-size:11px; letter-spacing:3px; color:var(--accent); font-weight:700; margin-bottom:12px; }
+  .contact-info-title { font-size:11px; letter-spacing:3px; color:var(--navy); font-weight:700; margin-bottom:12px; }
   .contact-divider { border-top:1px solid rgba(26,43,74,0.08); margin:24px 0; padding-top:24px; }
   .contact-item { display:flex; gap:16px; align-items:flex-start; padding:16px 0; border-bottom:1px solid var(--border); }
   .contact-item:last-child { border-bottom:none; }
@@ -720,10 +720,11 @@
     gap: 2px;
   }
   .footer-col-label {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 1px;
+    color: var(--navy, #1a2b4a);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
   .footer-col-value {
     font-size: 15px;
@@ -898,7 +899,7 @@
 </head>
 <body>
 <header>
-  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"><span class="mega-logo-text">태일전기</span></a>
+  <a href="index.html" class="logo"><img src="new_logo.jpg" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"><span class="mega-logo-text">태일전기</span></a>
   <nav>
     <div class="nav-item" data-menu="about">
       <a href="about.html" data-ko="회사소개" data-en="About Us">회사소개</a>
@@ -1060,48 +1061,30 @@
 <div style="font-size:24px; font-weight:900; margin-bottom:32px;">연락처</div>
 <div class="contact-info-title">본 사</div>
 <div class="contact-item">
-<div class="contact-icon">📞</div>
-<div>
-<div class="contact-label">PHONE</div>
-<div class="contact-value">032-568-7051~3</div>
-</div>
-</div>
-<div class="contact-item">
-<div class="contact-icon">📠</div>
-<div>
-<div class="contact-label">FAX</div>
-<div class="contact-value">032-568-7054</div>
-</div>
-</div>
-<div class="contact-item">
-<div class="contact-icon">📍</div>
-<div>
-<div class="contact-label">ADDRESS</div>
+<div class="contact-label-text">주소</div>
 <div class="contact-value">인천시 서구 원당대로 480번길 6-11<br/>(왕길동 128-300번지)</div>
 </div>
+<div class="contact-item">
+<div class="contact-label-text">대표전화</div>
+<div class="contact-value">032-568-7051~3</div>
+</div>
+<div class="contact-item">
+<div class="contact-label-text">FAX</div>
+<div class="contact-value">032-568-7054</div>
 </div>
 <div class="contact-divider">
 <div class="contact-info-title">사 업 본 부</div>
 <div class="contact-item">
-<div class="contact-icon">📞</div>
-<div>
-<div class="contact-label">PHONE</div>
-<div class="contact-value">070-4130-1261</div>
-</div>
-</div>
-<div class="contact-item">
-<div class="contact-icon">📠</div>
-<div>
-<div class="contact-label">FAX</div>
-<div class="contact-value">031-781-1263</div>
-</div>
-</div>
-<div class="contact-item">
-<div class="contact-icon">📍</div>
-<div>
-<div class="contact-label">ADDRESS</div>
+<div class="contact-label-text">주소</div>
 <div class="contact-value">경기 성남시 분당구 야탑로 338, 201호</div>
 </div>
+<div class="contact-item">
+<div class="contact-label-text">대표전화</div>
+<div class="contact-value">070-4130-1261</div>
+</div>
+<div class="contact-item">
+<div class="contact-label-text">FAX</div>
+<div class="contact-value">031-781-1263</div>
 </div>
 </div>
 </div>
@@ -1332,7 +1315,7 @@
   <!-- 좌측: 로고 -->
   <div class="footer-left">
     <div class="footer-logo">
-      <img src="img/promo_img_1.webp" alt="태일전기" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.5;">
+      <img src="new_logo.jpg" alt="태일전기" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.5;">
     </div>
     <div class="footer-tagline">대표이사 : 여규철</div>
     <div class="footer-copy">COPYRIGHT © TAEILELE.<br>ALL RIGHTS RESERVED.</div>
