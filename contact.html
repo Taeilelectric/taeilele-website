@@ -1212,19 +1212,19 @@
     btn.disabled = true;
 
     try {
+      var formData = new FormData();
+      formData.append('name', name);
+      formData.append('company', company);
+      formData.append('contact', contact);
+      formData.append('inquiry_type', type);
+      formData.append('subject', '[태일전기 문의] [' + type + '] ' + subject);
+      formData.append('message', body);
+      formData.append('_replyto', contact);
+
       var res = await fetch('https://formspree.io/f/xyknlqoz', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          company: company,
-          contact: contact,
-          inquiry_type: type,
-          subject: '[' + type + '] ' + subject,
-          message: body,
-          _replyto: contact,
-          _subject: '[태일전기 문의] [' + type + '] ' + subject
-        })
+        body: formData,
+        headers: { 'Accept': 'application/json' }
       });
 
       if (res.ok) {
@@ -1238,8 +1238,9 @@
         document.getElementById('inq-body').value = '';
         setTimeout(function(){ msg.textContent = ''; }, 5000);
       } else {
+        var data = await res.json();
         msg.style.color = '#e63946';
-        msg.textContent = '전송 중 오류가 발생했습니다. 다시 시도해 주세요.';
+        msg.textContent = data.error || '전송 중 오류가 발생했습니다. 다시 시도해 주세요.';
       }
     } catch(e) {
       msg.style.color = '#e63946';
