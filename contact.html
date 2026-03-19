@@ -1095,28 +1095,29 @@
 <div>
 <div style="font-size:24px; font-weight:900; margin-bottom:32px; color:var(--text);">1:1 문의</div>
 <div class="contact-form">
-<input placeholder="성함" type="text"/>
-<input placeholder="기관명 또는 기업명" type="text"/>
-<input placeholder="연락처 또는 이메일" type="text"/>
+<input id="inq-name" placeholder="성함" type="text"/>
+<input id="inq-company" placeholder="기관명 또는 기업명" type="text"/>
+<input id="inq-contact" placeholder="연락처 또는 이메일" type="text"/>
 <div class="select-wrap">
 <select id="inquiry-type">
 <option disabled="" selected="" value="">문의 분류를 선택해주세요</option>
-<option value="영업부">제품 문의</option>
-<option value="설계팀">기술 문의</option>
-<option value="사업본부">관급제품 문의</option>
-<option value="영업부_as">A/S 문의</option>
-<option value="경영부">기타 문의</option>
+<option value="제품 문의">제품 문의</option>
+<option value="기술 문의">기술 문의</option>
+<option value="관급제품 문의">관급제품 문의</option>
+<option value="A/S 문의">A/S 문의</option>
+<option value="기타 문의">기타 문의</option>
 </select>
 <span class="select-arrow">▼</span>
 </div>
-<input placeholder="제목" type="text"/>
-<textarea placeholder="문의 내용을 입력해주세요."></textarea>
+<input id="inq-subject" placeholder="제목" type="text"/>
+<textarea id="inq-body" placeholder="문의 내용을 입력해주세요."></textarea>
 <label class="file-label">
 <input id="file-input" multiple="" onchange="updateFileName(this)" type="file"/>
 <span class="file-btn">📎 첨부파일 선택</span>
 <span class="file-name" id="file-name">선택된 파일 없음</span>
 </label>
-<button class="submit-btn">문의 보내기</button>
+<div id="inq-msg" style="font-size:13px; margin-top:8px;"></div>
+<button class="submit-btn" onclick="submitInquiry()">문의 보내기</button>
 </div>
 </div>
 </div>
@@ -1182,6 +1183,73 @@
       }
     });
   }
+  // 문의 분류별 수신 이메일
+  var inquiryEmails = {
+    '관급제품 문의': 'zsq9494@naver.com',
+    '제품 문의': 'zsq9494@naver.com',
+    '기술 문의': 'zsq9494@naver.com',
+    'A/S 문의': 'zsq9494@naver.com',
+    '기타 문의': 'zsq9494@naver.com'
+  };
+
+  async function submitInquiry() {
+    var name = document.getElementById('inq-name').value.trim();
+    var company = document.getElementById('inq-company').value.trim();
+    var contact = document.getElementById('inq-contact').value.trim();
+    var type = document.getElementById('inquiry-type').value;
+    var subject = document.getElementById('inq-subject').value.trim();
+    var body = document.getElementById('inq-body').value.trim();
+    var msg = document.getElementById('inq-msg');
+
+    if (!name || !contact || !type || !subject || !body) {
+      msg.style.color = '#e63946';
+      msg.textContent = '모든 항목을 입력해 주세요.';
+      return;
+    }
+
+    var btn = document.querySelector('.submit-btn');
+    btn.textContent = '전송 중...';
+    btn.disabled = true;
+
+    try {
+      var res = await fetch('https://formspree.io/f/xyknlqoz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          company: company,
+          contact: contact,
+          inquiry_type: type,
+          subject: '[' + type + '] ' + subject,
+          message: body,
+          _replyto: contact,
+          _subject: '[태일전기 문의] [' + type + '] ' + subject
+        })
+      });
+
+      if (res.ok) {
+        msg.style.color = '#0ca678';
+        msg.textContent = '문의가 접수되었습니다. 빠르게 연락 드리겠습니다.';
+        document.getElementById('inq-name').value = '';
+        document.getElementById('inq-company').value = '';
+        document.getElementById('inq-contact').value = '';
+        document.getElementById('inquiry-type').value = '';
+        document.getElementById('inq-subject').value = '';
+        document.getElementById('inq-body').value = '';
+        setTimeout(function(){ msg.textContent = ''; }, 5000);
+      } else {
+        msg.style.color = '#e63946';
+        msg.textContent = '전송 중 오류가 발생했습니다. 다시 시도해 주세요.';
+      }
+    } catch(e) {
+      msg.style.color = '#e63946';
+      msg.textContent = '네트워크 오류가 발생했습니다. 다시 시도해 주세요.';
+    }
+
+    btn.textContent = '문의 보내기';
+    btn.disabled = false;
+  }
+
   function updateFileName(input) {
     var label = document.getElementById('file-name');
     if (!label) return;
