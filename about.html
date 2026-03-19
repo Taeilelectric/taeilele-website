@@ -391,17 +391,7 @@
 
   /* ── 모바일 드로어 ── */
   /* ── 메가메뉴 오버레이 ── */
-  .mega-menu {
-    display: none;
-    position: fixed;
-    top: 90px; left: 0; right: 0;
-    background: #ffffff;
-    border-top: 3px solid var(--accent);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    padding: 0;
-    overflow: hidden;
-    z-index: 9000;
-  }
+
   .mega-menu.open {
     display: block;
     animation: megaFadeIn 0.25s ease forwards;
@@ -830,51 +820,10 @@
   }
   .sub-nav-links a:hover { color: #0a1628; border-bottom-color: #f4a100; }
 
-  /* ── 메가메뉴 ── */
-  .mega-menu {
-    display: none; position: fixed;
-    top: 90px; left: 0; right: 0;
-    background: #1a3a8f;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    z-index: 9000;
-  }
-  .mega-menu.open { display: block; animation: megaFadeIn 0.25s ease forwards; }
-  @keyframes megaFadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .mega-menu-inner {
-    max-width: 1200px; margin: 0 auto;
-    padding: 48px 60px 52px;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  }
-  .mega-col {
-    display: flex; flex-direction: column;
-    padding: 0 40px 0 0;
-    border-right: 1px solid rgba(255,255,255,0.15);
-    margin-right: 40px;
-  }
-  .mega-col:last-child { border-right: none; margin-right: 0; padding-right: 0; }
-  .mega-col-title {
-    font-size: 18px; font-weight: 700; color: #ffffff;
-    margin-bottom: 20px; padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-  }
-  .mega-col-links { display: flex; flex-direction: column; gap: 10px; }
-  .mega-sub-link {
-    font-size: 15px; color: rgba(255,255,255,0.8);
-    text-decoration: none; font-weight: 400;
-    transition: color 0.18s; padding: 4px 0;
-  }
-  .mega-sub-link:hover { color: #ffffff; }
-  .mega-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.4); z-index: 8999;
-  }
-  .mega-overlay.open { display: block; }
+
 
   /* ── 메가메뉴 열릴 때 헤더 변환 ── */
-  header.mega-open { background: #ffffff !important; border-bottom: 1px solid #e0e0e0 !important; }
+  header.mega-open { background: #ffffff !important; border-bottom: 1px solid #e0e0e0 !important; box-shadow: 0 2px 16px rgba(0,0,0,0.08) !important; }
   header.mega-open nav { opacity: 0; pointer-events: none; }
   header.mega-open .header-right { opacity: 0; pointer-events: none; }
   header.mega-open .logo {
@@ -922,6 +871,64 @@
     .ham-btn { display: none !important; }
   }
 
+
+  /* ── 메가메뉴 ── */
+  .mega-menu {
+    display: none; position: fixed;
+    top: 90px; left: 0; right: 0;
+    background: #1a3a8f;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    z-index: 9000;
+  }
+  .mega-menu.open { display: block; animation: megaFadeIn 0.25s ease forwards; }
+  @keyframes megaFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mega-menu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 60px 52px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .mega-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 40px 0 0;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    margin-right: 40px;
+  }
+  .mega-col:last-child {
+    border-right: none;
+    margin-right: 0;
+    padding-right: 0;
+  }
+  .mega-col-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .mega-col-links { display: flex; flex-direction: column; gap: 10px; }
+  .mega-sub-link {
+    display: inline-block; padding: 4px 0;
+    font-size: 15px; color: rgba(255,255,255,0.8);
+    text-decoration: none; background: none; border: none;
+    letter-spacing: 0.2px; font-weight: 400; transition: color 0.18s;
+  }
+  .mega-sub-link:hover { color: #ffffff; }
+  .mega-overlay {
+    display: none; position: fixed;
+    top: 90px; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); z-index: 8999;
+  }
+  .mega-overlay.open { display: block; }
 </style>
 
 
