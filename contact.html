@@ -11,7 +11,7 @@
   :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+  body { font-family:'Noto Sans KR',sans-serif; background:#ffffff; color:var(--text); overflow-x:hidden; }
 
 /* ── HEADER ── */
   header {
@@ -223,7 +223,7 @@
   }
   .page-hero::after {
     content:""; position:absolute; bottom:-1px; left:0; right:0; height:64px;
-    background:var(--bg); clip-path:ellipse(60% 100% at 50% 100%);
+    background:#ffffff; clip-path:ellipse(60% 100% at 50% 100%);
   }
   .page-hero-inner { position:relative; z-index:2; max-width:1200px; margin:0 auto; padding-bottom:100px; text-align:left; }
   .page-hero-tag { font-size:11px; letter-spacing:4px; color:var(--accent); margin-bottom:16px; font-weight:700; }
@@ -262,7 +262,7 @@
   .tab-panel.active { display:block; }
 
   /* 연락처 + 문의 */
-  #tab-inquiry { padding:60px; background:var(--bg); }
+  #tab-inquiry { padding:60px; background:#ffffff; }
   .contact-wrap {
     display:grid; grid-template-columns:1fr 1.4fr; gap:60px;
     max-width:1100px; margin:0 auto;
@@ -306,7 +306,7 @@
   .submit-btn:hover { opacity:0.85; }
 
   /* 자료실 */
-  #tab-download { padding:60px; background:var(--bg); }
+  #tab-download { padding:60px; background:#ffffff; }
   .dl-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:800px; margin:0 auto; }
   .dl-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; padding:40px 32px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:16px; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); }
   .dl-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
