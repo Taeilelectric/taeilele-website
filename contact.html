@@ -233,8 +233,7 @@
 
   /* 탭 */
   .tab-nav {
-    display:flex; padding:0 60px;
-    justify-content: center;
+    display:flex; padding: 0 max(60px, calc((100% - 1200px) / 2));
     background:var(--surface); border-bottom:2px solid var(--border);
     position:sticky; top:80px; z-index:50; overflow-x:auto;
     box-shadow:0 2px 16px rgba(10,22,40,0.08);
