@@ -1219,7 +1219,6 @@
       formData.append('inquiry_type', type);
       formData.append('subject', '[태일전기 문의] [' + type + '] ' + subject);
       formData.append('message', body);
-      formData.append('_replyto', contact);
 
       var res = await fetch('https://formspree.io/f/xyknlqoz', {
         method: 'POST',
