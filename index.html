@@ -1760,7 +1760,95 @@
   </div>
 </section>
 
-<!-- CLIENTS -->
+<!-- 사업영역 바로가기 -->
+<section id="biz-shortcut" style="padding:80px 0; background:#ffffff;">
+  <div style="max-width:1200px; margin:0 auto; padding:0 60px;">
+    <div style="margin-bottom:48px;">
+      <div style="font-size:11px; letter-spacing:4px; color:var(--accent); font-weight:700; margin-bottom:12px;">PRODUCT</div>
+      <div style="font-size:32px; font-weight:900; color:#0d1829; line-height:1.3;">완벽한 제품을 위한<br><span style="color:var(--navy)">우리의 노력은 계속됩니다.</span></div>
+    </div>
+    <div style="display:grid; grid-template-columns:280px 1fr; gap:60px; align-items:start;">
+      <!-- 왼쪽 제품 리스트 -->
+      <div id="prod-list" style="display:flex; flex-direction:column; border-top:2px solid #e0e8f0;">
+        <button onclick="selectProd(0)" class="prod-list-btn active" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+          <span style="font-size:15px; font-weight:700; color:var(--blue);">특고압 배전반</span>
+          <span style="color:var(--blue); font-size:12px;">›</span>
+        </button>
+        <button onclick="selectProd(1)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+          <span style="font-size:15px; font-weight:600; color:#4a5a70;">저압 배전반</span>
+          <span style="color:#ccc; font-size:12px;">›</span>
+        </button>
+        <button onclick="selectProd(2)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+          <span style="font-size:15px; font-weight:600; color:#4a5a70;">전동기 제어반</span>
+          <span style="color:#ccc; font-size:12px;">›</span>
+        </button>
+        <button onclick="selectProd(3)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+          <span style="font-size:15px; font-weight:600; color:#4a5a70;">분전반</span>
+          <span style="color:#ccc; font-size:12px;">›</span>
+        </button>
+      </div>
+      <!-- 오른쪽 이미지 + 설명 -->
+      <div style="position:relative;">
+        <div id="prod-panels">
+          <div class="prod-panel" style="display:block;">
+            <div style="background:#f4f7fb; border-radius:16px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <img id="prod-img-0" src="" alt="특고압 배전반" style="width:100%; height:100%; object-fit:contain; display:none;">
+              <div id="prod-placeholder-0" style="font-size:80px;">⚡</div>
+            </div>
+            <div style="font-size:13px; color:#6b7a90; text-align:center;">22.9kV 특고압 수전설비 · 내진·면진 설계 적용</div>
+          </div>
+          <div class="prod-panel" style="display:none;">
+            <div style="background:#f4f7fb; border-radius:16px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <img id="prod-img-1" src="" alt="저압 배전반" style="width:100%; height:100%; object-fit:contain; display:none;">
+              <div id="prod-placeholder-1" style="font-size:80px;">🔌</div>
+            </div>
+            <div style="font-size:13px; color:#6b7a90; text-align:center;">저압 배전반 · 각 부하에 안전한 전력 분배</div>
+          </div>
+          <div class="prod-panel" style="display:none;">
+            <div style="background:#f4f7fb; border-radius:16px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <img id="prod-img-2" src="" alt="전동기 제어반" style="width:100%; height:100%; object-fit:contain; display:none;">
+              <div id="prod-placeholder-2" style="font-size:80px;">⚙️</div>
+            </div>
+            <div style="font-size:13px; color:#6b7a90; text-align:center;">전동기 제어반 · 기동·정지·보호 기능 정상 작동</div>
+          </div>
+          <div class="prod-panel" style="display:none;">
+            <div style="background:#f4f7fb; border-radius:16px; overflow:hidden; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+              <img id="prod-img-3" src="" alt="분전반" style="width:100%; height:100%; object-fit:contain; display:none;">
+              <div id="prod-placeholder-3" style="font-size:80px;">🗂️</div>
+            </div>
+            <div style="font-size:13px; color:#6b7a90; text-align:center;">분전반 · 말단 부하의 전력 공급 안정성 확보</div>
+          </div>
+        </div>
+        <div style="margin-top:24px;">
+          <a href="products.html" style="display:inline-block; padding:12px 32px; background:var(--navy); color:#fff; border-radius:4px; font-size:13px; font-weight:700; letter-spacing:1px; text-decoration:none;">제품 전체보기 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function selectProd(idx) {
+  var btns = document.querySelectorAll('.prod-list-btn');
+  var panels = document.querySelectorAll('.prod-panel');
+  btns.forEach(function(b, i) {
+    var span = b.querySelector('span:first-child');
+    var arrow = b.querySelector('span:last-child');
+    if (i === idx) {
+      span.style.color = 'var(--blue)';
+      span.style.fontWeight = '700';
+      arrow.style.color = 'var(--blue)';
+    } else {
+      span.style.color = '#4a5a70';
+      span.style.fontWeight = '600';
+      arrow.style.color = '#ccc';
+    }
+  });
+  panels.forEach(function(p, i) {
+    p.style.display = i === idx ? 'block' : 'none';
+  });
+}
+</script>
 <section id="clients" style="display:none;">
   <div class="clients-slider-wrap">
     <div id="clients-track" class="clients-track" style="display:flex; gap:20px; width:max-content; animation:slide 30s linear infinite;">
