@@ -697,10 +697,7 @@
     border-color: var(--accent);
     color: var(--navy);
   }
-  @media (min-width: 901px) {
-    .ham-btn { display: none !important; }
-    .all-menu-btn { display: flex !important; }
-  }
+  
 
   /* ── FOOTER ── */
     .footer-left { flex-shrink: 0; max-width: 120px; }
@@ -903,7 +900,36 @@
     transform: translateY(-50%); background: none; border: none;
     cursor: pointer; font-size: 22px; color: #0a1628; padding: 4px;
   }
-  header.mega-open .mega-close-btn { display: block; }
+  header.mega-open .mega-close-btn { display: block; }  header.nav-open .all-menu-btn { color: #0a1628; }
+
+
+  /* ── 전체메뉴 버튼 기본 표시 ── */
+  .all-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px; height: 44px;
+    cursor: pointer;
+    background: none; border: none;
+    padding: 6px; z-index: 302;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  .all-menu-btn span {
+    display: block; height: 2px; width: 100%;
+    background: #ffffff; border-radius: 2px;
+    transition: all 0.3s;
+  }
+  header.scrolled .all-menu-btn span { background: #1a2434; }
+  header.mega-open .all-menu-btn span { background: #1a2434; }
+  .all-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .all-menu-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .all-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  @media (min-width: 901px) {
+    .all-menu-btn { display: flex !important; }
+    .ham-btn { display: none !important; }
+  }
 
 </style>
 
