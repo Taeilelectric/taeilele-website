@@ -629,7 +629,6 @@
 
   @media (max-width: 900px) {
     .ham-btn { display: flex; }
-    .all-menu-btn { display: none !important; }
     nav { display: none !important; }
     .header-cta { display: none; }
     .hero-content { left: 0 !important; right: 0 !important; transform: translateY(-50%) !important; max-width: 100% !important; padding: 0 20px !important; text-align: center !important; box-sizing: border-box !important; }
@@ -803,6 +802,109 @@
     .tab-btn { padding: 12px 12px !important; font-size: 13px !important; }
   }
 
+
+  /* ── 서브메뉴 바 ── */
+  .sub-nav-bar {
+    display: none;
+    position: fixed;
+    top: 90px;
+    left: 0; right: 0;
+    background: #ffffff;
+    border-bottom: 2px solid #f0f0f0;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .sub-nav-bar.visible { display: block; }
+  .sub-nav-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 60px;
+    height: 52px;
+    gap: 0;
+  }
+  .sub-nav-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy, #0a1628);
+    padding-right: 32px;
+    border-right: 1px solid #e0e0e0;
+    margin-right: 24px;
+    white-space: nowrap;
+  }
+  .sub-nav-links { display: flex; align-items: center; height: 52px; }
+  .sub-nav-links a {
+    display: flex; align-items: center; height: 52px;
+    padding: 0 22px; font-size: 15px; font-weight: 600;
+    color: #4a5a70; text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s; white-space: nowrap;
+  }
+  .sub-nav-links a:hover { color: #0a1628; border-bottom-color: #f4a100; }
+
+  /* ── 메가메뉴 ── */
+  .mega-menu {
+    display: none; position: fixed;
+    top: 90px; left: 0; right: 0;
+    background: #1a3a8f;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    z-index: 9000;
+  }
+  .mega-menu.open { display: block; animation: megaFadeIn 0.25s ease forwards; }
+  @keyframes megaFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .mega-menu-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 48px 60px 52px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .mega-col {
+    display: flex; flex-direction: column;
+    padding: 0 40px 0 0;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    margin-right: 40px;
+  }
+  .mega-col:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+  .mega-col-title {
+    font-size: 18px; font-weight: 700; color: #ffffff;
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .mega-col-links { display: flex; flex-direction: column; gap: 10px; }
+  .mega-sub-link {
+    font-size: 15px; color: rgba(255,255,255,0.8);
+    text-decoration: none; font-weight: 400;
+    transition: color 0.18s; padding: 4px 0;
+  }
+  .mega-sub-link:hover { color: #ffffff; }
+  .mega-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4); z-index: 8999;
+  }
+  .mega-overlay.open { display: block; }
+
+  /* ── 메가메뉴 열릴 때 헤더 변환 ── */
+  header.mega-open { background: #ffffff !important; border-bottom: 1px solid #e0e0e0 !important; }
+  header.mega-open nav { opacity: 0; pointer-events: none; }
+  header.mega-open .header-right { opacity: 0; pointer-events: none; }
+  header.mega-open .logo {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .mega-logo-text {
+    display: none; font-family: 'Noto Sans KR', sans-serif;
+    font-size: 22px; font-weight: 900; color: #000000 !important;
+  }
+  header.mega-open .mega-logo-text { display: block; }
+  .mega-close-btn {
+    display: none; position: absolute; right: 60px; top: 50%;
+    transform: translateY(-50%); background: none; border: none;
+    cursor: pointer; font-size: 22px; color: #0a1628; padding: 4px;
+  }
+  header.mega-open .mega-close-btn { display: block; }
+
 </style>
 
 
@@ -810,43 +912,28 @@
 </head>
 <body>
 <header>
-  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"></a>
+  <a href="index.html" class="logo"><img src="img/promo_img_1.webp" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"><span class="mega-logo-text">태일전기</span></a>
   <nav>
-    <div class="nav-item">
+    <div class="nav-item" data-menu="about">
       <a href="about.html" data-ko="회사소개" data-en="About Us">회사소개</a>
-      <div class="dropdown">
-        <a href="about.html#ceo" data-ko="CEO 인사말" data-en="CEO Message">CEO 인사말</a>
-        <a href="about.html#philosophy" data-ko="경영철학" data-en="Philosophy">경영철학</a>
-        <a href="about.html#history" data-ko="회사연혁" data-en="History">회사연혁</a>
-        <a href="about.html#location" data-ko="찾아오시는 길" data-en="Location">찾아오시는 길</a>
-      </div>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" data-menu="products">
       <a href="products.html" data-ko="사업영역" data-en="Business">사업영역</a>
-      <div class="dropdown">
-        <a href="products.html#switchboard" data-ko="수배전반" data-en="Switchboard">수배전반</a>
-        <a href="products.html#control" data-ko="제어시스템" data-en="Control System">제어시스템</a>
-        <a href="products.html#energy" data-ko="신재생에너지" data-en="Renewable Energy">신재생에너지</a>
-        <a href="products.html#construction" data-ko="공사부문" data-en="Construction">공사부문</a>
-      </div>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" data-menu="promo">
       <a href="promo.html" data-ko="홍보관" data-en="Media">홍보관</a>
-      <div class="dropdown">
-        <a href="promo.html#tab-cert" data-ko="인증서" data-en="Certificates">인증서</a>
-        <a href="promo.html#tab-patent" data-ko="특허증" data-en="Patents">특허증</a>
-        <a href="promo.html#tab-award" data-ko="표창장" data-en="Awards">표창장</a>
-        <a href="promo.html#tab-partners" data-ko="파트너사" data-en="Partners">파트너사</a>
-      </div>
     </div>
-    <div class="nav-item">
+    <div class="nav-item" data-menu="contact">
       <a href="contact.html" data-ko="고객센터" data-en="Support">고객센터</a>
-      <div class="dropdown">
-        <a href="contact.html#inquiry" data-ko="1:1 문의" data-en="Inquiry">1:1 문의</a>
-        <a href="contact.html#download" data-ko="자료실" data-en="Downloads">자료실</a>
-      </div>
     </div>
   </nav>
+  <!-- 서브메뉴 바 -->
+  <div class="sub-nav-bar" id="subNavBar">
+    <div class="sub-nav-bar-inner">
+      <div class="sub-nav-label" id="subNavLabel"></div>
+      <div class="sub-nav-links" id="subNavLinks"></div>
+    </div>
+  </div>
   <div class="header-right">
     <div class="lang-switcher" id="langSwitcher">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -867,6 +954,7 @@
       <span></span><span></span><span></span>
     </button>
   </div>
+  <button class="mega-close-btn" id="megaCloseBtn">✕</button>
 </header>
 <!-- 모바일 드로어 (header 밖) -->
 <nav class="mobile-nav" id="mobileNav">
@@ -1291,18 +1379,87 @@ window.addEventListener("DOMContentLoaded", () => {
 })();
 
 
-// ── 전체메뉴(메가메뉴) ──
+
+window.addEventListener('scroll', function() {
+  var h = document.querySelector('header');
+  if (!h) return;
+  if (window.scrollY > 10) { h.classList.add('scrolled'); }
+  else { h.classList.remove('scrolled'); }
+});
+
+// ── 서브메뉴 바 ──
+const subNavBar = document.getElementById('subNavBar');
+const subNavLabel = document.getElementById('subNavLabel');
+const subNavLinks = document.getElementById('subNavLinks');
+const headerEl = document.querySelector('header');
+
+const subMenuData = {
+  about: { label: '회사소개', links: [
+    { href: 'about.html#ceo', text: 'CEO 인사말' },
+    { href: 'about.html#philosophy', text: '경영철학' },
+    { href: 'about.html#history', text: '회사연혁' },
+    { href: 'about.html#location', text: '찾아오시는 길' }
+  ]},
+  products: { label: '사업영역', links: [
+    { href: 'products.html#switchboard', text: '수배전반' },
+    { href: 'products.html#control', text: '제어시스템' },
+    { href: 'products.html#energy', text: '신재생에너지' },
+    { href: 'products.html#construction', text: '공사부문' }
+  ]},
+  promo: { label: '홍보관', links: [
+    { href: 'promo.html#tab-cert', text: '인증서' },
+    { href: 'promo.html#tab-patent', text: '특허증' },
+    { href: 'promo.html#tab-award', text: '표창장' },
+    { href: 'promo.html#tab-partners', text: '파트너사' }
+  ]},
+  contact: { label: '고객센터', links: [
+    { href: 'contact.html#inquiry', text: '1:1 문의' },
+    { href: 'contact.html#download', text: '자료실' },
+    { href: 'contact.html#tab-notice', text: '공지사항' },
+    { href: 'contact.html#tab-recruit', text: '채용공고' }
+  ]}
+};
+
+let subNavTimer;
+function showSubNav(menuKey) {
+  clearTimeout(subNavTimer);
+  const data = subMenuData[menuKey];
+  if (!data) return;
+  subNavLabel.textContent = data.label;
+  subNavLinks.innerHTML = data.links.map(l => `<a href="${l.href}">${l.text}</a>`).join('');
+  subNavBar.classList.add('visible');
+  headerEl.classList.add('nav-open');
+}
+function hideSubNav() {
+  subNavTimer = setTimeout(() => {
+    subNavBar.classList.remove('visible');
+    headerEl.classList.remove('nav-open');
+  }, 150);
+}
+document.querySelectorAll('.nav-item').forEach(item => {
+  const menuKey = item.getAttribute('data-menu');
+  if (!menuKey) return;
+  item.addEventListener('mouseenter', () => showSubNav(menuKey));
+  item.addEventListener('mouseleave', hideSubNav);
+});
+if (subNavBar) {
+  subNavBar.addEventListener('mouseenter', () => clearTimeout(subNavTimer));
+  subNavBar.addEventListener('mouseleave', hideSubNav);
+}
+
+// ── 메가메뉴 ──
 (function(){
   var allBtn = document.getElementById('allMenuBtn');
   var megaMenu = document.getElementById('megaMenu');
   var megaOverlay = document.getElementById('megaOverlay');
+  var megaCloseBtn = document.getElementById('megaCloseBtn');
   var isOpen = false;
-
   function openMega() {
     isOpen = true;
     allBtn.classList.add('open');
     megaMenu.classList.add('open');
     megaOverlay.classList.add('open');
+    headerEl.classList.add('mega-open');
     document.body.style.overflow = 'hidden';
   }
   function closeMega() {
@@ -1310,32 +1467,16 @@ window.addEventListener("DOMContentLoaded", () => {
     allBtn.classList.remove('open');
     megaMenu.classList.remove('open');
     megaOverlay.classList.remove('open');
+    headerEl.classList.remove('mega-open');
     document.body.style.overflow = '';
   }
-
-  allBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    if (isOpen) closeMega(); else openMega();
-  });
-
+  allBtn.addEventListener('click', function(e){ e.stopPropagation(); if (isOpen) closeMega(); else openMega(); });
+  if (megaCloseBtn) megaCloseBtn.addEventListener('click', closeMega);
   megaOverlay.addEventListener('click', closeMega);
-
-  // 메가메뉴 링크 클릭 시 닫기
-  megaMenu.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', closeMega);
-  });
-
-  // ESC 키로 닫기
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') closeMega();
-  });
+  megaMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMega); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMega(); });
 })();
-window.addEventListener('scroll', function() {
-  var h = document.querySelector('header');
-  if (!h) return;
-  if (window.scrollY > 10) { h.classList.add('scrolled'); }
-  else { h.classList.remove('scrolled'); }
-});
+
 </script>
 </body>
 </html>
