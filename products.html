@@ -790,6 +790,16 @@
     background: rgba(0,0,0,0.4); z-index: 8999;
   }
   .mega-overlay.open { display: block; }
+
+/* ── 로고 버전 전환 ── */
+header .logo-dark { display: block; }
+header .logo-light { display: none; }
+header.scrolled .logo-dark { display: none; }
+header.scrolled .logo-light { display: block; }
+header.nav-open .logo-dark { display: none; }
+header.nav-open .logo-light { display: block; }
+header.mega-open .logo-dark { display: none; }
+header.mega-open .logo-light { display: block; }
 </style>
 
 
@@ -797,7 +807,11 @@
 </head>
 <body>
 <header>
-  <a href="index.html" class="logo"><img src="img/new_logo.png" alt="태일전기" style="height:60px;width:auto;object-fit:contain;"><span class="mega-logo-text">태일전기</span></a>
+  <a href="index.html" class="logo">
+  <img class="logo-dark" src="img/new_logo_dark.png" alt="태일전기" style="height:60px;width:auto;object-fit:contain;display:block;">
+  <img class="logo-light" src="img/new_logo.png" alt="태일전기" style="height:60px;width:auto;object-fit:contain;display:none;">
+  <span class="mega-logo-text">태일전기</span>
+</a>
   <nav>
     <div class="nav-item" data-menu="about">
       <a href="about.html" data-ko="회사소개" data-en="About Us">회사소개</a>
