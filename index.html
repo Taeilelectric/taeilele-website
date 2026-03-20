@@ -1699,7 +1699,7 @@
       <div class="hero-content">
         <h1 class="hero-title">세상을 밝히는 큰 빛, 태일이 만드는 내일</h1>
         <p class="hero-sub"><em>Innovating Light, Engineering Tomorrow.</em>차세대 스마트 배전반으로 대한민국 전력 인프라를 선도합니다</p>
-        <div style="margin-top:28px;"><img src="img/cert_logos.jpg" alt="인증" style="height:44px; width:auto; object-fit:contain; opacity:0.9;"></div>
+        <div style="margin-top:28px;"><img src="img/cert_logos_new.png" alt="인증" style="height:80px; width:auto; object-fit:contain;"></div>
       </div>
     </div>
     <div class="hero-slide">
@@ -1708,7 +1708,7 @@
       <div class="hero-content">
         <h1 class="hero-title">세상을 밝히는 큰 빛, 태일이 만드는 내일</h1>
         <p class="hero-sub"><em>Innovating Light, Engineering Tomorrow.</em>태양광·신재생에너지로 지속가능한 미래를 만들어갑니다</p>
-        <div style="margin-top:28px;"><img src="img/cert_logos.jpg" alt="인증" style="height:44px; width:auto; object-fit:contain; opacity:0.9;"></div>
+        <div style="margin-top:28px;"><img src="img/cert_logos_new.png" alt="인증" style="height:80px; width:auto; object-fit:contain;"></div>
       </div>
     </div>
     <div class="hero-slide">
@@ -1717,7 +1717,7 @@
       <div class="hero-content">
         <h1 class="hero-title">세상을 밝히는 큰 빛, 태일이 만드는 내일</h1>
         <p class="hero-sub"><em>Innovating Light, Engineering Tomorrow.</em>내진·면진 배전반으로 재난에도 끄떡없는 안전한 전력 시스템</p>
-        <div style="margin-top:28px;"><img src="img/cert_logos.jpg" alt="인증" style="height:44px; width:auto; object-fit:contain; opacity:0.9;"></div>
+        <div style="margin-top:28px;"><img src="img/cert_logos_new.png" alt="인증" style="height:80px; width:auto; object-fit:contain;"></div>
       </div>
     </div>
   </div>
@@ -1831,27 +1831,101 @@
   </div>
 </section>
 
+<style>
+.prod-panel { transition: opacity 0.4s ease; }
+.prod-panel.fade-out { opacity: 0; }
+.prod-panel.fade-in { opacity: 1; }
+.prod-list-btn { position: relative; overflow: hidden; }
+.prod-progress-bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: var(--blue);
+  width: 0%;
+  transition: width linear;
+}
+</style>
 <script>
-function selectProd(idx) {
+var currentProd = 0;
+var prodTotal = 4;
+var prodAutoTimer = null;
+var prodProgressTimer = null;
+var prodInterval = 3500; // 3.5초마다 자동 전환
+
+function selectProd(idx, fromAuto) {
   var btns = document.querySelectorAll('.prod-list-btn');
   var panels = document.querySelectorAll('.prod-panel');
+
+  // 페이드 아웃
+  panels[currentProd].style.opacity = '0';
+  setTimeout(function() {
+    panels.forEach(function(p, i) {
+      p.style.display = 'none';
+      p.style.opacity = '0';
+    });
+    panels[idx].style.display = 'block';
+    setTimeout(function() { panels[idx].style.opacity = '1'; }, 20);
+  }, 200);
+
   btns.forEach(function(b, i) {
     var span = b.querySelector('span:first-child');
     var arrow = b.querySelector('span:last-child');
+    var bar = b.querySelector('.prod-progress-bar');
     if (i === idx) {
       span.style.color = 'var(--blue)';
       span.style.fontWeight = '700';
       arrow.style.color = 'var(--blue)';
+      // 진행 바 애니메이션
+      if (bar) {
+        bar.style.transition = 'none';
+        bar.style.width = '0%';
+        setTimeout(function() {
+          bar.style.transition = 'width ' + prodInterval + 'ms linear';
+          bar.style.width = '100%';
+        }, 30);
+      }
     } else {
       span.style.color = '#4a5a70';
       span.style.fontWeight = '600';
       arrow.style.color = '#ccc';
+      if (bar) { bar.style.transition = 'none'; bar.style.width = '0%'; }
     }
   });
-  panels.forEach(function(p, i) {
-    p.style.display = i === idx ? 'block' : 'none';
-  });
+
+  currentProd = idx;
+
+  // 수동 클릭 시 자동 타이머 리셋
+  if (!fromAuto) {
+    clearInterval(prodAutoTimer);
+    startProdAuto();
+  }
 }
+
+function startProdAuto() {
+  prodAutoTimer = setInterval(function() {
+    var next = (currentProd + 1) % prodTotal;
+    selectProd(next, true);
+  }, prodInterval);
+}
+
+// 버튼에 진행 바 DOM 추가
+window.addEventListener('DOMContentLoaded', function() {
+  var btns = document.querySelectorAll('.prod-list-btn');
+  btns.forEach(function(b) {
+    var bar = document.createElement('div');
+    bar.className = 'prod-progress-bar';
+    b.appendChild(bar);
+  });
+  // 패널 transition 설정
+  var panels = document.querySelectorAll('.prod-panel');
+  panels.forEach(function(p) {
+    p.style.transition = 'opacity 0.4s ease';
+    p.style.opacity = p.style.display === 'none' ? '0' : '1';
+  });
+  // 첫 번째 진행 바 시작
+  selectProd(0, true);
+  startProdAuto();
+});
 </script>
 <section id="clients" style="display:none;">
   <div class="clients-slider-wrap">
