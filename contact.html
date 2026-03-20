@@ -894,21 +894,9 @@
   .mega-overlay.open { display: block; }
 
 /* ── 로고 버전 전환 ── */
-header .logo-dark,
-header .logo-light {
-  position: absolute;
-  transition: opacity 0.3s;
-}
-header .logo-dark  { opacity: 1; }
-header .logo-light { opacity: 0; }
-header.scrolled .logo-dark  { opacity: 0; }
-header.scrolled .logo-light { opacity: 1; }
-header.nav-open .logo-dark  { opacity: 1; }
-header.nav-open .logo-light { opacity: 0; }
-header.mega-open .logo-dark  { opacity: 0; }
-header.mega-open .logo-light { opacity: 1; }
-/* 로고 a태그 relative로 두 이미지 겹치기 */
-header .logo { position: relative; display: flex; align-items: center; height: 60px; width: 60px; }
+/* ── 로고: 항상 투명 배경 버전 사용 ── */
+header .logo-light { display: none; }
+header .logo-dark  { display: block; }
 </style>
 
 
