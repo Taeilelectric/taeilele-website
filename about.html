@@ -41,8 +41,8 @@
     box-shadow: 0 2px 16px rgba(26,43,74,0.1);
   }
   header.nav-open {
-    background: #ffffff;
-    border-bottom-color: #e8e8e8;
+    background: transparent;
+    border-bottom-color: transparent;
     box-shadow: none;
   }
 
@@ -885,14 +885,21 @@
   .mega-overlay.open { display: block; }
 
 /* ── 로고 버전 전환 ── */
-header .logo-dark { display: block; }
-header .logo-light { display: none; }
-header.scrolled .logo-dark { display: none; }
-header.scrolled .logo-light { display: block; }
-header.nav-open .logo-dark { display: none; }
-header.nav-open .logo-light { display: block; }
-header.mega-open .logo-dark { display: none; }
-header.mega-open .logo-light { display: block; }
+header .logo-dark,
+header .logo-light {
+  position: absolute;
+  transition: opacity 0.3s;
+}
+header .logo-dark  { opacity: 1; }
+header .logo-light { opacity: 0; }
+header.scrolled .logo-dark  { opacity: 0; }
+header.scrolled .logo-light { opacity: 1; }
+header.nav-open .logo-dark  { opacity: 0; }
+header.nav-open .logo-light { opacity: 1; }
+header.mega-open .logo-dark  { opacity: 0; }
+header.mega-open .logo-light { opacity: 1; }
+/* 로고 a태그 relative로 두 이미지 겹치기 */
+header .logo { position: relative; display: flex; align-items: center; height: 60px; width: 60px; }
 </style>
 
 
