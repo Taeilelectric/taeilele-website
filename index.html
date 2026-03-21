@@ -1818,19 +1818,19 @@ header .logo-dark  { display: block; }
       </div>
       <!-- 오른쪽 제품 리스트 -->
       <div id="prod-list" style="display:flex; flex-direction:column; border-top:2px solid #e0e8f0;">
-        <button onclick="selectProd(0)" class="prod-list-btn active" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+        <button onclick="selectProd(0); startProdAuto()" class="prod-list-btn active" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
           <span style="font-size:15px; font-weight:700; color:var(--blue);">특고압 배전반</span>
           <span style="color:var(--blue); font-size:12px;">›</span>
         </button>
-        <button onclick="selectProd(1)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+        <button onclick="selectProd(1); startProdAuto()" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
           <span style="font-size:15px; font-weight:600; color:#4a5a70;">저압 배전반</span>
           <span style="color:#ccc; font-size:12px;">›</span>
         </button>
-        <button onclick="selectProd(2)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+        <button onclick="selectProd(2); startProdAuto()" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
           <span style="font-size:15px; font-weight:600; color:#4a5a70;">전동기 제어반</span>
           <span style="color:#ccc; font-size:12px;">›</span>
         </button>
-        <button onclick="selectProd(3)" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
+        <button onclick="selectProd(3); startProdAuto()" class="prod-list-btn" style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; border:none; border-bottom:1px solid #e0e8f0; background:none; cursor:pointer; text-align:left; font-family:'Noto Sans KR',sans-serif;">
           <span style="font-size:15px; font-weight:600; color:#4a5a70;">분전반</span>
           <span style="color:#ccc; font-size:12px;">›</span>
         </button>
@@ -1857,33 +1857,23 @@ header .logo-dark  { display: block; }
 var currentProd = 0;
 var prodTotal = 4;
 var prodAutoTimer = null;
-var prodProgressTimer = null;
 var prodInterval = 2000; // 2초마다 자동 전환
 
-function selectProd(idx, fromAuto) {
+function selectProd(idx) {
   var btns = document.querySelectorAll('.prod-list-btn');
   var panels = document.querySelectorAll('.prod-panel');
 
-  // 페이드 아웃
-  panels[currentProd].style.opacity = '0';
-  setTimeout(function() {
-    panels.forEach(function(p, i) {
-      p.style.display = 'none';
-      p.style.opacity = '0';
-    });
-    panels[idx].style.display = 'block';
-    setTimeout(function() { panels[idx].style.opacity = '1'; }, 20);
-  }, 200);
+  // 패널 전환
+  panels.forEach(function(p) { p.style.display = 'none'; p.style.opacity = '0'; });
+  panels[idx].style.display = 'block';
+  setTimeout(function() { panels[idx].style.opacity = '1'; }, 20);
 
+  // 버튼 스타일
   btns.forEach(function(b, i) {
-    var span = b.querySelector('span:first-child');
-    var arrow = b.querySelector('span:last-child');
-    var bar = b.querySelector('.prod-progress-bar');
+    var span = b.querySelector('.prod-label');
+    var bar  = b.querySelector('.prod-progress-bar');
     if (i === idx) {
-      span.style.color = 'var(--blue)';
-      span.style.fontWeight = '700';
-      arrow.style.color = 'var(--blue)';
-      // 진행 바 애니메이션
+      if (span) { span.style.color = 'var(--blue)'; span.style.fontWeight = '700'; }
       if (bar) {
         bar.style.transition = 'none';
         bar.style.width = '0%';
@@ -1893,45 +1883,37 @@ function selectProd(idx, fromAuto) {
         }, 30);
       }
     } else {
-      span.style.color = '#4a5a70';
-      span.style.fontWeight = '600';
-      arrow.style.color = '#ccc';
+      if (span) { span.style.color = '#4a5a70'; span.style.fontWeight = '600'; }
       if (bar) { bar.style.transition = 'none'; bar.style.width = '0%'; }
     }
   });
 
   currentProd = idx;
-
-  // 수동 클릭 시 자동 타이머 리셋
-  if (!fromAuto) {
-    clearInterval(prodAutoTimer);
-    startProdAuto();
-  }
 }
 
 function startProdAuto() {
+  clearInterval(prodAutoTimer);
   prodAutoTimer = setInterval(function() {
-    var next = (currentProd + 1) % prodTotal;
-    selectProd(next, true);
+    selectProd((currentProd + 1) % prodTotal);
   }, prodInterval);
 }
 
-// 버튼에 진행 바 DOM 추가
 window.addEventListener('DOMContentLoaded', function() {
-  var btns = document.querySelectorAll('.prod-list-btn');
-  btns.forEach(function(b) {
+  // 버튼에 label 클래스 + 진행 바 추가
+  document.querySelectorAll('.prod-list-btn').forEach(function(b) {
+    var s = b.querySelector('span:first-child');
+    if (s) s.classList.add('prod-label');
     var bar = document.createElement('div');
     bar.className = 'prod-progress-bar';
     b.appendChild(bar);
   });
-  // 패널 transition 설정
-  var panels = document.querySelectorAll('.prod-panel');
-  panels.forEach(function(p) {
+
+  // 패널 transition
+  document.querySelectorAll('.prod-panel').forEach(function(p) {
     p.style.transition = 'opacity 0.4s ease';
-    p.style.opacity = p.style.display === 'none' ? '0' : '1';
   });
-  // 첫 번째 진행 바 시작
-  selectProd(0, true);
+
+  selectProd(0);
   startProdAuto();
 });
 </script>
