@@ -801,6 +801,121 @@ header .logo-dark  { display: block; }
 
 </head>
 <body>
+<script>
+// ── 제품 팝업: 전역 함수 (카드 onclick보다 먼저 정의) ──
+var prodSpecs = {
+  '특고압 배전반': [
+    ['정격전압','22.9kV'],['정격전류','최대 2,000A'],['내진등급','특등급 (규모 8.3 대응)'],
+    ['면진장치','진동저감장치 내장'],['감시시스템','IR 데이터 송신센서'],['적용기준','KS C IEC 62271-200']
+  ],
+  '저압 배전반': [
+    ['정격전압','380V / 220V'],['정격전류','최대 4,000A'],['내진등급','특등급 (규모 8.3 대응)'],
+    ['차단기','ACB / MCCB'],['보호방식','IP4X 이상'],['적용기준','KS C IEC 61439']
+  ],
+  '전동기 제어반': [
+    ['정격전압','380V'],['제어방식','직입·Y-△·인버터 기동'],['내진등급','특등급'],
+    ['보호계전','과부하·결상·지락 보호'],['통신','RS-485 / Modbus'],['적용기준','KS C IEC 61439-4']
+  ],
+  '분전반': [
+    ['정격전압','220V / 380V'],['정격전류','최대 630A'],['내진등급','특등급'],
+    ['차단기','ELCB / MCB'],['보호방식','IP2X 이상'],['적용기준','KS C IEC 61439-3']
+  ],
+  '동력반': [
+    ['정격전압','380V'],['정격전류','최대 1,000A'],['내진등급','특등급'],
+    ['제어방식','수동·자동 전환'],['적용설비','냉난방·환기·엘리베이터'],['적용기준','KS C IEC 61439-4']
+  ],
+  '무정전전원장치 (UPS)': [
+    ['정격용량','10~500kVA'],['입력전압','380V 3상'],['출력전압','220V / 380V'],
+    ['전환시간','0ms (무순단)'],['내진등급','특등급'],['적용기준','IEC 62040']
+  ],
+  '계통연계형 태양광 인버터': [
+    ['정격출력','3~1,000kW'],['입력전압','DC 200~1,000V'],['출력전압','AC 380V'],
+    ['변환효율','97% 이상'],['제어방식','MPPT'],['적용기준','KS C 8564']
+  ]
+};
+
+function openImgModal(card) {
+  var imgEl  = card.querySelector('.product-card-img img');
+  var spanEl = card.querySelector('.product-card-img span');
+  var tag    = (card.querySelector('.product-card-tag')   || {}).textContent || '';
+  var title  = (card.querySelector('.product-card-title') || {}).textContent || '';
+  var desc   = (card.querySelector('.product-card-desc')  || {}).textContent || '';
+
+  var mImg = document.getElementById('modalImg');
+  var mPh  = document.getElementById('modalPlaceholder');
+
+  if (imgEl && imgEl.getAttribute('src')) {
+    mImg.src = imgEl.src;
+    mImg.alt = title;
+    mImg.style.display = 'block';
+    mPh.style.display  = 'none';
+  } else if (spanEl) {
+    mImg.style.display = 'none';
+    mPh.textContent    = spanEl.textContent;
+    mPh.style.display  = 'block';
+  } else {
+    mImg.style.display = 'none';
+    mPh.textContent    = '⚡';
+    mPh.style.display  = 'block';
+  }
+
+  document.getElementById('modalTag').textContent   = tag;
+  document.getElementById('modalTitle').textContent = title;
+  document.getElementById('modalDesc').textContent  = desc;
+
+  var specTable = document.getElementById('modalSpec');
+  var specs = prodSpecs[title] || [];
+  if (specs.length) {
+    specTable.innerHTML = specs.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join('');
+    specTable.closest('.prod-spec-wrap').style.display = 'block';
+  } else {
+    specTable.closest('.prod-spec-wrap').style.display = 'none';
+  }
+
+  document.getElementById('prodModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProdModal(e, force) {
+  if (!force && e && e.target !== document.getElementById('prodModalOverlay')) return;
+  document.getElementById('prodModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeProdModal(null, true);
+});
+</script>
+
+<!-- 모달 HTML -->
+<div class="prod-modal-overlay" id="prodModalOverlay" onclick="closeProdModal(event)">
+  <div class="prod-modal" id="prodModal">
+    <button class="prod-modal-close" onclick="closeProdModal(null, true)">✕</button>
+    <div class="prod-modal-body">
+      <!-- 왼쪽: 이미지 -->
+      <div class="prod-modal-img-wrap" id="modalImgWrap">
+        <img id="modalImg" src="" alt="" style="display:none;">
+        <div class="prod-modal-img-placeholder" id="modalPlaceholder"></div>
+      </div>
+      <!-- 오른쪽: 정보 -->
+      <div class="prod-modal-info">
+        <div class="prod-modal-tag" id="modalTag"></div>
+        <div class="prod-modal-title" id="modalTitle"></div>
+        <div class="prod-modal-desc" id="modalDesc"></div>
+        <div class="prod-spec-wrap">
+          <div class="prod-modal-spec-title">제품 사양</div>
+          <table class="prod-modal-spec" id="modalSpec"></table>
+        </div>
+        <div class="prod-modal-cta">
+          <a href="contact.html#inquiry" class="prod-modal-btn-primary">📩 문의하기</a>
+          <button class="prod-modal-btn-outline" onclick="closeProdModal(null, true)">닫기</button>
+        </div>
+      </div>
+    </div>
+    <div class="prod-modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
 <header>
   <a href="index.html" class="logo">
   <img class="logo-dark" src="img/new_logo_dark.png" alt="태일전기" style="height:60px;width:auto;object-fit:contain;">
@@ -1304,34 +1419,7 @@ header .logo-dark  { display: block; }
 }
 </style>
 
-<!-- 모달 HTML -->
-<div class="prod-modal-overlay" id="prodModalOverlay" onclick="closeProdModal(event)">
-  <div class="prod-modal" id="prodModal">
-    <button class="prod-modal-close" onclick="closeProdModal(null, true)">✕</button>
-    <div class="prod-modal-body">
-      <!-- 왼쪽: 이미지 -->
-      <div class="prod-modal-img-wrap" id="modalImgWrap">
-        <img id="modalImg" src="" alt="" style="display:none;">
-        <div class="prod-modal-img-placeholder" id="modalPlaceholder"></div>
-      </div>
-      <!-- 오른쪽: 정보 -->
-      <div class="prod-modal-info">
-        <div class="prod-modal-tag" id="modalTag"></div>
-        <div class="prod-modal-title" id="modalTitle"></div>
-        <div class="prod-modal-desc" id="modalDesc"></div>
-        <div>
-          <div class="prod-modal-spec-title">제품 사양</div>
-          <table class="prod-modal-spec" id="modalSpec"></table>
-        </div>
-        <div class="prod-modal-cta">
-          <a href="contact.html#inquiry" class="prod-modal-btn-primary">📩 문의하기</a>
-          <button class="prod-modal-btn-outline" onclick="closeProdModal(null, true)">닫기</button>
-        </div>
-      </div>
-    </div>
-    <div class="prod-modal-footer" id="modalFooter"></div>
-  </div>
-</div>
+
 
 <script>
   function showTab(tab) {
@@ -1366,125 +1454,6 @@ header .logo-dark  { display: block; }
     else { h.classList.remove('scrolled'); }
   });
 
-  // ── 제품 스펙 데이터 ──
-  var prodSpecs = {
-    '특고압 배전반': [
-      ['정격전압', '22.9kV'],
-      ['정격전류', '최대 2,000A'],
-      ['내진등급', '특등급 (규모 8.3 대응)'],
-      ['면진장치', '진동저감장치 내장'],
-      ['감시시스템', 'IR 데이터 송신센서'],
-      ['적용기준', 'KS C IEC 62271-200'],
-    ],
-    '저압 배전반': [
-      ['정격전압', '380V / 220V'],
-      ['정격전류', '최대 4,000A'],
-      ['내진등급', '특등급 (규모 8.3 대응)'],
-      ['차단기', 'ACB / MCCB'],
-      ['보호방식', 'IP4X 이상'],
-      ['적용기준', 'KS C IEC 61439'],
-    ],
-    '전동기 제어반': [
-      ['정격전압', '380V'],
-      ['제어방식', '직입·Y-△·인버터 기동'],
-      ['내진등급', '특등급'],
-      ['보호계전', '과부하·결상·지락 보호'],
-      ['통신', 'RS-485 / Modbus'],
-      ['적용기준', 'KS C IEC 61439-4'],
-    ],
-    '분전반': [
-      ['정격전압', '220V / 380V'],
-      ['정격전류', '최대 630A'],
-      ['내진등급', '특등급'],
-      ['차단기', 'ELCB / MCB'],
-      ['보호방식', 'IP2X 이상'],
-      ['적용기준', 'KS C IEC 61439-3'],
-    ],
-    '동력반': [
-      ['정격전압', '380V'],
-      ['정격전류', '최대 1,000A'],
-      ['내진등급', '특등급'],
-      ['제어방식', '수동·자동 전환'],
-      ['적용설비', '냉난방·환기·엘리베이터'],
-      ['적용기준', 'KS C IEC 61439-4'],
-    ],
-    '무정전전원장치 (UPS)': [
-      ['정격용량', '10~500kVA'],
-      ['입력전압', '380V 3상'],
-      ['출력전압', '220V / 380V'],
-      ['전환시간', '0ms (무순단)'],
-      ['내진등급', '특등급'],
-      ['적용기준', 'IEC 62040'],
-    ],
-    '계통연계형 태양광 인버터': [
-      ['정격출력', '3~1,000kW'],
-      ['입력전압', 'DC 200~1,000V'],
-      ['출력전압', 'AC 380V'],
-      ['변환효율', '97% 이상'],
-      ['제어방식', 'MPPT'],
-      ['적용기준', 'KS C 8564'],
-    ],
-  };
-
-  function openImgModal(card) {
-    var imgEl   = card.querySelector('.product-card-img img');
-    var spanEl  = card.querySelector('.product-card-img span');
-    var tag     = card.querySelector('.product-card-tag')   ? card.querySelector('.product-card-tag').textContent   : '';
-    var title   = card.querySelector('.product-card-title') ? card.querySelector('.product-card-title').textContent : '';
-    var desc    = card.querySelector('.product-card-desc')  ? card.querySelector('.product-card-desc').textContent  : '';
-
-    // 이미지
-    var mImg = document.getElementById('modalImg');
-    var mPh  = document.getElementById('modalPlaceholder');
-    if (imgEl && imgEl.src) {
-      mImg.src = imgEl.src;
-      mImg.alt = title;
-      mImg.style.display = 'block';
-      mPh.style.display  = 'none';
-    } else if (spanEl) {
-      mImg.style.display = 'none';
-      mPh.textContent    = spanEl.textContent;
-      mPh.style.display  = 'block';
-    } else {
-      mImg.style.display = 'none';
-      mPh.textContent    = '⚡';
-      mPh.style.display  = 'block';
-    }
-
-    document.getElementById('modalTag').textContent   = tag;
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalDesc').textContent  = desc;
-
-    // 스펙 테이블
-    var specTable = document.getElementById('modalSpec');
-    var specs = prodSpecs[title] || [];
-    if (specs.length > 0) {
-      specTable.innerHTML = specs.map(function(row) {
-        return '<tr><td>' + row[0] + '</td><td>' + row[1] + '</td></tr>';
-      }).join('');
-      specTable.parentElement.style.display = 'block';
-    } else {
-      specTable.parentElement.style.display = 'none';
-    }
-
-    // 푸터
-    document.getElementById('modalFooter').textContent = '※ 상기 사양은 적용 현장에 따라 변경될 수 있습니다. 자세한 내용은 문의 바랍니다.';
-
-    // 열기
-    document.getElementById('prodModalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeProdModal(e, force) {
-    if (!force && e && e.target !== document.getElementById('prodModalOverlay')) return;
-    document.getElementById('prodModalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // ESC 키로 닫기
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeProdModal(null, true);
-  });
 </script>
 
 <footer>
@@ -1617,54 +1586,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
-<!-- 제품 상세 팝업 모달 -->
-<div id="productModal" style="display:flex;visibility:hidden;position:fixed;inset:0;z-index:2000;align-items:center;justify-content:center;">
-  <div onclick="closeModal()" style="position:absolute;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);"></div>
-  <div style="position:relative;z-index:1;max-width:800px;width:92%;max-height:90vh;">
-    <button onclick="closeModal()" style="position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;">✕</button>
-    <img id="modalImg" src="" style="width:100%;max-height:80vh;object-fit:contain;border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.5);">
-    <div id="modalCaption" style="text-align:center;color:#fff;margin-top:14px;font-size:16px;font-weight:600;"></div>
-  </div>
-</div>
 
-<style>
-#productModal { pointer-events:none; }
-#productModal.open { visibility:visible; pointer-events:auto; }
-.modal-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:14px; }
-.modal-title { font-size:22px; font-weight:700; color:var(--navy); margin-bottom:16px; }
-.modal-img { width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:20px; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; }
-.modal-section { margin-bottom:20px; }
-.modal-section-title { font-size:13px; font-weight:700; color:var(--accent); letter-spacing:1px; margin-bottom:8px; border-bottom:1px solid #f0f0f0; padding-bottom:6px; }
-.modal-section-body { font-size:14px; color:var(--text2); line-height:1.9; }
-.modal-specs { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px; }
-.modal-spec-item { background:#f8fafd; border-radius:8px; padding:10px 14px; font-size:13px; }
-.modal-spec-label { color:var(--text2); font-size:11px; margin-bottom:3px; }
-.modal-spec-val { color:var(--navy); font-weight:700; }
-</style>
-
-<script>
-function openImgModal(card) {
-  var img = card.querySelector('.product-card-img img');
-  var title = card.querySelector('.product-card-title');
-  var modal = document.getElementById('productModal');
-  var modalImg = document.getElementById('modalImg');
-  var modalCaption = document.getElementById('modalCaption');
-  
-  if (img) {
-    modalImg.src = img.src;
-    modalImg.style.display = 'block';
-  } else {
-    modalImg.style.display = 'none';
-  }
-  modalCaption.textContent = title ? title.textContent : '';
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('productModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
 // ── 서브메뉴 바 ──
 const subNavBar = document.getElementById('subNavBar');
