@@ -238,7 +238,7 @@
   .dropdown { display: none !important; }
   /* ── HERO ── */
   #hero {
-    min-height: 75vh;
+    min-height: max(75vh, 580px);
     display: flex;
     align-items: center;
     position: relative;
@@ -1271,7 +1271,7 @@
   }
   /* ── index 반응형 ── */
   @media (max-width: 900px) {
-    #hero { min-height: 75vh; }
+    #hero { min-height: max(75vh, 520px); }
     .hero-content { left: 32px; right: 32px; bottom: 80px; max-width: calc(100vw - 64px); }
     .hero-stats { display: none; }
     .scroll-hint { display: none; }
