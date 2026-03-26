@@ -47,7 +47,6 @@
   }
 
   .logo {
-    text-decoration: none;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 3px;
@@ -287,6 +286,38 @@
   .philosophy-text { font-size:12px; line-height:1.8; color:var(--text2); }
 
   
+
+  /* ── ESG 섹션 ── */
+  .esg-section { margin-top: 72px; padding-top: 64px; border-top: 2px solid var(--border); }
+  .esg-title { text-align:center; font-size:13px; font-weight:700; letter-spacing:4px; color:var(--accent); margin-bottom:12px; }
+  .esg-headline { text-align:center; font-size:24px; font-weight:900; color:var(--text); margin-bottom:16px; line-height:1.5; }
+  .esg-desc { text-align:center; font-size:15px; color:var(--text2); line-height:1.9; margin-bottom:56px; }
+  .esg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .esg-card {
+    border-radius:12px; padding:36px 28px;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .esg-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,0.1); }
+  .esg-card.e { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border-top: 4px solid #2e7d32; }
+  .esg-card.s { background: linear-gradient(135deg, #e3f2fd, #e8eaf6); border-top: 4px solid #1565c0; }
+  .esg-card.g { background: linear-gradient(135deg, #fff8e1, #fff3e0); border-top: 4px solid #e65100; }
+  .esg-badge {
+    width:64px; height:64px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; font-weight:900; letter-spacing:1px;
+    margin-bottom:20px;
+  }
+  .esg-card.e .esg-badge { background:#2e7d32; color:#fff; }
+  .esg-card.s .esg-badge { background:#1565c0; color:#fff; }
+  .esg-card.g .esg-badge { background:#e65100; color:#fff; }
+  .esg-card-title { font-size:17px; font-weight:900; margin-bottom:8px; }
+  .esg-card.e .esg-card-title { color:#2e7d32; }
+  .esg-card.s .esg-card-title { color:#1565c0; }
+  .esg-card.g .esg-card-title { color:#e65100; }
+  .esg-card-text { font-size:13px; line-height:1.9; color:var(--text2); }
+  @media(max-width:900px){ .esg-grid { grid-template-columns:1fr; } }
+
   .timeline { position:relative; padding-left:40px; }
   .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--border); }
   .timeline-year { margin-bottom:48px; position:relative; }
@@ -1111,6 +1142,31 @@ header .logo-dark  { display: block; }
 <div class="philosophy-text" data-ko="태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다." data-en="Taeil Electric always strives to share with others through support for the socially marginalized and volunteer activities for happiness.">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다.</div>
 </div>
 </div>
+
+<!-- ESG 경영 섹션 -->
+<div class="esg-section">
+  <div class="esg-title">ESG MANAGEMENT</div>
+  <div class="esg-headline" data-ko="지속가능한 미래를 위한 ESG 경영" data-en="ESG Management for a Sustainable Future">지속가능한 미래를 위한 <em style="color:var(--accent); font-style:normal;">ESG 경영</em></div>
+  <div class="esg-desc" data-ko="태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다." data-en="Taeil Electric practices responsible management across environmental, social, and governance areas,<br>building a sustainable future for the energy industry.">태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다.</div>
+  <div class="esg-grid">
+    <div class="esg-card e">
+      <div class="esg-badge">E</div>
+      <div class="esg-card-title" data-ko="환경 (Environmental)" data-en="Environmental">환경 (Environmental)</div>
+      <div class="esg-card-text" data-ko="신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다." data-en="We lead carbon reduction through renewable energy facilities and eco-friendly switchboard manufacturing, continuously pursuing energy efficiency and waste minimization in our production processes.">신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다.</div>
+    </div>
+    <div class="esg-card s">
+      <div class="esg-badge">S</div>
+      <div class="esg-card-title" data-ko="사회 (Social)" data-en="Social">사회 (Social)</div>
+      <div class="esg-card-text" data-ko="임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다." data-en="We prioritize a safe and healthy work environment for all employees, creating social value through community contribution activities and win-win cooperation with partners.">임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다.</div>
+    </div>
+    <div class="esg-card g">
+      <div class="esg-badge">G</div>
+      <div class="esg-card-title" data-ko="지배구조 (Governance)" data-en="Governance">지배구조 (Governance)</div>
+      <div class="esg-card-text" data-ko="투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다." data-en="We build a trusted corporate culture under transparent and ethical management principles, strengthening sustainable growth through fair trade practices and enhanced internal controls.">투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다.</div>
+    </div>
+  </div>
+</div>
+
 </div>
 </div>
 
