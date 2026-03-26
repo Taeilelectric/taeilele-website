@@ -262,28 +262,76 @@
   
   .philosophy-intro { font-size:18px; font-weight:700; text-align:center; margin-bottom:56px; color:var(--text); }
   .philosophy-intro span { color:#e63946; }
-  .philosophy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; position:relative; padding:20px 0 60px; }
-  .philosophy-card {
-    display:flex; flex-direction:column; align-items:center; text-align:center;
-    position:relative; padding:0;
+
+  /* ── 벤다이어그램 삼각형 배치 ── */
+  .philosophy-venn {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    margin: 0 auto;
   }
   .philosophy-circle {
-    width:240px; height:240px; border-radius:50%;
-    border:3px solid #e63946;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    padding:32px 28px; margin:0 auto;
-    position:relative; z-index:1;
-    background:#fff;
-    transition:all 0.3s;
+    width: 260px; height: 260px; border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 36px 28px; text-align: center;
+    position: absolute;
+    transition: all 0.3s;
+    cursor: default;
   }
-  .philosophy-card:nth-child(2) .philosophy-circle { border-color:#e63946; margin-left:-30px; margin-right:-30px; z-index:2; }
-  .philosophy-card:nth-child(3) .philosophy-circle { border-color:#f4a100; }
-  .philosophy-card:hover .philosophy-circle { transform:scale(1.04); box-shadow:0 12px 40px rgba(0,0,0,0.1); }
-  .philosophy-icon { width:52px; height:52px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; }
-  .philosophy-num { display:none; }
-  .philosophy-label { font-size:18px; font-weight:900; color:#e63946; margin-bottom:10px; }
-  .philosophy-card:nth-child(3) .philosophy-label { color:#f4a100; }
-  .philosophy-text { font-size:12px; line-height:1.8; color:var(--text2); }
+  /* 왼쪽 하단 - 경영이념 (빨강) */
+  .philosophy-circle.c1 {
+    background: rgba(230,57,70,0.13);
+    border: 3px solid #e63946;
+    left: calc(50% - 260px - 20px);
+    top: 160px;
+  }
+  /* 오른쪽 하단 - 사회공헌 (노랑) */
+  .philosophy-circle.c3 {
+    background: rgba(244,161,0,0.13);
+    border: 3px solid #f4a100;
+    left: calc(50% + 20px);
+    top: 160px;
+  }
+  /* 위 중앙 - 목표 (네이비) */
+  .philosophy-circle.c2 {
+    background: rgba(13,71,161,0.11);
+    border: 3px solid #0d47a1;
+    left: calc(50% - 130px);
+    top: 20px;
+  }
+  /* 중앙 교집합 라벨 */
+  .philosophy-center {
+    position: absolute;
+    left: 50%; top: 240px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .philosophy-center-dot {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--navy);
+    margin: 0 auto 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .philosophy-center-dot svg { display:block; }
+  .philosophy-center-text {
+    font-size: 11px; font-weight: 900; letter-spacing: 2px;
+    color: var(--navy); line-height: 1.5;
+  }
+  .philosophy-circle:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(0,0,0,0.12); z-index:5; }
+  .philosophy-icon { width: 44px; height: 44px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
+  .philosophy-num { display: none; }
+  .philosophy-label { font-size: 17px; font-weight: 900; color: #e63946; margin-bottom: 8px; }
+  .philosophy-circle.c2 .philosophy-label { color: #0d47a1; }
+  .philosophy-circle.c3 .philosophy-label { color: #f4a100; }
+  .philosophy-text { font-size: 11px; line-height: 1.8; color: var(--text2); }
+  /* 모바일 */
+  @media(max-width:900px){
+    .philosophy-venn { height: auto; }
+    .philosophy-circle { position:static; width:100%; border-radius:12px; margin-bottom:16px; height:auto; }
+    .philosophy-center { display:none; }
+  }
 
   
 
@@ -292,7 +340,7 @@
   .esg-title { text-align:center; font-size:13px; font-weight:700; letter-spacing:4px; color:var(--accent); margin-bottom:12px; }
   .esg-headline { text-align:center; font-size:24px; font-weight:900; color:var(--text); margin-bottom:16px; line-height:1.5; }
   .esg-desc { text-align:center; font-size:15px; color:var(--text2); line-height:1.9; margin-bottom:56px; }
-  .esg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .esg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; width:100%; }
   .esg-card {
     border-radius:12px; padding:36px 28px;
     display:flex; flex-direction:column; align-items:center; text-align:center;
@@ -1105,9 +1153,8 @@ header .logo-dark  { display: block; }
 
 <div class="section" id="tab-philosophy">
 <div class="philosophy-intro" data-ko="태일전기 주식회사는 아래와 같은 경영철학으로 최고의 기업을 추구합니다." data-en="Taeil Electric Co., Ltd. pursues excellence through the following management philosophy."><span>태일전기 주식회사</span>는 아래와 같은 경영철학으로 최고의 기업을 추구합니다.</div>
-<div class="philosophy-grid">
-<div class="philosophy-card">
-<div class="philosophy-circle">
+<div class="philosophy-venn">
+<div class="philosophy-circle c1">
 <div class="philosophy-icon">
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z" fill="#e63946" opacity="0.3"/>
@@ -1117,21 +1164,17 @@ header .logo-dark  { display: block; }
 <div class="philosophy-label" data-ko="경영이념" data-en="Management Philosophy">경영이념</div>
 <div class="philosophy-text" data-ko="최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다." data-en="We strive to create the highest quality and future industries while contributing profits back to society.">최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다.</div>
 </div>
-</div>
-<div class="philosophy-card">
-<div class="philosophy-circle">
+<div class="philosophy-circle c2">
 <div class="philosophy-icon">
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#e63946" opacity="0.3"/>
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="#e63946"/>
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#0d47a1" opacity="0.3"/>
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="#0d47a1"/>
   </svg>
 </div>
 <div class="philosophy-label" data-ko="목표" data-en="Goals">목표</div>
 <div class="philosophy-text" data-ko="행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결." data-en="Maximizing management efficiency, continuous technological innovation, and unity toward a shared goal for a happy life.">행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결.</div>
 </div>
-</div>
-<div class="philosophy-card">
-<div class="philosophy-circle">
+<div class="philosophy-circle c3">
 <div class="philosophy-icon">
   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z" fill="#f4a100" opacity="0.3"/>
@@ -1141,6 +1184,14 @@ header .logo-dark  { display: block; }
 <div class="philosophy-label" data-ko="사회공헌" data-en="Social Contribution">사회공헌</div>
 <div class="philosophy-text" data-ko="태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다." data-en="Taeil Electric always strives to share with others through support for the socially marginalized and volunteer activities for happiness.">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다.</div>
 </div>
+</div>
+  <!-- 교집합 중앙 -->
+  <div class="philosophy-center">
+    <div class="philosophy-center-dot">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#ffffff"/></svg>
+    </div>
+    <div class="philosophy-center-text">태일전기의<br>핵심가치</div>
+  </div>
 </div>
 
 <!-- ESG 경영 섹션 -->
