@@ -263,74 +263,18 @@
   .philosophy-intro { font-size:18px; font-weight:700; text-align:center; margin-bottom:56px; color:var(--text); }
   .philosophy-intro span { color:#e63946; }
 
-  /* ── 벤다이어그램 삼각형 배치 ── */
-  .philosophy-venn {
-    position: relative;
+  /* ── 벤다이어그램 SVG ── */
+  .venn-wrap {
     width: 100%;
-    height: 520px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 0 auto 20px;
   }
-  .philosophy-circle {
-    width: 260px; height: 260px; border-radius: 50%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    padding: 36px 28px; text-align: center;
-    position: absolute;
-    transition: all 0.3s;
-    cursor: default;
+  .venn-svg {
+    width: 100%;
+    height: auto;
   }
-  /* 왼쪽 하단 - 경영이념 (빨강) */
-  .philosophy-circle.c1 {
-    background: rgba(230,57,70,0.13);
-    border: 3px solid #e63946;
-    left: calc(50% - 260px - 20px);
-    top: 160px;
-  }
-  /* 오른쪽 하단 - 사회공헌 (노랑) */
-  .philosophy-circle.c3 {
-    background: rgba(244,161,0,0.13);
-    border: 3px solid #f4a100;
-    left: calc(50% + 20px);
-    top: 160px;
-  }
-  /* 위 중앙 - 목표 (네이비) */
-  .philosophy-circle.c2 {
-    background: rgba(13,71,161,0.11);
-    border: 3px solid #0d47a1;
-    left: calc(50% - 130px);
-    top: 20px;
-  }
-  /* 중앙 교집합 라벨 */
-  .philosophy-center {
-    position: absolute;
-    left: 50%; top: 240px;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 10;
-    pointer-events: none;
-  }
-  .philosophy-center-dot {
-    width: 52px; height: 52px; border-radius: 50%;
-    background: var(--navy);
-    margin: 0 auto 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .philosophy-center-dot svg { display:block; }
-  .philosophy-center-text {
-    font-size: 11px; font-weight: 900; letter-spacing: 2px;
-    color: var(--navy); line-height: 1.5;
-  }
-  .philosophy-circle:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(0,0,0,0.12); z-index:5; }
-  .philosophy-icon { width: 44px; height: 44px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
-  .philosophy-num { display: none; }
-  .philosophy-label { font-size: 17px; font-weight: 900; color: #e63946; margin-bottom: 8px; }
-  .philosophy-circle.c2 .philosophy-label { color: #0d47a1; }
-  .philosophy-circle.c3 .philosophy-label { color: #f4a100; }
-  .philosophy-text { font-size: 11px; line-height: 1.8; color: var(--text2); }
-  /* 모바일 */
-  @media(max-width:900px){
-    .philosophy-venn { height: auto; }
-    .philosophy-circle { position:static; width:100%; border-radius:12px; margin-bottom:16px; height:auto; }
-    .philosophy-center { display:none; }
+  @media(max-width:600px){
+    .venn-wrap { max-width: 100%; }
   }
 
   
@@ -1153,45 +1097,47 @@ header .logo-dark  { display: block; }
 
 <div class="section" id="tab-philosophy">
 <div class="philosophy-intro" data-ko="태일전기 주식회사는 아래와 같은 경영철학으로 최고의 기업을 추구합니다." data-en="Taeil Electric Co., Ltd. pursues excellence through the following management philosophy."><span>태일전기 주식회사</span>는 아래와 같은 경영철학으로 최고의 기업을 추구합니다.</div>
-<div class="philosophy-venn">
-<div class="philosophy-circle c1">
-<div class="philosophy-icon">
-  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7z" fill="#e63946" opacity="0.3"/>
-    <path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.87-3.13-7-7-7zm-1 14v-1h2v1h-2zm3-3.28V15h-4v-2.28C8.48 11.7 7 10.46 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.46-1.48 2.7-3 3.72z" fill="#e63946"/>
+
+<!-- 벤다이어그램 -->
+<div class="venn-wrap">
+  <svg class="venn-svg" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
+    <!-- 경영이념 (빨강, 왼쪽 하단) -->
+    <circle cx="220" cy="280" r="160" fill="rgba(230,57,70,0.12)" stroke="#e63946" stroke-width="2.5"/>
+    <!-- 사회공헌 (노랑, 오른쪽 하단) -->
+    <circle cx="380" cy="280" r="160" fill="rgba(244,161,0,0.12)" stroke="#f4a100" stroke-width="2.5"/>
+    <!-- 목표 (네이비, 위 중앙) -->
+    <circle cx="300" cy="170" r="160" fill="rgba(13,71,161,0.10)" stroke="#0d47a1" stroke-width="2.5"/>
+
+    <!-- 경영이념 라벨 (왼쪽 하단) -->
+    <text x="138" y="320" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#e63946">경영이념</text>
+    <text x="138" y="340" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">최고의 품질과</text>
+    <text x="138" y="354" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">미래 산업 창조</text>
+
+    <!-- 사회공헌 라벨 (오른쪽 하단) -->
+    <text x="462" y="320" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#c47a00">사회공헌</text>
+    <text x="462" y="340" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">이익의 사회 환원</text>
+    <text x="462" y="354" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">행복나눔 봉사</text>
+
+    <!-- 목표 라벨 (위 중앙) -->
+    <text x="300" y="68" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#0d47a1">목표</text>
+    <text x="300" y="86" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">기술혁신 &amp; 효율 극대화</text>
+    <text x="300" y="100" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">인화단결</text>
+
+    <!-- 교집합 A∩B (경영이념+목표, 왼쪽 중간) -->
+    <text x="210" y="198" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#5a2d82" font-weight="700">혁신경영</text>
+
+    <!-- 교집합 B∩C (목표+사회공헌, 오른쪽 중간) -->
+    <text x="390" y="198" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#1a6b3a" font-weight="700">지속성장</text>
+
+    <!-- 교집합 A∩C (경영이념+사회공헌, 하단 중간) -->
+    <text x="300" y="390" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#b45000" font-weight="700">신뢰구축</text>
+
+    <!-- 중앙 3개 교집합 - 태일전기의 핵심가치 -->
+    <circle cx="300" cy="272" r="52" fill="rgba(10,22,40,0.82)" stroke="#f4a100" stroke-width="2"/>
+    <text x="300" y="261" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="900" fill="#f4a100">태일전기의</text>
+    <text x="300" y="277" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="900" fill="#f4a100">핵심가치</text>
+    <text x="300" y="296" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">품질·신뢰·상생</text>
   </svg>
-</div>
-<div class="philosophy-label" data-ko="경영이념" data-en="Management Philosophy">경영이념</div>
-<div class="philosophy-text" data-ko="최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다." data-en="We strive to create the highest quality and future industries while contributing profits back to society.">최고의 품질과 끊임없는 미래 산업을 창조하는 기업으로 이익 창출을 사회에 기여하는 기업 경영으로 정진합니다.</div>
-</div>
-<div class="philosophy-circle c2">
-<div class="philosophy-icon">
-  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="#0d47a1" opacity="0.3"/>
-    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="#0d47a1"/>
-  </svg>
-</div>
-<div class="philosophy-label" data-ko="목표" data-en="Goals">목표</div>
-<div class="philosophy-text" data-ko="행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결." data-en="Maximizing management efficiency, continuous technological innovation, and unity toward a shared goal for a happy life.">행복한 삶의 가치를 추구하기 위한 경영 효율 극대화, 끊임없는 기술 개발을 위한 기술혁신, 서로 하나의 목표를 향한 인화단결.</div>
-</div>
-<div class="philosophy-circle c3">
-<div class="philosophy-icon">
-  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3z" fill="#f4a100" opacity="0.3"/>
-    <path d="M8 13c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm8 0c-.33 0-.71.02-1.11.06C16.19 13.93 17 15.1 17 17v2h7v-2c0-2.66-5.33-4-8-4z" fill="#f4a100"/>
-  </svg>
-</div>
-<div class="philosophy-label" data-ko="사회공헌" data-en="Social Contribution">사회공헌</div>
-<div class="philosophy-text" data-ko="태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다." data-en="Taeil Electric always strives to share with others through support for the socially marginalized and volunteer activities for happiness.">태일전기 주식회사는 사회적으로 소외된 분들 지원과 행복나눔 봉사활동 등 이익 창출로 가진 것을 많은 분들과 나누기 위해 항상 노력합니다.</div>
-</div>
-</div>
-  <!-- 교집합 중앙 -->
-  <div class="philosophy-center">
-    <div class="philosophy-center-dot">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#ffffff"/></svg>
-    </div>
-    <div class="philosophy-center-text">태일전기의<br>핵심가치</div>
-  </div>
 </div>
 
 <!-- ESG 경영 섹션 -->
@@ -1203,22 +1149,21 @@ header .logo-dark  { display: block; }
     <div class="esg-card e">
       <div class="esg-badge">E</div>
       <div class="esg-card-title" data-ko="환경 (Environmental)" data-en="Environmental">환경 (Environmental)</div>
-      <div class="esg-card-text" data-ko="신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다." data-en="We lead carbon reduction through renewable energy facilities and eco-friendly switchboard manufacturing, continuously pursuing energy efficiency and waste minimization in our production processes.">신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다.</div>
+      <div class="esg-card-text" data-ko="신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다." data-en="We lead carbon reduction through renewable energy facilities and eco-friendly switchboard manufacturing.">신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다.</div>
     </div>
     <div class="esg-card s">
       <div class="esg-badge">S</div>
       <div class="esg-card-title" data-ko="사회 (Social)" data-en="Social">사회 (Social)</div>
-      <div class="esg-card-text" data-ko="임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다." data-en="We prioritize a safe and healthy work environment for all employees, creating social value through community contribution activities and win-win cooperation with partners.">임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다.</div>
+      <div class="esg-card-text" data-ko="임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다." data-en="We prioritize a safe and healthy work environment, creating social value through community activities and partnerships.">임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다.</div>
     </div>
     <div class="esg-card g">
       <div class="esg-badge">G</div>
       <div class="esg-card-title" data-ko="지배구조 (Governance)" data-en="Governance">지배구조 (Governance)</div>
-      <div class="esg-card-text" data-ko="투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다." data-en="We build a trusted corporate culture under transparent and ethical management principles, strengthening sustainable growth through fair trade practices and enhanced internal controls.">투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다.</div>
+      <div class="esg-card-text" data-ko="투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다." data-en="We build a trusted corporate culture under transparent and ethical management principles.">투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다.</div>
     </div>
   </div>
 </div>
 
-</div>
 </div>
 
 <div class="section" id="tab-history">
