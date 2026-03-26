@@ -47,6 +47,7 @@
   }
 
   .logo {
+    text-decoration: none;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 36px;
     letter-spacing: 3px;
@@ -690,35 +691,39 @@
 
   /* 파트너사 필터 버튼 */
   .partner-filter-wrap {
-    display: flex;
-    gap: 0;
-    background: #eef1f7;
-    border-radius: 10px;
-    padding: 4px;
     display: inline-flex;
+    align-items: center;
+    gap: 0;
     margin: 16px auto 32px;
   }
   .partner-filter-btn {
-    padding: 10px 28px;
-    border-radius: 8px;
+    padding: 8px 28px;
     border: none;
     background: transparent;
     color: var(--text2);
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 600;
     font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .partner-filter-btn + .partner-filter-btn::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 1px; height: 16px;
+    background: var(--text2);
+    opacity: 0.4;
   }
   .partner-filter-btn:hover {
     color: var(--navy);
   }
   .partner-filter-btn.active {
-    background: #ffffff;
     color: var(--navy);
-    box-shadow: 0 2px 8px rgba(10,22,40,0.12);
-    font-weight: 700;
+    font-weight: 900;
   }
   
 
@@ -1236,24 +1241,22 @@ header .logo-dark  { display: block; }
 
 <div class="partner-card" data-type="public" style="display:none;"><img alt="한국전력공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_kepco.png"/><span>한국전력공사</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="한국토지주택공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_lh.png"/><span>한국토지주택공사</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="인천도시공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_incheon_metro.png"/><span>인천도시공사</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="경기주택도시공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_gghd.png"/><span>경기주택도시공사</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="인천도시공사" class="partner-logo" onerror="this.style.display='none'" src="logo_iudc.png"/><span>인천도시공사</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="경기주택도시공사" class="partner-logo" onerror="this.style.display='none'" src="logo_ghc.png"/><span>경기주택도시공사</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="한국수자원공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_kwater.png"/><span>한국수자원공사</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="인천교통공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_incheon_transit.png"/><span>인천교통공사</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="한국가스기술공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_kogas.png"/><span>한국가스기술공사</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="인천교통공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_incheon_metro.png"/><span>인천교통공사</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="한국가스기술공사" class="partner-logo" onerror="this.style.display='none'" src="logo_kgas.png"/><span>한국가스기술공사</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="서울교통공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_seoul_metro.png"/><span>서울교통공사</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="한국도로공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_ex.png"/><span>한국도로공사</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="조달청" class="partner-logo" onerror="this.style.display='none'" src="img/logo_pps.png"/><span>조달청</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="인천지방조달청" class="partner-logo" onerror="this.style.display='none'" src="logo_pps_incheon.png"/><span>인천지방조달청</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="인천광역시" class="partner-logo" onerror="this.style.display='none'" src="img/logo_incheon_city.png"/><span>인천광역시</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="인천경찰청" class="partner-logo" onerror="this.style.display='none'" src="img/logo_incheon_police.png"/><span>인천경찰청</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="행정안전부" class="partner-logo" onerror="this.style.display='none'" src="img/logo_mois.png"/><span>행정안전부</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="한국농어촌공사" class="partner-logo" onerror="this.style.display='none'" src="img/logo_kcrc.png"/><span>한국농어촌공사</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="교육부" class="partner-logo" onerror="this.style.display='none'" src="img/logo_moe.png"/><span>교육부</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="한국농어촌공사" class="partner-logo" onerror="this.style.display='none'" src="logo_karico.png"/><span>한국농어촌공사</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="교육부" class="partner-logo" onerror="this.style.display='none'" src="logo_eduoffice.png"/><span>교육부</span></div>
 <div class="partner-card" data-type="public" style="display:none;"><img alt="IBK기업은행" class="partner-logo" onerror="this.style.display='none'" src="img/logo_ibk.png"/><span>IBK기업은행</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="국방부" class="partner-logo" onerror="this.style.display='none'" src="img/logo_mod.png"/><span>국방부</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="외교부" class="partner-logo" onerror="this.style.display='none'" src="img/logo_mofa.png"/><span>외교부</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="인천신용보증재단" class="partner-logo" onerror="this.style.display='none'" src="img/logo_icgf.png"/><span>인천신용보증재단</span></div>
-<div class="partner-card" data-type="public" style="display:none;"><img alt="대법원" class="partner-logo" onerror="this.style.display='none'" src="img/logo_scourt.png"/><span>대법원</span></div>
+<div class="partner-card" data-type="public" style="display:none;"><img alt="국방부" class="partner-logo" onerror="this.style.display='none'" src="logo_mnd_finance.png"/><span>국방부</span></div>
 </div>
 <div style="text-align:center; margin-top:32px; font-size:13px; color:var(--text2); letter-spacing:1px;">* 그 외 다수</div>
 </div>
