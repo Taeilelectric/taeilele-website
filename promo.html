@@ -691,31 +691,36 @@
   /* 파트너사 필터 버튼 */
   .partner-filter-wrap {
     display: inline-flex;
-    gap: 10px;
+    gap: 12px;
     margin: 16px auto 32px;
   }
   .partner-filter-btn {
-    padding: 11px 36px;
+    padding: 12px 40px;
     border-radius: 50px;
-    border: 2px solid var(--navy);
+    border: 2px solid #0a1628;
     background: transparent;
-    color: var(--navy);
+    color: #0a1628;
     font-size: 14px;
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
   }
   .partner-filter-btn:hover {
-    background: var(--navy);
+    background: #0a1628;
     color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10,22,40,0.2);
   }
   .partner-filter-btn.active {
-    background: var(--navy);
+    background: #0a1628;
     color: #ffffff;
-    border-color: var(--navy);
-    box-shadow: 0 4px 16px rgba(10,22,40,0.2);
+    border-color: #0a1628;
+    box-shadow: 0 6px 20px rgba(10,22,40,0.25);
+    transform: translateY(-2px);
   }
   
 
