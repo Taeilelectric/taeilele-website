@@ -266,7 +266,7 @@
   /* ── 벤다이어그램 SVG ── */
   .venn-wrap {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 20px;
   }
   .venn-svg {
@@ -1100,43 +1100,52 @@ header .logo-dark  { display: block; }
 
 <!-- 벤다이어그램 -->
 <div class="venn-wrap">
-  <svg class="venn-svg" viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg">
-    <!-- 경영이념 (빨강, 왼쪽 하단) -->
-    <circle cx="220" cy="280" r="160" fill="rgba(230,57,70,0.12)" stroke="#e63946" stroke-width="2.5"/>
-    <!-- 사회공헌 (노랑, 오른쪽 하단) -->
-    <circle cx="380" cy="280" r="160" fill="rgba(244,161,0,0.12)" stroke="#f4a100" stroke-width="2.5"/>
-    <!-- 목표 (네이비, 위 중앙) -->
-    <circle cx="300" cy="170" r="160" fill="rgba(13,71,161,0.10)" stroke="#0d47a1" stroke-width="2.5"/>
+  <svg class="venn-svg" viewBox="0 0 800 640" xmlns="http://www.w3.org/2000/svg">
+    <!--
+      원 중심 좌표:
+      목표(네이비):   cx=400, cy=210  r=160
+      경영이념(빨강): cx=270, cy=410  r=160
+      사회공헌(노랑): cx=530, cy=410  r=160
+      세 원이 만나는 중심: 약 cx=400, cy=345
+    -->
 
-    <!-- 경영이념 라벨 (왼쪽 하단) -->
-    <text x="138" y="320" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#e63946">경영이념</text>
-    <text x="138" y="340" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">최고의 품질과</text>
-    <text x="138" y="354" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">미래 산업 창조</text>
+    <!-- 원 3개 -->
+    <circle cx="400" cy="210" r="160" fill="rgba(13,71,161,0.09)"   stroke="#0d47a1" stroke-width="2.5"/>
+    <circle cx="270" cy="410" r="160" fill="rgba(230,57,70,0.10)"   stroke="#e63946" stroke-width="2.5"/>
+    <circle cx="530" cy="410" r="160" fill="rgba(244,161,0,0.10)"   stroke="#f4a100" stroke-width="2.5"/>
 
-    <!-- 사회공헌 라벨 (오른쪽 하단) -->
-    <text x="462" y="320" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#c47a00">사회공헌</text>
-    <text x="462" y="340" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">이익의 사회 환원</text>
-    <text x="462" y="354" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">행복나눔 봉사</text>
+    <!-- 목표 텍스트: 위쪽 독립 영역 중심 -->
+    <text x="400" y="100" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="17" font-weight="900" fill="#0d47a1">목표</text>
+    <text x="400" y="122" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">행복한 삶의 가치 추구를 위한</text>
+    <text x="400" y="138" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">경영 효율 극대화, 기술혁신,</text>
+    <text x="400" y="154" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">인화단결</text>
 
-    <!-- 목표 라벨 (위 중앙) -->
-    <text x="300" y="68" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="15" font-weight="900" fill="#0d47a1">목표</text>
-    <text x="300" y="86" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">기술혁신 &amp; 효율 극대화</text>
-    <text x="300" y="100" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#4a5a72">인화단결</text>
+    <!-- 경영이념 텍스트: 왼쪽 하단 독립 영역 중심 -->
+    <text x="185" y="438" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="17" font-weight="900" fill="#e63946">경영이념</text>
+    <text x="185" y="460" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">최고의 품질과 미래 산업을</text>
+    <text x="185" y="476" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">창조하는 기업으로 이익 창출을</text>
+    <text x="185" y="492" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">사회에 기여합니다</text>
 
-    <!-- 교집합 A∩B (경영이념+목표, 왼쪽 중간) -->
-    <text x="210" y="198" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#5a2d82" font-weight="700">혁신경영</text>
+    <!-- 사회공헌 텍스트: 오른쪽 하단 독립 영역 중심 -->
+    <text x="615" y="438" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="17" font-weight="900" fill="#c47a00">사회공헌</text>
+    <text x="615" y="460" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">소외된 분들 지원과</text>
+    <text x="615" y="476" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">행복나눔 봉사활동으로</text>
+    <text x="615" y="492" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10.5" fill="#4a5a72">가진 것을 나눕니다</text>
 
-    <!-- 교집합 B∩C (목표+사회공헌, 오른쪽 중간) -->
-    <text x="390" y="198" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#1a6b3a" font-weight="700">지속성장</text>
+    <!-- 교집합 목표∩경영이념 -->
+    <text x="318" y="300" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="#5a2d82">혁신경영</text>
 
-    <!-- 교집합 A∩C (경영이념+사회공헌, 하단 중간) -->
-    <text x="300" y="390" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="#b45000" font-weight="700">신뢰구축</text>
+    <!-- 교집합 목표∩사회공헌 -->
+    <text x="482" y="300" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="#1a6b3a">지속성장</text>
 
-    <!-- 중앙 3개 교집합 - 태일전기의 핵심가치 -->
-    <circle cx="300" cy="272" r="52" fill="rgba(10,22,40,0.82)" stroke="#f4a100" stroke-width="2"/>
-    <text x="300" y="261" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="900" fill="#f4a100">태일전기의</text>
-    <text x="300" y="277" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="900" fill="#f4a100">핵심가치</text>
-    <text x="300" y="296" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="9" fill="rgba(255,255,255,0.75)">품질·신뢰·상생</text>
+    <!-- 교집합 경영이념∩사회공헌: 두 원(cx=270,cy=410 / cx=530,cy=410) 사이 하단 교집합 중심 -->
+    <text x="400" y="430" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" font-weight="700" fill="#b45000">신뢰구축</text>
+
+    <!-- 중앙 3개 교집합 원 -->
+    <circle cx="400" cy="348" r="60" fill="rgba(10,22,40,0.88)" stroke="#f4a100" stroke-width="2.5"/>
+    <text x="400" y="334" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="900" fill="#f4a100">태일전기의</text>
+    <text x="400" y="352" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="900" fill="#f4a100">핵심가치</text>
+    <text x="400" y="372" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">품질·신뢰·상생</text>
   </svg>
 </div>
 
