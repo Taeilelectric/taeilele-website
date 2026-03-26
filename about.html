@@ -257,8 +257,9 @@
   .ceo-sign { font-size:18px; color:var(--text2); margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
   .ceo-sign strong { color:var(--text); font-size:22px; }
   .ceo-img { border-radius:4px; overflow:hidden; position:relative; }
-  .ceo-img img { width:100%; height:380px; object-fit:cover; }
-  .ceo-img::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(135deg, rgba(13,71,161,0.2), transparent); }
+  .ceo-img img.ceo-bg { width:100%; height:380px; object-fit:cover; display:block; }
+  .ceo-img::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(135deg, rgba(13,71,161,0.35), rgba(0,0,0,0.2)); }
+  .ceo-img .ceo-logo-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(1.4); z-index:2; width:70%; object-fit:contain; }
 
   
   .philosophy-intro { font-size:22px; font-weight:700; text-align:center; margin-bottom:56px; color:var(--text); }
@@ -1091,7 +1092,8 @@ header .logo-dark  { display: block; }
 <div class="ceo-sign">대표이사  <strong>여 규 철</strong></div>
 </div>
 <div class="ceo-img">
-<img alt="태일전기 로고" src="img/ceo_logo.png" style="width:100%; height:380px; object-fit:contain; background:#fff; transform:scale(1.4); transform-origin:center;"/>
+<img class="ceo-bg" alt="태일전기 건물" src="img/ceo_bg.png"/>
+<img class="ceo-logo-overlay" alt="태일전기 로고" src="img/ceo_logo.png"/>
 </div>
 </div>
 </div>
