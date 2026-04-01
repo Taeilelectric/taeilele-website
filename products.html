@@ -229,7 +229,7 @@
   .tab-btn.active { color:#0d1829; border-bottom-color:var(--accent); font-weight:700; }
   .section { display:none; }
   .section.active { display:block; }
-  .section-inner { max-width:1200px; margin:0 auto; padding:56px 60px 80px; }
+  .section-inner { max-width:1200px; margin:0 auto; padding:56px 60px 80px; overflow:hidden; }
   .sec-header { display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:40px; padding-bottom:24px; border-bottom:2px solid var(--border); }
   .sec-title { font-size:26px; font-weight:900; color:var(--text); }
   .sec-title span { font-size:12px; font-weight:700; letter-spacing:2px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:4px 10px; border-radius:2px; margin-left:12px; vertical-align:middle; }
@@ -241,7 +241,7 @@
   .sub-panel { display:none; }
   .sub-panel.active { display:block; animation:fadeInUp 0.3s ease; }
   @keyframes fadeInUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
-  .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; }
+  .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; width:100%; }
   .seismic-info { background:#f8fafd; border:1.5px solid var(--border); border-radius:12px; padding:32px 36px; margin-bottom:36px; }
   .seismic-feature { margin-bottom:28px; }
   .seismic-feature-title { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; }
