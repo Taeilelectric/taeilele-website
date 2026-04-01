@@ -10,7 +10,6 @@
 <style>
   :root { --navy:#0a1628; --blue:#0d47a1; --accent:#f4a100; --bg:#f2f5f9; --surface:#ffffff; --border:#dde3ed; --text:#1a2840; --text2:#4a5a72; --white:#fff; --gray:#8a96a8; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  button { -webkit-appearance:none; appearance:none; border:none; background:none; box-shadow:none; outline:none; }
   html { scroll-behavior:smooth;   overflow-x: hidden;
   }
   body { font-family:'Noto Sans KR',sans-serif; background:#ffffff; color:var(--text); }
@@ -695,34 +694,36 @@
     display: inline-flex;
     align-items: center;
     gap: 0;
-    margin: 16px auto 36px;
-    border-bottom: 2px solid #e8edf5;
+    margin: 16px auto 32px;
   }
   .partner-filter-btn {
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
-    padding: 12px 36px;
+    padding: 8px 28px;
     border: none;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -2px;
     background: transparent;
     color: var(--text2);
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 600;
     font-family: 'Noto Sans KR', sans-serif;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .partner-filter-btn + .partner-filter-btn::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 1px; height: 16px;
+    background: var(--text2);
+    opacity: 0.4;
   }
   .partner-filter-btn:hover {
     color: var(--navy);
   }
   .partner-filter-btn.active {
     color: var(--navy);
-    font-weight: 800;
-    border-bottom: 2px solid var(--navy);
+    font-weight: 900;
   }
   
 
@@ -981,6 +982,16 @@
 /* ── 로고: 항상 투명 배경 버전 사용 ── */
 header .logo-light { display: none; }
 header .logo-dark  { display: block; }
+  @media(max-width:768px){
+    footer { flex-direction: column; padding: 28px 16px; gap: 20px; }
+    .footer-info { flex-direction: column; gap: 20px; width: 100%; }
+    .footer-col { min-width: unset; width: 100%; }
+    .footer-col-title { font-size: 13px; }
+    .footer-col-value { font-size: 13px; word-break: keep-all; white-space: normal; }
+    .footer-col-label { font-size: 10px; }
+    .footer-copy { display: none; }
+  }
+
 </style>
 
 
@@ -1209,7 +1220,7 @@ header .logo-dark  { display: block; }
 <div style="font-size:13px; color:var(--text2); letter-spacing:1px;" data-ko="국내 주요 건설사 및 공공기관과 함께합니다" data-en="We work with major domestic construction companies and public institutions.">국내 주요 건설사 및 공공기관과 함께합니다</div>
 </div>
 
-<div style="display:flex; justify-content:center; margin-bottom:40px;">
+<div style="display:flex; justify-content:center; gap:12px; margin-bottom:40px;">
 <div class="partner-filter-wrap">
 <button class="partner-filter-btn active" onclick="setPartnerFilter('private',this)" data-ko="민간 건설사" data-en="Private Sector">민간 건설사</button>
 <button class="partner-filter-btn" onclick="setPartnerFilter('public',this)" data-ko="공공 발주처" data-en="Public Sector">공공 발주처</button>
