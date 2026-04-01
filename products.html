@@ -242,26 +242,25 @@
   .sub-panel.active { display:block; animation:fadeInUp 0.3s ease; }
   @keyframes fadeInUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
   .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; width:100%; }
-  .seismic-info { background:#f8fafd; border:1.5px solid var(--border); border-radius:12px; padding:32px 36px; margin-bottom:36px; }
+  .seismic-info { background:#f8fafd; border:1.5px solid var(--border); border-radius:12px; padding:32px 36px; margin-bottom:36px; display:block; }
   .seismic-feature { margin-bottom:28px; }
   .seismic-feature-title { font-size:16px; font-weight:700; color:var(--navy); margin-bottom:12px; }
   .seismic-feature-highlight { font-size:14px; font-weight:700; color:#c0392b; margin-bottom:10px; line-height:1.6; }
   .seismic-feature-desc { font-size:13px; color:var(--text2); line-height:1.9; }
   .seismic-tech-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:16px; }
-  .seismic-tech-card { background:#fff; border:1.5px solid var(--border); border-radius:10px; padding:20px 16px; text-align:center; }
+  .seismic-tech-card { background:#fff; border:1.5px solid var(--border); border-radius:10px; padding:20px 16px; text-align:center; overflow:hidden; }
   .seismic-tech-badge { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:20px; margin-bottom:10px; }
   .seismic-tech-badge.patent { background:#eef2ff; color:#3b5bdb; }
   .seismic-tech-badge.cert { background:#e6fcf5; color:#0ca678; }
   .seismic-tech-badge.gov { background:#fff4e6; color:#e67700; }
   .seismic-tech-num { font-size:13px; font-weight:700; color:var(--accent); margin-bottom:8px; }
   .seismic-tech-desc { font-size:12px; color:var(--text2); line-height:1.7; }
-  .product-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); cursor:pointer; display:flex; flex-direction:column; }
+  .product-card { background:var(--surface); border:1.5px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.25s; box-shadow:0 2px 8px rgba(10,22,40,0.05); cursor:pointer; }
   .product-card:hover { border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(10,22,40,0.12); }
   .product-card-img { height:200px; max-height:200px; overflow:hidden; background:linear-gradient(135deg,#dde6f5,#bccde8); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .product-card-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
   .product-card:hover .product-card-img img { transform:scale(1.05); }
-  .product-card-body {
-    overflow-x: hidden; padding:22px; }
+  .product-card-body { overflow-x: hidden; padding:22px; }
   .product-card-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; color:var(--accent); background:rgba(244,161,0,0.1); border:1px solid rgba(244,161,0,0.3); padding:3px 10px; border-radius:2px; margin-bottom:10px; }
   .product-card-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:8px; }
   .product-card-desc { font-size:13px; color:var(--text2); line-height:1.8; }
@@ -274,7 +273,7 @@
   .work-badge { display:inline-block; margin-top:16px; font-size:11px; font-weight:700; color:var(--blue); background:rgba(13,71,161,0.07); border:1px solid rgba(13,71,161,0.2); padding:4px 14px; border-radius:20px; }
   @media(max-width:1024px) { .product-grid { grid-template-columns:repeat(2,1fr); } } @media(max-width:900px) { .product-grid { grid-template-columns:1fr !important; } }
   .prod-emoji { font-size: 56px; }
-  @media(max-width:900px) { header { padding: 0 16px !important; height: 70px !important; } nav { display:none; } .page-hero { padding:120px 24px 100px; } .page-hero-title { font-size: clamp(28px, 5.5vw, 42px); } .tab-nav { padding:0 16px; } .section-inner { padding:40px 16px 60px; } .work-grid { grid-template-columns:1fr; } .sec-header { flex-direction:column; align-items:flex-start; gap:10px; } .sec-desc { text-align:left; max-width:100%; } .seismic-info { flex-direction:column; } .seismic-tech-grid { grid-template-columns: repeat(2,1fr); } .product-card-img { height:140px !important; max-height:140px !important; overflow:hidden !important; flex-shrink:0 !important; } .product-card-img img { width:100% !important; height:140px !important; max-height:140px !important; object-fit:cover !important; } .prod-emoji { font-size:36px !important; } .product-grid { grid-template-columns: 1fr !important; gap: 12px !important; width:100% !important; box-sizing:border-box !important; } .product-card { align-self:start !important; box-sizing:border-box !important; } }
+  @media(max-width:900px) { header { padding: 0 16px !important; height: 70px !important; } nav { display:none; } .page-hero { padding:120px 24px 100px; } .page-hero-title { font-size: clamp(28px, 5.5vw, 42px); } .tab-nav { padding:0 16px; } .section-inner { padding:40px 16px 60px; } .work-grid { grid-template-columns:1fr; } .sec-header { flex-direction:column; align-items:flex-start; gap:10px; } .sec-desc { text-align:left; max-width:100%; } .seismic-info { display:block; } .seismic-tech-grid { grid-template-columns: repeat(2,1fr); } .product-card-img { height:140px !important; max-height:140px !important; overflow:hidden !important; flex-shrink:0 !important; } .product-card-img img { width:100% !important; height:140px !important; max-height:140px !important; object-fit:cover !important; } .prod-emoji { font-size:36px !important; } .product-grid { grid-template-columns: 1fr !important; gap: 12px !important; width:100% !important; box-sizing:border-box !important; } .product-card { align-self:start !important; box-sizing:border-box !important; } }
   @media(max-width:600px) { .product-grid { grid-template-columns: 1fr !important; gap: 12px !important; } .seismic-tech-grid { grid-template-columns: repeat(2,1fr); } .section-inner { padding:32px 14px 48px; } .product-card-img { height:140px !important; max-height:140px !important; overflow:hidden !important; } .product-card-img img { width:100% !important; height:140px !important; max-height:140px !important; object-fit:cover !important; } .prod-emoji { font-size:30px !important; } .product-card-body { padding:16px; } .product-card-tag { font-size:10px; white-space:normal; word-break:break-word; } }
 
   
@@ -1106,27 +1105,27 @@ document.addEventListener('keydown', function(e){
     <div class="seismic-feature-title">◇ 핵심기술</div>
     <div class="seismic-tech-grid">
       <div class="seismic-tech-card">
-        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">특허 제10-1946345호</div>
         <div class="seismic-tech-desc">하베스팅 기술을 적용한 이상 검출용<br>IR 데이터 송신센서를 통한 배전반 감시제어시스템</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">특허 제10-1864772호</div>
         <div class="seismic-tech-desc">전위차를 이용한 배전반 이상 검출용<br>IR 데이터 송신센서</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">특허 제10-1860922호</div>
         <div class="seismic-tech-desc">면진 기능을 갖춘 수 배전반</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/cert_sungnung.jpg" alt="성능인증" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/cert_sungnung.jpg" alt="성능인증" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">20-ABZ0482</div>
         <div class="seismic-tech-desc">중소기업청 성능인증 제품</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/cert_jodal.jpg" alt="조달청 우수제품" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/cert_jodal.jpg" alt="조달청 우수제품" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">2021044</div>
         <div class="seismic-tech-desc">조달청 우수제품지정</div>
       </div>
@@ -1152,17 +1151,17 @@ document.addEventListener('keydown', function(e){
     <div class="seismic-feature-title">◇ 핵심기술</div>
     <div class="seismic-tech-grid">
       <div class="seismic-tech-card">
-        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">특허 제10-1086455호</div>
         <div class="seismic-tech-desc">스마트 수배전반의 상태표시시스템</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/kipo_logo.png" alt="특허청" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">특허 제10-1175529호</div>
         <div class="seismic-tech-desc">배전반의 단전 및 결상상태를 검지하는 무선센서</div>
       </div>
       <div class="seismic-tech-card">
-        <img src="img/cert_sungnung.jpg" alt="성능인증" style="height:60px; object-fit:contain; margin-bottom:4px;">
+        <img src="img/cert_sungnung.jpg" alt="성능인증" style="height:60px; object-fit:contain; margin-bottom:4px;" onerror="this.style.display='none'">
         <div class="seismic-tech-num">성능인증 제21-332호</div>
         <div class="seismic-tech-desc">중소기업청 성능인증 제품</div>
       </div>
