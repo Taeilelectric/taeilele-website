@@ -898,6 +898,16 @@
 /* ── 로고: 항상 투명 배경 버전 사용 ── */
 header .logo-light { display: none; }
 header .logo-dark  { display: block; }
+  @media(max-width:768px){
+    footer { flex-direction: column; padding: 28px 16px; gap: 20px; }
+    .footer-info { flex-direction: column; gap: 20px; width: 100%; }
+    .footer-col { min-width: unset; width: 100%; }
+    .footer-col-title { font-size: 13px; }
+    .footer-col-value { font-size: 13px; word-break: keep-all; white-space: normal; }
+    .footer-col-label { font-size: 10px; }
+    .footer-copy { display: none; }
+  }
+
 </style>
 
 
