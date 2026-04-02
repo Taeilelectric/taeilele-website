@@ -252,7 +252,7 @@
   .ceo-wrap { display:grid; grid-template-columns:1fr 420px; gap:80px; align-items:center; }
   .ceo-tag { font-size:11px; letter-spacing:4px; color:var(--text); margin-bottom:16px; font-weight:700; }
   .ceo-headline { font-size:26px; font-weight:900; line-height:1.5; margin-bottom:32px; color:var(--text); }
-  .ceo-headline em { color:#f4a100; font-style:normal; }
+  .ceo-headline em { color:#b8860b; font-style:normal; }
   .ceo-text { font-size:15px; line-height:1.9; color:var(--text2); margin-bottom:20px; }
   .ceo-sign { font-size:18px; color:var(--text2); margin-top:40px; padding-top:24px; border-top:1px solid var(--border); }
   .ceo-sign strong { color:var(--text); font-size:22px; }
@@ -1132,27 +1132,33 @@ header .logo-dark  { display: block; }
     -->
 
     <!-- 원 3개 -->
-    <circle cx="400" cy="210" r="160" fill="#ffffff" stroke="#0d47a1" stroke-width="5"/>
-    <circle cx="270" cy="410" r="160" fill="#ffffff" stroke="#e63946" stroke-width="5"/>
-    <circle cx="530" cy="410" r="160" fill="#ffffff" stroke="#f4a100" stroke-width="5"/>
+    <!-- 흰 배경 먼저 -->
+    <circle cx="400" cy="210" r="160" fill="#ffffff" stroke="none"/>
+    <circle cx="270" cy="410" r="160" fill="#ffffff" stroke="none"/>
+    <circle cx="530" cy="410" r="160" fill="#ffffff" stroke="none"/>
 
-    <!-- 목표 텍스트 -->
-    <text x="400" y="165" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#0d47a1">목표</text>
-    <text x="400" y="193" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">행복한 삶의 가치 추구를 위한</text>
-    <text x="400" y="211" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">경영 효율 극대화, 기술혁신,</text>
-    <text x="400" y="229" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">인화단결</text>
+    <!-- 목표 텍스트: 원 중심 cx=400, cy=210 -->
+    <text x="400" y="160" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#0d47a1">목표</text>
+    <text x="400" y="186" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">행복한 삶의 가치 추구를 위한</text>
+    <text x="400" y="206" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">경영 효율 극대화, 기술혁신,</text>
+    <text x="400" y="226" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">인화단결</text>
 
-    <!-- 경영이념 텍스트 -->
-    <text x="270" y="385" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#e63946">경영이념</text>
-    <text x="270" y="408" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">최고의 품질과 미래 산업을</text>
-    <text x="270" y="426" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">창조하는 기업으로 이익 창출을</text>
-    <text x="270" y="444" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">사회에 기여합니다</text>
+    <!-- 경영이념 텍스트: 원 중심 cx=270, cy=410 -->
+    <text x="270" y="392" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#e63946">경영이념</text>
+    <text x="270" y="420" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">최고의 품질과 미래 산업을</text>
+    <text x="270" y="440" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">창조하는 기업으로 이익 창출을</text>
+    <text x="270" y="460" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">사회에 기여합니다</text>
 
-    <!-- 사회공헌 텍스트 -->
-    <text x="530" y="385" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#c47a00">사회공헌</text>
-    <text x="530" y="408" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">소외된 분들 지원과</text>
-    <text x="530" y="426" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">행복나눔 봉사활동으로</text>
-    <text x="530" y="444" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="13" fill="#4a5a72">가진 것을 나눕니다</text>
+    <!-- 사회공헌 텍스트: 원 중심 cx=530, cy=410 -->
+    <text x="530" y="392" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="22" font-weight="900" fill="#c47a00">사회공헌</text>
+    <text x="530" y="420" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">소외된 분들 지원과</text>
+    <text x="530" y="440" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">행복나눔 봉사활동으로</text>
+    <text x="530" y="460" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" fill="#4a5a72">가진 것을 나눕니다</text>
+
+    <!-- 테두리 마지막에 그려서 끊김 방지 -->
+    <circle cx="400" cy="210" r="160" fill="none" stroke="#0d47a1" stroke-width="5"/>
+    <circle cx="270" cy="410" r="160" fill="none" stroke="#e63946" stroke-width="5"/>
+    <circle cx="530" cy="410" r="160" fill="none" stroke="#f4a100" stroke-width="5"/>
 
     <!-- 교집합 목표∩경영이념 -->
     <text x="318" y="300" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="14" font-weight="700" fill="#5a2d82">혁신경영</text>
@@ -1177,20 +1183,14 @@ header .logo-dark  { display: block; }
   <div class="esg-headline" data-ko="지속가능한 미래를 위한 ESG 경영" data-en="ESG Management for a Sustainable Future">지속가능한 미래를 위한 <em style="color:#0d1829; font-style:normal; font-weight:700;">ESG 경영</em></div>
   <div class="esg-desc" data-ko="태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다." data-en="Taeil Electric practices responsible management across environmental, social, and governance areas,<br>building a sustainable future for the energy industry.">태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다.</div>
   <div class="esg-grid">
-    <div class="esg-card e">
-      <div class="esg-badge">E</div>
-      <div class="esg-card-title" data-ko="환경 (Environmental)" data-en="Environmental">환경 (Environmental)</div>
-      <div class="esg-card-text" data-ko="신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다." data-en="We lead carbon reduction through renewable energy facilities and eco-friendly switchboard manufacturing.">신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다.</div>
+    <div class="esg-card e" style="padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+      <img src="img/esg_e.png" alt="Environmental" style="width:100%; height:auto; display:block; border-radius:12px;">
     </div>
-    <div class="esg-card s">
-      <div class="esg-badge">S</div>
-      <div class="esg-card-title" data-ko="사회 (Social)" data-en="Social">사회 (Social)</div>
-      <div class="esg-card-text" data-ko="임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다." data-en="We prioritize a safe and healthy work environment, creating social value through community activities and partnerships.">임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다.</div>
+    <div class="esg-card s" style="padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+      <img src="img/esg_s.png" alt="Social" style="width:100%; height:auto; display:block; border-radius:12px;">
     </div>
-    <div class="esg-card g">
-      <div class="esg-badge">G</div>
-      <div class="esg-card-title" data-ko="지배구조 (Governance)" data-en="Governance">지배구조 (Governance)</div>
-      <div class="esg-card-text" data-ko="투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다." data-en="We build a trusted corporate culture under transparent and ethical management principles.">투명하고 윤리적인 경영 원칙 아래 신뢰받는 기업 문화를 구축합니다. 공정한 거래 질서 준수와 내부 통제 강화를 통해 지속가능한 성장 기반을 다집니다.</div>
+    <div class="esg-card g" style="padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+      <img src="img/esg_g.png" alt="Governance" style="width:100%; height:auto; display:block; border-radius:12px;">
     </div>
   </div>
 </div>
