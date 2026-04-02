@@ -677,8 +677,8 @@
     .footer-left img { height: 32px; }
     .footer-tagline { font-size: 10px; letter-spacing: 0; }
     .footer-copy { display: none; }
-    .footer-info { flex-direction: column; gap: 20px; justify-content: flex-start; width: 100%; }
-    .footer-col { min-width: unset; width: 100%; gap: 10px; }
+    .footer-info { flex-direction: row; gap: 16px; justify-content: flex-start; flex: 1; }
+    .footer-col { min-width: unset; flex: 1; gap: 10px; }
     .footer-col-title { font-size: 13px; padding-bottom: 8px; margin-bottom: 0; }
     .footer-col-value { font-size: 13px; word-break: keep-all; white-space: normal; }
     .footer-col-label { font-size: 10px; }
@@ -1177,15 +1177,11 @@ header .logo-dark  { display: block; }
   <div class="esg-headline" data-ko="지속가능한 미래를 위한 ESG 경영" data-en="ESG Management for a Sustainable Future">지속가능한 미래를 위한 <em style="color:#0d1829; font-style:normal; font-weight:700;">ESG 경영</em></div>
   <div class="esg-desc" data-ko="태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다." data-en="Taeil Electric practices responsible management across environmental, social, and governance areas,<br>building a sustainable future for the energy industry.">태일전기(주)는 환경·사회·지배구조 전 영역에서 책임 있는 경영을 실천하며,<br>지속가능한 에너지 산업의 미래를 만들어 갑니다.</div>
   <div class="esg-grid">
-    <div class="esg-card e">
-      <div class="esg-badge">E</div>
-      <div class="esg-card-title" data-ko="환경 (Environmental)" data-en="Environmental">환경 (Environmental)</div>
-      <div class="esg-card-text" data-ko="신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다." data-en="We lead carbon reduction through renewable energy facilities and eco-friendly switchboard manufacturing.">신재생에너지 설비 및 친환경 수배전반 제조를 통해 탄소 저감에 앞장섭니다. 생산 공정에서의 에너지 효율화와 폐기물 최소화를 지속적으로 추진합니다.</div>
+    <div class="esg-card e" style="padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+      <img src="img/esg_e.png" alt="Environmental" style="width:100%; height:auto; display:block; border-radius:12px;">
     </div>
-    <div class="esg-card s">
-      <div class="esg-badge">S</div>
-      <div class="esg-card-title" data-ko="사회 (Social)" data-en="Social">사회 (Social)</div>
-      <div class="esg-card-text" data-ko="임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다." data-en="We prioritize a safe and healthy work environment, creating social value through community activities and partnerships.">임직원의 안전하고 건강한 근무환경 조성을 최우선으로 하며, 지역사회와 함께하는 사회공헌 활동 및 협력사와의 상생 협력을 통해 사회적 가치를 창출합니다.</div>
+    <div class="esg-card s" style="padding:0; overflow:hidden; background:none; border:none; box-shadow:none;">
+      <img src="img/esg_s.png" alt="Social" style="width:100%; height:auto; display:block; border-radius:12px;">
     </div>
     <div class="esg-card g">
       <div class="esg-badge">G</div>
