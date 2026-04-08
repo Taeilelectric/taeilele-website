@@ -1315,16 +1315,30 @@ header .logo-dark  { display: block; }
       return;
     }
     el.innerHTML = notices.map(function(n, i) {
-      var detailId = 'notice-detail-' + n.id;
-      return '<div class="board-row" style="flex-direction:column;align-items:stretch;cursor:pointer;padding:0;" onclick="toggleDetail(\'' + detailId + '\', this)">' +
-        '<div style="display:flex;align-items:center;padding:14px 8px;">' +
-          '<span class="board-num">' + (notices.length - i) + '</span>' +
-          '<span class="board-title-col" style="font-weight:500;">' + n.title + '</span>' +
-          '<span class="board-date-col">' + n.date + '</span>' +
-          '<span class="detail-arrow" style="font-size:11px;color:#aaa;margin-left:8px;flex-shrink:0;">▼</span>' +
-        '</div>' +
-        '<div id="' + detailId + '" style="display:none;padding:16px 20px 20px 68px;background:#f8fafd;border-top:1px solid #e8ecf0;font-size:14px;color:#4a5a72;line-height:1.7;white-space:pre-wrap;">' + (n.content || '내용 없음') + '</div>' +
-        '</div>';
+      if (n.url) {
+        // 링크 있으면 → 새 탭으로 이동
+        return '<a href="' + n.url + '" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">' +
+          '<div class="board-row" style="cursor:pointer;">' +
+            '<span class="board-num">' + (notices.length - i) + '</span>' +
+            '<span class="board-title-col" style="font-weight:500;">' + n.title +
+              '<span style="font-size:11px;color:#0d47a1;margin-left:8px;font-weight:700;">↗ 링크</span>' +
+            '</span>' +
+            '<span class="board-date-col">' + n.date + '</span>' +
+          '</div>' +
+        '</a>';
+      } else {
+        // 링크 없으면 → 토글 펼치기
+        var detailId = 'notice-detail-' + n.id;
+        return '<div class="board-row" style="flex-direction:column;align-items:stretch;cursor:pointer;padding:0;" onclick="toggleDetail(\'' + detailId + '\', this)">' +
+          '<div style="display:flex;align-items:center;padding:14px 8px;">' +
+            '<span class="board-num">' + (notices.length - i) + '</span>' +
+            '<span class="board-title-col" style="font-weight:500;">' + n.title + '</span>' +
+            '<span class="board-date-col">' + n.date + '</span>' +
+            '<span class="detail-arrow" style="font-size:11px;color:#aaa;margin-left:8px;flex-shrink:0;">▼</span>' +
+          '</div>' +
+          '<div id="' + detailId + '" style="display:none;padding:16px 20px 20px 68px;background:#f8fafd;border-top:1px solid #e8ecf0;font-size:14px;color:#4a5a72;line-height:1.7;white-space:pre-wrap;">' + (n.content || '내용 없음') + '</div>' +
+          '</div>';
+      }
     }).join('');
   }
 
@@ -1342,16 +1356,28 @@ header .logo-dark  { display: block; }
       var badge = r.status === 'on'
         ? '<span class="board-badge on">채용중</span>'
         : '<span class="board-badge off">마감</span>';
-      var detailId = 'recruit-detail-' + r.id;
-      return '<div class="board-row" style="flex-direction:column;align-items:stretch;cursor:pointer;padding:0;" onclick="toggleDetail(\'' + detailId + '\', this)">' +
-        '<div style="display:flex;align-items:center;padding:14px 8px;">' +
-          '<span class="board-num">' + (recruits.length - i) + '</span>' +
-          '<span class="board-title-col" style="font-weight:500;">' + r.title + '</span>' +
-          '<span class="board-date-col">' + badge + '</span>' +
-          '<span class="detail-arrow" style="font-size:11px;color:#aaa;margin-left:8px;flex-shrink:0;">▼</span>' +
-        '</div>' +
-        '<div id="' + detailId + '" style="display:none;padding:16px 20px 20px 68px;background:#f8fafd;border-top:1px solid #e8ecf0;font-size:14px;color:#4a5a72;line-height:1.7;white-space:pre-wrap;">' + (r.content || '내용 없음') + '</div>' +
-        '</div>';
+      if (r.url) {
+        return '<a href="' + r.url + '" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;">' +
+          '<div class="board-row" style="cursor:pointer;">' +
+            '<span class="board-num">' + (recruits.length - i) + '</span>' +
+            '<span class="board-title-col" style="font-weight:500;">' + r.title +
+              '<span style="font-size:11px;color:#0d47a1;margin-left:8px;font-weight:700;">↗ 링크</span>' +
+            '</span>' +
+            '<span class="board-date-col">' + badge + '</span>' +
+          '</div>' +
+        '</a>';
+      } else {
+        var detailId = 'recruit-detail-' + r.id;
+        return '<div class="board-row" style="flex-direction:column;align-items:stretch;cursor:pointer;padding:0;" onclick="toggleDetail(\'' + detailId + '\', this)">' +
+          '<div style="display:flex;align-items:center;padding:14px 8px;">' +
+            '<span class="board-num">' + (recruits.length - i) + '</span>' +
+            '<span class="board-title-col" style="font-weight:500;">' + r.title + '</span>' +
+            '<span class="board-date-col">' + badge + '</span>' +
+            '<span class="detail-arrow" style="font-size:11px;color:#aaa;margin-left:8px;flex-shrink:0;">▼</span>' +
+          '</div>' +
+          '<div id="' + detailId + '" style="display:none;padding:16px 20px 20px 68px;background:#f8fafd;border-top:1px solid #e8ecf0;font-size:14px;color:#4a5a72;line-height:1.7;white-space:pre-wrap;">' + (r.content || '내용 없음') + '</div>' +
+          '</div>';
+      }
     }).join('');
   }
 
