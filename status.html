@@ -79,13 +79,13 @@
 
   /* 테이블 */
   .tbl-head{display:grid;padding:9px 20px;background:#f4f6fa;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--text2);}
-  .tbl-head.hq-g{grid-template-columns:1fr 80px 90px 70px 32px;}
-  .tbl-head.biz-g{grid-template-columns:1fr 80px 100px 80px 32px;}
+  .tbl-head.hq-g{grid-template-columns:1fr 80px 90px 90px 70px;}
+  .tbl-head.biz-g{grid-template-columns:1fr 80px 90px 90px 70px;}
   .tbl-row{display:grid;padding:13px 20px;border-bottom:1px solid #f0f3f8;align-items:center;transition:background 0.15s;cursor:pointer;}
   .tbl-row:last-child{border-bottom:none;}
   .tbl-row:hover{background:#f8fafd;}
-  .tbl-row.hq-g{grid-template-columns:1fr 80px 90px 70px 32px;}
-  .tbl-row.biz-g{grid-template-columns:1fr 80px 100px 80px 32px;}
+  .tbl-row.hq-g{grid-template-columns:1fr 80px 90px 90px 70px;}
+  .tbl-row.biz-g{grid-template-columns:1fr 80px 90px 90px 70px;}
   .tbl-row.archived{opacity:0.45;}
   .rname{font-size:14px;font-weight:600;color:var(--navy);}
   .rsub{font-size:11px;color:var(--text2);margin-top:2px;}
@@ -131,13 +131,13 @@
   /* 관리 테이블 */
   .mgmt-table{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
   .mgmt-head{display:grid;padding:10px 20px;background:#f4f6fa;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--text2);}
-  .mgmt-head.hq-mg{grid-template-columns:1fr 80px 90px 70px 120px;}
-  .mgmt-head.biz-mg{grid-template-columns:1fr 80px 100px 80px 120px;}
+  .mgmt-head.hq-mg{grid-template-columns:1fr 80px 90px 90px 120px;}
+  .mgmt-head.biz-mg{grid-template-columns:1fr 80px 90px 90px 120px;}
   .mgmt-row{display:grid;padding:13px 20px;border-bottom:1px solid #f0f3f8;align-items:center;font-size:14px;}
   .mgmt-row:last-child{border-bottom:none;}
   .mgmt-row:hover{background:#fafbfd;}
-  .mgmt-row.hq-mg{grid-template-columns:1fr 80px 90px 70px 120px;}
-  .mgmt-row.biz-mg{grid-template-columns:1fr 80px 100px 80px 120px;}
+  .mgmt-row.hq-mg{grid-template-columns:1fr 80px 90px 90px 120px;}
+  .mgmt-row.biz-mg{grid-template-columns:1fr 80px 90px 90px 120px;}
   .mgmt-row.archived-row{opacity:0.45;}
   .action-btns{display:flex;gap:6px;}
   .abtn{padding:5px 12px;border-radius:6px;border:none;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;}
@@ -228,7 +228,7 @@
             </div>
             <span class="sec-meta" id="hq-meta"></span>
           </div>
-          <div class="tbl-head hq-g"><span>현장명</span><span>상태</span><span>납기일</span><span>진행률</span><span></span></div>
+          <div class="tbl-head hq-g"><span>현장명</span><span>상태</span><span>납기 예정일</span><span>실 가능 납기일</span><span>진행률</span></div>
           <div id="dash-hq"></div>
         </div>
         <div class="sec-card">
@@ -239,7 +239,7 @@
             </div>
             <span class="sec-meta" id="biz-meta"></span>
           </div>
-          <div class="tbl-head biz-g"><span>현장명 / 고객사</span><span>상태</span><span>금액</span><span>담당</span><span></span></div>
+          <div class="tbl-head biz-g"><span>현장명 / 고객사</span><span>상태</span><span>계약납기</span><span>납기요청일</span><span>담당</span></div>
           <div id="dash-biz"></div>
         </div>
       </div>
@@ -257,8 +257,8 @@
         <button class="fbtn" onclick="setFilter('archived',this)">아카이브</button>
       </div>
       <div class="mgmt-table">
-        <div class="mgmt-head hq-mg" id="mgmt-head-hq"><span>현장명</span><span>상태</span><span>납기일</span><span>진행률</span><span>관리</span></div>
-        <div class="mgmt-head biz-mg" id="mgmt-head-biz" style="display:none;"><span>현장명 / 고객사</span><span>상태</span><span>금액</span><span>담당</span><span>관리</span></div>
+        <div class="mgmt-head hq-mg" id="mgmt-head-hq"><span>현장명</span><span>상태</span><span>납기 예정일</span><span>실 가능 납기일</span><span>관리</span></div>
+        <div class="mgmt-head biz-mg" id="mgmt-head-biz" style="display:none;"><span>현장명 / 고객사</span><span>상태</span><span>계약납기</span><span>납기요청일</span><span>관리</span></div>
         <div id="manage-body"></div>
       </div>
     </div>
@@ -280,17 +280,39 @@
         <label class="flabel">진행 상태</label>
         <select class="fselect" id="f-status"></select>
       </div>
-      <div class="frow" id="f-deadline-row">
-        <label class="flabel">납기 예정일</label>
-        <input class="finput" id="f-deadline" type="date">
-      </div>
+      <!-- 본사 전용 -->
       <div class="frow" id="f-progress-row">
         <label class="flabel">진행률 (%)</label>
         <input class="finput" id="f-progress" type="number" min="0" max="100" placeholder="0~100">
       </div>
+      <div class="frow" id="f-actual-deadline-row">
+        <label class="flabel">실 가능 납기일</label>
+        <input class="finput" id="f-actual-deadline" type="date">
+      </div>
+      <div class="frow" id="f-actual-deadline-row">
+        <label class="flabel">실 가능 납기일</label>
+        <input class="finput" id="f-actual-deadline" type="date">
+      </div>
+      <div class="frow" id="f-deadline-row">
+        <label class="flabel">납기 예정일</label>
+        <input class="finput" id="f-deadline" type="date">
+      </div>
+      <div class="frow" id="f-real-deadline-row">
+        <label class="flabel">실 가능 납기일</label>
+        <input class="finput" id="f-real-deadline" type="date">
+      </div>
+      <!-- 사업본부 전용 -->
       <div class="frow" id="f-amount-row" style="display:none;">
         <label class="flabel">금액</label>
         <input class="finput" id="f-amount" type="text" placeholder="예) 3,500만원">
+      </div>
+      <div class="frow" id="f-contract-deadline-row" style="display:none;">
+        <label class="flabel">계약 납기일</label>
+        <input class="finput" id="f-contract-deadline" type="date">
+      </div>
+      <div class="frow" id="f-request-deadline-row" style="display:none;">
+        <label class="flabel">실 납기 요청일</label>
+        <input class="finput" id="f-request-deadline" type="date">
       </div>
       <div class="frow" id="f-manager-row" style="display:none;">
         <label class="flabel">담당 영업인</label>
@@ -361,10 +383,14 @@ function initApp() {
   var opts = dept === 'hq' ? HQ_STATUS : BIZ_STATUS;
   sel.innerHTML = opts.map(function(s){return '<option>'+s+'</option>';}).join('');
   var isHq = dept === 'hq';
-  document.getElementById('f-deadline-row').style.display = isHq ? '' : 'none';
   document.getElementById('f-progress-row').style.display = isHq ? '' : 'none';
+  document.getElementById('f-deadline-row').style.display = isHq ? '' : 'none';
+  document.getElementById('f-real-deadline-row').style.display = isHq ? '' : 'none';
   document.getElementById('f-amount-row').style.display = isHq ? 'none' : '';
+  document.getElementById('f-contract-deadline-row').style.display = isHq ? 'none' : '';
+  document.getElementById('f-request-deadline-row').style.display = isHq ? 'none' : '';
   document.getElementById('f-manager-row').style.display = isHq ? 'none' : '';
+  document.getElementById('label-name').textContent = isHq ? '현장명' : '현장명 / 고객사';
   document.getElementById('label-name').textContent = isHq ? '현장명' : '현장명 / 고객사';
   document.getElementById('mgmt-head-hq').style.display = isHq ? '' : 'none';
   document.getElementById('mgmt-head-biz').style.display = isHq ? 'none' : '';
@@ -450,8 +476,9 @@ function renderDash() {
         '<div><div class="rname">'+esc(item.name)+'</div>'+(item.note?'<div class="rsub">메모 있음</div>':'')+'</div>'+
         '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
         '<span class="rcell '+dlC+'">'+dlLabel(item.deadline)+'</span>'+
+        '<span class="rcell">'+dlLabel(item.realDeadline)+'</span>'+
         '<div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:'+pct+'%;background:'+progColor(pct)+';"></div></div><span class="prog-pct">'+pct+'%</span></div>'+
-        '<span style="font-size:11px;color:#ccc;">▼</span></div>'+
+        '</div>'+
         (item.note?'<div class="row-detail" id="'+did+'"><div class="row-detail-inner"><div class="row-detail-note">'+esc(item.note)+'</div></div></div>':'');
     }).join('');
   }
@@ -465,9 +492,10 @@ function renderDash() {
       return '<div class="tbl-row biz-g" onclick="toggleDetail(\''+did+'\')">' +
         '<div><div class="rname">'+esc(item.name)+'</div>'+(item.note?'<div class="rsub">메모 있음</div>':'')+'</div>'+
         '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
-        '<span class="rcell">'+(item.amount||'-')+'</span>'+
+        '<span class="rcell">'+dlLabel(item.contractDeadline)+'</span>'+
+        '<span class="rcell">'+dlLabel(item.requestDeadline)+'</span>'+
         '<span class="rcell">'+(item.manager||'-')+'</span>'+
-        '<span style="font-size:11px;color:#ccc;">▼</span></div>'+
+        '</div>'+
         (item.note?'<div class="row-detail" id="'+did+'"><div class="row-detail-inner"><div class="row-detail-note">'+esc(item.note)+'</div></div></div>':'');
     }).join('');
   }
@@ -494,9 +522,9 @@ function renderManage() {
       '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
       (isHq
         ?'<span style="font-size:13px;color:var(--text2);">'+dlLabel(item.deadline)+'</span>'+
-          '<div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:'+pct+'%;background:'+progColor(pct)+';"></div></div><span class="prog-pct">'+pct+'%</span></div>'
-        :'<span style="font-size:13px;color:var(--text2);">'+(item.amount||'-')+'</span>'+
-          '<span style="font-size:13px;color:var(--text2);">'+(item.manager||'-')+'</span>'
+          '<span style="font-size:13px;color:var(--text2);">'+dlLabel(item.realDeadline)+'</span>'
+        :'<span style="font-size:13px;color:var(--text2);">'+dlLabel(item.contractDeadline)+'</span>'+
+          '<span style="font-size:13px;color:var(--text2);">'+dlLabel(item.requestDeadline)+'</span>'
       )+
       '<div class="action-btns">'+
         '<button class="abtn edit" onclick="openEdit('+item.id+')">수정</button>'+
@@ -513,10 +541,19 @@ function openModal() {
   document.getElementById('f-name').value='';
   document.getElementById('f-status').selectedIndex=0;
   document.getElementById('f-deadline').value='';
+  document.getElementById('f-real-deadline').value='';
   document.getElementById('f-progress').value='';
   document.getElementById('f-amount').value='';
+  document.getElementById('f-contract-deadline').value='';
+  document.getElementById('f-request-deadline').value='';
   document.getElementById('f-manager').value='';
+  document.getElementById('f-contract-deadline').value='';
+  document.getElementById('f-request-deadline').value='';
+  document.getElementById('f-real-deadline').value='';
   document.getElementById('f-note').value='';
+  document.getElementById('f-actual-deadline').value='';
+  document.getElementById('f-contract-deadline').value='';
+  document.getElementById('f-request-deadline').value='';
   document.getElementById('modal').classList.add('open');
 }
 function openEdit(id) {
@@ -527,10 +564,19 @@ function openEdit(id) {
   document.getElementById('f-name').value=item.name||'';
   document.getElementById('f-status').value=item.status||'';
   document.getElementById('f-deadline').value=item.deadline||'';
+  document.getElementById('f-real-deadline').value=item.realDeadline||'';
   document.getElementById('f-progress').value=item.progress||'';
   document.getElementById('f-amount').value=item.amount||'';
+  document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
+  document.getElementById('f-request-deadline').value=item.requestDeadline||'';
   document.getElementById('f-manager').value=item.manager||'';
+  document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
+  document.getElementById('f-request-deadline').value=item.requestDeadline||'';
+  document.getElementById('f-real-deadline').value=item.realDeadline||'';
   document.getElementById('f-note').value=item.note||'';
+  document.getElementById('f-actual-deadline').value=item.actualDeadline||'';
+  document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
+  document.getElementById('f-request-deadline').value=item.requestDeadline||'';
   document.getElementById('modal').classList.add('open');
 }
 function closeModal() { document.getElementById('modal').classList.remove('open'); }
@@ -545,8 +591,11 @@ function saveItem() {
       if (i.id===id) {
         i.name=name; i.status=document.getElementById('f-status').value;
         i.deadline=document.getElementById('f-deadline').value;
+        i.realDeadline=document.getElementById('f-real-deadline').value;
         i.progress=document.getElementById('f-progress').value;
         i.amount=document.getElementById('f-amount').value.trim();
+        i.contractDeadline=document.getElementById('f-contract-deadline').value;
+        i.requestDeadline=document.getElementById('f-request-deadline').value;
         i.manager=document.getElementById('f-manager').value.trim();
         i.note=document.getElementById('f-note').value.trim();
         i.updatedAt=new Date().toISOString();
@@ -558,8 +607,11 @@ function saveItem() {
       id:Date.now(), name:name,
       status:document.getElementById('f-status').value,
       deadline:document.getElementById('f-deadline').value,
+      realDeadline:document.getElementById('f-real-deadline').value,
       progress:document.getElementById('f-progress').value,
       amount:document.getElementById('f-amount').value.trim(),
+      contractDeadline:document.getElementById('f-contract-deadline').value,
+      requestDeadline:document.getElementById('f-request-deadline').value,
       manager:document.getElementById('f-manager').value.trim(),
       note:document.getElementById('f-note').value.trim(),
       archived:false, createdAt:new Date().toISOString()
