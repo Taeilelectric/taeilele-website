@@ -280,28 +280,18 @@
         <label class="flabel">진행 상태</label>
         <select class="fselect" id="f-status"></select>
       </div>
-      <!-- 본사 전용 -->
       <div class="frow" id="f-progress-row">
         <label class="flabel">진행률 (%)</label>
         <input class="finput" id="f-progress" type="number" min="0" max="100" placeholder="0~100">
       </div>
-      <div class="frow" id="f-actual-deadline-row">
-        <label class="flabel">실 가능 납기일</label>
-        <input class="finput" id="f-actual-deadline" type="date">
-      </div>
-      <div class="frow" id="f-actual-deadline-row">
-        <label class="flabel">실 가능 납기일</label>
-        <input class="finput" id="f-actual-deadline" type="date">
-      </div>
       <div class="frow" id="f-deadline-row">
-        <label class="flabel">납기 예정일</label>
+        <label class="flabel">계약 납기일</label>
         <input class="finput" id="f-deadline" type="date">
       </div>
       <div class="frow" id="f-real-deadline-row">
         <label class="flabel">실 가능 납기일</label>
         <input class="finput" id="f-real-deadline" type="date">
       </div>
-      <!-- 사업본부 전용 -->
       <div class="frow" id="f-amount-row" style="display:none;">
         <label class="flabel">금액</label>
         <input class="finput" id="f-amount" type="text" placeholder="예) 3,500만원">
@@ -311,7 +301,7 @@
         <input class="finput" id="f-contract-deadline" type="date">
       </div>
       <div class="frow" id="f-request-deadline-row" style="display:none;">
-        <label class="flabel">실 납기 요청일</label>
+        <label class="flabel">실납기 요청일</label>
         <input class="finput" id="f-request-deadline" type="date">
       </div>
       <div class="frow" id="f-manager-row" style="display:none;">
@@ -383,6 +373,7 @@ function initApp() {
   var opts = dept === 'hq' ? HQ_STATUS : BIZ_STATUS;
   sel.innerHTML = opts.map(function(s){return '<option>'+s+'</option>';}).join('');
   var isHq = dept === 'hq';
+  // 본사: 계약납기, 실가능납기, 진행률 / 사업본부: 금액, 계약납기, 실납기요청일, 담당영업인
   document.getElementById('f-progress-row').style.display = isHq ? '' : 'none';
   document.getElementById('f-deadline-row').style.display = isHq ? '' : 'none';
   document.getElementById('f-real-deadline-row').style.display = isHq ? '' : 'none';
@@ -547,13 +538,7 @@ function openModal() {
   document.getElementById('f-contract-deadline').value='';
   document.getElementById('f-request-deadline').value='';
   document.getElementById('f-manager').value='';
-  document.getElementById('f-contract-deadline').value='';
-  document.getElementById('f-request-deadline').value='';
-  document.getElementById('f-real-deadline').value='';
   document.getElementById('f-note').value='';
-  document.getElementById('f-actual-deadline').value='';
-  document.getElementById('f-contract-deadline').value='';
-  document.getElementById('f-request-deadline').value='';
   document.getElementById('modal').classList.add('open');
 }
 function openEdit(id) {
@@ -570,13 +555,7 @@ function openEdit(id) {
   document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
   document.getElementById('f-request-deadline').value=item.requestDeadline||'';
   document.getElementById('f-manager').value=item.manager||'';
-  document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
-  document.getElementById('f-request-deadline').value=item.requestDeadline||'';
-  document.getElementById('f-real-deadline').value=item.realDeadline||'';
   document.getElementById('f-note').value=item.note||'';
-  document.getElementById('f-actual-deadline').value=item.actualDeadline||'';
-  document.getElementById('f-contract-deadline').value=item.contractDeadline||'';
-  document.getElementById('f-request-deadline').value=item.requestDeadline||'';
   document.getElementById('modal').classList.add('open');
 }
 function closeModal() { document.getElementById('modal').classList.remove('open'); }
