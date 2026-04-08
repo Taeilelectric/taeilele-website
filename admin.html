@@ -133,6 +133,24 @@
   #toast.show { transform:translateY(0); opacity:1; }
 
   .notice-preview { background:#fff8ec; border:1px solid rgba(244,161,0,0.3); border-radius:8px; padding:12px 16px; margin-top:12px; font-size:13px; color:var(--text2); }
+
+  /* 수정 모달 */
+  #edit-modal {
+    display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45);
+    z-index:9999; align-items:center; justify-content:center;
+  }
+  #edit-modal.open { display:flex; }
+  .modal-box {
+    background:#fff; border-radius:16px; padding:36px 40px; width:560px; max-width:90vw;
+    box-shadow:0 24px 64px rgba(0,0,0,0.25); max-height:90vh; overflow-y:auto;
+  }
+  .modal-title { font-size:17px; font-weight:900; color:var(--navy); margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+  .modal-footer { display:flex; gap:8px; margin-top:20px; }
+  .edit-btn {
+    background:#e8f0ff; color:#0d47a1; border:none; padding:5px 12px; border-radius:6px;
+    font-size:12px; font-weight:700; cursor:pointer; font-family:'Noto Sans KR',sans-serif;
+  }
+  .edit-btn:hover { background:#c8d8ff; }
 </style>
 </head>
 <body>
@@ -239,6 +257,34 @@
   </div>
 </div>
 
+<!-- 수정 모달 -->
+<div id="edit-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">수정하기</div>
+    <input type="hidden" id="edit-id">
+    <input type="hidden" id="edit-type">
+    <div class="form-row">
+      <label class="form-label">제목</label>
+      <input class="form-input" id="edit-title" type="text">
+    </div>
+    <div class="form-row">
+      <label class="form-label">내용</label>
+      <textarea class="form-textarea" id="edit-content"></textarea>
+    </div>
+    <div class="form-row" id="edit-status-row" style="display:none;">
+      <label class="form-label">채용 상태</label>
+      <select class="form-select" id="edit-status">
+        <option value="on">채용중</option>
+        <option value="off">마감</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="form-btn" onclick="saveEdit()">저장하기</button>
+      <button class="form-btn secondary" onclick="closeModal()">취소</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
@@ -329,7 +375,10 @@ function renderNotices() {
       '<span>' + (notices.length - i) + '</span>' +
       '<span style="font-weight:500;">' + n.title + '</span>' +
       '<span style="color:var(--text2);font-size:13px;">' + n.date + '</span>' +
-      '<span><button class="del-btn" onclick="deleteNotice(' + n.id + ')">삭제</button></span>' +
+      '<span style="display:flex;gap:6px;">' +
+        '<button class="edit-btn" onclick="openEdit(\'notice\',' + n.id + ')">수정</button>' +
+        '<button class="del-btn" onclick="deleteNotice(' + n.id + ')">삭제</button>' +
+      '</span>' +
       '</div>';
   }).join('');
 }
@@ -395,12 +444,72 @@ function renderRecruits() {
       '<span>' + badge + '</span>' +
       '<span style="color:var(--text2);font-size:13px;">' + r.date + '</span>' +
       '<span style="display:flex;gap:6px;">' +
+        '<button class="edit-btn" onclick="openEdit(\'recruit\',' + r.id + ')">수정</button>' +
         '<button class="del-btn" style="background:#e0f0ff;color:#0d47a1;" onclick="toggleStatus(' + r.id + ')">상태변경</button>' +
         '<button class="del-btn" onclick="deleteRecruit(' + r.id + ')">삭제</button>' +
       '</span>' +
       '</div>';
   }).join('');
 }
+
+// ────────────────────────────
+// 수정 모달
+// ────────────────────────────
+function openEdit(type, id) {
+  var item;
+  if (type === 'notice') {
+    item = getNotices().find(function(n){ return n.id === id; });
+    document.getElementById('modal-title').textContent = '공지사항 수정';
+    document.getElementById('edit-status-row').style.display = 'none';
+  } else {
+    item = getRecruits().find(function(r){ return r.id === id; });
+    document.getElementById('modal-title').textContent = '채용공고 수정';
+    document.getElementById('edit-status-row').style.display = 'block';
+    document.getElementById('edit-status').value = item.status;
+  }
+  if (!item) return;
+  document.getElementById('edit-id').value = id;
+  document.getElementById('edit-type').value = type;
+  document.getElementById('edit-title').value = item.title;
+  document.getElementById('edit-content').value = item.content || '';
+  document.getElementById('edit-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('edit-modal').classList.remove('open');
+}
+
+function saveEdit() {
+  var id = Number(document.getElementById('edit-id').value);
+  var type = document.getElementById('edit-type').value;
+  var title = document.getElementById('edit-title').value.trim();
+  var content = document.getElementById('edit-content').value.trim();
+  if (!title) { toast('제목을 입력해주세요.'); return; }
+
+  if (type === 'notice') {
+    var notices = getNotices().map(function(n){
+      if (n.id === id) { n.title = title; n.content = content; }
+      return n;
+    });
+    saveNotices(notices);
+    renderNotices();
+  } else {
+    var status = document.getElementById('edit-status').value;
+    var recruits = getRecruits().map(function(r){
+      if (r.id === id) { r.title = title; r.content = content; r.status = status; }
+      return r;
+    });
+    saveRecruits(recruits);
+    renderRecruits();
+  }
+  closeModal();
+  toast('수정되었습니다! ✅');
+}
+
+// 모달 바깥 클릭시 닫기
+document.getElementById('edit-modal').addEventListener('click', function(e){
+  if (e.target === this) closeModal();
+});
 </script>
 </body>
 </html>
