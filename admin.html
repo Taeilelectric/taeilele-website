@@ -207,6 +207,10 @@
             <label class="form-label">내용</label>
             <textarea class="form-textarea" id="notice-content" placeholder="공지사항 내용을 입력하세요"></textarea>
           </div>
+          <div class="form-row">
+            <label class="form-label">링크 URL <span style="font-weight:400;color:#bbb;">(선택 · 입력 시 제목 클릭하면 해당 링크로 이동)</span></label>
+            <input class="form-input" id="notice-url" type="url" placeholder="https://...">
+          </div>
           <button class="form-btn" onclick="addNotice()">등록하기</button>
         </div>
 
@@ -234,6 +238,10 @@
           <div class="form-row">
             <label class="form-label">내용</label>
             <textarea class="form-textarea" id="recruit-content" placeholder="채용 내용, 자격요건 등을 입력하세요"></textarea>
+          </div>
+          <div class="form-row">
+            <label class="form-label">링크 URL <span style="font-weight:400;color:#bbb;">(선택 · 예: 사람인, 잡코리아 공고 링크)</span></label>
+            <input class="form-input" id="recruit-url" type="url" placeholder="https://...">
           </div>
           <div class="form-row">
             <label class="form-label">채용 상태</label>
@@ -270,6 +278,10 @@
     <div class="form-row">
       <label class="form-label">내용</label>
       <textarea class="form-textarea" id="edit-content"></textarea>
+    </div>
+    <div class="form-row">
+      <label class="form-label">링크 URL <span style="font-weight:400;color:#bbb;">(선택)</span></label>
+      <input class="form-input" id="edit-url" type="url" placeholder="https://...">
     </div>
     <div class="form-row" id="edit-status-row" style="display:none;">
       <label class="form-label">채용 상태</label>
@@ -344,13 +356,15 @@ function saveNotices(data) {
 function addNotice() {
   var title = document.getElementById('notice-title').value.trim();
   var content = document.getElementById('notice-content').value.trim();
+  var url = document.getElementById('notice-url').value.trim();
   if (!title) { toast('제목을 입력해주세요.'); return; }
   var notices = getNotices();
   var id = Date.now();
-  notices.unshift({ id:id, title:title, content:content, date:today() });
+  notices.unshift({ id:id, title:title, content:content, url:url, date:today() });
   saveNotices(notices);
   document.getElementById('notice-title').value = '';
   document.getElementById('notice-content').value = '';
+  document.getElementById('notice-url').value = '';
   renderNotices();
   toast('공지사항이 등록되었습니다! ✅');
 }
@@ -371,9 +385,10 @@ function renderNotices() {
     return;
   }
   list.innerHTML = notices.map(function(n, i) {
+    var linkBadge = n.url ? '<span style="font-size:11px;color:#0d47a1;margin-left:6px;">🔗 링크</span>' : '';
     return '<div class="board-row-item notice-grid">' +
       '<span>' + (notices.length - i) + '</span>' +
-      '<span style="font-weight:500;">' + n.title + '</span>' +
+      '<span style="font-weight:500;">' + n.title + linkBadge + '</span>' +
       '<span style="color:var(--text2);font-size:13px;">' + n.date + '</span>' +
       '<span style="display:flex;gap:6px;">' +
         '<button class="edit-btn" onclick="openEdit(\'notice\',' + n.id + ')">수정</button>' +
@@ -396,14 +411,16 @@ function saveRecruits(data) {
 function addRecruit() {
   var title = document.getElementById('recruit-title').value.trim();
   var content = document.getElementById('recruit-content').value.trim();
+  var url = document.getElementById('recruit-url').value.trim();
   var status = document.getElementById('recruit-status').value;
   if (!title) { toast('직무명을 입력해주세요.'); return; }
   var recruits = getRecruits();
   var id = Date.now();
-  recruits.unshift({ id:id, title:title, content:content, status:status, date:today() });
+  recruits.unshift({ id:id, title:title, content:content, url:url, status:status, date:today() });
   saveRecruits(recruits);
   document.getElementById('recruit-title').value = '';
   document.getElementById('recruit-content').value = '';
+  document.getElementById('recruit-url').value = '';
   document.getElementById('recruit-status').value = 'on';
   renderRecruits();
   toast('채용공고가 등록되었습니다! ✅');
@@ -472,6 +489,7 @@ function openEdit(type, id) {
   document.getElementById('edit-type').value = type;
   document.getElementById('edit-title').value = item.title;
   document.getElementById('edit-content').value = item.content || '';
+  document.getElementById('edit-url').value = item.url || '';
   document.getElementById('edit-modal').classList.add('open');
 }
 
@@ -484,11 +502,12 @@ function saveEdit() {
   var type = document.getElementById('edit-type').value;
   var title = document.getElementById('edit-title').value.trim();
   var content = document.getElementById('edit-content').value.trim();
+  var url = document.getElementById('edit-url').value.trim();
   if (!title) { toast('제목을 입력해주세요.'); return; }
 
   if (type === 'notice') {
     var notices = getNotices().map(function(n){
-      if (n.id === id) { n.title = title; n.content = content; }
+      if (n.id === id) { n.title = title; n.content = content; n.url = url; }
       return n;
     });
     saveNotices(notices);
@@ -496,7 +515,7 @@ function saveEdit() {
   } else {
     var status = document.getElementById('edit-status').value;
     var recruits = getRecruits().map(function(r){
-      if (r.id === id) { r.title = title; r.content = content; r.status = status; }
+      if (r.id === id) { r.title = title; r.content = content; r.url = url; r.status = status; }
       return r;
     });
     saveRecruits(recruits);
