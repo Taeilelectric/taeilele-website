@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>업무현황 - 태일전기</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0a1628; --accent:#f4a100; --blue:#1a56c8;
+    --green:#2a9d5c; --red:#e63946;
+    --bg:#f0f3f8; --surface:#fff; --border:#dde3ed;
+    --text:#1a2840; --text2:#4a5a72;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+  /* ── 로그인 ── */
+  #login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#0a1628,#1a3a6e);display:flex;align-items:center;justify-content:center;z-index:9999;}
+  .login-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);border-radius:20px;padding:44px 40px;width:380px;backdrop-filter:blur(20px);text-align:center;}
+  .login-logo{font-family:'Bebas Neue',sans-serif;font-size:46px;letter-spacing:5px;color:#fff;margin-bottom:2px;}
+  .login-logo span{color:var(--accent);}
+  .login-sub{font-size:11px;letter-spacing:3px;color:rgba(255,255,255,0.3);margin-bottom:36px;}
+  .dept-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+  .dept-tab{padding:11px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.45);font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .dept-tab.active{background:var(--accent);color:var(--navy);border-color:var(--accent);}
+  .login-input{width:100%;padding:14px 16px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.13);background:rgba(255,255,255,0.08);color:#fff;font-family:'Noto Sans KR',sans-serif;font-size:14px;outline:none;margin-bottom:10px;transition:border-color 0.2s;}
+  .login-input::placeholder{color:rgba(255,255,255,0.25);}
+  .login-input:focus{border-color:var(--accent);}
+  .login-btn{width:100%;padding:14px;background:var(--accent);color:var(--navy);border:none;border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:900;cursor:pointer;transition:opacity 0.2s;}
+  .login-btn:hover{opacity:0.88;}
+  .login-err{color:#ff8080;font-size:13px;margin-top:10px;display:none;}
+
+  /* ── 헤더 ── */
+  #app{display:none;}
+  .header{background:var(--navy);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(10,22,40,0.15);}
+  .header-left{display:flex;align-items:center;gap:16px;}
+  .hlogo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:3px;color:#fff;}
+  .hlogo span{color:var(--accent);}
+  .dept-badge{font-size:11px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px;}
+  .dept-badge.hq{background:rgba(26,86,200,0.25);color:#7fb3ff;border:1px solid rgba(26,86,200,0.3);}
+  .dept-badge.biz{background:rgba(244,161,0,0.2);color:var(--accent);border:1px solid rgba(244,161,0,0.3);}
+  .header-right{display:flex;align-items:center;gap:12px;}
+  .hbtn{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.12);padding:7px 16px;border-radius:6px;font-family:'Noto Sans KR',sans-serif;font-size:12px;cursor:pointer;transition:all 0.2s;}
+  .hbtn:hover{background:rgba(255,255,255,0.15);color:#fff;}
+  .hbtn.accent{background:var(--accent);color:var(--navy);border-color:var(--accent);font-weight:700;}
+  .hbtn.accent:hover{opacity:0.88;}
+
+  /* ── 탭 ── */
+  .tab-nav{background:#fff;border-bottom:2px solid var(--border);display:flex;padding:0 32px;}
+  .tab-btn{padding:15px 22px;font-size:14px;font-weight:600;color:var(--text2);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;}
+  .tab-btn:hover{color:var(--navy);}
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--accent);font-weight:700;}
+
+  /* ── 본문 ── */
+  .content{padding:28px 32px;max-width:1300px;margin:0 auto;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* ── 대시보드 ── */
+  .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
+  .scard{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:20px 22px;position:relative;overflow:hidden;box-shadow:0 2px 6px rgba(10,22,40,0.05);}
+  .scard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .scard.c1::before{background:var(--blue);}
+  .scard.c2::before{background:var(--red);}
+  .scard.c3::before{background:var(--accent);}
+  .scard.c4::before{background:var(--green);}
+  .scard-label{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--text2);margin-bottom:10px;}
+  .scard-num{font-size:38px;font-weight:900;color:var(--navy);line-height:1;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;}
+  .scard-num small{font-size:16px;font-weight:400;font-family:'Noto Sans KR',sans-serif;color:var(--text2);}
+  .scard-sub{font-size:12px;color:var(--text2);margin-top:4px;}
+
+  .sections-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .sec-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 2px 6px rgba(10,22,40,0.05);}
+  .sec-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border);background:#f8fafd;}
+  .sec-head-left{display:flex;align-items:center;gap:10px;}
+  .sec-title{font-size:15px;font-weight:700;color:var(--navy);}
+  .sec-meta{font-size:12px;color:var(--text2);}
+
+  /* 테이블 */
+  .tbl-head{display:grid;padding:9px 20px;background:#f4f6fa;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--text2);}
+  .tbl-head.hq-g{grid-template-columns:1fr 80px 90px 70px 32px;}
+  .tbl-head.biz-g{grid-template-columns:1fr 80px 100px 80px 32px;}
+  .tbl-row{display:grid;padding:13px 20px;border-bottom:1px solid #f0f3f8;align-items:center;transition:background 0.15s;cursor:pointer;}
+  .tbl-row:last-child{border-bottom:none;}
+  .tbl-row:hover{background:#f8fafd;}
+  .tbl-row.hq-g{grid-template-columns:1fr 80px 90px 70px 32px;}
+  .tbl-row.biz-g{grid-template-columns:1fr 80px 100px 80px 32px;}
+  .tbl-row.archived{opacity:0.45;}
+  .rname{font-size:14px;font-weight:600;color:var(--navy);}
+  .rsub{font-size:11px;color:var(--text2);margin-top:2px;}
+  .rcell{font-size:13px;color:var(--text2);}
+
+  /* 진행률 */
+  .prog-wrap{display:flex;align-items:center;gap:6px;}
+  .prog-bg{flex:1;height:5px;background:#e8ecf4;border-radius:3px;}
+  .prog-fill{height:5px;border-radius:3px;}
+  .prog-pct{font-size:11px;color:var(--text2);min-width:26px;}
+
+  /* 뱃지 */
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap;display:inline-block;}
+  .badge.ing{background:rgba(42,157,92,0.1);color:#1a7a40;border:1px solid rgba(42,157,92,0.2);}
+  .badge.done{background:#f0f0f0;color:#888;border:1px solid #e0e0e0;}
+  .badge.hold{background:rgba(230,57,70,0.08);color:#c02030;border:1px solid rgba(230,57,70,0.18);}
+  .badge.plan{background:rgba(26,86,200,0.08);color:var(--blue);border:1px solid rgba(26,86,200,0.18);}
+  .badge.sales{background:rgba(244,161,0,0.1);color:#b86e00;border:1px solid rgba(244,161,0,0.2);}
+
+  .deadline-warn{color:#d97000!important;font-weight:600;}
+  .deadline-urgent{color:var(--red)!important;font-weight:700;}
+
+  /* 확장 상세 */
+  .row-detail{display:none;padding:10px 20px 14px;background:#f8fafd;border-bottom:1px solid var(--border);}
+  .row-detail-inner{display:flex;gap:16px;align-items:flex-start;}
+  .row-detail-note{flex:1;font-size:13px;color:var(--text2);line-height:1.7;white-space:pre-wrap;padding:10px 14px;background:#fff;border-radius:6px;border-left:3px solid var(--accent);}
+  .row-detail-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;}
+
+  /* 빈 상태 */
+  .empty{text-align:center;padding:40px;color:var(--text2);font-size:13px;}
+
+  /* ── 입력/관리 탭 ── */
+  .manage-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .manage-title{font-size:18px;font-weight:900;color:var(--navy);}
+  .add-btn{background:var(--accent);color:var(--navy);border:none;padding:11px 24px;border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s;}
+  .add-btn:hover{opacity:0.88;}
+
+  .filter-bar{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+  .fbtn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--text2);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .fbtn.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .fbtn:hover:not(.active){border-color:var(--navy);color:var(--navy);}
+
+  /* 관리 테이블 */
+  .mgmt-table{background:#fff;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+  .mgmt-head{display:grid;padding:10px 20px;background:#f4f6fa;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:0.8px;color:var(--text2);}
+  .mgmt-head.hq-mg{grid-template-columns:1fr 80px 90px 70px 120px;}
+  .mgmt-head.biz-mg{grid-template-columns:1fr 80px 100px 80px 120px;}
+  .mgmt-row{display:grid;padding:13px 20px;border-bottom:1px solid #f0f3f8;align-items:center;font-size:14px;}
+  .mgmt-row:last-child{border-bottom:none;}
+  .mgmt-row:hover{background:#fafbfd;}
+  .mgmt-row.hq-mg{grid-template-columns:1fr 80px 90px 70px 120px;}
+  .mgmt-row.biz-mg{grid-template-columns:1fr 80px 100px 80px 120px;}
+  .mgmt-row.archived-row{opacity:0.45;}
+  .action-btns{display:flex;gap:6px;}
+  .abtn{padding:5px 12px;border-radius:6px;border:none;font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .abtn.edit{background:#e8f0ff;color:#0d47a1;}
+  .abtn.edit:hover{background:#c8d8ff;}
+  .abtn.archive{background:#f0f0f0;color:#666;}
+  .abtn.archive:hover{background:#e0e0e0;}
+  .abtn.del{background:#fee2e2;color:var(--red);}
+  .abtn.del:hover{background:#fecaca;}
+  .abtn.restore{background:#e8fff2;color:var(--green);}
+  .abtn.restore:hover{background:#c8ffe0;}
+
+  /* ── 모달 ── */
+  #modal{display:none;position:fixed;inset:0;background:rgba(10,22,40,0.5);z-index:9999;align-items:center;justify-content:center;}
+  #modal.open{display:flex;}
+  .modal-box{background:#fff;border-radius:16px;padding:36px 40px;width:560px;max-width:92vw;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.2);}
+  .modal-title{font-size:17px;font-weight:900;color:var(--navy);margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+  .frow{margin-bottom:14px;}
+  .flabel{font-size:12px;font-weight:700;color:var(--text2);letter-spacing:0.5px;margin-bottom:6px;display:block;}
+  .finput{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color 0.2s;}
+  .finput:focus{border-color:var(--accent);}
+  .ftextarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);outline:none;resize:vertical;min-height:90px;transition:border-color 0.2s;}
+  .ftextarea:focus{border-color:var(--accent);}
+  .fselect{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;color:var(--text);outline:none;background:#fff;cursor:pointer;}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .modal-footer{display:flex;gap:8px;margin-top:20px;}
+  .mbtn{padding:12px 28px;border-radius:8px;border:none;font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:opacity 0.2s;}
+  .mbtn.primary{background:var(--accent);color:var(--navy);}
+  .mbtn.primary:hover{opacity:0.88;}
+  .mbtn.secondary{background:#f0f0f0;color:var(--text2);}
+  .mbtn.secondary:hover{background:#e0e0e0;}
+
+  /* 토스트 */
+  #toast{position:fixed;bottom:28px;right:28px;background:var(--navy);color:#fff;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.18);transform:translateY(70px);opacity:0;transition:all 0.3s;z-index:9999;pointer-events:none;}
+  #toast.show{transform:translateY(0);opacity:1;}
+
+  @media(max-width:1000px){.sections-grid{grid-template-columns:1fr;}.summary-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.content{padding:16px;}.header{padding:0 16px;}.tab-nav{padding:0 12px;}}
+</style>
+</head>
+<body>
+
+<!-- 로그인 -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">TAEIL<span>ELE</span></div>
+    <div class="login-sub">OPERATIONS DASHBOARD</div>
+    <div class="dept-tabs">
+      <button class="dept-tab active" onclick="selDept('hq',this)">🏭 본사</button>
+      <button class="dept-tab" onclick="selDept('biz',this)">📊 사업본부</button>
+    </div>
+    <input class="login-input" id="pw" type="password" placeholder="비밀번호" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">입장</button>
+    <div class="login-err" id="lerr">비밀번호가 올바르지 않습니다.</div>
+  </div>
+</div>
+
+<!-- 앱 -->
+<div id="app">
+  <div class="header">
+    <div class="header-left">
+      <div class="hlogo">TAEIL<span>ELE</span></div>
+      <div class="dept-badge" id="dept-badge">본사</div>
+    </div>
+    <div class="header-right">
+      <button class="hbtn accent" onclick="openModal()">+ 항목 추가</button>
+      <button class="hbtn" onclick="logout()">로그아웃</button>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('dash',this)">📋 현황 대시보드</button>
+    <button class="tab-btn" onclick="showTab('manage',this)">⚙️ 항목 관리</button>
+  </div>
+
+  <div class="content">
+
+    <!-- 대시보드 -->
+    <div class="tab-panel active" id="tab-dash">
+      <div class="summary-grid" id="summary-grid"></div>
+      <div class="sections-grid">
+        <div class="sec-card">
+          <div class="sec-head">
+            <div class="sec-head-left">
+              <span class="dept-badge hq">본사</span>
+              <span class="sec-title">생산 · 납기 현황</span>
+            </div>
+            <span class="sec-meta" id="hq-meta"></span>
+          </div>
+          <div class="tbl-head hq-g"><span>현장명</span><span>상태</span><span>납기일</span><span>진행률</span><span></span></div>
+          <div id="dash-hq"></div>
+        </div>
+        <div class="sec-card">
+          <div class="sec-head">
+            <div class="sec-head-left">
+              <span class="dept-badge biz">사업본부</span>
+              <span class="sec-title">영업 · 수주 현황</span>
+            </div>
+            <span class="sec-meta" id="biz-meta"></span>
+          </div>
+          <div class="tbl-head biz-g"><span>현장명 / 고객사</span><span>상태</span><span>금액</span><span>담당</span><span></span></div>
+          <div id="dash-biz"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관리 -->
+    <div class="tab-panel" id="tab-manage">
+      <div class="manage-header">
+        <div class="manage-title" id="manage-title">항목 관리</div>
+        <button class="add-btn" onclick="openModal()">+ 새 항목 추가</button>
+      </div>
+      <div class="filter-bar">
+        <button class="fbtn active" onclick="setFilter('active',this)">진행중</button>
+        <button class="fbtn" onclick="setFilter('all',this)">전체</button>
+        <button class="fbtn" onclick="setFilter('archived',this)">아카이브</button>
+      </div>
+      <div class="mgmt-table">
+        <div class="mgmt-head hq-mg" id="mgmt-head-hq"><span>현장명</span><span>상태</span><span>납기일</span><span>진행률</span><span>관리</span></div>
+        <div class="mgmt-head biz-mg" id="mgmt-head-biz" style="display:none;"><span>현장명 / 고객사</span><span>상태</span><span>금액</span><span>담당</span><span>관리</span></div>
+        <div id="manage-body"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 모달 -->
+<div id="modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">새 항목 추가</div>
+    <input type="hidden" id="edit-id">
+    <div class="frow">
+      <label class="flabel" id="label-name">현장명</label>
+      <input class="finput" id="f-name" type="text" placeholder="현장명 입력">
+    </div>
+    <div class="fgrid">
+      <div class="frow">
+        <label class="flabel">진행 상태</label>
+        <select class="fselect" id="f-status"></select>
+      </div>
+      <div class="frow" id="f-deadline-row">
+        <label class="flabel">납기 예정일</label>
+        <input class="finput" id="f-deadline" type="date">
+      </div>
+      <div class="frow" id="f-progress-row">
+        <label class="flabel">진행률 (%)</label>
+        <input class="finput" id="f-progress" type="number" min="0" max="100" placeholder="0~100">
+      </div>
+      <div class="frow" id="f-amount-row" style="display:none;">
+        <label class="flabel">금액</label>
+        <input class="finput" id="f-amount" type="text" placeholder="예) 3,500만원">
+      </div>
+      <div class="frow" id="f-manager-row" style="display:none;">
+        <label class="flabel">담당 영업인</label>
+        <input class="finput" id="f-manager" type="text" placeholder="이름">
+      </div>
+    </div>
+    <div class="frow">
+      <label class="flabel">특이사항 / 메모</label>
+      <textarea class="ftextarea" id="f-note" placeholder="진행 내용, 이슈, 다음 액션 등"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button class="mbtn primary" onclick="saveItem()">저장</button>
+      <button class="mbtn secondary" onclick="closeModal()">취소</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+
+<!-- 로딩 -->
+<div id="loading-bar" style="display:none;position:fixed;inset:0;background:rgba(255,255,255,0.7);z-index:8888;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+  <div style="width:40px;height:40px;border:3px solid #dde3ed;border-top-color:#f4a100;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+  <div style="font-size:13px;color:#4a5a72;font-weight:600;">데이터 불러오는 중...</div>
+</div>
+<style>@keyframes spin{to{transform:rotate(360deg);}}</style>
+
+<script>
+var API = 'https://script.google.com/macros/s/AKfycbwGeLIQPuze1vqssvsNQmczxDyuSruxXpZB4zh_mWiR84Y5FneOcbJ-nU3Jtehy3789pQ/exec';
+var PW = { hq:'taeil1!', biz:'taeil2!' };
+var DEPT_LABEL = { hq:'본사', biz:'사업본부' };
+var HQ_STATUS = ['진행중','완료','보류','예정'];
+var BIZ_STATUS = ['영업중','계약완료','견적진행','보류'];
+
+var dept = 'hq';
+var manageFilter = 'active';
+var cache = { hq: [], biz: [] };
+
+// ── 로그인 ──
+function selDept(d, btn) {
+  dept = d;
+  document.querySelectorAll('.dept-tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+}
+function login() {
+  if (document.getElementById('pw').value === PW[dept]) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    initApp();
+  } else {
+    document.getElementById('lerr').style.display = 'block';
+  }
+}
+function logout() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('pw').value = '';
+  document.getElementById('lerr').style.display = 'none';
+}
+
+// ── 초기화 ──
+function initApp() {
+  var badge = document.getElementById('dept-badge');
+  badge.textContent = DEPT_LABEL[dept];
+  badge.className = 'dept-badge ' + dept;
+  document.getElementById('manage-title').textContent = '[' + DEPT_LABEL[dept] + '] 항목 관리';
+  var sel = document.getElementById('f-status');
+  var opts = dept === 'hq' ? HQ_STATUS : BIZ_STATUS;
+  sel.innerHTML = opts.map(function(s){return '<option>'+s+'</option>';}).join('');
+  var isHq = dept === 'hq';
+  document.getElementById('f-deadline-row').style.display = isHq ? '' : 'none';
+  document.getElementById('f-progress-row').style.display = isHq ? '' : 'none';
+  document.getElementById('f-amount-row').style.display = isHq ? 'none' : '';
+  document.getElementById('f-manager-row').style.display = isHq ? 'none' : '';
+  document.getElementById('label-name').textContent = isHq ? '현장명' : '현장명 / 고객사';
+  document.getElementById('mgmt-head-hq').style.display = isHq ? '' : 'none';
+  document.getElementById('mgmt-head-biz').style.display = isHq ? 'none' : '';
+  // 두 부서 데이터 모두 로드
+  loadBoth();
+}
+
+// ── API 통신 ──
+function loading(on) {
+  document.getElementById('loading-bar').style.display = on ? 'flex' : 'none';
+}
+
+function loadBoth() {
+  loading(true);
+  var done = 0;
+  ['hq','biz'].forEach(function(d) {
+    fetch(API + '?dept=' + d)
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        cache[d] = data.items || [];
+        done++;
+        if (done === 2) { loading(false); renderAll(); }
+      })
+      .catch(function(){
+        done++;
+        if (done === 2) { loading(false); renderAll(); }
+        toast('데이터 불러오기 실패');
+      });
+  });
+}
+
+function pushItems(items, cb) {
+  loading(true);
+  cache[dept] = items;
+  fetch(API, {
+    method: 'POST',
+    body: JSON.stringify({ dept: dept, items: items })
+  })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      loading(false);
+      if (cb) cb();
+    })
+    .catch(function(){
+      loading(false);
+      toast('저장 실패. 다시 시도해주세요.');
+    });
+}
+
+function getItems() { return cache[dept] || []; }
+
+// ── 렌더링 ──
+function renderAll() {
+  renderDash();
+  renderManage();
+}
+
+function renderDash() {
+  var hqItems = (cache.hq||[]).filter(function(i){return !i.archived;});
+  var bizItems = (cache.biz||[]).filter(function(i){return !i.archived;});
+
+  var hqIng = hqItems.filter(function(i){return i.status==='진행중';}).length;
+  var hqDone = hqItems.filter(function(i){return i.status==='완료';}).length;
+  var urgent = hqItems.filter(function(i){var d=daysUntil(i.deadline);return d!==null&&d>=0&&d<=7;}).length;
+  var bizIng = bizItems.filter(function(i){return i.status==='영업중';}).length;
+  var contract = bizItems.filter(function(i){return i.status==='계약완료';}).length;
+
+  document.getElementById('summary-grid').innerHTML =
+    scard('c1','본사 진행현장', hqItems.length, '건', '진행중 '+hqIng+' · 완료 '+hqDone) +
+    scard('c2','납기 임박 7일', urgent, '건', urgent>0?'확인 필요':'임박 없음') +
+    scard('c3','사업본부 영업현황', bizItems.length, '건', '영업중 '+bizIng+' · 계약 '+contract) +
+    scard('c4','계약완료', contract, '건', bizItems.filter(function(i){return i.status==='계약완료';}).map(function(i){return i.name;}).join(', ')||'-');
+
+  document.getElementById('hq-meta').textContent = hqItems.length + '건';
+  var hqBody = document.getElementById('dash-hq');
+  if (hqItems.length === 0) { hqBody.innerHTML = '<div class="empty">📭 등록된 항목이 없습니다.</div>'; }
+  else {
+    hqBody.innerHTML = hqItems.map(function(item,i) {
+      var did='dhq'+i, days=daysUntil(item.deadline);
+      var dlC=days!==null&&days<=3?'deadline-urgent':days!==null&&days<=7?'deadline-warn':'';
+      var pct=parseInt(item.progress)||0;
+      return '<div class="tbl-row hq-g" onclick="toggleDetail(\''+did+'\')">' +
+        '<div><div class="rname">'+esc(item.name)+'</div>'+(item.note?'<div class="rsub">메모 있음</div>':'')+'</div>'+
+        '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
+        '<span class="rcell '+dlC+'">'+dlLabel(item.deadline)+'</span>'+
+        '<div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:'+pct+'%;background:'+progColor(pct)+';"></div></div><span class="prog-pct">'+pct+'%</span></div>'+
+        '<span style="font-size:11px;color:#ccc;">▼</span></div>'+
+        (item.note?'<div class="row-detail" id="'+did+'"><div class="row-detail-inner"><div class="row-detail-note">'+esc(item.note)+'</div></div></div>':'');
+    }).join('');
+  }
+
+  document.getElementById('biz-meta').textContent = bizItems.length + '건';
+  var bizBody = document.getElementById('dash-biz');
+  if (bizItems.length === 0) { bizBody.innerHTML = '<div class="empty">📭 등록된 항목이 없습니다.</div>'; }
+  else {
+    bizBody.innerHTML = bizItems.map(function(item,i) {
+      var did='dbiz'+i;
+      return '<div class="tbl-row biz-g" onclick="toggleDetail(\''+did+'\')">' +
+        '<div><div class="rname">'+esc(item.name)+'</div>'+(item.note?'<div class="rsub">메모 있음</div>':'')+'</div>'+
+        '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
+        '<span class="rcell">'+(item.amount||'-')+'</span>'+
+        '<span class="rcell">'+(item.manager||'-')+'</span>'+
+        '<span style="font-size:11px;color:#ccc;">▼</span></div>'+
+        (item.note?'<div class="row-detail" id="'+did+'"><div class="row-detail-inner"><div class="row-detail-note">'+esc(item.note)+'</div></div></div>':'');
+    }).join('');
+  }
+}
+
+function renderManage() {
+  var items = getItems();
+  var filtered = items.filter(function(i){
+    if (manageFilter==='active') return !i.archived;
+    if (manageFilter==='archived') return i.archived;
+    return true;
+  });
+  var isHq = dept==='hq';
+  var body = document.getElementById('manage-body');
+  if (filtered.length===0) { body.innerHTML='<div class="empty">항목이 없습니다.</div>'; return; }
+  body.innerHTML = filtered.map(function(item) {
+    var gc=isHq?'hq-mg':'biz-mg';
+    var archBtn=item.archived
+      ?'<button class="abtn restore" onclick="toggleArchive('+item.id+')">복원</button>'
+      :'<button class="abtn archive" onclick="toggleArchive('+item.id+')">완료</button>';
+    var pct=parseInt(item.progress)||0;
+    return '<div class="mgmt-row '+gc+(item.archived?' archived-row':'')+'">' +
+      '<div><div style="font-weight:600;color:var(--navy);">'+esc(item.name)+'</div>'+(item.note?'<div style="font-size:11px;color:var(--text2);margin-top:2px;">'+esc(item.note.substring(0,40))+(item.note.length>40?'…':'')+'</div>':'')+'</div>'+
+      '<span><span class="badge '+statusClass(item.status)+'">'+item.status+'</span></span>'+
+      (isHq
+        ?'<span style="font-size:13px;color:var(--text2);">'+dlLabel(item.deadline)+'</span>'+
+          '<div class="prog-wrap"><div class="prog-bg"><div class="prog-fill" style="width:'+pct+'%;background:'+progColor(pct)+';"></div></div><span class="prog-pct">'+pct+'%</span></div>'
+        :'<span style="font-size:13px;color:var(--text2);">'+(item.amount||'-')+'</span>'+
+          '<span style="font-size:13px;color:var(--text2);">'+(item.manager||'-')+'</span>'
+      )+
+      '<div class="action-btns">'+
+        '<button class="abtn edit" onclick="openEdit('+item.id+')">수정</button>'+
+        archBtn+
+        '<button class="abtn del" onclick="delItem('+item.id+')">삭제</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+// ── CRUD ──
+function openModal() {
+  document.getElementById('edit-id').value='';
+  document.getElementById('modal-title').textContent='새 항목 추가';
+  document.getElementById('f-name').value='';
+  document.getElementById('f-status').selectedIndex=0;
+  document.getElementById('f-deadline').value='';
+  document.getElementById('f-progress').value='';
+  document.getElementById('f-amount').value='';
+  document.getElementById('f-manager').value='';
+  document.getElementById('f-note').value='';
+  document.getElementById('modal').classList.add('open');
+}
+function openEdit(id) {
+  var item=getItems().find(function(i){return i.id===id;});
+  if (!item) return;
+  document.getElementById('edit-id').value=id;
+  document.getElementById('modal-title').textContent='항목 수정';
+  document.getElementById('f-name').value=item.name||'';
+  document.getElementById('f-status').value=item.status||'';
+  document.getElementById('f-deadline').value=item.deadline||'';
+  document.getElementById('f-progress').value=item.progress||'';
+  document.getElementById('f-amount').value=item.amount||'';
+  document.getElementById('f-manager').value=item.manager||'';
+  document.getElementById('f-note').value=item.note||'';
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+function saveItem() {
+  var name=document.getElementById('f-name').value.trim();
+  if (!name) { toast('현장명을 입력해주세요.'); return; }
+  var id=parseInt(document.getElementById('edit-id').value)||0;
+  var items=getItems().slice();
+  if (id) {
+    items=items.map(function(i){
+      if (i.id===id) {
+        i.name=name; i.status=document.getElementById('f-status').value;
+        i.deadline=document.getElementById('f-deadline').value;
+        i.progress=document.getElementById('f-progress').value;
+        i.amount=document.getElementById('f-amount').value.trim();
+        i.manager=document.getElementById('f-manager').value.trim();
+        i.note=document.getElementById('f-note').value.trim();
+        i.updatedAt=new Date().toISOString();
+      }
+      return i;
+    });
+  } else {
+    items.push({
+      id:Date.now(), name:name,
+      status:document.getElementById('f-status').value,
+      deadline:document.getElementById('f-deadline').value,
+      progress:document.getElementById('f-progress').value,
+      amount:document.getElementById('f-amount').value.trim(),
+      manager:document.getElementById('f-manager').value.trim(),
+      note:document.getElementById('f-note').value.trim(),
+      archived:false, createdAt:new Date().toISOString()
+    });
+  }
+  closeModal();
+  pushItems(items, function(){ renderAll(); toast(id?'수정되었습니다! ✅':'등록되었습니다! ✅'); });
+}
+
+function toggleArchive(id) {
+  var items=getItems().map(function(i){
+    if (i.id===id) i.archived=!i.archived;
+    return i;
+  });
+  pushItems(items, function(){ renderAll(); toast('변경되었습니다.'); });
+}
+
+function delItem(id) {
+  if (!confirm('삭제하시겠습니까?')) return;
+  var items=getItems().filter(function(i){return i.id!==id;});
+  pushItems(items, function(){ renderAll(); toast('삭제되었습니다.'); });
+}
+
+function setFilter(f, btn) {
+  manageFilter=f;
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderManage();
+}
+
+// ── UI 유틸 ──
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleDetail(id) {
+  var el=document.getElementById(id);
+  if (!el) return;
+  el.style.display=el.style.display==='block'?'none':'block';
+}
+function statusClass(s) {
+  if (!s) return '';
+  if (s==='진행중'||s==='영업중') return 'ing';
+  if (s==='완료'||s==='계약완료') return 'done';
+  if (s==='보류') return 'hold';
+  if (s==='예정'||s==='견적진행') return 'plan';
+  return 'sales';
+}
+function daysUntil(d) {
+  if (!d) return null;
+  var dt=new Date(d),now=new Date(); now.setHours(0,0,0,0); dt.setHours(0,0,0,0);
+  return Math.round((dt-now)/86400000);
+}
+function dlLabel(d) {
+  if (!d) return '-';
+  var days=daysUntil(d), base=d.replace(/^\d{4}-/,'');
+  if (days===0) return base+' <span style="color:var(--red);font-size:10px;font-weight:700;">D-DAY</span>';
+  if (days<0) return base+' <span style="color:#aaa;font-size:10px;">완료</span>';
+  if (days<=7) return base+' <span style="color:#d97000;font-size:10px;font-weight:700;">D-'+days+'</span>';
+  return base;
+}
+function progColor(p) { return p>=80?'#2a9d5c':p>=50?'#f4a100':'#1a56c8'; }
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function scard(cls,label,num,unit,sub) {
+  return '<div class="scard '+cls+'"><div class="scard-label">'+label+'</div><div class="scard-num">'+num+'<small> '+unit+'</small></div><div class="scard-sub">'+sub+'</div></div>';
+}
+function toast(msg) {
+  var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2500);
+}
+
+document.getElementById('modal').addEventListener('click', function(e){ if(e.target===this)closeModal(); });
+</script>
+</body></html>
