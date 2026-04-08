@@ -1948,6 +1948,41 @@ window.addEventListener('DOMContentLoaded', function() {
 
   selectProd(0);
   startProdAuto();
+
+  // ── 메인 공지사항 렌더링 ──
+  (function() {
+    var boardBlocks = document.querySelectorAll('#board-section .board-block');
+    if (boardBlocks.length < 2) return;
+
+    // 공지사항
+    var noticeUl = boardBlocks[0].querySelector('.board-list');
+    if (noticeUl) {
+      var notices = [];
+      try { notices = JSON.parse(localStorage.getItem('taeil_notices') || '[]'); } catch(e){}
+      if (notices.length === 0) {
+        noticeUl.innerHTML = '<li style="color:#999;font-size:14px;padding:12px 0;">등록된 공지사항이 없습니다.</li>';
+      } else {
+        noticeUl.innerHTML = notices.slice(0, 5).map(function(n) {
+          return '<li><a href="contact.html#tab-notice"><span>' + n.title + '</span><span>' + n.date + '</span></a></li>';
+        }).join('');
+      }
+    }
+
+    // 채용공고
+    var recruitUl = boardBlocks[1].querySelector('.board-list');
+    if (recruitUl) {
+      var recruits = [];
+      try { recruits = JSON.parse(localStorage.getItem('taeil_recruits') || '[]'); } catch(e){}
+      if (recruits.length === 0) {
+        recruitUl.innerHTML = '<li style="color:#999;font-size:14px;padding:12px 0;">등록된 채용공고가 없습니다.</li>';
+      } else {
+        recruitUl.innerHTML = recruits.slice(0, 5).map(function(r) {
+          var badge = r.status === 'on' ? ' <span style="font-size:11px;color:#f4a100;font-weight:700;">[채용중]</span>' : ' <span style="font-size:11px;color:#999;">[마감]</span>';
+          return '<li><a href="contact.html#tab-recruit"><span>' + r.title + badge + '</span><span>' + r.date + '</span></a></li>';
+        }).join('');
+      }
+    }
+  })();
 });
 </script>
 <section id="clients" style="display:none;">
