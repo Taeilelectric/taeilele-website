@@ -240,7 +240,8 @@
   .dropdown { display: none !important; }
   /* ── HERO ── */
   #hero {
-    min-height: max(82.5vh, 580px);
+    height: 100vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     position: relative;
@@ -394,11 +395,28 @@
     font-weight: 500;
   }
 
+  /* ── HERO CERT LOGOS (히어로 하단 인증바) ── */
+  .hero-cert-logos {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    z-index: 10;
+    background: rgba(10, 18, 38, 0.62);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    min-height: 72px;
+  }
+
   /* ── HERO SLIDES ── */
 
   .slide-indicators {
     position: absolute;
-    bottom: 40px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -416,7 +434,7 @@
 
   .scroll-hint {
     position: absolute;
-    bottom: 32px;
+    bottom: 100px;
     right: 80px;
     z-index: 10;
     display: flex;
@@ -1273,7 +1291,7 @@
   }
   /* ── index 반응형 ── */
   @media (max-width: 900px) {
-    #hero { min-height: max(75vh, 520px); overflow: hidden; width: 100%; }
+    #hero { height: 100vh; min-height: 600px; overflow: hidden; width: 100%; }
     .hero-slides { width: 100%; overflow: hidden; }
     .slide-bg { width: 100%; }
     .hero-content { left: 32px; right: 32px; bottom: 80px; max-width: calc(100vw - 64px); }
@@ -1755,14 +1773,14 @@ header .logo-dark  { display: block; }
     <span>SCROLL</span>
     <div class="scroll-line"></div>
   </div>
+
+  <!-- 인증로고 (히어로 하단 고정) -->
+  <div class="hero-cert-logos">
+    <img src="img/cert_logos_new.png" alt="인증" style="height:auto; max-height:72px; max-width:100%; width:auto; object-fit:contain;">
+  </div>
 </section>
 
 
-
-<!-- CERT LOGOS -->
-<section style="background:#f8f8f6; border-bottom:1px solid #e5e5e0; padding:20px 16px; text-align:center; overflow:hidden;">
-  <img src="img/cert_logos_new.png" alt="인증" style="height:auto; max-height:80px; max-width:100%; width:auto; object-fit:contain;">
-</section>
 
 <!-- QUICK LINKS -->
 <!-- ABOUT -->
