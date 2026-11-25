@@ -240,8 +240,7 @@
   .dropdown { display: none !important; }
   /* ── HERO ── */
   #hero {
-    height: 100vh;
-    min-height: 600px;
+    min-height: max(82.5vh, 580px);
     display: flex;
     align-items: center;
     position: relative;
@@ -395,35 +394,11 @@
     font-weight: 500;
   }
 
-  /* ── HERO CERT LOGOS (히어로 하단 인증바) ── */
-  .hero-cert-logos {
-    position: absolute;
-    bottom: 0;
-    left: 0; right: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-top: 1px solid rgba(26,43,74,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 40px;
-    min-height: 120px;
-  }
-  .hero-cert-logos img {
-    max-height: 110px;
-    height: auto;
-    max-width: 100%;
-    width: auto;
-    object-fit: contain;
-  }
-
   /* ── HERO SLIDES ── */
 
   .slide-indicators {
     position: absolute;
-    bottom: 138px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -441,7 +416,7 @@
 
   .scroll-hint {
     position: absolute;
-    bottom: 138px;
+    bottom: 32px;
     right: 80px;
     z-index: 10;
     display: flex;
@@ -1298,7 +1273,7 @@
   }
   /* ── index 반응형 ── */
   @media (max-width: 900px) {
-    #hero { height: 100vh; min-height: 600px; overflow: hidden; width: 100%; }
+    #hero { min-height: max(75vh, 520px); overflow: hidden; width: 100%; }
     .hero-slides { width: 100%; overflow: hidden; }
     .slide-bg { width: 100%; }
     .hero-content { left: 32px; right: 32px; bottom: 80px; max-width: calc(100vw - 64px); }
@@ -1780,14 +1755,14 @@ header .logo-dark  { display: block; }
     <span>SCROLL</span>
     <div class="scroll-line"></div>
   </div>
-
-  <!-- 인증로고 (히어로 하단 고정) -->
-  <div class="hero-cert-logos">
-    <img src="img/cert_logos_new.png" alt="인증">
-  </div>
 </section>
 
 
+
+<!-- CERT LOGOS -->
+<section style="background:#f8f8f6; border-bottom:1px solid #e5e5e0; padding:20px 16px; text-align:center; overflow:hidden;">
+  <img src="img/cert_logos_new.png" alt="인증" style="height:auto; max-height:80px; max-width:100%; width:auto; object-fit:contain;">
+</section>
 
 <!-- QUICK LINKS -->
 <!-- ABOUT -->
@@ -2108,7 +2083,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <img src="img/new_logo_dark.png" alt="태일전기" style="height:70px;width:auto;object-fit:contain;filter:grayscale(100%);opacity:0.6;">
     </div>
     <div class="footer-tagline" data-ko="대표이사 : 여규철" data-en="CEO : Yeo Gyu-cheol">대표이사 : 여규철</div>
-    <div class="footer-copy">COPYRIGHT © TAEILELE.<br>ALL RIGHTS RESERVED.</div>
+    <div class="footer-copy">COPYRIGHT © TAEILELEC.<br>ALL RIGHTS RESERVED.</div>
   </div>
 
   <!-- 중앙: 본사 / 사업본부 두 컬럼 -->
